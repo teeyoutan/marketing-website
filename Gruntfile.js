@@ -23,73 +23,93 @@ module.exports = function(grunt) {
   grunt.initConfig({
 
     config: {
-      src: 'src',
+      content: 'website',
+      guts: 'website-guts',
       dist: 'dist'
     },
-
     watch: {
       assemble: {
-        files: ['<%= config.src %>/{content,data,templates}/{,*/}*.{md,hbs,yml}'],
+        files: [
+        '<%= config.content %>/{,*/}*.{md,hbs,yml}',
+        '<%= config.guts %>/{layouts,partials}/.*',
+        '<%= config.guts %>/templates/layouts/.*.hbs'
+        ],
         tasks: ['assemble']
       },
-      css: {
-        files: ['<%= config.src %>/assets/css/*.scss'],
+      sass: {
+        files: ['<%= config.guts %>/assets/css/*.scss'],
         tasks: ['sass']
+      },
+      autoprefixer: {
+        files: ['<%= config.dist %>/css/styles.css'],
+        tasks: ['autoprefixer']
       },
       livereload: {
         options: {
           livereload: '<%= connect.options.livereload %>'
         },
         files: [
-          '<%= config.dist %>/{,*/}*.html',
-          '<%= config.dist %>/assets/{,*/}*.css',
-          '<%= config.dist %>/assets/{,*/}*.js',
-          '<%= config.dist %>/assets/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
+          '<%= config.dist %>/website/{,*/}*.html',
+          '<%= config.dist %>/css/*.css'
         ]
       }
     },
-
     connect: {
       options: {
         port: 9000,
         livereload: 35729,
         // change this to '0.0.0.0' to access the server from outside
-        hostname: 'localhost'
+        hostname: '0.0.0.0'
       },
       livereload: {
         options: {
           open: true,
           base: [
-            '<%= config.dist %>'
+            '<%= config.dist %>/'
           ]
         }
       }
     },
-
     assemble: {
       pages: {
+        options: {
+          layout: '<%= config.guts %>/templates/layouts/default-layout.hbs'
+        },
         files: {
-          '<%= config.dist %>/': ['<%= config.src %>/templates/pages/*.hbs']
+          '<%= config.dist %>/': ['<%= config.content %>/**/*.hbs']
         }
       }
     },
     sass: {
       css : {
+        options: {
+          outputStyle: 'compressed'
+        },
         files: {
-          '<%= config.dist %>/assets/css/main.css':'<%= config.src %>/assets/css/main.scss'
+          '<%= config.dist %>/css/styles.css':'<%= config.guts %>/assets/css/styles.scss'
         }
+      }
+    },
+    autoprefixer: {
+      options: {
+        options: ['last 2 versions']
+      },
+      files: {
+        src: '<%= config.dist %>/css/styles.css',
+        dest: '<%= config.dist %>/css/styles.css'
       }
     },
 
     // Before generating any new files,
     // remove any previously-created files.
-    clean: ['<%= config.dist %>/**/*.{html,xml}']
+    clean: ['<%= config.dist %>/']
 
   });
 
   grunt.loadNpmTasks('assemble');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-connect');
+  grunt.loadNpmTasks('grunt-autoprefixer');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-sass');
 
@@ -97,6 +117,7 @@ module.exports = function(grunt) {
     'clean',
     'assemble',
     'sass',
+    'autoprefixer',
     'connect:livereload',
     'watch'
   ]);
@@ -104,7 +125,8 @@ module.exports = function(grunt) {
   grunt.registerTask('build', [
     'clean',
     'assemble',
-    'sass'
+    'sass',
+    'autoprefixer'
   ]);
 
   grunt.registerTask('default', [
