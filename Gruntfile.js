@@ -59,7 +59,7 @@ module.exports = function(grunt) {
         port: 9000,
         livereload: 35729,
         // change this to '0.0.0.0' to access the server from outside
-        hostname: '0.0.0.0'
+        hostname: 'local.www.optimizely.com'
       },
       livereload: {
         options: {
