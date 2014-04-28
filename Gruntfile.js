@@ -87,7 +87,8 @@ module.exports = function(grunt) {
           outputStyle: 'compressed'
         },
         files: {
-          '<%= config.dist %>/css/styles.css':'<%= config.guts %>/assets/css/styles.scss'
+          '<%= config.dist %>/css/styles.css':'<%= config.guts %>/assets/css/styles.scss',
+          '<%= config.dist %>/css/fonts.css':'<%= config.guts %>/assets/css/fonts.scss'
         }
       }
     },
@@ -101,16 +102,6 @@ module.exports = function(grunt) {
       }
     },
     copy: {
-      css: {
-        files: [
-          {
-            src: '<%= config.bowerDir %>/normalize-css/normalize.css',
-            dest: '<%= config.guts %>/assets/css/normalize.scss',
-            flatten: true,
-            filter: 'isFile'
-          }
-        ]
-      },
       js: {
         files: [
           {
@@ -161,7 +152,6 @@ module.exports = function(grunt) {
   grunt.registerTask('build', [
     'clean:build',
     'assemble',
-    'copy:main',
     'sass',
     'autoprefixer',
     'copy:js'
