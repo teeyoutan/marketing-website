@@ -39,7 +39,7 @@ module.exports = function(grunt) {
       },
       sass: {
         files: ['<%= config.guts %>/assets/css/*.scss'],
-        tasks: ['copy:css', 'sass']
+        tasks: ['sass']
       },
       autoprefixer: {
         files: ['<%= config.dist %>/css/styles.css'],
@@ -134,9 +134,6 @@ module.exports = function(grunt) {
     clean: {
       build: {
         src: ['<%= config.dist %>/']
-      },
-      afterBuild: {
-        src: ['<%= config.guts %>/assets/css/normalize.scss']
       }
     }
 
@@ -157,7 +154,6 @@ module.exports = function(grunt) {
     'sass',
     'autoprefixer',
     'copy:js',
-    'clean:afterBuild',
     'connect:livereload',
     'watch'
   ]);
@@ -168,8 +164,7 @@ module.exports = function(grunt) {
     'copy:main',
     'sass',
     'autoprefixer',
-    'copy:js',
-    'clean:afterBuild'
+    'copy:js'
   ]);
 
   grunt.registerTask('default', [
