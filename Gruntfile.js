@@ -25,7 +25,8 @@ module.exports = function(grunt) {
     config: {
       content: 'website',
       guts: 'website-guts',
-      dist: 'dist'
+      dist: 'dist',
+      bowerDir: 'bower_components'
     },
     watch: {
       assemble: {
@@ -99,10 +100,29 @@ module.exports = function(grunt) {
         dest: '<%= config.dist %>/css/styles.css'
       }
     },
+    copy: {
+      main: {
+        files: [
+          {
+            src: '<%= config.bowerDir %>/normalize-css/normalize.css',
+            dest: '<%= config.guts %>/assets/css/normalize.scss',
+            flatten: true,
+            filter: 'isFile'
+          }
+        ]
+      }
+    },
 
     // Before generating any new files,
     // remove any previously-created files.
-    clean: ['<%= config.dist %>/']
+    clean: {
+      build: {
+        src: ['<%= config.dist %>/']
+      },
+      afterBuild: {
+        src: ['<%= config.guts %>/assets/css/normalize.scss']
+      }
+    }
 
   });
 
@@ -112,21 +132,25 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-autoprefixer');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-sass');
+  grunt.loadNpmTasks('grunt-contrib-copy');
 
   grunt.registerTask('server', [
-    'clean',
+    'clean:build',
     'assemble',
     'sass',
     'autoprefixer',
+    'clean:afterBuild',
     'connect:livereload',
     'watch'
   ]);
 
   grunt.registerTask('build', [
-    'clean',
+    'clean:build',
     'assemble',
+    'copy:main',
     'sass',
-    'autoprefixer'
+    'autoprefixer',
+    'clean:afterBuild'
   ]);
 
   grunt.registerTask('default', [
