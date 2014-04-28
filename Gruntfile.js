@@ -39,7 +39,7 @@ module.exports = function(grunt) {
       },
       sass: {
         files: ['<%= config.guts %>/assets/css/*.scss'],
-        tasks: ['sass']
+        tasks: ['copy:css', 'sass']
       },
       autoprefixer: {
         files: ['<%= config.dist %>/css/styles.css'],
@@ -101,11 +101,27 @@ module.exports = function(grunt) {
       }
     },
     copy: {
-      main: {
+      css: {
         files: [
           {
             src: '<%= config.bowerDir %>/normalize-css/normalize.css',
             dest: '<%= config.guts %>/assets/css/normalize.scss',
+            flatten: true,
+            filter: 'isFile'
+          }
+        ]
+      },
+      js: {
+        files: [
+          {
+            src: '<%= config.guts %>/assets/js/modernizr-2.7.2.min.js',
+            dest: '<%= config.dist %>/js/modernizr-2.7.2.min.js',
+            flatten: true,
+            filter: 'isFile'
+          },
+          {
+            src: '<%= config.bowerDir %>/jquery/jquery.js',
+            dest: '<%= config.dist %>/js/jquery.js',
             flatten: true,
             filter: 'isFile'
           }
@@ -137,8 +153,10 @@ module.exports = function(grunt) {
   grunt.registerTask('server', [
     'clean:build',
     'assemble',
+    'copy:css',
     'sass',
     'autoprefixer',
+    'copy:js',
     'clean:afterBuild',
     'connect:livereload',
     'watch'
@@ -150,6 +168,7 @@ module.exports = function(grunt) {
     'copy:main',
     'sass',
     'autoprefixer',
+    'copy:js',
     'clean:afterBuild'
   ]);
 
