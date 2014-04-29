@@ -186,6 +186,47 @@ textarea {
             width: 640px;
         }
     }
+    #footer-nav {margin: 0;}
+    .footer-nav-column {
+        float: left;
+        padding: 0 10px;
+        h4 {
+            padding: 0 0 7px 0;
+            border-bottom: 1px dotted $footer-link-color;
+        }
+        li {
+            margin: 0 0 6px 0;
+        }
+    }
+    #footer-nav-features {
+        padding-left: 0;
+        width: 160px;
+    }
+    #footer-nav-customers {
+        width: 100px;
+    }
+    #footer-nav-resources {
+        width: 160px;
+    }
+    #footer-nav-about {
+        width: 40px;
+    }
+    #footer-nav-other {
+        width: 100px;
+        padding-right: 0;
+    }
+    #intl-domains li {
+        float: left;
+        padding: 0 10px;
+    }
+    #intl-domains {
+        li.first {
+            padding-left: 0;
+        }
+        li.last {
+            padding-right: 0;
+        }
+    }
 }
 
 @media print,
