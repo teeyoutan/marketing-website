@@ -92,12 +92,45 @@ textarea {
    ========================================================================== */
 
    body {
-    font-family: "Gotham SSm A","Gotham SSm B",sans-serif;    
+    font-family: "Gotham SSm A","Gotham SSm B",sans-serif;
    }
 
+   .logo {
+    background: $logo-background;
+   }
 
+   /*
 
+        FOOTER
 
+   */
+   footer {
+    text-align: center;
+    .logo {
+        display: block;
+        background-size: 108px 23.112px;
+        height: 23.112px;
+        width: 108px;
+        text-indent: -900em;
+        margin: 0 auto;
+    }
+    h4 {
+        font-size: 1.3em;
+    }
+    ul {
+        padding: 0;
+    }
+    li {
+        list-style-type: none;
+        margin-bottom: 20px;
+    }
+    background: #006eb6;
+    color: #fff;
+    a {
+        color: $footer-link-color;
+        text-decoration: none;
+    }
+   }
 
 
 

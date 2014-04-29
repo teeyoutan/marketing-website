@@ -42,7 +42,7 @@ module.exports = function(grunt) {
         tasks: ['sass']
       },
       autoprefixer: {
-        files: ['<%= config.dist %>/css/styles.css'],
+        files: ['temp/css/styles.css'],
         tasks: ['autoprefixer']
       },
       livereload: {
@@ -87,7 +87,7 @@ module.exports = function(grunt) {
           outputStyle: 'compressed'
         },
         files: {
-          '<%= config.dist %>/css/styles.css':'<%= config.guts %>/assets/css/styles.scss',
+          'temp/css/styles.css':'<%= config.guts %>/assets/css/styles.scss',
           '<%= config.dist %>/css/fonts.css':'<%= config.guts %>/assets/css/fonts.scss'
         }
       }
@@ -97,7 +97,7 @@ module.exports = function(grunt) {
         options: ['last 2 versions']
       },
       files: {
-        src: '<%= config.dist %>/css/styles.css',
+        src: 'temp/css/styles.css',
         dest: '<%= config.dist %>/css/styles.css'
       }
     },
@@ -123,8 +123,11 @@ module.exports = function(grunt) {
     // Before generating any new files,
     // remove any previously-created files.
     clean: {
-      build: {
+      beforeBuild: {
         src: ['<%= config.dist %>/']
+      },
+      afterBuild: {
+        src: ['temp/']
       }
     }
 
@@ -139,9 +142,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
 
   grunt.registerTask('server', [
-    'clean:build',
+    'clean:beforeBuild',
     'assemble',
-    'copy:css',
     'sass',
     'autoprefixer',
     'copy:js',
@@ -150,11 +152,12 @@ module.exports = function(grunt) {
   ]);
 
   grunt.registerTask('build', [
-    'clean:build',
+    'clean:beforeBuild',
     'assemble',
     'sass',
     'autoprefixer',
-    'copy:js'
+    'copy:js',
+    'clean:afterBuild'
   ]);
 
   grunt.registerTask('default', [
