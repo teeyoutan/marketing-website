@@ -169,6 +169,65 @@ textarea {
 
     /*
 
+        HEADER
+
+    */
+    header {
+        background: #052f60;
+        .logo {
+            margin: 0;
+        }
+        a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    }
+    #utility-nav-cont {
+        display: block;
+        text-align: right;
+        font-size: .8em;
+    }
+    .utility-nav {
+        li {
+            list-style-type: none;
+            display: inline-block;
+            padding: 0 10px;
+        }
+        li.first {
+            padding-left: 0;
+        }
+        li.last {
+            padding-right: 0;
+        }
+    }
+    nav {
+        display: block;
+        float: right;
+        width: 700px;
+        text-align: right;
+    }
+    #logo-cont {
+        float: left;
+        width: 165px;
+    }
+    #main-nav {
+        li {
+            list-style-type: none;
+            display: inline-block;
+            padding: 0 10px;
+        }
+        li.first {
+            padding-left: 0;
+        }
+        li.last {
+            padding-right: 0;
+        }
+    }
+    
+
+    /*
+
         FOOTER
 
     */
