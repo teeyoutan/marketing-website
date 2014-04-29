@@ -91,12 +91,47 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
+   /*
+
+        FUNCTIONALITY HELPER CLASSES
+
+   */
+   body.signed-out {
+        .signed-in-content {
+            display: none;
+        }
+    }
+    body.signed-in {
+        .signed-out-content {
+            display: none;
+        }
+    }
+
     body {
         font-family: $body-font-family;
     }
 
     .logo {
         background: $logo-background;
+    }
+
+    /*
+
+        HEADER
+
+    */
+    #utility-nav-cont, nav {display: none;}
+    header {
+        background: #052f60;
+
+    }
+    .logo {
+        display: block;
+        height: 35.31px;
+        width: 165px;
+        background-size: 165px 35.31px;
+        text-indent: -900em;
+        margin: 0 auto;
     }
 
    /*
@@ -109,19 +144,6 @@ textarea {
         padding: 20px 0;
         background: #006eb6;
         color: #fff;
-        .logo {
-            display: block;
-            /*
-            background-size: 108px 23.112px;
-            height: 23.112px;
-            width: 108px;
-            */
-            background-size: 216px 46.224px;
-            height: 46.224px;
-            width: 216px;
-            text-indent: -900em;
-            margin: 0 auto 40px auto;
-        }
         h4 {font-size: 1.3em;}
         ul {padding: 0;}
         li {
@@ -214,6 +236,12 @@ textarea {
     #footer-nav-other {
         width: 100px;
         padding-right: 0;
+    }
+    hr.light {
+
+    }
+    hr.dark {
+
     }
     #intl-domains li {
         float: left;
