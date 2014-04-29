@@ -33,7 +33,7 @@ module.exports = function(grunt) {
         files: [
         '<%= config.content %>/{,*/}*.{md,hbs,yml}',
         '<%= config.guts %>/{layouts,partials}/.*',
-        '<%= config.guts %>/templates/layouts/.*.hbs'
+        '<%= config.guts %>/templates/layouts/default-layout.hbs'
         ],
         tasks: ['assemble']
       },

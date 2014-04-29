@@ -91,55 +91,109 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
-   body {
-    font-family: "Gotham SSm A","Gotham SSm B",sans-serif;
-   }
+    body {
+        font-family: $body-font-family;
+    }
 
-   .logo {
-    background: $logo-background;
-   }
+    .logo {
+        background: $logo-background;
+    }
 
    /*
 
         FOOTER
 
    */
-   footer {
-    text-align: center;
-    .logo {
-        display: block;
-        background-size: 108px 23.112px;
-        height: 23.112px;
-        width: 108px;
-        text-indent: -900em;
-        margin: 0 auto;
-    }
-    h4 {
-        font-size: 1.3em;
-    }
-    ul {
-        padding: 0;
-    }
-    li {
-        list-style-type: none;
-        margin-bottom: 20px;
-    }
-    background: #006eb6;
-    color: #fff;
-    a {
-        color: $footer-link-color;
-        text-decoration: none;
-    }
+    footer {
+        text-align: center;
+        padding: 20px 0;
+        background: #006eb6;
+        color: #fff;
+        .logo {
+            display: block;
+            /*
+            background-size: 108px 23.112px;
+            height: 23.112px;
+            width: 108px;
+            */
+            background-size: 216px 46.224px;
+            height: 46.224px;
+            width: 216px;
+            text-indent: -900em;
+            margin: 0 auto 40px auto;
+        }
+        h4 {font-size: 1.3em;}
+        ul {padding: 0;}
+        li {
+            list-style-type: none;
+            margin-bottom: 20px;
+        }
+        a {
+            color: $footer-link-color;
+            text-decoration: none;
+        }
+        a:hover {text-decoration: underline;}
    }
 
 
+/* ==========================================================================
+   EXAMPLE Media Queries for Responsive Design.
+   These examples override the primary ('mobile first') styles.
+   Modify as content requires.
+   ========================================================================== */
 
+@media only screen and (min-width: 35em) {
+    /* Style adjustments for viewports that meet the condition */
 
+    /*
 
+        FOOTER
 
+    */
+    footer {
+        font-size: $footer-desktop-font-size;
+        text-align: left;
+        h4 {
+            font-size: 1em;
+            font-weight: normal;
+        }
+        .logo {
+            background-size: 108px 23.112px;
+            height: 23.112px;
+            width: 108px;
+            margin: 0;
+        }
+    }
+    #legalese {
+        li {
+            float: left;
+            padding: 0 3px;
+        }
+        li.terms {
+            padding-left: 0;
+        }
+        li.security {
+            padding-right: 0;
+        }
+    }
+    #footer-nav-cont {
+        .left {
+            float: left;
+            width: 300px;
+        }
+        .right {
+            float: right;
+            width: 640px;
+        }
+    }
+}
 
-
-
+@media print,
+       (-o-min-device-pixel-ratio: 5/4),
+       (-webkit-min-device-pixel-ratio: 1.25),
+       (min-resolution: 120dpi) {
+    /* Style adjustments for high resolution devices */
+}
 
 
 /* ==========================================================================
@@ -213,23 +267,6 @@ textarea {
 
 .clearfix:after {
     clear: both;
-}
-
-/* ==========================================================================
-   EXAMPLE Media Queries for Responsive Design.
-   These examples override the primary ('mobile first') styles.
-   Modify as content requires.
-   ========================================================================== */
-
-@media only screen and (min-width: 35em) {
-    /* Style adjustments for viewports that meet the condition */
-}
-
-@media print,
-       (-o-min-device-pixel-ratio: 5/4),
-       (-webkit-min-device-pixel-ratio: 1.25),
-       (min-resolution: 120dpi) {
-    /* Style adjustments for high resolution devices */
 }
 
 /* ==========================================================================
