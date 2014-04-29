@@ -74,7 +74,7 @@ module.exports = function(grunt) {
     assemble: {
       pages: {
         options: {
-          layout: '<%= config.guts %>/templates/layouts/default-layout.hbs'
+          layoutdir: '<%= config.guts %>/templates/layouts/'
         },
         files: {
           '<%= config.dist %>/': ['<%= config.content %>/**/*.hbs']
