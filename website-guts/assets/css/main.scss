@@ -120,7 +120,7 @@ textarea {
         HEADER
 
     */
-    #utility-nav-cont, nav {display: none;}
+    /*#utility-nav-cont, nav {display: none;}*/
     header {
         background: #052f60;
 
@@ -133,6 +133,55 @@ textarea {
         text-indent: -900em;
         margin: 0 auto;
     }
+    /*
+        
+        MOBILE NAV
+
+    */
+    @media only screen and (max-width: 59em) {
+        #outer-wrapper {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+        }
+        #nav-menu {
+            color: #fff;
+            text-decoration: none;
+            font-size: 2em;
+            float: left;
+            margin: 10px 0 0 10px;
+        }
+        #inner-wrapper {
+            position: relative;
+            width: 100%;
+            transform: translate(0);
+            transition: transform .1s;
+        }
+        #navigation-cont {
+            left: -70%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            display: block;
+            background: pink;
+        }
+        body.nav-open {
+            #inner-wrapper {
+                position: relative;
+                width: 100%;
+                transform: translate(70%);
+            }
+            #navigation-cont {
+                height: 100%;
+                width: 70%;
+                position: absolute;
+                top: 0;
+                display: block;
+                background: pink;
+            }
+        }
+    }
+    
 
     /* 
 
@@ -140,6 +189,7 @@ textarea {
 
     */
     #page-header {
+        background: #fff;
         h1 {
             font-weight: normal;
             text-align: center;
@@ -150,6 +200,7 @@ textarea {
     }
     #page-content {
         padding: 15px 0;
+        background: #fff;
     }
     .ugc {
         p, li {
@@ -196,7 +247,7 @@ textarea {
    Modify as content requires.
    ========================================================================== */
 
-@media only screen and (min-width: 35em) {
+@media only screen and (min-width: 60em) {
     /* Style adjustments for viewports that meet the condition */
 
     /*
@@ -206,8 +257,13 @@ textarea {
     */
     header {
         background: #052f60;
+        .container {
+            position: relative;
+        }
         .logo {
-            margin: 0;
+            position: absolute;
+            bottom: 15px;
+            left: 0;
         }
         a {
             color: #fff;
@@ -215,6 +271,7 @@ textarea {
             font-weight: bold;
         }
     }
+    #nav-menu {display: none;}
     #utility-nav-cont {
         display: block;
         text-align: right;
