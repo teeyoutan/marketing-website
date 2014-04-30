@@ -134,6 +134,29 @@ textarea {
         margin: 0 auto;
     }
 
+    /* 
+
+        PAGE TEMPLATE
+
+    */
+
+    #page-header {
+        h1 {
+            font-weight: normal;
+            text-align: center;
+            color: $page-header-color;
+        }
+    }
+    .ugc {
+        p, li {
+            font-size: .9em;
+            font-weight: 100;
+        }
+        h4 {
+            font-weight: 100;
+        }
+    }
+
    /*
 
         FOOTER
@@ -155,6 +178,7 @@ textarea {
             text-decoration: none;
         }
         a:hover {text-decoration: underline;}
+        .separater {display: none;}
    }
 
 
@@ -224,7 +248,16 @@ textarea {
             padding-right: 0;
         }
     }
-    
+
+    /* 
+
+        PAGE TEMPLATE
+
+    */
+    #page-content {
+        background: $page-content-color;
+        padding: 15px 0;
+    }
 
     /*
 
