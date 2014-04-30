@@ -139,21 +139,27 @@ textarea {
         PAGE TEMPLATE
 
     */
-
     #page-header {
         h1 {
             font-weight: normal;
             text-align: center;
             color: $page-header-color;
+            font-weight: 100;
+            margin: .54em 0;
         }
+    }
+    #page-content {
+        padding: 15px 0;
     }
     .ugc {
         p, li {
             font-size: .9em;
             font-weight: 100;
         }
+        li {margin-bottom: 7px;}
         h4 {
             font-weight: 100;
+            font-size: 1.05em;
         }
     }
 
@@ -167,7 +173,9 @@ textarea {
         padding: 20px 0;
         background: #006eb6;
         color: #fff;
-        h4 {font-size: 1.3em;}
+        h4 {
+            font-size: 1.3em;
+        }
         ul {padding: 0;}
         li {
             list-style-type: none;
@@ -254,10 +262,7 @@ textarea {
         PAGE TEMPLATE
 
     */
-    #page-content {
-        background: $page-content-color;
-        padding: 15px 0;
-    }
+    #page-content {background: $page-content-color;}
 
     /*
 
@@ -269,7 +274,7 @@ textarea {
         text-align: left;
         h4 {
             font-size: 1em;
-            font-weight: normal;
+            font-weight: 100;
         }
         .logo {
             background-size: 108px 23.112px;
