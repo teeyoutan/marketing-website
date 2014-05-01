@@ -23,11 +23,10 @@
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
         <div id="outer-wrapper">
-            <div id="inner-wrapper">
+            <div id="menu">
                 <header>
                     <div class="container">
-                        <a href="#menu" class="mobile-nav-toggle" id="nav-menu">☰</a>
-                        <p id="logo-cont"><a class="logo" href="/">Optimizely</a></p>
+                        <p class="logo-cont"><a class="logo" href="/">Optimizely</a></p>
                         <div id="navigation-cont">
                             <div id="utility-nav-cont" class="clearfix">
                                 <ul class="signed-out-content utility-nav" class="clearfix">
@@ -54,8 +53,15 @@
                                 </nav>
                             </div><!--/#main-header-->
                         </div><!--/#navigation-cont-->
-                    </div>
+                    </div><!--/.container-->
                 </header>
+            </div><!--#menu-->
+            <div id="content-wrapper">
+                <div id="mobile-header" class="clearfix">
+                    <a href="#menu" class="menu-icon" id="menu-open">☰</a>
+                    <a href="#" class="menu-icon" id="menu-close">☰</a>
+                    <p class="header-logo-cont"><a class="logo" href="/">Optimizely</a></p>
+                </div><!---->
                 {{> body }}
                 <footer>
                     <div class="container">
@@ -145,15 +151,8 @@
                         </div><!--/#footer-nav-cont-->
                     </div><!--/.container-->
                 </footer>
-            </div><!--/#inner-wrapper-->
+            </div><!--/#content-wrapper-->
         </div><!--/#outer-wrapper-->
-        <script>
-            $(function(){
-                $('#nav-menu').click(function(){
-                    $('body').toggleClass('nav-open');
-                });
-            });
-        </script>
         {{!--
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.0.min.js"><\/script>')</script>

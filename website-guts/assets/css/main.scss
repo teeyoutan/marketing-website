@@ -122,7 +122,7 @@ textarea {
     */
     /*#utility-nav-cont, nav {display: none;}*/
     header {
-        background: #052f60;
+        background: $header-background;
 
     }
     .logo {
@@ -138,47 +138,62 @@ textarea {
         MOBILE NAV
 
     */
-    @media only screen and (max-width: 59em) {
+    @media only screen and (max-width: 59.99em) {
         #outer-wrapper {
-            position: relative;
-            overflow: hidden;
             width: 100%;
+            overflow: hidden;
+            position: relative;
         }
-        #nav-menu {
+        #menu {
+            height: 100%;
+            position: absolute;
+            top: 0;
+            background: $header-background;
+            width: 100%;
+            a {
+                color: #fff;
+                text-decoration: none;
+                display: block;
+                padding: 15px 0 15px 5px;
+                border-top: 1px solid #0a3c76;
+                border-bottom: 1px solid #042750;
+            }
+        }
+        #navigation-cont {
+            ul {padding: 0; margin: 0;}
+            li {list-style-type: none;}
+        }
+        #menu:after {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            height: 100%;
+            width: 34px;
+            background: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4));
+        }
+        #menu .logo-cont {display: none;}
+        #mobile-header {background: $header-background;}
+        #menu-close {display: none;}
+        .menu-icon {
             color: #fff;
             text-decoration: none;
             font-size: 2em;
             float: left;
             margin: 10px 0 0 10px;
         }
-        #inner-wrapper {
-            position: relative;
+        #content-wrapper {
             width: 100%;
             transform: translate(0);
             transition: transform .1s;
         }
-        #navigation-cont {
-            left: -70%;
-            height: 100%;
-            position: absolute;
-            top: 0;
-            display: block;
-            background: pink;
+        #menu:target {
+            width: 50%;
         }
-        body.nav-open {
-            #inner-wrapper {
-                position: relative;
-                width: 100%;
-                transform: translate(70%);
-            }
-            #navigation-cont {
-                height: 100%;
-                width: 70%;
-                position: absolute;
-                top: 0;
-                display: block;
-                background: pink;
-            }
+        #menu:target + #content-wrapper {
+            transform: translate(50%);
+            #menu-open {display: none;}
+            #menu-close {display: block;}
         }
     }
     
@@ -271,7 +286,7 @@ textarea {
             font-weight: bold;
         }
     }
-    #nav-menu {display: none;}
+    #mobile-header {display: none;}
     #utility-nav-cont {
         display: block;
         text-align: right;
