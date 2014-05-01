@@ -268,69 +268,64 @@ textarea {
         HEADER
 
     */
+    .container {
+        position: relative;
+    }
     header {
         background: #052f60;
-        .container {
-            position: relative;
-        }
-        .logo {
-            position: absolute;
-            bottom: 15px;
-            left: 0;
-        }
         a {
             color: #fff;
             text-decoration: none;
-            font-weight: bold;
+        }
+        .logo-cont {
+            position: absolute;
+            bottom: 0;
+            left: 1.6%;
+        }
+        .utility-nav {
+            margin: 0;
+            a {
+                font-size: .8em;
+                font-weight: normal;
+                padding: 12px;
+                display: block;
+            }
+            a:hover {
+                background: $nav-hover-color;
+            }
         }
     }
-    #mobile-header {display: none;}
-    #utility-nav-cont {
-        display: block;
+    #navigation-cont ul {
+        padding: 0;
         text-align: right;
-        font-size: .8em;
-        font-weight: 500;
-    }
-    .utility-nav {
+        a {
+            
+        }
         li {
             list-style-type: none;
             display: inline-block;
-            padding: 0 10px;
         }
-        li.first {
-            padding-left: 0;
-        }
-        li.last {
-            padding-right: 0;
-        }
-        a {
-            font-weight: 500;
-        }
-    }
-    nav {
-        display: block;
-        float: right;
-        width: 700px;
-        text-align: right;
-    }
-    #logo-cont {
-        float: left;
-        width: 165px;
     }
     #main-nav {
-        li {
-            list-style-type: none;
-            display: inline-block;
-            padding: 0 10px;
+        margin: 0 0 5px 0;
+        a {
+            font-weight: 500;
+            padding: 1.1em 1.3em;
+            display: block;
         }
-        li.first {
-            padding-left: 0;
+        li {
+            border-top: 4px solid transparent;
         }
         li.last {
-            padding-right: 0;
+            a {padding-right: 0;}
+        }
+        li:hover {
+            border-top: 4px solid $nav-hover-color;
+
         }
     }
 
+    #mobile-header {display: none;}
     /* 
 
         PAGE TEMPLATE
