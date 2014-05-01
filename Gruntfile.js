@@ -32,8 +32,7 @@ module.exports = function(grunt) {
       assemble: {
         files: [
         '<%= config.content %>/{,*/}*.{md,hbs,yml}',
-        '<%= config.guts %>/{layouts,partials}/.*',
-        '<%= config.guts %>/templates/layouts/.*'
+        '<%= config.guts %>/templates/**/*.hbs'
         ],
         tasks: ['assemble']
       },
