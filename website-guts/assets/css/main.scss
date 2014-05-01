@@ -276,6 +276,7 @@ textarea {
         display: block;
         text-align: right;
         font-size: .8em;
+        font-weight: 500;
     }
     .utility-nav {
         li {
@@ -288,6 +289,9 @@ textarea {
         }
         li.last {
             padding-right: 0;
+        }
+        a {
+            font-weight: 500;
         }
     }
     nav {
