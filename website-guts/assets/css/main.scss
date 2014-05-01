@@ -155,6 +155,7 @@ textarea {
                 border-top: 1px solid #052e5d;
                 border-bottom: 1px solid #031c39;
             }
+            a.nav-parent {display: none;}
         }
         #navigation-cont {
             ul {padding: 0; margin: 0;}
@@ -186,10 +187,10 @@ textarea {
             transition: transform .1s;
         }
         #menu:target {
-            width: 50%;
+            width: $mobile-nav-width;
         }
         #menu:target + #content-wrapper {
-            transform: translate(50%);
+            transform: translate($mobile-nav-width);
             #menu-open {display: none;}
             #menu-close {display: block;}
         }
