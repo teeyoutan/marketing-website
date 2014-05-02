@@ -146,7 +146,8 @@ module.exports = function(grunt) {
           },
           {
             src: '<%= config.dist %>/website/**/*',
-            dest: '/'
+            dest: '/',
+            rel: '<%= config.dist %>'
           }
         ]
       }
