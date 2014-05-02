@@ -28,6 +28,7 @@ module.exports = function(grunt) {
       dist: 'dist',
       bowerDir: 'bower_components'
     },
+    aws: grunt.file.readJSON('configs/s3Config.json'),
     watch: {
       assemble: {
         files: [
@@ -118,15 +119,36 @@ module.exports = function(grunt) {
         ]
       }
     },
-
-    // Before generating any new files,
-    // remove any previously-created files.
     clean: {
       beforeBuild: {
         src: ['<%= config.dist %>/']
       },
       afterBuild: {
         src: ['temp/']
+      }
+    },
+    s3: {
+      options: {
+        key: '<%= aws.key %>',
+        secret: '<%= aws.secret %>',
+        bucket: '<%= aws.bucket %>',
+        access: 'public-read',
+      },
+      dev: {
+        upload: [
+          {
+            src: '<%= config.dist %>/css/*',
+            dest: '/css'
+          },
+          {
+            src: '<%= config.dist %>/js/*',
+            dest: '/js'
+          },
+          {
+            src: '<%= config.dist %>/website/**/*',
+            dest: '/'
+          }
+        ]
       }
     }
 
@@ -139,6 +161,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-sass');
   grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-s3');
 
   grunt.registerTask('server', [
     'clean:beforeBuild',
@@ -157,6 +180,16 @@ module.exports = function(grunt) {
     'autoprefixer',
     'copy:js',
     'clean:afterBuild'
+  ]);
+
+  grunt.registerTask('s3Deploy', [
+    'clean:beforeBuild',
+    'assemble',
+    'sass',
+    'autoprefixer',
+    'copy:js',
+    'clean:afterBuild',
+    's3'
   ]);
 
   grunt.registerTask('default', [
