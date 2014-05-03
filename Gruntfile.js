@@ -21,22 +21,28 @@ module.exports = function(grunt) {
 
   // Project configuration.
   grunt.initConfig({
-
-    env: {
-      dev: {
-        NODE_ENV: 'staging',
-        ASSETS_DIR: '/assets/',
-      },
-      preview: {
-        NODE_ENV: 'preview',
-        ASSETS_DIR: '/optimizely-marketing-website/'
-      }
-    },
     config: {
+      preview: {
+        options: {
+          variables: {
+            'environment': 'preview',
+            'assets_dir': '/optimizely-marketing-website/assets'
+          }
+        }
+      },
+      dev: {
+        options: {
+          variables: {
+            'environment': 'dev',
+            'assets_dir': '/assets'
+          }
+        }
+      },
       content: 'website',
       guts: 'website-guts',
       dist: 'dist',
-      bowerDir: 'bower_components'
+      bowerDir: 'bower_components',
+      assetsDir: process.env.ASSETS_DIR
     },
     aws: grunt.file.readJSON('configs/s3Config.json'),
     watch: {
@@ -85,7 +91,7 @@ module.exports = function(grunt) {
       pages: {
         options: {
           layoutdir: '<%= config.guts %>/templates/layouts/',
-          assets: '/assets'
+          assetsDir: '<%= grunt.config.get("assets_dir") %>'
         },
         files: [
           {
@@ -165,10 +171,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-sass');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-s3');
-  grunt.loadNpmTasks('grunt-env');
+  grunt.loadNpmTasks('grunt-config');
 
-  grunt.registerTask('server-dev', [
-    'env:dev',
+  grunt.registerTask('server', [
+    'config:dev',
     'clean',
     'assemble',
     'sass',
@@ -178,8 +184,8 @@ module.exports = function(grunt) {
     'watch'
   ]);
 
-  grunt.registerTask('build-dev', [
-    'env:dev',
+  grunt.registerTask('build', [
+    'config:dev',
     'clean',
     'assemble',
     'sass',
@@ -188,7 +194,7 @@ module.exports = function(grunt) {
   ]);
 
   grunt.registerTask('preview', [
-    'env:preview',
+    'config:preview',
     'clean',
     'assemble',
     'sass',
