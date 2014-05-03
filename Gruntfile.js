@@ -48,7 +48,8 @@ module.exports = function(grunt) {
       assemble: {
         files: [
           '<%= config.content %>/{,*/}*.{md,hbs,yml}',
-          '<%= config.guts %>/templates/**/*.hbs'
+          '<%= config.guts %>/templates/**/*.hbs',
+          '<%= config.content %>/**/*.hbs'
         ],
         tasks: ['config:dev', 'assemble']
       },
@@ -57,7 +58,7 @@ module.exports = function(grunt) {
         tasks: ['sass']
       },
       autoprefixer: {
-        files: ['temp/css/styles.css'],
+        files: ['<%= config.dist %>/assets/css/*.css'],
         tasks: ['autoprefixer']
       },
       img: {
@@ -70,7 +71,7 @@ module.exports = function(grunt) {
         },
         files: [
           '<%= config.dist %>/website/{,*/}*.html',
-          '<%= config.dist %>/css/*.css'
+          '<%= config.dist %>/assets/css/*.css'
         ]
       }
     },
