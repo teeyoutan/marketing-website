@@ -17,6 +17,7 @@ node_modules
 
 *.sublime-*
 bower_components/*
+node_modules/*
 .DS_Store
 temp/*
 configs/s3Config.json
