@@ -76,9 +76,14 @@ module.exports = function(grunt) {
         options: {
           layoutdir: '<%= config.guts %>/templates/layouts/'
         },
-        files: {
-          '<%= config.dist %>/': ['<%= config.content %>/**/*.hbs']
-        }
+        files: [
+          {
+            src: '**/*.hbs',
+            dest: '<%= config.dist %>/',
+            cwd: '<%= config.content %>/',
+            expand: true
+          }
+        ]
       }
     },
     sass: {
