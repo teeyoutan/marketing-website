@@ -22,6 +22,16 @@ module.exports = function(grunt) {
   // Project configuration.
   grunt.initConfig({
 
+    env: {
+      dev: {
+        NODE_ENV: 'staging',
+        ASSETS_DIR: '/assets/',
+      },
+      preview: {
+        NODE_ENV: 'preview',
+        ASSETS_DIR: '/optimizely-marketing-website/'
+      }
+    },
     config: {
       content: 'website',
       guts: 'website-guts',
@@ -74,7 +84,8 @@ module.exports = function(grunt) {
     assemble: {
       pages: {
         options: {
-          layoutdir: '<%= config.guts %>/templates/layouts/'
+          layoutdir: '<%= config.guts %>/templates/layouts/',
+          assets: '/assets'
         },
         files: [
           {
@@ -92,8 +103,8 @@ module.exports = function(grunt) {
           outputStyle: 'compressed'
         },
         files: {
-          'temp/css/styles.css':'<%= config.guts %>/assets/css/styles.scss',
-          '<%= config.dist %>/css/fonts.css':'<%= config.guts %>/assets/css/fonts.scss'
+          '<%= config.dist %>/assets/css/styles.css':'<%= config.guts %>/assets/css/styles.scss',
+          '<%= config.dist %>/assets/css/fonts.css':'<%= config.guts %>/assets/css/fonts.scss'
         }
       }
     },
@@ -102,8 +113,7 @@ module.exports = function(grunt) {
         options: ['last 2 versions']
       },
       files: {
-        src: 'temp/css/styles.css',
-        dest: '<%= config.dist %>/css/styles.css'
+        src: ['<%= config.dist %>/assets/css/**/*.css', '!<%= config.dist %>/assets/css/fonts.css']
       }
     },
     copy: {
@@ -124,14 +134,9 @@ module.exports = function(grunt) {
         ]
       }
     },
-    clean: {
-      beforeBuild: {
-        src: ['<%= config.dist %>/']
-      },
-      afterBuild: {
-        src: ['temp/']
-      }
-    },
+    clean: [
+      '<%= config.dist %>/'
+    ],
     s3: {
       options: {
         key: '<%= aws.key %>',
@@ -142,15 +147,7 @@ module.exports = function(grunt) {
       dev: {
         upload: [
           {
-            src: '<%= config.dist %>/css/*',
-            dest: '/css'
-          },
-          {
-            src: '<%= config.dist %>/js/*',
-            dest: '/js'
-          },
-          {
-            src: '<%= config.dist %>/website/**/*',
+            src: '<%= config.dist %>/**/*',
             dest: '/',
             rel: '<%= config.dist %>'
           }
@@ -168,9 +165,11 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-sass');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-s3');
+  grunt.loadNpmTasks('grunt-env');
 
-  grunt.registerTask('server', [
-    'clean:beforeBuild',
+  grunt.registerTask('server-dev', [
+    'env:dev',
+    'clean',
     'assemble',
     'sass',
     'autoprefixer',
@@ -179,27 +178,27 @@ module.exports = function(grunt) {
     'watch'
   ]);
 
-  grunt.registerTask('build', [
-    'clean:beforeBuild',
+  grunt.registerTask('build-dev', [
+    'env:dev',
+    'clean',
     'assemble',
     'sass',
     'autoprefixer',
-    'copy:js',
-    'clean:afterBuild'
+    'copy:js'
   ]);
 
-  grunt.registerTask('s3Deploy', [
-    'clean:beforeBuild',
+  grunt.registerTask('preview', [
+    'env:preview',
+    'clean',
     'assemble',
     'sass',
     'autoprefixer',
     'copy:js',
-    'clean:afterBuild',
     's3'
   ]);
 
   grunt.registerTask('default', [
-    'build'
+    'build-stag'
   ]);
 
 };
