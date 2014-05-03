@@ -50,7 +50,7 @@ module.exports = function(grunt) {
           '<%= config.content %>/{,*/}*.{md,hbs,yml}',
           '<%= config.guts %>/templates/**/*.hbs'
         ],
-        tasks: ['assemble']
+        tasks: ['config:dev', 'assemble']
       },
       sass: {
         files: ['<%= config.guts %>/assets/css/*.scss'],
@@ -148,7 +148,7 @@ module.exports = function(grunt) {
             src: '*',
             cwd: '<%= config.guts %>/assets/img/',
             dest: '<%= config.dist %>/assets/img/',
-            expand: trueß
+            expand: true
           }
         ]
       }
