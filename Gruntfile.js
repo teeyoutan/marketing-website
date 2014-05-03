@@ -47,8 +47,8 @@ module.exports = function(grunt) {
     watch: {
       assemble: {
         files: [
-        '<%= config.content %>/{,*/}*.{md,hbs,yml}',
-        '<%= config.guts %>/templates/**/*.hbs'
+          '<%= config.content %>/{,*/}*.{md,hbs,yml}',
+          '<%= config.guts %>/templates/**/*.hbs'
         ],
         tasks: ['assemble']
       },
@@ -59,6 +59,10 @@ module.exports = function(grunt) {
       autoprefixer: {
         files: ['temp/css/styles.css'],
         tasks: ['autoprefixer']
+      },
+      img: {
+        files: ['<%= config.guts %>/assets/img/*.{png,jpg}'],
+        tasks: ['copy:img']
       },
       livereload: {
         options: {
@@ -137,6 +141,16 @@ module.exports = function(grunt) {
             filter: 'isFile'
           }
         ]
+      },
+      img: {
+        files: [
+          {
+            src: '*',
+            cwd: '<%= config.guts %>/assets/img/',
+            dest: '<%= config.dist %>/assets/img/',
+            expand: trueß
+          }
+        ]
       }
     },
     clean: [
@@ -178,7 +192,7 @@ module.exports = function(grunt) {
     'assemble',
     'sass',
     'autoprefixer',
-    'copy:js',
+    'copy',
     'connect:livereload',
     'watch'
   ]);
@@ -189,7 +203,7 @@ module.exports = function(grunt) {
     'assemble',
     'sass',
     'autoprefixer',
-    'copy:js'
+    'copy'
   ]);
 
   grunt.registerTask('preview', [
