@@ -41,8 +41,7 @@ module.exports = function(grunt) {
       content: 'website',
       guts: 'website-guts',
       dist: 'dist',
-      bowerDir: 'bower_components',
-      assetsDir: process.env.ASSETS_DIR
+      bowerDir: 'bower_components'
     },
     aws: grunt.file.readJSON('configs/s3Config.json'),
     watch: {
