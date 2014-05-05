@@ -243,7 +243,10 @@ textarea {
     }
     #page-header-gradient {
         height: 25px;
-        background: #f4f4f4 url('/assets/img/bg-shadow.png') no-repeat center bottom;
+        background-color: #fff;
+        background-repeat: no-repeat;
+        background-position: center bottom;
+        background-image: url('/assets/img/bg-shadow.png');
     }
     #page-content {
         background: #fff;
@@ -251,27 +254,29 @@ textarea {
     .ugc {
         color: #242424;
         p, li {
-            font-size: .9em;
+            font-size: 1.1em;
         }
         p {
-            line-height: 1.5;
+            line-height: 1.7;
         }
         li {margin-bottom: 7px;}
-        h2, h3, h4, h5 {
-            margin: 0;
-        }
         h2, h3, h4, h5, p, li {
             font-weight: 100;
         }
+        h2, h3, h4, h5 {
+            margin: 0;
+            text-align: center;
+            font-size: 2em;
+        }
         h3 {
-            font-size: 1.7em;
+            font-size: 1.8em;
             line-height: 1.2;
         }
         h4 {
-            font-size: 1.05em;
+            font-size: 1.6em;
         }
         h5 {
-            font-size: 1em;
+            font-size: 1.4em;
         }
         a {
             color: #4d89e2;
@@ -379,7 +384,15 @@ textarea {
 
     */
     #page-content {background: $page-content-color;}
-
+    #page-header-gradient {background-color: #f4f4f4;}
+    .ugc {
+        p, li {
+            font-size: .9em;
+        }
+        h2, h3, h3, h4, h5 {
+            text-align: left;
+        }
+    }
     /*
 
         FOOTER
