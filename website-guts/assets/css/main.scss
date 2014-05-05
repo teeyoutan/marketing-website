@@ -136,63 +136,67 @@ textarea {
 
     */
     @media only screen and (max-width: 59.99em) {
+        header {
+            background: #052f60;
+            nav {
+                position: absolute;
+                left: -80%;
+                height: 100%;
+                top: 0;
+                background: pink;
+                width: 0;
+            }
+        }
         #outer-wrapper {
             width: 100%;
             overflow: hidden;
             position: relative;
         }
-        #menu {
-            height: 100%;
-            position: absolute;
-            top: 0;
-            background: #04264d;
+        #inner-wrapper {
+            position: relative;
             width: 100%;
-            a {
-                color: #fff;
-                text-decoration: none;
-                display: block;
-                padding: 15px 0 15px 5px;
-                border-top: 1px solid #052e5d;
-                border-bottom: 1px solid #031c39;
-            }
-            a.nav-parent {display: none;}
+            transform: translate(0);
+            transition: transform .1s;
         }
-        #navigation-cont {
-            ul {padding: 0; margin: 0;}
-            li {list-style-type: none;}
-        }
-        #menu:after {
-            content: "";
-            position: absolute;
-            top: 0;
-            right: 0;
-            height: 100%;
-            width: 34px;
-            background: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4));
-        }
-        #menu .logo-cont {display: none;}
-        #mobile-header {background: $header-background;}
-        #menu-close {display: none;}
-        .menu-icon {
+        #nav-menu {
             color: #fff;
             text-decoration: none;
             font-size: 2em;
             float: left;
             margin: 10px 0 0 10px;
-            padding: 3px 10px 3px 0;
         }
-        #content-wrapper {
-            width: 100%;
-            transform: translate(0);
-            transition: transform .1s;
+        #user-icon {
+            height: 25px;
+            width: 25px;
+            float: right;
+            margin: 20px 10px 0 0;
         }
-        #menu:target {
-            width: $mobile-nav-width;
+        #user-icon-path {
+            fill: #fff;
         }
-        #menu:target + #content-wrapper {
-            transform: translate($mobile-nav-width);
-            #menu-open {display: none;}
-            #menu-close {display: block;}
+        #utility-nav-cont {
+            right: -80%;
+            height: 100%;
+            top: 0;
+            background: pink;
+            width: 0;
+            position: absolute;
+        }
+        body.nav-open {
+            #inner-wrapper {
+                transform: translate(70%);
+            }
+            nav {
+                width: 80%;
+            }
+        }
+        body.user-nav-open {
+            #inner-wrapper {
+                transform: translate(-80%);
+            }
+            #utility-nav-cont {
+                width: 80%;
+            }
         }
     }
     
@@ -204,12 +208,13 @@ textarea {
     */
     #page-header {
         background: #fff;
+        padding: 17px 0;
         h1 {
             font-weight: normal;
             text-align: center;
             color: $page-header-color;
             font-weight: 100;
-            margin: .54em 0 0 0;
+            margin: 0;
         }
         p {
             text-align: center;
@@ -220,10 +225,9 @@ textarea {
     }
     #page-header-gradient {
         height: 25px;
-        background: url('/assets/img/bg-shadow.png') no-repeat center bottom;;
+        background: #f4f4f4 url('/assets/img/bg-shadow.png') no-repeat center bottom;
     }
     #page-content {
-        padding: 15px 0;
         background: #fff;
     }
     .ugc {
@@ -235,6 +239,9 @@ textarea {
             line-height: 1.5;
         }
         li {margin-bottom: 7px;}
+        h2, h3, h4, h5 {
+            margin: 0;
+        }
         h2, h3, h4, h5, p, li {
             font-weight: 100;
         }

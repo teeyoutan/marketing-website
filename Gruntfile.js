@@ -41,6 +41,7 @@ module.exports = function(grunt) {
       content: 'website',
       guts: 'website-guts',
       dist: 'dist',
+      temp: 'temp',
       bowerDir: 'bower_components'
     },
     aws: grunt.file.readJSON('configs/s3Config.json'),
@@ -55,11 +56,7 @@ module.exports = function(grunt) {
       },
       sass: {
         files: ['<%= config.guts %>/assets/css/*.scss'],
-        tasks: ['sass']
-      },
-      autoprefixer: {
-        files: ['<%= config.dist %>/assets/css/*.css'],
-        tasks: ['autoprefixer']
+        tasks: ['sass', 'autoprefixer', 'clean:postBuild']
       },
       img: {
         files: ['<%= config.guts %>/assets/img/*.{png,jpg}'],
@@ -70,8 +67,9 @@ module.exports = function(grunt) {
           livereload: '<%= connect.options.livereload %>'
         },
         files: [
-          '<%= config.dist %>/website/{,*/}*.html',
-          '<%= config.dist %>/assets/css/*.css'
+          '<%= config.dist %>/**/*.html',
+          '<%= config.dist %>/assets/css/**/*.css',
+          '<%= config.dist %>/assets/js/**/*.js'
         ]
       }
     },
@@ -108,12 +106,12 @@ module.exports = function(grunt) {
       }
     },
     sass: {
-      css : {
+      styles: {
         options: {
           outputStyle: 'compressed'
         },
         files: {
-          '<%= config.dist %>/assets/css/styles.css':'<%= config.guts %>/assets/css/styles.scss',
+          '<%= config.temp %>/css/styles.css':'<%= config.guts %>/assets/css/styles.scss',
           '<%= config.dist %>/assets/css/fonts.css':'<%= config.guts %>/assets/css/fonts.scss'
         }
       }
@@ -123,7 +121,9 @@ module.exports = function(grunt) {
         options: ['last 2 versions']
       },
       files: {
-        src: ['<%= config.dist %>/assets/css/**/*.css', '!<%= config.dist %>/assets/css/fonts.css']
+        flatten: true,
+        src: '<%= config.temp %>/css/styles.css',
+        dest: '<%= config.dist %>/assets/css/styles.css'
       }
     },
     copy: {
@@ -131,13 +131,13 @@ module.exports = function(grunt) {
         files: [
           {
             src: '<%= config.guts %>/assets/js/modernizr-2.7.2.min.js',
-            dest: '<%= config.dist %>/js/modernizr-2.7.2.min.js',
+            dest: '<%= config.dist %>/assets/js/modernizr-2.7.2.min.js',
             flatten: true,
             filter: 'isFile'
           },
           {
-            src: '<%= config.bowerDir %>/jquery/jquery.js',
-            dest: '<%= config.dist %>/js/jquery.js',
+            src: '<%= config.bowerDir %>/jquery/jquery.js', 
+            dest: '<%= config.dist %>/assets/js/jquery.js',
             flatten: true,
             filter: 'isFile'
           }
@@ -154,9 +154,10 @@ module.exports = function(grunt) {
         ]
       }
     },
-    clean: [
-      '<%= config.dist %>/'
-    ],
+    clean: { 
+      preBuild: ['<%= config.dist %>/'],
+      postBuild: ['<%= config.temp %>']
+    },
     s3: {
       options: {
         key: '<%= aws.key %>',
@@ -189,36 +190,39 @@ module.exports = function(grunt) {
 
   grunt.registerTask('server', [
     'config:dev',
-    'clean',
+    'clean:preBuild',
     'assemble',
     'sass',
     'autoprefixer',
     'copy',
+    'clean:postBuild',
     'connect:livereload',
     'watch'
   ]);
 
   grunt.registerTask('build', [
     'config:dev',
-    'clean',
+    'clean:preBuild',
     'assemble',
     'sass',
     'autoprefixer',
-    'copy'
+    'copy',
+    'clean:postBuild'
   ]);
 
   grunt.registerTask('preview', [
     'config:preview',
-    'clean',
+    'clean:preBuild',
     'assemble',
     'sass',
     'autoprefixer',
     'copy:js',
-    's3'
+    's3',
+    'clean:postBuild'
   ]);
 
   grunt.registerTask('default', [
-    'build-stag'
+    'build'
   ]);
 
 };
