@@ -135,7 +135,22 @@ textarea {
         MOBILE NAV
 
     */
+    .nav {
+        padding: 0;
+        li {
+            list-style-type: none;
+        }
+        p, a {
+            color: #fff;
+        }
+        a {
+            text-decoration: none;
+        }
+    }
     @media only screen and (max-width: 59.99em) {
+        body {
+            background: #052f60;
+        }
         header {
             background: #052f60;
             nav {
@@ -143,8 +158,8 @@ textarea {
                 left: -80%;
                 height: 100%;
                 top: 0;
-                background: pink;
                 width: 0;
+                background: #052f60;
             }
         }
         #outer-wrapper {
@@ -178,13 +193,14 @@ textarea {
             right: -80%;
             height: 100%;
             top: 0;
-            background: pink;
             width: 0;
             position: absolute;
+            text-align: right;
+            padding: 0 15px;
         }
         body.nav-open {
             #inner-wrapper {
-                transform: translate(70%);
+                transform: translate(80%);
             }
             nav {
                 width: 80%;
