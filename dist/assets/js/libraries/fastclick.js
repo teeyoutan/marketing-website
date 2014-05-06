@@ -412,12 +412,3 @@ if (typeof define !== "undefined" && define.amd) {
 } else {
     window.FastClick = FastClick;
 }
-
-(function() {
-    "use strict";
-    try {
-        $(function() {
-            FastClick.attach(document.body);
-        });
-    } catch (error) {}
-})();

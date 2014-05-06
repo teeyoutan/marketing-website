@@ -65,8 +65,8 @@ module.exports = function(grunt) {
         tasks: ['copy:img']
       },
       js: {
-        files: ['<%= config.guts %>/assets/js/*.js'],
-        tasks: ['uglify']
+        files: ['<%= config.guts %>/assets/js/**/*.js'],
+        tasks: ['jshint', 'uglify']
       },
       livereload: {
         options: {
@@ -136,12 +136,6 @@ module.exports = function(grunt) {
       js: {
         files: [
           {
-            src: '<%= config.guts %>/assets/js/libraries/modernizr-2.7.2.min.js',
-            dest: '<%= config.dist %>/assets/js/libraries/modernizr-2.7.2.min.js',
-            flatten: true,
-            filter: 'isFile'
-          },
-          {
             src: '<%= config.bowerDir %>/jquery/jquery.js',
             dest: '<%= config.dist %>/assets/js/libraries/jquery.js',
             flatten: true,
@@ -181,6 +175,26 @@ module.exports = function(grunt) {
         ]
       }
     },
+    jshint: {
+      options: {
+        strict: true,
+        trailing: true,
+        curly: true,
+        eqeqeq: true,
+        indent: 4,
+        latedef: true,
+        noempty: true,
+        nonbsp: true,
+        undef: true,
+        unused: true,
+        quotmark: 'single',
+        browser: true,
+        globals: {
+          jQuery: true
+        }
+      },
+      files: ['<%= config.guts %>/assets/js/**/*.js', '!<%= config.guts %>/assets/js/libraries/**/*.js']
+    },
     uglify: {
       options: {
         mangle: false,
@@ -189,8 +203,20 @@ module.exports = function(grunt) {
       },
       globalJS: {
         files: {
-          '<%= config.dist %>/assets/js/global.js': ['<%= config.bowerDir %>/fastclick/lib/fastclick.js', '<%= config.guts %>/assets/js/global.js']
+          '<%= config.dist %>/assets/js/libraries/modernizr-yepnope.js': ['<%= config.guts %>/assets/js/modernizr-2.8.2.min.js','<%= config.bowerDir %>/yepnope/yepnope.1.5.4-min.js'],
+          '<%= config.dist %>/assets/js/libraries/fastclick.js': ['<%= config.bowerDir %>/fastclick/lib/fastclick.js'],
+          '<%= config.dist %>/assets/js/bundle.js': ['<%= config.guts %>/assets/js/global.js']
         }
+      },
+      pageFiles: {
+        files: [
+          {
+            expand: true,
+            cwd: '<%= config.guts %>/assets/js/pages',
+            src: '**/*.js',
+            dest: '<%= config.dist %>/assets/js/pages'
+          }
+        ]
       }
     }
   });
@@ -206,9 +232,11 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-config');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-jshint');
 
   grunt.registerTask('server', [
     'config:dev',
+    'jshint',
     'clean:preBuild',
     'assemble',
     'uglify',
@@ -222,6 +250,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('build', [
     'config:dev',
+    'jshint',
     'clean:preBuild',
     'assemble',
     'uglify',
@@ -233,6 +262,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('preview', [
     'config:preview',
+    'jshint',
     'clean:preBuild',
     'assemble',
     'uglify',

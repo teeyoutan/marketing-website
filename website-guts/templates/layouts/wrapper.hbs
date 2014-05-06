@@ -16,7 +16,7 @@
 
         <link rel="stylesheet" href="{{assetsDir}}/css/fonts.css">
         <link rel="stylesheet" href="{{assetsDir}}/css/styles.css">
-        <script src="{{assetsDir}}/js/libraries/modernizr-2.7.2.min.js"></script>
+        <script src="{{assetsDir}}/js/libraries/modernizr-yepnope.js"></script>
         <script>
             $(function(){
                 $('body').delegate('.mobile-nav-toggle', 'click', function(e){
@@ -198,7 +198,13 @@
                 </footer>
             </div><!--/#inner-wrapper-->
         </div><!--/#outer-wrapper-->
-        <script src="{{assetsDir}}/js/global.js"></script>
+        <script>
+            yepnope([
+                {
+                    load: ['{{assetsDir}}/js/libraries/fastclick.js', '{{assetsDir}}/js/bundle.js']
+                }
+            ]);
+        </script>
         {{!--
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.0.min.js"><\/script>')</script>

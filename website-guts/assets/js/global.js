@@ -1,17 +1,21 @@
 /* global FastClick: false */
 
-(function(){
+(function(jQuery){
 
-	"use strict";
+	'use strict';
+
+	var $;
+
+	$ = jQuery;
 
 	try {
 
 		$(function(){
-			FastClick.attach(document.body)
+			FastClick.attach(document.body);
 		});		
 
 	} catch(error) {
 
 	}
 
-})();
+})(jQuery);
