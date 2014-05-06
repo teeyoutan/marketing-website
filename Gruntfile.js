@@ -61,7 +61,7 @@ module.exports = function(grunt) {
         tasks: ['sass', 'autoprefixer', 'clean:postBuild']
       },
       img: {
-        files: ['<%= config.guts %>/assets/img/*.{png,jpg}'],
+        files: ['<%= config.guts %>/assets/img/*.{png,jpg,svg}'],
         tasks: ['copy:img']
       },
       js: {
@@ -238,7 +238,7 @@ module.exports = function(grunt) {
     'uglify',
     'sass',
     'autoprefixer',
-    'copy:js',
+    'copy',
     's3',
     'clean:postBuild'
   ]);
