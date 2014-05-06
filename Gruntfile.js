@@ -26,7 +26,8 @@ module.exports = function(grunt) {
         options: {
           variables: {
             'environment': 'preview',
-            'assets_dir': '/optimizely-marketing-website/assets'
+            'assets_dir': '/assets',
+            'compress_js': true
           }
         }
       },
@@ -34,7 +35,8 @@ module.exports = function(grunt) {
         options: {
           variables: {
             'environment': 'dev',
-            'assets_dir': '/assets'
+            'assets_dir': '/assets',
+            'compress_js': false
           }
         }
       },
@@ -61,6 +63,10 @@ module.exports = function(grunt) {
       img: {
         files: ['<%= config.guts %>/assets/img/*.{png,jpg}'],
         tasks: ['copy:img']
+      },
+      js: {
+        files: ['<%= config.guts %>/assets/js/*.js'],
+        tasks: ['uglify']
       },
       livereload: {
         options: {
@@ -130,14 +136,14 @@ module.exports = function(grunt) {
       js: {
         files: [
           {
-            src: '<%= config.guts %>/assets/js/modernizr-2.7.2.min.js',
-            dest: '<%= config.dist %>/assets/js/modernizr-2.7.2.min.js',
+            src: '<%= config.guts %>/assets/js/libraries/modernizr-2.7.2.min.js',
+            dest: '<%= config.dist %>/assets/js/libraries/modernizr-2.7.2.min.js',
             flatten: true,
             filter: 'isFile'
           },
           {
-            src: '<%= config.bowerDir %>/jquery/jquery.js', 
-            dest: '<%= config.dist %>/assets/js/jquery.js',
+            src: '<%= config.bowerDir %>/jquery/jquery.js',
+            dest: '<%= config.dist %>/assets/js/libraries/jquery.js',
             flatten: true,
             filter: 'isFile'
           }
@@ -174,8 +180,19 @@ module.exports = function(grunt) {
           }
         ]
       }
+    },
+    uglify: {
+      options: {
+        mangle: false,
+        compress: false,
+        beautify: true
+      },
+      globalJS: {
+        files: {
+          '<%= config.dist %>/assets/js/global.js': ['<%= config.bowerDir %>/fastclick/lib/fastclick.js', '<%= config.guts %>/assets/js/global.js']
+        }
+      }
     }
-
   });
 
   grunt.loadNpmTasks('assemble');
@@ -187,11 +204,14 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-s3');
   grunt.loadNpmTasks('grunt-config');
+  grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
 
   grunt.registerTask('server', [
     'config:dev',
     'clean:preBuild',
     'assemble',
+    'uglify',
     'sass',
     'autoprefixer',
     'copy',
@@ -204,6 +224,7 @@ module.exports = function(grunt) {
     'config:dev',
     'clean:preBuild',
     'assemble',
+    'uglify',
     'sass',
     'autoprefixer',
     'copy',
@@ -214,6 +235,7 @@ module.exports = function(grunt) {
     'config:preview',
     'clean:preBuild',
     'assemble',
+    'uglify',
     'sass',
     'autoprefixer',
     'copy:js',
