@@ -202,7 +202,10 @@
             yepnope([
                 {
                     load: ['{{assetsDir}}/js/libraries/fastclick.js', '{{assetsDir}}/js/bundle.js']
-                }
+                }{{#if page.external_script}},
+                {
+                    load: ['{{page.external_script}}']
+                }{{/if}}
             ]);
         </script>
         {{!--
