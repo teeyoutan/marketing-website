@@ -10,11 +10,17 @@ You can install both with an easily from the [Node](http://nodejs.org/) website.
 
 ###Step 2: Clone this repo
 
-###Step 3: Install dependencies
+###Step 3: Install npm dependencies
 
-Navigation to the repo directory in the command line and execute the following command:
+Navigate to the repo directory. In the command line execute the following command:
 
 `npm i`
+
+###Step 4: Install bower dependencies
+
+Navigate to the repo directory. In the command line execute the following:
+
+`bower install`
 
 All done!
 

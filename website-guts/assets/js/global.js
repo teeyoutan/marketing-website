@@ -1,12 +1,8 @@
 /* global FastClick: false */
 
-(function(jQuery){
+(function($){
 
 	'use strict';
-
-	var $;
-
-	$ = jQuery;
 
 	try {
 

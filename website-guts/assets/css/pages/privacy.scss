@@ -1,0 +1,20 @@
+body.privacy-page {
+	
+	.opted-out {
+		display: none;
+	}
+	#remarketing-opt-out-cont {
+		h4 {font-size: 1.15em;}
+	}
+
+}
+body.privacy-page.remarketing-opt-out {
+	
+	.opted-in {
+		display: none;
+	}
+	.opted-out {
+		display: block;
+	}
+
+}

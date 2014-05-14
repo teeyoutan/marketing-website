@@ -22,7 +22,18 @@
 	text-shadow: 0 -1px 0 rgba(255,255,255,0.8);
 }
 
+.secondary-button.disabled {
+	opacity: 0.6;
+	cursor: default;
+}
+
 .a-center {
 	h4 {text-align: center;}
 	text-align: center!important;
+}
+
+body .small-note, body p.small-note {
+	font-size: 12px;
+	line-height: 1.4em;
+	color: #888;
 }

@@ -27,7 +27,10 @@ module.exports = function(grunt) {
           variables: {
             'environment': 'preview',
             'assets_dir': '/assets',
-            'compress_js': true
+            'compress_js': true,
+            'sass_options': {
+              outputStyle: 'compressed'
+            }
           }
         }
       },
@@ -36,7 +39,10 @@ module.exports = function(grunt) {
           variables: {
             'environment': 'dev',
             'assets_dir': '/assets',
-            'compress_js': false
+            'compress_js': false,
+            'sass_options': {
+              outputStyle: 'expanded'
+            }
           }
         }
       },
@@ -57,7 +63,7 @@ module.exports = function(grunt) {
         tasks: ['config:dev', 'assemble']
       },
       sass: {
-        files: ['<%= config.guts %>/assets/css/*.scss'],
+        files: '<%= config.guts %>/assets/css/**/*.scss',
         tasks: ['sass', 'autoprefixer', 'clean:postBuild']
       },
       img: {
@@ -113,13 +119,17 @@ module.exports = function(grunt) {
     },
     sass: {
       styles: {
-        options: {
-          outputStyle: 'compressed'
-        },
-        files: {
-          '<%= config.temp %>/css/styles.css':'<%= config.guts %>/assets/css/styles.scss',
-          '<%= config.dist %>/assets/css/fonts.css':'<%= config.guts %>/assets/css/fonts.scss'
-        }
+        options: '<%= grunt.config.get("sass_options") %>',
+        files: [
+          {
+            src: '<%= config.guts %>/assets/css/styles.scss',
+            dest: '<%= config.temp %>/css/styles.css'
+          },
+          {
+            src: ['<%= config.guts %>/assets/css/fonts.scss'],
+            dest: '<%= config.dist %>/assets/css/fonts.css'
+          }
+        ]
       }
     },
     autoprefixer: {
@@ -205,7 +215,7 @@ module.exports = function(grunt) {
         files: {
           '<%= config.dist %>/assets/js/libraries/modernizr-yepnope.js': ['<%= config.guts %>/assets/js/modernizr-2.8.2.min.js','<%= config.bowerDir %>/yepnope/yepnope.1.5.4-min.js'],
           '<%= config.dist %>/assets/js/libraries/fastclick.js': ['<%= config.bowerDir %>/fastclick/lib/fastclick.js'],
-          '<%= config.dist %>/assets/js/bundle.js': ['<%= config.guts %>/assets/js/global.js']
+          '<%= config.dist %>/assets/js/bundle.js': ['<%= config.bowerDir %>/jquery-cookie/jquery.cookie.js', '<%= config.guts %>/assets/js/global.js']
         }
       },
       pageFiles: {
