@@ -348,6 +348,7 @@ textarea {
     }
     #page-content {
         background: #fff;
+        padding-bottom: 35px;
     }
     .ugc {
         color: #242424;
@@ -380,6 +381,9 @@ textarea {
             color: #4d89e2;
             text-decoration: none;
         }
+    }
+    .lede-img {
+        margin-bottom: 35px;
     }
 
    /*
@@ -445,7 +449,7 @@ textarea {
    Modify as content requires.
    ========================================================================== */
 
-@media only screen and (min-width: 60em) {
+@media only screen and (min-width: $desktop-min-width) {
     /* Style adjustments for viewports that meet the condition */
 
     /*

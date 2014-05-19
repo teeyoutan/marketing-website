@@ -336,7 +336,7 @@ td, th {
   .container:after, .row:after {
     clear: both; }
 
-@media (min-width: 481px) {
+@media (min-width: 769px) {
   .columns {
     float: left;
     margin: 0 0 0 2.12766%;
@@ -413,6 +413,11 @@ td, th {
 /*
 
 	Logos
+
+*/
+/*
+
+	Layout
 
 */
 /* 
@@ -718,7 +723,8 @@ header {
   background-image: url('/assets/img/bg-shadow.png'); }
 
 #page-content {
-  background: #fff; }
+  background: #fff;
+  padding-bottom: 35px; }
 
 .ugc {
   color: #242424; }
@@ -744,6 +750,9 @@ header {
   .ugc a {
     color: #4d89e2;
     text-decoration: none; }
+
+.lede-img {
+  margin-bottom: 35px; }
 
 /*
 
@@ -1133,14 +1142,18 @@ body .small-note, body p.small-note {
 body.about-page #about-company-headline {
   text-align: center;
   font-size: 1.5em; }
-body.about-page #about-content .row {
+body.about-page #about-company-headline, body.about-page #about-optimizely-cont {
   margin-bottom: 35px; }
-body.about-page #about-optimizely-cont:after {
-  background: url(/assets/img/bg-shadow.png) no-repeat center top;
-  content: " ";
-  display: block;
-  height: 25px;
-  margin: 0 -15px; }
+body.about-page #the-highlights {
+  padding-top: 15px; }
+
+@media only screen and (min-width: 60em) {
+  body.about-page #about-optimizely-cont:after {
+    background: url(/assets/img/bg-shadow.png) no-repeat center top;
+    content: " ";
+    display: block;
+    height: 25px;
+    margin: 0 -15px; } }
 
 body.privacy-page .opted-out {
   display: none; }
