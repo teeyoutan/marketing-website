@@ -1,3 +1,4 @@
+@import 'mixins';
 @import 'normalize';
 @import 'smart-grid/smart-grid';
 @import 'variables';
@@ -5,4 +6,5 @@
 @import 'helper-classes';
 
 /* pages */
+@import 'pages/about';
 @import 'pages/privacy';

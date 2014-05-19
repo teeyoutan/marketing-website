@@ -1,0 +1,16 @@
+body.about-page {
+	
+	#about-company-headline {
+		text-align: center;
+		font-size: 1.5em;
+	}
+
+	#about-content .row {margin-bottom: 35px;}
+
+	#about-optimizely-cont:after {
+
+		@include shadow(top);
+
+	}
+
+}

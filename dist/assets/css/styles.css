@@ -434,6 +434,9 @@ html {
   font-size: 1em;
   line-height: 1.4; }
 
+img {
+  max-width: 100%; }
+
 /*
  * Remove text-shadow in selection highlight: h5bp.com/i
  * These selection rule sets have to be separate.
@@ -803,7 +806,7 @@ footer {
     */
   /* 
 
-        PAGE TEMPLATE
+        PAGE TEMPLATES
 
     */
   /*
@@ -886,6 +889,23 @@ footer {
     font-size: 0.9em; }
   .ugc h2, .ugc h3, .ugc h3, .ugc h4, .ugc h5 {
     text-align: left; }
+  .page-subheader-cont h1 {
+    float: left; }
+  .sub-header-nav {
+    float: right;
+    margin: 23px 0 0 0; }
+    .sub-header-nav li {
+      list-style-type: none;
+      display: inline-block;
+      margin-left: 0.8em; }
+    .sub-header-nav a {
+      text-decoration: none;
+      color: #444;
+      font-size: 0.8em;
+      font-weight: 300; }
+    .sub-header-nav a.active {
+      font-weight: 500;
+      color: #0053a7; }
   footer {
     font-size: 0.65em;
     text-align: left; }
@@ -1053,6 +1073,23 @@ footer {
   border: 1px solid #ddd;
   padding: 25px; }
 
+.primary-button {
+  background: -webkit-gradient(linear, left top, left bottom, from(#90b71c), to(#7fa119));
+  background: -webkit-linear-gradient(top, #90b71c 0%, #7fa119 100%);
+  background: linear-gradient(top, #90b71c 0%, #7fa119 100%);
+  border: 1px solid #7e9339;
+  border-radius: 1px;
+  color: #fff !important;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.4;
+  padding: 0.6em 2.8em;
+  text-align: center;
+  vertical-align: middle;
+  text-shadow: 0 -1px 0px rgba(0, 0, 0, 0.23); }
+
 .secondary-button {
   background: -webkit-gradient(linear, left top, left bottom, from(#eeeeee), to(#e1e1e1));
   background: -webkit-linear-gradient(top, #eeeeee 0%, #e1e1e1 100%);
@@ -1077,8 +1114,15 @@ footer {
 
 .a-center {
   text-align: center !important; }
-  .a-center h4 {
+  .a-center h3, .a-center h4 {
     text-align: center; }
+
+.framed {
+  background: #fff;
+  border: 1px solid #dadada;
+  -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+  padding: 3px; }
 
 body .small-note, body p.small-note {
   font-size: 12px;
@@ -1086,6 +1130,18 @@ body .small-note, body p.small-note {
   color: #888; }
 
 /* pages */
+body.about-page #about-company-headline {
+  text-align: center;
+  font-size: 1.5em; }
+body.about-page #about-content .row {
+  margin-bottom: 35px; }
+body.about-page #about-optimizely-cont:after {
+  background: url(/assets/img/bg-shadow.png) no-repeat center top;
+  content: " ";
+  display: block;
+  height: 25px;
+  margin: 0 -15px; }
+
 body.privacy-page .opted-out {
   display: none; }
 body.privacy-page #remarketing-opt-out-cont h4 {

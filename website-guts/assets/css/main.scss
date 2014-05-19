@@ -16,6 +16,8 @@ html {
     line-height: 1.4;
 }
 
+img {max-width: 100%;}
+
 /*
  * Remove text-shadow in selection highlight: h5bp.com/i
  * These selection rule sets have to be separate.
@@ -536,7 +538,7 @@ textarea {
     }
     /* 
 
-        PAGE TEMPLATE
+        PAGE TEMPLATES
 
     */
     #page-content {background: $page-content-color;}
@@ -547,6 +549,28 @@ textarea {
         }
         h2, h3, h3, h4, h5 {
             text-align: left;
+        }
+    }
+    .page-subheader-cont {
+        h1 {float: left;}
+    }
+    .sub-header-nav {
+        float: right;
+        margin: 23px 0 0 0;
+        li {
+            list-style-type: none;
+            display: inline-block;
+            margin-left: .8em;
+        }
+        a {
+            text-decoration: none;
+            color: #444;
+            font-size: .8em;
+            font-weight: 300;
+        }
+        a.active {
+            font-weight: 500;
+            color: #0053a7;
         }
     }
     /*
