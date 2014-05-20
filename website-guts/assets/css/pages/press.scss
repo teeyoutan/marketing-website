@@ -2,12 +2,16 @@ body.press-page {
 	#press-intro {
 		margin-bottom: 30px;
 	}
+	h3 {
+		@extend .heading-underline;
+		margin-bottom: 15px;
+	}
+	/*
 	#press-mentions h3 {
-		border-bottom: 1px solid #eee;
 		margin-bottom: 40px;
 		padding-bottom: 10px;
-		font-family: $gotham-font-family;
 	}
+	*/
 	.press-feed-item {
 		margin-bottom: 60px;
 		background-position: top center;
@@ -23,11 +27,36 @@ body.press-page {
 			margin-bottom: 5px;
 		}
 	}
+	#press-info div {margin-bottom: 55px;}
+	#press-kit a {
+		@extend .link-download;
+	}
+	#press-releases ul {
+		padding: 0;
+		li {
+			list-style-type: none;
+			margin-bottom: 20px;
+		}
+		p {
+			margin-top: 7px;
+		}
+	}
+	#company-information p {margin: 0 0 8px 0;}
+	#follow-latest {
+		p {
+			text-align: center;
+		}
+		ul {
+			padding: 0;
+		}
+		li {
+			text-align: center;
+			list-style-type: none;
+			margin-bottom: 15px;
+		}
+	}
 
-}
-
-@media only screen and (min-width: $desktop-min-width) {
-	body.press-page {
+	@media only screen and (min-width: $desktop-min-width) {
 		#press-content {
 			@extend .clearfix;
 		}
@@ -41,6 +70,7 @@ body.press-page {
 		}
 		.press-feed-item {
 			@extend .clearfix;
+			margin-bottom: 35px;
 			img {
 				float: left;
 				width: 115px;
@@ -50,14 +80,26 @@ body.press-page {
 				width: 420px;
 				text-align: left;
 			}
+			h4 {
+				font-size: 1.15em;
+				font-weight: 300;
+			}
 		}
 		time {
-			color: #888;
 			display: block;
-			font-size: 0.6em;
-			font-weight: normal;
-			margin: 0 0 1em;
 			text-transform: uppercase;
 		}
+		#follow-latest {
+			text-align: center;
+			li {
+				display: inline-block;
+				border-right: 1px solid #242424;
+				padding: 0 4px;
+			}
+			li.last {
+				border-right: 0;
+			}
+		}
 	}
+
 }

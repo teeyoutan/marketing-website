@@ -11,7 +11,7 @@ $logo-background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmN
 	Layout
 
 */
-$desktop-min-width: 60em;
+$desktop-min-width: 768px;
 
 
 /* 
@@ -21,6 +21,8 @@ $desktop-min-width: 60em;
 */
 $body-font-family: "Gotham SSm A","Gotham SSm B",sans-serif;
 $gotham-font-family: "Gotham A","Gotham B",Helvetica,Arial,sans-serif;
+$gotham-large-type: "Gotham A","Gotham B",Helvetica,Arial,sans-serif;
+$gotham-small-type: "Gotham SSm A","Gotham SSm B",sans-serif;
 
 $page-header-color: #004f83;
 $page-content-color: #f4f4f4;
