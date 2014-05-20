@@ -18,7 +18,7 @@ The CSS is compiles using [Sass](https://github.com/sindresorhus/grunt-sass).
 
 ###Step 1: Install node.js (and npm)
 
-You can install both with an easily from the [Node](http://nodejs.org/) website.
+You can easily install both with the installer found on the [Node](http://nodejs.org/) website.
 
 ###Step 2: Clone this repo
 
