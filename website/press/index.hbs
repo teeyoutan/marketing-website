@@ -21,6 +21,15 @@ body_class: press-page
 			<h3 class="heading-underline">Press Kit</h3>
 			<p><a class="link-download" href="https://s3.amazonaws.com/optimizely-marketing/OptimizelyPressKit.zip" title="Download our press kit">Download Optimizely Logos</a></p>
 			<p><a class="link-download" href="http://www.scribd.com/doc/197409519/Fact-Sheet" title="Download our fact sheet">Download Fact Sheet</a></p>
+			<h3>Press Releases</h3>
+			<ul>
+				{{#each pressReleases.items}}
+				<li>
+					<time datetime="{{formatDate releaseDate "%Y-%m-%d"}}">{{formatDate releaseDate "%b %Y"}}</time>
+					<p><a href="{{linkToRelease}}" target="_blank">{{releaseTitle}}</a></p>
+				</li>
+				{{/each}}
+			</ul>
 		</div><!--/.columns-->
 	</div><!--/.row-->
 </div>
