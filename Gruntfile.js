@@ -102,16 +102,29 @@ module.exports = function(grunt) {
       }
     },
     assemble: {
-      pages: {
+      options: {
+        layoutdir: '<%= config.guts %>/templates/layouts/',
+        assetsDir: '<%= grunt.config.get("assets_dir") %>'
+      },
+      simplePages: {
+        files: [
+          {
+            src: ['**/*.hbs', '!press/index.hbs'],
+            dest: '<%= config.dist %>/',
+            cwd: '<%= config.content %>/',
+            expand: true
+          }
+        ]
+      },
+      press: {
         options: {
-          layoutdir: '<%= config.guts %>/templates/layouts/',
-          assetsDir: '<%= grunt.config.get("assets_dir") %>'
+          data: '<%= config.content %>/press/pressMentions.json'
         },
         files: [
           {
-            src: '**/*.hbs',
-            dest: '<%= config.dist %>/',
-            cwd: '<%= config.content %>/',
+            src: 'index.hbs',
+            dest: '<%= config.dist %>/press/',
+            cwd: '<%= config.content %>/press/',
             expand: true
           }
         ]
@@ -156,8 +169,8 @@ module.exports = function(grunt) {
       img: {
         files: [
           {
-            src: '*',
             cwd: '<%= config.guts %>/assets/img/',
+            src: '**',
             dest: '<%= config.dist %>/assets/img/',
             expand: true
           }

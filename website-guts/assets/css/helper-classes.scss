@@ -1,3 +1,13 @@
+.clearfix {
+	&:before, &:after {
+		content: " ";
+		display: table;
+	}
+	&:after {
+		clear:both;
+	}
+}
+
 .callout {
 	box-shadow: 0px 2px 4px rgba(0,0,0,0.07);
 	background-color: white;
@@ -59,4 +69,20 @@ body .small-note, body p.small-note {
 	font-size: 12px;
 	line-height: 1.4em;
 	color: #888;
+}
+
+@media only screen and (min-width: $desktop-min-width) {
+
+	.sheet {
+		background-color: white;
+		border: 1px solid #eee;
+		h4, .sheet-headline {
+			font-size: 1.18em;
+			line-height: 1.4;
+			margin: 0 auto;
+			margin-bottom: 1em;
+			text-align: center;
+		}
+	}
+
 }

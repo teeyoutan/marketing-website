@@ -1027,15 +1027,17 @@ footer {
  * 2. The use of `table` rather than `block` is only necessary if using
  *    `:before` to contain the top-margins of child elements.
  */
-.clearfix:before, .clearfix:after {
-  content: " ";
-  /* 1 */
-  display: table;
-  /* 2 */ }
+/*
+.clearfix:before,
+.clearfix:after {
+    content: " ";
+    display: table;
+}
 
 .clearfix:after {
-  clear: both; }
-
+    clear: both;
+}
+*/
 /* ==========================================================================
    Print styles.
    Inlined to avoid required HTTP connection: h5bp.com/r
@@ -1074,6 +1076,12 @@ footer {
     widows: 3; }
   h2, h3 {
     page-break-after: avoid; } }
+
+.clearfix:before, .clearfix:after {
+  content: " ";
+  display: table; }
+.clearfix:after {
+  clear: both; }
 
 .callout {
   -webkit-box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.07);
@@ -1138,6 +1146,17 @@ body .small-note, body p.small-note {
   line-height: 1.4em;
   color: #888; }
 
+@media only screen and (min-width: 60em) {
+  .sheet {
+    background-color: white;
+    border: 1px solid #eee; }
+    .sheet h4, .sheet .sheet-headline {
+      font-size: 1.18em;
+      line-height: 1.4;
+      margin: 0 auto;
+      margin-bottom: 1em;
+      text-align: center; } }
+
 /* pages */
 body.about-page #about-company-headline {
   text-align: center;
@@ -1154,6 +1173,25 @@ body.about-page #the-highlights {
     display: block;
     height: 25px;
     margin: 0 -15px; } }
+
+body.press-page #press-mentions h3 {
+  border-bottom: 1px solid #eee;
+  margin-bottom: 40px;
+  padding-bottom: 10px; }
+body.press-page .press-feed-item {
+  margin-bottom: 60px;
+  background-position: top center;
+  background-repeat: no-repeat; }
+  body.press-page .press-feed-item img {
+    width: 40%;
+    display: block;
+    margin: 0 auto 15px auto; }
+  body.press-page .press-feed-item time {
+    text-align: center;
+    display: block;
+    margin-bottom: 5px; }
+
+@media only screen and (min-width: 60em) { }
 
 body.privacy-page .opted-out {
   display: none; }

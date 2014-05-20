@@ -1,0 +1,28 @@
+body.press-page {
+	
+	#press-mentions h3 {
+		border-bottom: 1px solid #eee;
+		margin-bottom: 40px;
+		padding-bottom: 10px;
+	}
+	.press-feed-item {
+		margin-bottom: 60px;
+		background-position: top center;
+		background-repeat: no-repeat;
+		img {
+			width: 40%;
+			display: block;
+			margin: 0 auto 15px auto;
+		}
+		time {
+			text-align: center;
+			display: block;
+			margin-bottom: 5px;
+		}
+	}
+
+}
+
+@media only screen and (min-width: $desktop-min-width) {
+	//@extend .clearfix;
+}
