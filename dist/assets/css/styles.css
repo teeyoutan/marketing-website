@@ -704,6 +704,7 @@ header {
   background: #fff;
   padding: 17px 0; }
   #page-header h1 {
+    font-family: "Gotham A", "Gotham B", Helvetica, Arial, sans-serif;
     font-weight: normal;
     text-align: center;
     color: #004f83;
@@ -1077,10 +1078,10 @@ footer {
   h2, h3 {
     page-break-after: avoid; } }
 
-.clearfix:before, .clearfix:after {
+.clearfix:before, body.press-page #press-content:before, body.press-page .press-feed-item:before, .clearfix:after, body.press-page #press-content:after, body.press-page .press-feed-item:after {
   content: " ";
   display: table; }
-.clearfix:after {
+.clearfix:after, body.press-page #press-content:after, body.press-page .press-feed-item:after {
   clear: both; }
 
 .callout {
@@ -1149,13 +1150,17 @@ body .small-note, body p.small-note {
 @media only screen and (min-width: 60em) {
   .sheet {
     background-color: white;
-    border: 1px solid #eee; }
+    border: 1px solid #eee;
+    padding: 40px 55px; }
     .sheet h4, .sheet .sheet-headline {
       font-size: 1.18em;
       line-height: 1.4;
       margin: 0 auto;
       margin-bottom: 1em;
-      text-align: center; } }
+      text-align: center;
+      font-family: "Gotham A", "Gotham B", Helvetica, Arial, sans-serif; }
+    .sheet .sheet-headline {
+      width: 700px; } }
 
 /* pages */
 body.about-page #about-company-headline {
@@ -1174,10 +1179,13 @@ body.about-page #the-highlights {
     height: 25px;
     margin: 0 -15px; } }
 
+body.press-page #press-intro {
+  margin-bottom: 30px; }
 body.press-page #press-mentions h3 {
   border-bottom: 1px solid #eee;
   margin-bottom: 40px;
-  padding-bottom: 10px; }
+  padding-bottom: 10px;
+  font-family: "Gotham A", "Gotham B", Helvetica, Arial, sans-serif; }
 body.press-page .press-feed-item {
   margin-bottom: 60px;
   background-position: top center;
@@ -1191,7 +1199,27 @@ body.press-page .press-feed-item {
     display: block;
     margin-bottom: 5px; }
 
-@media only screen and (min-width: 60em) { }
+@media only screen and (min-width: 60em) {
+  body.press-page #press-mentions {
+    float: left;
+    width: 580px; }
+  body.press-page #press-info {
+    float: right;
+    width: 220px; }
+  body.press-page .press-feed-item img {
+    float: left;
+    width: 115px; }
+  body.press-page .press-feed-item time, body.press-page .press-feed-item h4 {
+    float: right;
+    width: 420px;
+    text-align: left; }
+  body.press-page time {
+    color: #888;
+    display: block;
+    font-size: 0.6em;
+    font-weight: normal;
+    margin: 0 0 1em;
+    text-transform: uppercase; } }
 
 body.privacy-page .opted-out {
   display: none; }

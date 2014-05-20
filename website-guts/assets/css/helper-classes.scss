@@ -76,12 +76,17 @@ body .small-note, body p.small-note {
 	.sheet {
 		background-color: white;
 		border: 1px solid #eee;
+		padding: 40px 55px;
 		h4, .sheet-headline {
 			font-size: 1.18em;
 			line-height: 1.4;
 			margin: 0 auto;
 			margin-bottom: 1em;
 			text-align: center;
+			font-family: "Gotham A","Gotham B",Helvetica,Arial,sans-serif;
+		}
+		.sheet-headline {
+			width: 700px;
 		}
 	}
 
