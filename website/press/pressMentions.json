@@ -3,13 +3,13 @@
 		{
 			"logoUrl": "/assets/img/press-logos/forbes.svg",
 			"linkToStory": "http://www.forbes.com/sites/theyec/2014/04/01/the-three-unconventional-questions-i-ask-every-candidate/",
-			"storyDate": "2014-04-01",
+			"storyDate": "2014-4-1",
 			"storyTitle": "The Three Unconventional Questions To Ask Every Job Candidate" 
 		},
 		{
 			"logoUrl": "/assets/img/press-logos/techcrunch.svg",
 			"linkToStory": "http://techcrunch.com/2014/03/25/bizible-partners-with-optimizely-to-improve-ab-testing-for-sales-teams/",
-			"storyDate": "2014-03-25",
+			"storyDate": "2014-3-25",
 			"storyTitle": "Bizible Partners With Optimizely To Improve A/B Testing For Sales Teams" 
 		}
 	]

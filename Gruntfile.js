@@ -56,7 +56,7 @@ module.exports = function(grunt) {
     watch: {
       assemble: {
         files: [
-          '<%= config.content %>/{,*/}*.{md,hbs,yml}',
+          '<%= config.content %>/{,*/}*.{md,hbs,yml,json}',
           '<%= config.guts %>/templates/**/*.hbs',
           '<%= config.content %>/**/*.hbs'
         ],
@@ -104,27 +104,15 @@ module.exports = function(grunt) {
     assemble: {
       options: {
         layoutdir: '<%= config.guts %>/templates/layouts/',
-        assetsDir: '<%= grunt.config.get("assets_dir") %>'
+        assetsDir: '<%= grunt.config.get("assets_dir") %>',
+        data: '<%= config.content %>/**/*.json'
       },
-      simplePages: {
+      pages: {
         files: [
           {
-            src: ['**/*.hbs', '!press/index.hbs'],
+            src: ['**/*.hbs'],
             dest: '<%= config.dist %>/',
             cwd: '<%= config.content %>/',
-            expand: true
-          }
-        ]
-      },
-      press: {
-        options: {
-          data: '<%= config.content %>/press/pressMentions.json'
-        },
-        files: [
-          {
-            src: 'index.hbs',
-            dest: '<%= config.dist %>/press/',
-            cwd: '<%= config.content %>/press/',
             expand: true
           }
         ]
