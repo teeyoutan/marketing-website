@@ -2,6 +2,18 @@
 
 Planning docs here: https://drive.google.com/a/optimizely.com/folderview?id=0B4VR-FZkzkAVSGpibGp1SjBwUmM&usp=sharing
 
+##Overview
+
+The website has a static architecture. Everything is complied by [Grunt](http://gruntjs.com), the JavaScript task runner.
+
+###HTML
+
+The static HTML files are created by (Assemble)[http://assemble.io]. Assemble parses Handlebars templates to create the static HTML files.
+
+###CSS
+
+The CSS is compiles using [Sass](https://github.com/sindresorhus/grunt-sass).
+
 ##Getting started (for developers)
 
 ###Step 1: Install node.js (and npm)
