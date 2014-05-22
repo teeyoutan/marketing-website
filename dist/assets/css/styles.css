@@ -1270,6 +1270,9 @@ body.events-page .event-cont {
       width: 160px; }
     body.events-page .event-cont .right {
       width: 400px; }
+    body.events-page .event-cont .venue {
+      font-weight: 500;
+      color: #444; }
   body.events-page .show-past-events {
     background: url(/assets/img/past-events.png) no-repeat left center;
     margin-left: 10px;
