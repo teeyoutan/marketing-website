@@ -1,11 +1,12 @@
+/* global _gaq: false */
 (function($){
-	
+
 	'use strict';
 
 	try {
 
 		var checkRemarketingState;
-	
+
 		checkRemarketingState = function(){
 
 			if( $.cookie('remarketing') ){
@@ -27,12 +28,12 @@
 			checkRemarketingState();
 
 			$(this).addClass('disabled');
-		
+
 		});
 
 	} catch(e) {
 
-
+		_gaq.push(['_trackEvent', 'page js error', '/privacy']);
 
 	}
 

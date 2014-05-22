@@ -72,21 +72,32 @@ body .small-note, body p.small-note {
 }
 
 @media only screen and (min-width: $desktop-min-width) {
-
+	.left {float: left;}
+	.right {float: right;}
 	.sheet {
 		background-color: white;
 		border: 1px solid #eee;
 		padding: 40px 55px;
-		h4, .sheet-headline {
+		> div {
+			@extend .clearfix;
+		}
+		h3 {
+			@extend .heading-underline;
+		}
+		h4 {
 			font-size: 1.18em;
 			line-height: 1.4;
 			margin: 0 auto;
 			margin-bottom: 1em;
-			text-align: center;
 			font-family: "Gotham A","Gotham B",Helvetica,Arial,sans-serif;
 		}
-		.sheet-headline {
-			width: 700px;
+		article {
+			float: left;
+			width: 580px;
+		}
+		aside {
+			float: right;
+			width: 220px;
 		}
 	}
 

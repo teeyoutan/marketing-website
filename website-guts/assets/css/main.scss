@@ -111,6 +111,7 @@ textarea {
 
     body {
         font-family: $body-font-family;
+        text-align: center;
     }
 
     .logo {
@@ -123,7 +124,7 @@ textarea {
 
     */
     /*#utility-nav-cont, nav {display: none;}*/
-    
+
     .logo {
         display: block;
         height: 35.31px;
@@ -133,7 +134,7 @@ textarea {
         margin: 0 auto;
     }
     /*
-        
+
         MOBILE NAV
 
     */
@@ -315,9 +316,9 @@ textarea {
             }
         }
     }
-    
 
-    /* 
+
+    /*
 
         PAGE TEMPLATE
 
@@ -339,6 +340,21 @@ textarea {
             font-weight: 500;
             margin: .3em 0 0 0;
         }
+    }
+    .sub-header-nav {
+      padding: 0;
+      li {
+        list-style-type: none;
+        margin-bottom: 10px;
+      }
+      a {
+        display: block;
+        text-align: center;
+        font-weight: normal;
+        &.active {
+          display: none;
+        }
+      }
     }
     #page-header-gradient {
         height: 25px;
@@ -401,7 +417,7 @@ textarea {
             font-size: 1.3em;
         }
         ul {
-            padding: 0; 
+            padding: 0;
             margin: 0;
         }
         li {
@@ -449,10 +465,9 @@ textarea {
    These examples override the primary ('mobile first') styles.
    Modify as content requires.
    ========================================================================== */
-
 @media only screen and (min-width: $desktop-min-width) {
     /* Style adjustments for viewports that meet the condition */
-
+    body {text-align: left;}
     /*
 
         HEADER
@@ -541,7 +556,7 @@ textarea {
             border-top: 4px solid $nav-hover-color;
         }
     }
-    /* 
+    /*
 
         PAGE TEMPLATES
 
@@ -554,28 +569,6 @@ textarea {
         }
         h2, h3, h3, h4, h5 {
             text-align: left;
-        }
-    }
-    .page-subheader-cont {
-        h1 {float: left;}
-    }
-    .sub-header-nav {
-        float: right;
-        margin: 23px 0 0 0;
-        li {
-            list-style-type: none;
-            display: inline-block;
-            margin-left: .8em;
-        }
-        a {
-            text-decoration: none;
-            color: #444;
-            font-size: .8em;
-            font-weight: 300;
-        }
-        a.active {
-            font-weight: 500;
-            color: #0053a7;
         }
     }
     /*
@@ -670,6 +663,31 @@ textarea {
             padding-right: 0;
         }
     }
+}
+
+@media only screen and (min-width: 768px) {
+  .page-subheader-cont {
+      h1 {float: left;}
+  }
+  .sub-header-nav {
+      float: right;
+      margin: 23px 0 0 0;
+      li {
+          list-style-type: none;
+          display: inline-block;
+          margin-left: .8em;
+      }
+      a {
+          text-decoration: none;
+          color: #444;
+          font-size: .8em;
+          font-weight: 300;
+      }
+      a.active {
+          font-weight: 500;
+          color: #0053a7;
+      }
+  }
 }
 
 @media print,

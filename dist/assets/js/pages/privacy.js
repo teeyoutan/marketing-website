@@ -17,5 +17,7 @@
             checkRemarketingState();
             $(this).addClass("disabled");
         });
-    } catch (e) {}
+    } catch (e) {
+        _gaq.push([ "_trackEvent", "page js error", "/privacy" ]);
+    }
 })(jQuery);

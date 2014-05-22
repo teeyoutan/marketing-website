@@ -1,4 +1,6 @@
-bdoy {
+$link-color: #4d89e2;
+
+body {
 	font-family: $gotham-small-type;
 }
 h1, h2, h3, h4, h5, h6 {
@@ -14,9 +16,10 @@ p {
 	font-weight: 100;
 }
 a {
-	color: #4d89e2;
+	color: $link-color;
 	text-decoration: none;
 	&:hover {text-decoration: underline;}
+	font-weight: 100;
 }
 /* type helper classes */
 .heading-underline {
@@ -50,6 +53,7 @@ a {
 	}
 	p {
 		font-size: .9em;
+		line-height: 1.6em;
 	}
 	time {
 		font-size: .6em;
