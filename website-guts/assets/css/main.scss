@@ -682,10 +682,11 @@ textarea {
           color: #444;
           font-size: .8em;
           font-weight: 300;
-      }
-      a.active {
-          font-weight: 500;
-          color: #0053a7;
+          &.active {
+            display: block;
+            font-weight: 500;
+            color: #0053a7;
+          }
       }
   }
 }

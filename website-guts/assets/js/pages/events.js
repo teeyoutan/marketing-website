@@ -1,4 +1,4 @@
-/* global console: false */
+/* global console: false, Handlebars: false */
 (function($){
 
   'use strict';
@@ -11,21 +11,39 @@
 
         try {
 
-          console.log(data);
-
           if( data.feed.entry instanceof Array ){
 
-            var i;
+            var i, events, eventHTML, eventTemplate;
+
+            events = '';
+
+            eventHTML = '<div class="event-cont">' +
+                          '<div class="left">' +
+                              '<time>{{startMonth}} {{startDay}} - {{endMonth}} {{endDay}}, {{endYear}}</time>' +
+                              '<p class="venue">{{venue}}</p>' +
+                              '<p>{{cityState}}</p>' +
+                            '</div>' +
+                            '<div class="right">' +
+                              '<h4><a href="{{link}} target="_blank">{{title}}</a></h4>' +
+                              '<p>{{description}}</p>' +
+                            '</div>' +
+                        '</div><!--/.event-cont-->';
+
+            eventTemplate = Handlebars.compile(eventHTML);
 
             for(i = 0; i <= data.feed.entry.length - 1; i++){
 
-              var entry, title, link, venue, cityState, startDate, endDate, zeroRegEx;
+              var entry, eventData, venue, startDate, endDate, zeroRegEx;
 
               entry = data.feed.entry[i];
 
-              title = entry.title.$t;
+              startDate = new Date( entry.gd$when[0].startTime.replace(zeroRegEx, '-') );
 
-              link = entry.content.$t.split(' --')[0];
+              console.log(startDate);
+
+              endDate = new Date( entry.gd$when[0].endTime.replace(zeroRegEx, '-') );
+
+              zeroRegEx = /\-0/g;
 
               if(typeof entry.gd$where[0].valueString === 'string'){
 
@@ -33,17 +51,35 @@
 
               }
 
-              cityState = entry.gd$where[0].valueString.split('/ ')[1];
+              eventData = {
 
-              zeroRegEx = /\-0/g;
+                title: entry.title.$t,
 
-              startDate = new Date( entry.gd$when[0].startTime.replace(zeroRegEx, '-') );
+                link: entry.content.$t.split(' --')[0],
 
-              endDate = new Date( entry.gd$when[0].endTime.replace(zeroRegEx, '-') );
+                cityState: entry.gd$where[0].valueString.split('/ ')[1],
 
-              console.log('"' + endDate + '"');
+                startMonth: startDate.getMonth(),
+
+                startDay: startDate.getDay(),
+
+                endMonth: endDate.getMonth(),
+
+                endDay: endDate.getDay(),
+
+                endYear: endDate.getYear(),
+
+                description: entry.content.$t.split('-- ')[1],
+
+                venue: venue
+
+              };
+
+              events += eventTemplate(eventData);
 
             }
+
+            $('#future-events-cont').append(events);
 
           } else {
 
@@ -55,7 +91,7 @@
 
           //report error to google analytics
           //_gaq.push(['_trackEvent', 'api error', 'google_cal', 'response contains invalid JSON']);
-          console.log('');
+          console.log(error);
 
         }
 
@@ -63,7 +99,7 @@
 
         //report non 200 to google analytics
         //_gaq.push(['_trackEvent', 'api error', 'api_name', 'status code: ' + jqXHR.status]);
-        console.log('');
+        console.log('2');
 
       }
 
@@ -72,7 +108,7 @@
   } catch (e) {
 
     //_gaq.push(['_trackEvent', 'page js error', '/events']);
-    console.log('');
+    console.log('3');
 
   }
 

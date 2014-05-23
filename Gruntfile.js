@@ -218,8 +218,8 @@ module.exports = function(grunt) {
           '<%= config.dist %>/assets/js/libraries/fastclick.js': ['<%= config.bowerDir %>/fastclick/lib/fastclick.js'],
           '<%= config.dist %>/assets/js/bundle.js': [
             '<%= config.bowerDir %>/jquery-cookie/jquery.cookie.js',
-            '<%= config.dist %>/assets/js/libraries/handlebars-v1.3.0.js',
-            '<%= config.guts %>/assets/js/global.js',
+            '<%= config.guts %>/assets/js/libraries/handlebars-v1.3.0.js',
+            '<%= config.guts %>/assets/js/global.js'
           ]
         }
       },
