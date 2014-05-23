@@ -31,7 +31,7 @@
                 $('#main-nav ul').each(function(){
                     $(this).css('max-height', $(this).height() + 'px');
                 });
-                $('body').addClass('mobile-nav-ready');                
+                $('body').addClass('mobile-nav-ready');
                 $('#main-nav > li').click(function(){
                     $(this).toggleClass('active').find('ul').toggleClass('active');
                 });
@@ -246,6 +246,7 @@
         </address>
 	</div>
 </div>
+
 		</div><!--/.container-->
 	</div><!--/#content-->
 </div><!--/#main-->
@@ -343,8 +344,7 @@
             yepnope([
                 {
                     load: ['/assets/js/libraries/fastclick.js', '/assets/js/bundle.js']
-                },
-                {
+                },{
                     load: ['/assets/js/pages/privacy.js']
                 }
             ]);

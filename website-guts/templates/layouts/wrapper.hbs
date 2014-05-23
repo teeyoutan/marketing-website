@@ -31,7 +31,7 @@
                 $('#main-nav ul').each(function(){
                     $(this).css('max-height', $(this).height() + 'px');
                 });
-                $('body').addClass('mobile-nav-ready');                
+                $('body').addClass('mobile-nav-ready');
                 $('#main-nav > li').click(function(){
                     $(this).toggleClass('active').find('ul').toggleClass('active');
                 });
@@ -209,9 +209,15 @@
                 {
                     load: ['{{assetsDir}}/js/libraries/fastclick.js', '{{assetsDir}}/js/bundle.js']
                 }
-                {{~#if page.external_script~}},
-                {
-                    load: ['{{page.external_script}}']
+                {{~#if page.script_dependencies~}}
+                {{#each page.script_dependencies}}
+                ,{
+                    load: ['{{.}}']
+                }{{/each}}
+                {{/if}}
+                {{~#if page.page_script~}}
+                ,{
+                    load: ['/assets/js/pages/{{page.page_script}}']
                 }
                 {{~/if}}
             ]);
