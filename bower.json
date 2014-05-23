@@ -21,5 +21,8 @@
   "dependencies": {
     "normalize-css": "~3.0.1",
     "jquery": "1.6.4"
+  },
+  "devDependencies": {
+    "momentjs": "~2.6.0"
   }
 }
