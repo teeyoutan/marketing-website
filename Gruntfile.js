@@ -219,6 +219,7 @@ module.exports = function(grunt) {
           '<%= config.dist %>/assets/js/bundle.js': [
             '<%= config.bowerDir %>/jquery-cookie/jquery.cookie.js',
             '<%= config.guts %>/assets/js/libraries/handlebars-v1.3.0.js',
+            '<%= config.bowerDir %>/momentjs/moment.js',
             '<%= config.guts %>/assets/js/global.js'
           ]
         }

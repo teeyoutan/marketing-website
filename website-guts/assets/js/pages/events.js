@@ -1,114 +1,131 @@
-/* global console: false, Handlebars: false */
+/* global console: false, Handlebars: false, moment: false */
 (function($){
 
   'use strict';
 
   try {
 
-    $.get('https://www.google.com/calendar/feeds/optimizely.com_hh3e0hadjvjs9gh34mdlevverk@group.calendar.google.com/public/full?alt=json&orderby=starttime&max-results=30&singleevents=true&sortorder=ascending&futureevents=true').always(function(data, textStatus, jqXHR){
+    var mrktEng = mrktEng || {};
 
-      if(jqXHR.status === 200){
+    mrktEng.events = {};
 
-        try {
+    mrktEng.events.showEvents = function(url, div){
 
-          if( data.feed.entry instanceof Array ){
+      $.get(url).always(function(data, textStatus, jqXHR){
 
-            var i, events, eventHTML, eventTemplate;
+        if(jqXHR.status === 200){
 
-            events = '';
+          try {
 
-            eventHTML = '<div class="event-cont">' +
-                          '<div class="left">' +
-                              '<time>{{startMonth}} {{startDay}} - {{endMonth}} {{endDay}}, {{endYear}}</time>' +
-                              '<p class="venue">{{venue}}</p>' +
-                              '<p>{{cityState}}</p>' +
-                            '</div>' +
-                            '<div class="right">' +
-                              '<h4><a href="{{link}} target="_blank">{{title}}</a></h4>' +
-                              '<p>{{description}}</p>' +
-                            '</div>' +
-                        '</div><!--/.event-cont-->';
+            if( data.feed.entry instanceof Array ){
 
-            eventTemplate = Handlebars.compile(eventHTML);
+              var i, events, eventHTML, eventTemplate;
 
-            for(i = 0; i <= data.feed.entry.length - 1; i++){
+              events = '';
 
-              var entry, eventData, venue, startDate, endDate, zeroRegEx;
+              eventHTML = '<div class="event-cont">' +
+                            '<div class="left">' +
+                                '<time>{{startMonth}} {{startDay}} - {{endMonth}} {{endDay}}, {{endYear}}</time>' +
+                                '<p class="venue">{{venue}}</p>' +
+                                '<p>{{cityState}}</p>' +
+                              '</div>' +
+                              '<div class="right">' +
+                                '<h4><a href="{{link}} target="_blank">{{title}}</a></h4>' +
+                                '<p>{{description}}</p>' +
+                              '</div>' +
+                          '</div><!--/.event-cont-->';
 
-              entry = data.feed.entry[i];
+              eventTemplate = Handlebars.compile(eventHTML);
 
-              startDate = new Date( entry.gd$when[0].startTime.replace(zeroRegEx, '-') );
+              for(i = 0; i <= data.feed.entry.length - 1; i++){
 
-              console.log(startDate);
+                var entry, eventData, venue, startDate, endDate, zeroRegEx;
 
-              endDate = new Date( entry.gd$when[0].endTime.replace(zeroRegEx, '-') );
+                entry = data.feed.entry[i];
 
-              zeroRegEx = /\-0/g;
+                startDate = moment( entry.gd$when[0].startTime );
 
-              if(typeof entry.gd$where[0].valueString === 'string'){
+                endDate = moment( entry.gd$when[0].endTime );
 
-                venue = entry.gd$where[0].valueString.split(' /')[0];
+                zeroRegEx = /\-0/g;
+
+                if(typeof entry.gd$where[0].valueString === 'string'){
+
+                  venue = entry.gd$where[0].valueString.split(' /')[0];
+
+                }
+
+                eventData = {
+
+                  title: entry.title.$t,
+
+                  link: entry.content.$t.split(' --')[0],
+
+                  cityState: entry.gd$where[0].valueString.split('/ ')[1],
+
+                  startMonth: startDate.format('MMM'),
+
+                  startDay: startDate.format('D'),
+
+                  endMonth: endDate.format('MMM'),
+
+                  endDay: endDate.format('D'),
+
+                  endYear: endDate.format('YYYY'),
+
+                  description: entry.content.$t.split('-- ')[1],
+
+                  venue: venue
+
+                };
+
+                events += eventTemplate(eventData);
 
               }
 
-              eventData = {
+              $(div).append(events);
 
-                title: entry.title.$t,
+            } else {
 
-                link: entry.content.$t.split(' --')[0],
-
-                cityState: entry.gd$where[0].valueString.split('/ ')[1],
-
-                startMonth: startDate.getMonth(),
-
-                startDay: startDate.getDay(),
-
-                endMonth: endDate.getMonth(),
-
-                endDay: endDate.getDay(),
-
-                endYear: endDate.getYear(),
-
-                description: entry.content.$t.split('-- ')[1],
-
-                venue: venue
-
-              };
-
-              events += eventTemplate(eventData);
+              console.log('1');
 
             }
 
-            $('#future-events-cont').append(events);
+          } catch (error) {
 
-          } else {
-
-            console.log('');
+            //report error to google analytics
+            //_gaq.push(['_trackEvent', 'api error', 'google_cal', 'response contains invalid JSON']);
+            console.log(error);
 
           }
 
-        } catch (error) {
+        } else {
 
-          //report error to google analytics
-          //_gaq.push(['_trackEvent', 'api error', 'google_cal', 'response contains invalid JSON']);
-          console.log(error);
+          //report non 200 to google analytics
+          //_gaq.push(['_trackEvent', 'api error', 'api_name', 'status code: ' + jqXHR.status]);
+          console.log('2');
 
         }
 
-      } else {
+      });
 
-        //report non 200 to google analytics
-        //_gaq.push(['_trackEvent', 'api error', 'api_name', 'status code: ' + jqXHR.status]);
-        console.log('2');
+    };
 
-      }
+    //show future events
+    mrktEng.events.showEvents('https://www.google.com/calendar/feeds/optimizely.com_hh3e0hadjvjs9gh34mdlevverk@group.calendar.google.com/public/full?alt=json&orderby=starttime&max-results=30&singleevents=true&sortorder=ascending&futureevents=true', '#future-events-cont');
+
+    $('body').delegate('#get-past-events', 'click', function(e){
+
+      mrktEng.events.showEvents('https://www.google.com/calendar/feeds/optimizely.com_hh3e0hadjvjs9gh34mdlevverk@group.calendar.google.com/public/full?alt=json&orderby=starttime&max-results=30&singleevents=true&sortorder=ascending&futureevents=false', '#past-events-cont');
+
+      e.preventDefault();
 
     });
 
   } catch (e) {
 
     //_gaq.push(['_trackEvent', 'page js error', '/events']);
-    console.log('3');
+    console.log(e);
 
   }
 

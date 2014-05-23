@@ -8,12 +8,14 @@ external_script: /assets/js/pages/events.js
 <div class="sheet">
   <div>
     <article>
-      <div id="future-events-cont">
+      <div id="events-cont">
         <h3>Upcomming Events</h3>
-        <h3 id="past-events-cont" class="events-heading-small heading-underline">Past Events</h3>
-      </div><!--/#past-events-cont-->
+        <div id="future-events-cont"></div>
+        <h3 class="events-heading-small heading-underline">Past Events</h3>
+      </div><!--/#events-cont-->
       <div id="previous-events-cont">
-        <p class="show-past-events">Learn more about Optimizely's past events. <a href="#">Load Past Events</a></p>
+        <p class="show-past-events">Learn more about Optimizely's past events. <a href="#" id="get-past-events">Load Past Events</a></p>
+        <div id="past-events-cont"></div>
       </div><!--/#previous-events-cont-->
     </article>
     <aside>
