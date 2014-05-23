@@ -165,7 +165,7 @@ module.exports = function(grunt) {
         ]
       }
     },
-    clean: { 
+    clean: {
       preBuild: ['<%= config.dist %>/'],
       postBuild: ['<%= config.temp %>']
     },
@@ -216,7 +216,11 @@ module.exports = function(grunt) {
         files: {
           '<%= config.dist %>/assets/js/libraries/modernizr-yepnope.js': ['<%= config.guts %>/assets/js/modernizr-2.8.2.min.js','<%= config.bowerDir %>/yepnope/yepnope.1.5.4-min.js'],
           '<%= config.dist %>/assets/js/libraries/fastclick.js': ['<%= config.bowerDir %>/fastclick/lib/fastclick.js'],
-          '<%= config.dist %>/assets/js/bundle.js': ['<%= config.bowerDir %>/jquery-cookie/jquery.cookie.js', '<%= config.guts %>/assets/js/global.js']
+          '<%= config.dist %>/assets/js/bundle.js': [
+            '<%= config.bowerDir %>/jquery-cookie/jquery.cookie.js',
+            '<%= config.bowerDir %>/handlebars.js/handlebars.js',
+            '<%= config.guts %>/assets/js/global.js',
+          ]
         }
       },
       pageFiles: {
