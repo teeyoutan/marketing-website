@@ -1,6 +1,7 @@
 body.home-page {
   background: url(/assets/img/bg-header.png) repeat;
   h1 {color: #fff;}
+  form {display: none;}
   @media only screen and (min-width: $desktop-min-width){
     text-align: center;
     #cta {
@@ -30,6 +31,7 @@ body.home-page {
       font-weight: 300;
     }
     form {
+      display: block;
       background: linear-gradient(top, #003366 0%,#023f78 100%);
       box-shadow: 0px -2px 55px rgba(44,89,148,0.82);
       border: 1px solid #214e82;

@@ -601,6 +601,7 @@ header {
   background: #052f60; }
 
 .nav {
+  text-align: left;
   padding: 0; }
   .nav li {
     list-style-type: none; }
@@ -1252,6 +1253,8 @@ body.home-page {
   background: url(/assets/img/bg-header.png) repeat; }
   body.home-page h1 {
     color: #fff; }
+  body.home-page form {
+    display: none; }
   @media only screen and (min-width: 960px) {
     body.home-page {
       text-align: center; }
@@ -1279,6 +1282,7 @@ body.home-page {
         font-size: 3.2em;
         font-weight: 300; }
       body.home-page form {
+        display: block;
         background: -webkit-gradient(linear, left top, left bottom, from(#003366), to(#023f78));
         background: -webkit-linear-gradient(top, #003366 0%, #023f78 100%);
         background: linear-gradient(top, #003366 0%, #023f78 100%);
