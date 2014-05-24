@@ -22,7 +22,9 @@ We use [Sass](https://github.com/sindresorhus/grunt-sass) to compile our CSS fil
 
 You can easily install both with the installer found on the [Node](http://nodejs.org/) website.
 
-###Step 2: Clone this repo
+###Step 2: Fork this repo
+
+[Fork and clone](https://help.github.com/articles/fork-a-repo) this repo.
 
 ###Step 3: Install npm dependencies
 
