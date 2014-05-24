@@ -1,20 +1,26 @@
-#Marketing website
-
-Planning docs here: https://drive.google.com/a/optimizely.com/folderview?id=0B4VR-FZkzkAVSGpibGp1SjBwUmM&usp=sharing
+#Optimizely marketing website
 
 ##Overview
 
-The website has a static architecture. Everything is complied by [Grunt](http://gruntjs.com), the JavaScript task runner.
+This is the repository for the Optimizely marketing website. The website is built on static architecture, meaning that there is no backend component to the production environment. Every URL is just a static .html file. The .html files are generated very similar to how many website compile .js and .css files. The .html files are compiled once on a machine and then transferred to AWS S3.
+
+The entire website is built on top of [Grunt](http://gruntjs.com), the JavaScript task runner for [Node](http://nodejs.org).
+
+##Overview
+
+The website has a static architecture. The entire website is compiled by [Grunt](http://gruntjs.com), the JavaScript task runner.
 
 ###HTML
 
-The static HTML files are created by (Assemble)[http://assemble.io]. Assemble parses Handlebars templates to create the static HTML files.
+This website does not have a true CMS. Instead it runs off of a templating system called [Assemble](http://assemble.io).
+
+Our Assemble implementation uses Assemble's default templating engine [Handlebars](http://handlesbarsjs.com) to compile all of the .html files.
 
 ###CSS
 
 The CSS is compiles using [Sass](https://github.com/sindresorhus/grunt-sass).
 
-##Getting started (for developers)
+##Quick start
 
 ###Step 1: Install node.js (and npm)
 
@@ -34,8 +40,6 @@ Navigate to the repo directory. In the command line execute the following:
 
 `bower install`
 
-All done!
-
-##Starting the local server
+###Step 5: Start a local server
 
 In the root of the repo, execute this command: `grunt server`
