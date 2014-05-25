@@ -138,7 +138,7 @@ module.exports = function(grunt) {
     },
     autoprefixer: {
       options: {
-        options: ['last 2 versions']
+        options: ['last 2 versions', "Firefox ESR"]
       },
       files: {
         flatten: true,
