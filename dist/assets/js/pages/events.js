@@ -1,8 +1,8 @@
 (function($) {
+    window.optly = window.optly || {};
+    window.optly.mrkt = window.optly.mrkt || {};
     try {
-        window.mrktEng = window.mrktEng || {};
-        window.mrktEng.events = {};
-        window.mrktEng.events.showEvents = function(url, div) {
+        window.optly.mrkt.events.showEvents = function(url, div) {
             $.get(url).always(function(data, textStatus, jqXHR) {
                 if (jqXHR.status === 200) {
                     try {
@@ -46,9 +46,9 @@
                 }
             });
         };
-        window.mrktEng.events.showEvents("https://www.google.com/calendar/feeds/optimizely.com_hh3e0hadjvjs9gh34mdlevverk@group.calendar.google.com/public/full?alt=json&orderby=starttime&max-results=30&singleevents=true&sortorder=ascending&futureevents=true", "#future-events-cont");
+        window.optly.mrktEng.events.showEvents("https://www.google.com/calendar/feeds/optimizely.com_hh3e0hadjvjs9gh34mdlevverk@group.calendar.google.com/public/full?alt=json&orderby=starttime&max-results=30&singleevents=true&sortorder=ascending&futureevents=true", "#future-events-cont");
         $("body").delegate("#get-past-events", "click", function(e) {
-            window.mrktEng.events.showEvents("https://www.google.com/calendar/feeds/optimizely.com_hh3e0hadjvjs9gh34mdlevverk@group.calendar.google.com/public/full?alt=json&orderby=starttime&max-results=30&singleevents=true&sortorder=ascending&futureevents=false", "#past-events-cont");
+            window.optly.mrktEng.events.showEvents("https://www.google.com/calendar/feeds/optimizely.com_hh3e0hadjvjs9gh34mdlevverk@group.calendar.google.com/public/full?alt=json&orderby=starttime&max-results=30&singleevents=true&sortorder=ascending&futureevents=false", "#past-events-cont");
             e.preventDefault();
         });
     } catch (error) {}

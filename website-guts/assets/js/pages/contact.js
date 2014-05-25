@@ -1,34 +1,16 @@
-/* global google: false, console: false */
-(function(){
+/* global google: false */
+window.optly.mrkt.contact.showMap = function(){
 
-  'use strict';
+  var map;
 
-  try {
+  var mapOptions = {
 
-    window.mrktEng = window.mrktEng || {};
+    center: new google.maps.LatLng(-34.397, 150.644),
 
-    window.mrktEng.contact = {};
+    zoom: 8
 
-    window.mrktEng.contact.showMap = function(){
+  };
 
-      var map;
+  map = new google.maps.Map(document.getElementById('map'), mapOptions);
 
-      var mapOptions = {
-
-        center: new google.maps.LatLng(-34.397, 150.644),
-
-        zoom: 8
-
-      };
-
-      map = new google.maps.Map(document.getElementById('map'), mapOptions);
-
-    };
-
-  } catch(error) {
-
-    console.log('1');
-
-  }
-
-})(jQuery);
+};

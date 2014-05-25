@@ -1,19 +1,20 @@
 (function($) {
+    window.optly = window.optly || {};
+    window.optly.mrkt = window.optly.mrkt || {};
     try {
-        var checkRemarketingState;
-        checkRemarketingState = function() {
+        window.optly.mrkt.checkRemarketingState = function() {
             if ($.cookie("remarketing")) {
                 $("body").toggleClass("remarketing-opt-out");
                 $("#remarketing-remove").addClass("disabled");
             }
         };
-        checkRemarketingState();
+        window.optly.mrkt.checkRemarketingState();
         $("body").delegate("#remarketing-remove", "click", function() {
             $.cookie("remarketing", "true", {
                 expires: 365,
                 path: "/"
             });
-            checkRemarketingState();
+            window.optly.mrkt.checkRemarketingState();
             $(this).addClass("disabled");
         });
     } catch (error) {}

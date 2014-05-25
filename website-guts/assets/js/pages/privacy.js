@@ -1,6 +1,4 @@
-var checkRemarketingState;
-
-checkRemarketingState = function(){
+window.optly.mrkt.checkRemarketingState = function(){
 
 	if( $.cookie('remarketing') ){
 
@@ -12,13 +10,13 @@ checkRemarketingState = function(){
 
 };
 
-checkRemarketingState();
+window.optly.mrkt.checkRemarketingState();
 
 $('body').delegate('#remarketing-remove', 'click', function(){
 
 	$.cookie('remarketing', 'true', {expires: 365, path: '/'});
 
-	checkRemarketingState();
+	window.optly.mrkt.checkRemarketingState();
 
 	$(this).addClass('disabled');
 

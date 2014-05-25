@@ -1,8 +1,4 @@
-window.mrktEng = window.mrktEng || {};
-
-window.mrktEng.index = window.mrktEng.index || {};
-
-window.mrktEng.index.testItOut = function(editURL){
+window.optly.mrktEng.index.testItOut = function(editURL){
 
   //send user to the editor
   window.location = 'https://www.optimizely.com/edit?url=' + editURL;
@@ -17,7 +13,7 @@ $('form').submit(function(e){
 
   if( inputVal ){
 
-      window.mrktEng.index.testItOut( inputVal );
+      window.optly.mrktEng.index.testItOut( inputVal );
 
   } else {
 

@@ -19,26 +19,6 @@
         <link rel="stylesheet" href="{{assetsDir}}/css/fonts.css">
         <link rel="stylesheet" href="{{assetsDir}}/css/styles.css">
         <script src="{{assetsDir}}/js/libraries/modernizr-yepnope.js"></script>
-        <script>
-            $(function(){
-                $('body').delegate('.mobile-nav-toggle', 'click', function(e){
-                    $('body').toggleClass('nav-open');
-                    e.preventDefault();
-                });
-                $('.user-nav-toggle').click(function(e){
-                    $('body').toggleClass('user-nav-open');
-                    console.log('click');
-                    e.preventDefault();
-                });
-                $('#main-nav ul').each(function(){
-                    $(this).css('max-height', $(this).height() + 'px');
-                });
-                $('body').addClass('mobile-nav-ready');
-                $('#main-nav > li').click(function(){
-                    $(this).toggleClass('active').find('ul').toggleClass('active');
-                });
-            });
-        </script>
         {{~#if page.head_script ~}}<script src="/assets/js/pages/{{page.head_script}}"></script>{{/if}}
     </head>
     <body class="signed-out{{#if page.body_class}} {{page.body_class}}{{/if}}">

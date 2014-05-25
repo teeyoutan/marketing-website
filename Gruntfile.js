@@ -217,6 +217,8 @@ module.exports = function(grunt) {
       temp: {
         options: {
           banner: '(function($){ \n\n' +
+                    '  window.optly = window.optly || {}; \n\n' +
+                    '  window.optly.mrkt = window.optly.mrkt || {}; \n\n' +
                     '  try { \n\n',
           footer:   '  } catch(error){ \n\n' +
                       '  //report errors to GA \n\n' +
@@ -300,7 +302,7 @@ module.exports = function(grunt) {
     'sass',
     'autoprefixer',
     'copy',
-    'clean:postBuild'
+    //'clean:postBuild'
   ]);
 
   grunt.registerTask('preview', [
