@@ -1164,9 +1164,9 @@ body {
   text-shadow: 0 -1px 0px rgba(0, 0, 0, 0.23); }
 
 .secondary-button {
-  background: -webkit-gradient(linear, left top, left bottom, from(#eeeeee), to(#e1e1e1));
-  background: -webkit-linear-gradient(top, #eeeeee 0%, #e1e1e1 100%);
-  background: linear-gradient(top, #eeeeee 0%, #e1e1e1 100%);
+  background: -webkit-gradient(linear, left top, left bottom, from(#90b71c), to(#7fa119));
+  background: -webkit-linear-gradient(top, #90b71c 0%, #7fa119 100%);
+  background: linear-gradient(top, #90b71c 0%, #7fa119 100%);
   border: 1px solid #cacaca;
   border-radius: 1px;
   color: #888 !important;
