@@ -17,5 +17,7 @@
             window.optly.mrkt.checkRemarketingState();
             $(this).addClass("disabled");
         });
-    } catch (error) {}
+    } catch (error) {
+        window.console.log("js error: " + error);
+    }
 })(jQuery);

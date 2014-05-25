@@ -51,5 +51,7 @@
             window.optly.mrktEng.events.showEvents("https://www.google.com/calendar/feeds/optimizely.com_hh3e0hadjvjs9gh34mdlevverk@group.calendar.google.com/public/full?alt=json&orderby=starttime&max-results=30&singleevents=true&sortorder=ascending&futureevents=false", "#past-events-cont");
             e.preventDefault();
         });
-    } catch (error) {}
+    } catch (error) {
+        window.console.log("js error: " + error);
+    }
 })(jQuery);

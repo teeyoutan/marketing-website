@@ -16,5 +16,7 @@
             }
             e.preventDefault();
         });
-    } catch (error) {}
+    } catch (error) {
+        window.console.log("js error: " + error);
+    }
 })(jQuery);

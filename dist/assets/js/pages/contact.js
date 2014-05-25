@@ -10,5 +10,7 @@
             };
             map = new google.maps.Map(document.getElementById("map"), mapOptions);
         };
-    } catch (error) {}
+    } catch (error) {
+        window.console.log("js error: " + error);
+    }
 })(jQuery);

@@ -222,6 +222,7 @@ module.exports = function(grunt) {
                     '  try { \n\n',
           footer:   '  } catch(error){ \n\n' +
                       '  //report errors to GA \n\n' +
+                      '  window.console.log("js error: " + error);' +
                     '  } \n' +
                   '})(jQuery);'
         },
@@ -302,7 +303,7 @@ module.exports = function(grunt) {
     'sass',
     'autoprefixer',
     'copy',
-    //'clean:postBuild'
+    'clean:postBuild'
   ]);
 
   grunt.registerTask('preview', [
