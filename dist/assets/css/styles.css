@@ -1257,7 +1257,8 @@ body.home-page {
       body.home-page #cta {
         /*padding-top: 105px;*/
         min-height: 700px;
-        height: 100%; }
+        height: 100%;
+        overflow: hidden; }
         body.home-page #cta .container {
           position: relative;
           z-index: 2;
