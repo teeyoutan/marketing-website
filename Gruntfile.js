@@ -267,7 +267,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-sass');
   grunt.loadNpmTasks('grunt-contrib-copy');
-  //do not load the grunt-s3 task per: https://github.com/pifantastic/grunt-s3/issues/68
+  //do not load the npm grunt-s3 task when using 'grunt server' per: https://github.com/pifantastic/grunt-s3/issues/68
+  //do load it for running 'grunt preview'
   //grunt.loadNpmTasks('grunt-s3');
   grunt.loadNpmTasks('grunt-config');
   grunt.loadNpmTasks('grunt-contrib-concat');

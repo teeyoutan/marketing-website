@@ -4743,3 +4743,22 @@ var Handlebars = function() {
         makeGlobal();
     }
 }).call(this);
+
+(function($) {
+    try {
+        $(function() {
+            window.mrktEng = {};
+            FastClick.attach(document.body);
+            window.mrktEng.activeLinks = {};
+            window.mrktEng.activeLinks.currentPath = window.location.pathname;
+            window.mrktEng.activeLinks.markActiveLinks = function() {
+                $("a").each(function() {
+                    if ($(this).attr("href") === window.mrktEng.activeLinks.currentPath || $(this).attr("href") + "/" === window.mrktEng.activeLinks.currentPath) {
+                        $(this).addClass("active");
+                    }
+                });
+            };
+            window.mrktEng.activeLinks.markActiveLinks();
+        });
+    } catch (error) {}
+})(jQuery);
