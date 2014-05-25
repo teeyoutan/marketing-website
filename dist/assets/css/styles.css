@@ -1217,6 +1217,8 @@ body .small-note, body p.small-note {
   .right {
     float: right; }
   .sheet {
+    width: 960px;
+    margin: 0 auto;
     background-color: white;
     border: 1px solid #eee;
     padding: 40px 55px; }
@@ -1228,7 +1230,7 @@ body .small-note, body p.small-note {
       font-family: "Gotham A", "Gotham B", Helvetica, Arial, sans-serif; }
     .sheet article {
       float: left;
-      width: 580px; }
+      width: 570px; }
     .sheet aside {
       float: right;
       width: 220px; } }
@@ -1333,7 +1335,7 @@ body.events-page .event-cont {
   body.events-page .event-cont a {
     font-weight: bold; }
 @media only screen and (min-width: 960px) {
-  body.events-page li {
+  body.events-page #main li {
     list-style-type: disc; }
   body.events-page .event-cont {
     border: none; }

@@ -17,8 +17,10 @@ body.events-page{
     }
   }
   @media only screen and (min-width: $desktop-min-width) {
-    li {
-      list-style-type: disc;
+    #main {
+        li {
+          list-style-type: disc;
+        }
     }
     .event-cont {
       @extend .clearfix;

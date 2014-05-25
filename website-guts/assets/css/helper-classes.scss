@@ -85,6 +85,8 @@ body .small-note, body p.small-note {
 	.left {float: left;}
 	.right {float: right;}
 	.sheet {
+		width: 960px;
+		margin: 0 auto;
 		background-color: white;
 		border: 1px solid #eee;
 		padding: 40px 55px;
@@ -103,7 +105,7 @@ body .small-note, body p.small-note {
 		}
 		article {
 			float: left;
-			width: 580px;
+			width: 570px;
 		}
 		aside {
 			float: right;
