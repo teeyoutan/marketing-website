@@ -1275,9 +1275,12 @@ body.home-page {
           height: 700px;
           display: block;
           width: 100%;
-          top: 0;
           z-index: 1;
-          margin-top: 105px; }
+          margin-top: 105px;
+          top: 50%;
+          -webkit-transform: translateY(-75%);
+          -ms-transform: translateY(-75%);
+          transform: translateY(-75%); }
       body.home-page h1 {
         text-align: center;
         font-size: 3.2em;
@@ -1311,6 +1314,8 @@ body.home-page {
         box-sizing: border-box;
         height: 36px;
         margin-right: 15px;
+        display: inline-block; }
+      body.home-page input[type=submit] {
         display: inline-block; } }
 
 body.events-page li {
