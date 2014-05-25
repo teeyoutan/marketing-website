@@ -568,7 +568,8 @@ header {
     #main-nav p, #main-nav a {
       padding: 15px 0 15px 22px;
       margin: 0;
-      display: block; }
+      display: block;
+      font-size: 1.1em; }
     #main-nav ul {
       -webkit-transition: max-height 0.2s;
       transition: max-height 0.2s;
