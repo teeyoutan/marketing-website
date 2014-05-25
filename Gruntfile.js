@@ -204,6 +204,7 @@ module.exports = function(grunt) {
         browser: true,
         globals: {
           jQuery: true,
+          $: true,
           console: false,
           Handlebars: false,
           moment: false,
@@ -211,6 +212,22 @@ module.exports = function(grunt) {
         }
       },
       files: ['<%= config.guts %>/assets/js/**/*.js', '!<%= config.guts %>/assets/js/libraries/**/*.js']
+    },
+    concat: {
+      temp: {
+        options: {
+          banner: '(function($){ \n\n' +
+                    '  try { \n\n',
+          footer:   '  } catch(error){ \n\n' +
+                      '  //report errors to GA \n\n' +
+                    '  } \n' +
+                  '})(jQuery);'
+        },
+        src: ['**/*.js', '!libraries/**/*.js'],
+        expand: true,
+        cwd: '<%= config.guts %>/assets/js',
+        dest: '<%= config.temp %>/assets/js/'
+      }
     },
     uglify: {
       options: {
@@ -226,7 +243,7 @@ module.exports = function(grunt) {
             '<%= config.bowerDir %>/jquery-cookie/jquery.cookie.js',
             '<%= config.guts %>/assets/js/libraries/handlebars-v1.3.0.js',
             '<%= config.bowerDir %>/momentjs/moment.js',
-            '<%= config.guts %>/assets/js/global.js'
+            '<%= config.temp %>/assets/js/global.js'
           ]
         }
       },
@@ -234,7 +251,7 @@ module.exports = function(grunt) {
         files: [
           {
             expand: true,
-            cwd: '<%= config.guts %>/assets/js/pages',
+            cwd: '<%= config.temp %>/assets/js/pages',
             src: '**/*.js',
             dest: '<%= config.dist %>/assets/js/pages'
           }
@@ -276,6 +293,7 @@ module.exports = function(grunt) {
     'jshint',
     'clean:preBuild',
     'assemble',
+    'concat',
     'uglify',
     'sass',
     'autoprefixer',

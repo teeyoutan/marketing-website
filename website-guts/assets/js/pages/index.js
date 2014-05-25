@@ -1,47 +1,33 @@
-(function($){
+window.mrktEng = window.mrktEng || {};
 
-  'use strict';
+window.mrktEng.index = window.mrktEng.index || {};
 
-  try {
+window.mrktEng.index.testItOut = function(editURL){
 
-    window.mrktEng = window.mrktEng || {};
+  //send user to the editor
+  window.location = 'https://www.optimizely.com/edit?url=' + editURL;
 
-    window.mrktEng.index = window.mrktEng.index || {};
+};
 
-    window.mrktEng.index.testItOut = function(editURL){
+$('input[type="text"]').focus();
 
-      //send user to the editor
-      window.location = 'https://www.optimizely.com/edit?url=' + editURL;
+$('form').submit(function(e){
 
-    };
+  var inputVal = $('input[type="text"]').val();
+
+  if( inputVal ){
+
+      window.mrktEng.index.testItOut( inputVal );
+
+  } else {
 
     $('input[type="text"]').focus();
 
-    $('form').submit(function(e){
-
-      var inputVal = $('input[type="text"]').val();
-
-      if( inputVal ){
-
-          window.mrktEng.index.testItOut( inputVal );
-
-      } else {
-
-        $('input[type="text"]').focus();
-
-        //report to ga that the form was submitted without a value
-        console.log('');
-
-      }
-
-      e.preventDefault();
-
-    });
-
-  } catch(error){
-
-    console.log('error');
+    //report to ga that the form was submitted without a value
+    console.log('');
 
   }
 
-})(jQuery);
+  e.preventDefault();
+
+});

@@ -1,5 +1,4 @@
 (function($) {
-    "use strict";
     try {
         window.mrktEng = window.mrktEng || {};
         window.mrktEng.events = {};
@@ -52,7 +51,5 @@
             window.mrktEng.events.showEvents("https://www.google.com/calendar/feeds/optimizely.com_hh3e0hadjvjs9gh34mdlevverk@group.calendar.google.com/public/full?alt=json&orderby=starttime&max-results=30&singleevents=true&sortorder=ascending&futureevents=false", "#past-events-cont");
             e.preventDefault();
         });
-    } catch (e) {
-        console.log(e);
-    }
+    } catch (error) {}
 })(jQuery);

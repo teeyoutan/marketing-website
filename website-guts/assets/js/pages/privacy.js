@@ -1,39 +1,25 @@
-(function($){
+var checkRemarketingState;
 
-	'use strict';
+checkRemarketingState = function(){
 
-	try {
+	if( $.cookie('remarketing') ){
 
-		var checkRemarketingState;
+		$('body').toggleClass('remarketing-opt-out');
 
-		checkRemarketingState = function(){
-
-			if( $.cookie('remarketing') ){
-
-				$('body').toggleClass('remarketing-opt-out');
-
-				$('#remarketing-remove').addClass('disabled');
-
-			}
-
-		};
-
-		checkRemarketingState();
-
-		$('body').delegate('#remarketing-remove', 'click', function(){
-
-			$.cookie('remarketing', 'true', {expires: 365, path: '/'});
-
-			checkRemarketingState();
-
-			$(this).addClass('disabled');
-
-		});
-
-	} catch(e) {
-
-		_gaq.push(['_trackEvent', 'page js error', '/privacy']);
+		$('#remarketing-remove').addClass('disabled');
 
 	}
 
-})(jQuery);
+};
+
+checkRemarketingState();
+
+$('body').delegate('#remarketing-remove', 'click', function(){
+
+	$.cookie('remarketing', 'true', {expires: 365, path: '/'});
+
+	checkRemarketingState();
+
+	$(this).addClass('disabled');
+
+});

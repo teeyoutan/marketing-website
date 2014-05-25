@@ -1,48 +1,36 @@
 /* global FastClick: false */
-(function($){
+$(function(){
 
-	'use strict';
+	window.mrktEng = {};
 
-	try {
+	//apply fastclick for mobile devices
+	FastClick.attach(document.body);
 
-		$(function(){
+	//apply active class to active links
+	window.mrktEng.activeLinks = {};
 
-			window.mrktEng = {};
+	window.mrktEng.activeLinks.currentPath = window.location.pathname;
 
-			//apply fastclick for mobile devices
-			FastClick.attach(document.body);
+	window.mrktEng.activeLinks.markActiveLinks = function(){
 
-			//apply active class to active links
-			window.mrktEng.activeLinks = {};
+		$('a').each(function(){
 
-			window.mrktEng.activeLinks.currentPath = window.location.pathname;
+			if(
 
-			window.mrktEng.activeLinks.markActiveLinks = function(){
+				$(this).attr('href') === window.mrktEng.activeLinks.currentPath ||
+				$(this).attr('href') + '/' === window.mrktEng.activeLinks.currentPath
 
-				$('a').each(function(){
+			){
 
-					if(
+				$(this).addClass('active');
 
-						$(this).attr('href') === window.mrktEng.activeLinks.currentPath ||
-						$(this).attr('href') + '/' === window.mrktEng.activeLinks.currentPath
-
-					){
-
-						$(this).addClass('active');
-
-					}
-
-				});
-
-
-			};
-
-			window.mrktEng.activeLinks.markActiveLinks();
+			}
 
 		});
 
-	} catch(error) {
 
-	}
+	};
 
-})(jQuery);
+	window.mrktEng.activeLinks.markActiveLinks();
+
+});
