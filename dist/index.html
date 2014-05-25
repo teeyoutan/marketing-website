@@ -38,7 +38,7 @@
                     $(this).toggleClass('active').find('ul').toggleClass('active');
                 });
             });
-        </script>
+        </script><script src="/assets/js/pages/index_head.js"></script>
     </head>
     <body class="signed-out home-page">
         <!--[if lt IE 8]>
@@ -220,6 +220,8 @@
             yepnope([
                 {
                     load: ['/assets/js/libraries/fastclick.js', '/assets/js/bundle.js']
+                },{
+                    load: ['/assets/js/pages/index.js']
                 }
             ]);
         </script>

@@ -1,28 +1,43 @@
 body.home-page {
-  background: url(/assets/img/bg-header.png) repeat;
+  background: #003367 url(/assets/img/bg-header.png) repeat;
   h1 {color: #fff;}
   form {display: none;}
   @media only screen and (min-width: $desktop-min-width){
+    height: 100%;
     text-align: center;
-    #cta {
-      /*margin-top: 300px;*/
+    #outer-wrapper, #inner-wrapper, #cta {
       position: relative;
-      height: 700px;
+      height: 100%;
+      margin: auto;
+    }
+    header {
+      position: absolute;
+      width: 100%;
+      top: 0;
+      left: 0;
+      z-index: 3;
+    }
+    #cta {
+      /*padding-top: 105px;*/
+      min-height: 700px;
+      height: 100%;
       .container {
         position: relative;
         z-index: 2;
-        padding-top: 210px;
+        /*padding-top: 210px;*/
+        top: 50%;
+        transform: translateY(-75%);
       }
       &:after {
         content: "";
         position: absolute;
         background: radial-gradient(rgba(29,69,129,0.7),rgba(29,69,129,0.6),rgba(1,51,102,0.5),rgba(1,51,102,0));
-        /*background: pink;*/
         height: 700px;
         display: block;
         width: 100%;
         top: 0;
         z-index: 1;
+        margin-top: 105px;
       }
     }
     h1 {

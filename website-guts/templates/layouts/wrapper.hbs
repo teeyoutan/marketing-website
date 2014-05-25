@@ -39,6 +39,7 @@
                 });
             });
         </script>
+        {{~#if page.head_script ~}}<script src="/assets/js/pages/{{page.head_script}}"></script>{{/if}}
     </head>
     <body class="signed-out{{#if page.body_class}} {{page.body_class}}{{/if}}">
         <!--[if lt IE 8]>

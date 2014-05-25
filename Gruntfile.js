@@ -214,7 +214,7 @@ module.exports = function(grunt) {
       },
       globalJS: {
         files: {
-          '<%= config.dist %>/assets/js/libraries/modernizr-yepnope.js': ['<%= config.guts %>/assets/js/modernizr-2.8.2.min.js','<%= config.bowerDir %>/yepnope/yepnope.1.5.4-min.js'],
+          '<%= config.dist %>/assets/js/libraries/modernizr-yepnope.js': ['<%= config.guts %>/assets/js/libraries/modernizr-2.8.2.min.js','<%= config.bowerDir %>/yepnope/yepnope.1.5.4-min.js'],
           '<%= config.dist %>/assets/js/libraries/fastclick.js': ['<%= config.bowerDir %>/fastclick/lib/fastclick.js'],
           '<%= config.dist %>/assets/js/bundle.js': [
             '<%= config.bowerDir %>/jquery-cookie/jquery.cookie.js',
