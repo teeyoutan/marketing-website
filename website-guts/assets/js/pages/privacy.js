@@ -1,4 +1,3 @@
-/* global _gaq: false */
 (function($){
 
 	'use strict';

@@ -1,4 +1,3 @@
-/* global console: false, Handlebars: false, moment: false */
 (function($){
 
   'use strict';

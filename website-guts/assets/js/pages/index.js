@@ -1,4 +1,3 @@
-/* global console: false */
 (function($){
 
   'use strict';

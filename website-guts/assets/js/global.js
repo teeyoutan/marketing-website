@@ -1,5 +1,4 @@
 /* global FastClick: false */
-
 (function($){
 
 	'use strict';
@@ -22,7 +21,7 @@
 
 				$('a').each(function(){
 
-					if( 
+					if(
 
 						$(this).attr('href') === window.mrktEng.activeLinks.currentPath ||
 						$(this).attr('href') + '/' === window.mrktEng.activeLinks.currentPath

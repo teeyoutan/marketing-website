@@ -188,7 +188,6 @@ module.exports = function(grunt) {
     },
     jshint: {
       options: {
-        strict: true,
         trailing: true,
         curly: true,
         eqeqeq: true,
@@ -201,7 +200,11 @@ module.exports = function(grunt) {
         quotmark: 'single',
         browser: true,
         globals: {
-          jQuery: true
+          jQuery: true,
+          console: false,
+          Handlebars: false,
+          moment: false,
+          _gaq: false
         }
       },
       files: ['<%= config.guts %>/assets/js/**/*.js', '!<%= config.guts %>/assets/js/libraries/**/*.js']
