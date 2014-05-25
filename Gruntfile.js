@@ -54,6 +54,9 @@ module.exports = function(grunt) {
     },
     aws: grunt.file.readJSON('configs/s3Config.json'),
     watch: {
+      gruntfile: {
+          files: 'Gruntfile.js'
+      },
       assemble: {
         files: [
           '<%= config.content %>/{,*/}*.{md,hbs,yml,json}',
@@ -247,7 +250,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-sass');
   grunt.loadNpmTasks('grunt-contrib-copy');
-  grunt.loadNpmTasks('grunt-s3');
+  //do not load the grunt-s3 task per: https://github.com/pifantastic/grunt-s3/issues/68
+  //grunt.loadNpmTasks('grunt-s3');
   grunt.loadNpmTasks('grunt-config');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
