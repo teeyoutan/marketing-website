@@ -74,8 +74,8 @@ module.exports = function(grunt) {
         tasks: ['copy:img']
       },
       js: {
-        files: ['<%= config.guts %>/assets/js/**/*.js'],
-        tasks: ['jshint', 'uglify']
+        files: ['<%= config.guts %>/assets/js/**/*.js', '<%= config.temp %>/assets/js/**/*.js'],
+        tasks: ['jshint', 'concat', 'uglify']
       },
       livereload: {
         options: {
