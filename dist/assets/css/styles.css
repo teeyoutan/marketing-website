@@ -715,7 +715,12 @@ header {
   #main-nav > li:hover {
     border-top: 4px solid #006eb6; }
     #main-nav > li:hover ul {
-      display: block !important; } }
+      display: block !important; }
+  body.compact-header header {
+    background: #006eb6; }
+    body.compact-header header .logo-cont {
+      float: left;
+      position: static; } }
 
 footer {
   text-align: center;

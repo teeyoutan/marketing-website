@@ -265,4 +265,13 @@ header {
           border-top: 4px solid $nav-hover-color;
       }
   }
+  body.compact-header {
+    header {
+      background: #006eb6;
+      .logo-cont {
+        float: left;
+        position: static;
+      }
+    }
+  }
 }
