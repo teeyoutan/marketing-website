@@ -177,6 +177,16 @@ header {
             width: 80%;
         }
     }
+
+    body.compact-header {
+      header {
+        padding: 5px 0;
+        .logo-cont {
+          padding: 0;
+          margin: 10px auto;
+        }
+      }
+    }
 }
 
 @media only screen and (min-width: $desktop-min-width) {
