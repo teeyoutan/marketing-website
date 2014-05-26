@@ -18,8 +18,8 @@ layout: wrapper.hbs
 	</div><!--/#page-header-->
 	<div id="page-header-gradient"></div>
 	<div id="page-content">
-		<div class="container">
+		{{#unless page.no_container}}<div class="container">{{/unless}}
 			{{> body }}
-		</div><!--/.container-->
+		{{#unless page.no_container}}</div><!--/.container-->{{/unless}}
 	</div><!--/#content-->
 </div><!--/#main-->
