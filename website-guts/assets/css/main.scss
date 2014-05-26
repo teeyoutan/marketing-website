@@ -215,7 +215,14 @@ textarea {
    ========================================================================== */
 @media only screen and (min-width: $desktop-min-width) {
     /* Style adjustments for viewports that meet the condition */
-    body {text-align: left;}
+    body {
+      background: #006eb6;
+      text-align: left;
+    }
+
+    #main {
+      background: #f4f4f4;
+    }
     /*
 
         PAGE TEMPLATES

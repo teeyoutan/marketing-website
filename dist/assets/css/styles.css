@@ -1004,7 +1004,10 @@ body {
 
     */
   body {
+    background: #006eb6;
     text-align: left; }
+  #main {
+    background: #f4f4f4; }
   #page-content {
     background: #f4f4f4; }
   #page-header-gradient {
