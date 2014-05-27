@@ -21,14 +21,14 @@
         <script src="{{assetsDir}}/js/libraries/modernizr-yepnope.js"></script>
         {{~#if page.head_script ~}}<script src="/assets/js/pages/{{page.head_script}}"></script>{{/if}}
     </head>
-    <body class="signed-out{{#if page.compact_header}} compact-header{{/if}}{{#each page.body_class}} {{.}}{{/each}}">
+    <body class="signed-out{{#if compact_header}} compact-header{{/if}}{{#each page.body_class}} {{.}}{{/each}}">
         <!--[if lt IE 8]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
         <div id="outer-wrapper">
             <div id="inner-wrapper">
                 <header>
-                    {{#unless page.compact_header}}
+                    {{#unless compact_header}}
                     <div id="top-nav-cont">
                         <div class="container">
                             <div href="#" class="mobile-nav-toggle" id="nav-menu">menu</div>
@@ -56,7 +56,7 @@
                     <div id="main-nav-cont">
                         <div class="container">
                             <p class="logo-cont"><a class="logo" href="/">Optimizely</a></p>
-                            {{#unless page.compact_header}}
+                            {{#unless compact_header}}
                             <nav>
                                 <ul id="main-nav" class="nav">
                                     <li class="first">
