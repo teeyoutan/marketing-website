@@ -39,48 +39,52 @@
 <div id="main">
   <div class="container">
     
-<div id="ppc-form">
-  <h4 class="seo-form-heading">Test it Out for Free</h4>
-  <p>Welcome to Optimizely. Sign up for a free account and test out the most popular <span id="symmetry_test">A/B testing tool</span> on the planet!</p>
-  <form id="seo-form" class="seo-form" action="/account/free_trial_landing" autocomplete="off" novalidate="novalidate">
-    
-    <p class="error"></p>
-    <input id="hidden" type="hidden" name="hidden" value="touched" data-bind="value: hidden">
-    <input id="utm_medium" type="hidden" name="utm_medium" value="direct">
-    <ul>
-      <li>
-        <label for="url-input">Type in a URL to try it out</label>
-        <input id="url-input" name="url-input" type="url" required="" data-bind="value: url">
-      </li>
-      <li>
-        <label for="name">Your Name</label>
-        <input id="name" name="name" type="text" required="" data-bind="value: name">
-      </li>
-      <li>
-        <div class="label half left">
-          <label for="email">Your email - no spam</label>
-          <input id="email" name="email" type="email" required="" data-bind="value: email">
-        </div>
+<div class="row">
+  <div class="columns six offset-three">
+    <div id="ppc-form" class="landing-page-form">
+      <h4 class="seo-form-heading">Test it Out for Free</h4>
+      <p>Welcome to Optimizely. Sign up for a free account and test out the most popular <span id="symmetry_test">A/B testing tool</span> on the planet!</p>
+      <form id="seo-form" class="seo-form" action="/account/free_trial_landing" autocomplete="off" novalidate="novalidate">
+        
+        <p class="error"></p>
+        <input id="hidden" type="hidden" name="hidden" value="touched" data-bind="value: hidden">
+        <input id="utm_medium" type="hidden" name="utm_medium" value="direct">
+        <ul>
+          <li>
+            <label for="url">Type in a URL to try it out</label>
+            <input id="url" name="url-input" type="url" required="">
+          </li>
+          <li>
+            <label for="name">Your Name</label>
+            <input id="name" name="name" type="text" required="">
+          </li>
+          <li>
+            <div class="label half left">
+              <label for="email">Your email - no spam</label>
+              <input id="email" name="email" type="email" required="">
+            </div>
 
-        <div class="label half right">
-          <label for="phone_number">Phone Number</label>
-          <input id="phone_number" name="phone_number" type="tel" data-bind="value: phone">
-        </div>
-      </li>
-      <li class="terms">
-        <label class="checkbox">
-          <input type="checkbox" name="terms-of-service" required="">
-          I agree to the
-          <span id="SL-link-terms" class="SL_swap"><a href="/terms" target="_blank">Terms of Service</a></span> and
-          <span id="SL-link-privacy" class="SL_swap"><a href="/privacy" target="_blank">Privacy Policy</a></span>.
-        </label>
-      </li>
-      <li class="a-center">
-        <input type="submit" class="button" value="Test it Out">
-      </li>
-    </ul>
-  </form>
-</div><!--/#ppc-form-->
+            <div class="label half right">
+              <label for="phone">Phone Number</label>
+              <input id="phone" name="phone_number" type="tel">
+            </div>
+          </li>
+          <li class="terms">
+            <label class="checkbox">
+              <input type="checkbox" name="terms-of-service" required="" id="terms">
+              I agree to the
+              <span id="SL-link-terms" class="SL_swap"><a href="/terms" target="_blank">Terms of Service</a></span> and
+              <span id="SL-link-privacy" class="SL_swap"><a href="/privacy" target="_blank">Privacy Policy</a></span>.
+            </label>
+          </li>
+          <li class="a-center">
+            <input type="submit" class="button" value="Test it Out">
+          </li>
+        </ul>
+      </form>
+    </div><!--/#ppc-form-->
+  </div>
+</div>
 
   </div><!--/.container-->
 </div>
@@ -179,6 +183,8 @@
             yepnope([
                 {
                     load: ['/assets/js/libraries/fastclick.js', '/assets/js/bundle.js']
+                },{
+                    load: ['/assets/js/pages/free-trial.js']
                 }
             ]);
         </script>

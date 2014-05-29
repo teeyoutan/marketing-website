@@ -348,6 +348,9 @@ h3 {
   font-size: 1.8em;
   line-height: 1.2; }
 
+h4 {
+  font-size: 1.4em; }
+
 p {
   font-size: 1.1em;
   font-weight: 100; }
@@ -826,6 +829,19 @@ footer {
   #intl-domains li.last {
     padding-right: 0; } }
 
+input[type=text], input[type=url], input[type=tel], input[type=email] {
+  border: 1px solid #c9c9c9;
+  font-weight: 400;
+  padding: 4px;
+  color: #242424;
+  font-size: 0.93em;
+  min-height: 38px;
+  width: 100%; }
+
+@media only screen and (min-width: 960px) {
+  input[type=text], input[type=url], input[type=tel], input[type=email] {
+    width: auto; } }
+
 /*! HTML5 Boilerplate v4.3.0 | MIT License | http://h5bp.com/ */
 /*
  * What follows is the result of much research on cross-browser styling.
@@ -1162,6 +1178,21 @@ body {
   border: 1px solid #ddd;
   padding: 25px; }
 
+.button {
+  background: -webkit-gradient(linear, left top, left bottom, from(#147ec7), to(#126fb0));
+  background: -webkit-linear-gradient(top, #147ec7 0%, #126fb0 100%);
+  background: linear-gradient(top, #147ec7 0%, #126fb0 100%);
+  color: #fff;
+  border: 1px solid #22599a;
+  border-radius: 1px;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 0.87em;
+  font-weight: 400;
+  line-height: 1.4;
+  padding: 0.6em 2.8em;
+  text-align: center; }
+
 .primary-button, body.home-page input[type=submit] {
   background: -webkit-gradient(linear, left top, left bottom, from(#90b71c), to(#7fa119));
   background: -webkit-linear-gradient(top, #90b71c 0%, #7fa119 100%);
@@ -1227,6 +1258,12 @@ body .small-note, body p.small-note {
   line-height: 1.4em;
   color: #888; }
 
+.landing-page-form ul {
+  padding: 0; }
+.landing-page-form li {
+  list-style-type: none;
+  margin-bottom: 10px; }
+
 @media only screen and (min-width: 960px) {
   .left {
     float: left; }
@@ -1249,7 +1286,18 @@ body .small-note, body p.small-note {
       width: 570px; }
     .sheet aside {
       float: right;
-      width: 220px; } }
+      width: 220px; }
+  .landing-page-form input {
+    width: 100%; }
+  .vertical-center-header, body.home-page header, body.ppc-page header {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 3; } }
+
+.hide-label {
+  display: none; }
 
 /* pages */
 body.home-page {
@@ -1266,12 +1314,6 @@ body.home-page {
         position: relative;
         height: 100%;
         margin: auto; }
-      body.home-page header {
-        position: absolute;
-        width: 100%;
-        top: 0;
-        left: 0;
-        z-index: 3; }
       body.home-page #cta {
         /*padding-top: 105px;*/
         min-height: 700px;
@@ -1459,3 +1501,43 @@ body.privacy-page.remarketing-opt-out .opted-in {
   display: none; }
 body.privacy-page.remarketing-opt-out .opted-out {
   display: block; }
+
+body.ppc-page h4 {
+  text-align: center; }
+@media only screen and (min-width: 768px) {
+  body.ppc-page input[type=text], body.ppc-page input[type=url], body.ppc-page input[type=tel], body.ppc-page input[type=email] {
+    width: 400px;
+    margin: 0 auto 0 auto; } }
+@media only screen and (min-width: 960px) {
+  body.ppc-page {
+    height: 100%; }
+    body.ppc-page h4 {
+      margin: 0 !important;
+      padding: 0 !important; }
+    body.ppc-page input[type=text], body.ppc-page input[type=url], body.ppc-page input[type=tel], body.ppc-page input[type=email] {
+      margin: 0 auto;
+      width: auto; }
+    body.ppc-page #outer-wrapper, body.ppc-page #inner-wrapper, body.ppc-page #main, body.ppc-page .container, body.ppc-page .row, body.ppc-page .columns {
+      position: relative;
+      height: 100%;
+      margin: auto; }
+    body.ppc-page #ppc-form {
+      margin-top: 75px;
+      position: relative;
+      top: 50%;
+      -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+      transform: translateY(-50%); }
+      body.ppc-page #ppc-form #url, body.ppc-page #ppc-form #name {
+        width: 100%; }
+      body.ppc-page #ppc-form .terms {
+        clear: both;
+        padding-top: 25px;
+        color: #999;
+        font-size: 15px; }
+        body.ppc-page #ppc-form .terms a {
+          font-size: 12px !important;
+          font-weight: 500; }
+      body.ppc-page #ppc-form #terms {
+        width: 30px;
+        text-align: left; } }
