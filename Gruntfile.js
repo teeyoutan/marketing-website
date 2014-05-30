@@ -93,7 +93,17 @@ module.exports = function(grunt) {
         port: 9000,
         livereload: 35729,
         // change this to '0.0.0.0' to access the server from outside
-        hostname: '0.0.0.0'
+        hostname: '0.0.0.0',
+        middleware: function(connect, options, middlewares){
+          middlewares.push(function(req, res, next){
+            if(req.url !== '/account/info'){
+              return next();
+            }
+            res.writeHead(200, {'Content-Type': 'application/json'});
+            res.end( grunt.file.read('website-guts/endpoint-mocks/accountInfo.json') );
+          });
+          return middlewares;
+        }
       },
       livereload: {
         options: {
