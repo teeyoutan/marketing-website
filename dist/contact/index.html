@@ -19,6 +19,7 @@
         <link rel="stylesheet" href="/assets/css/fonts.css">
         <link rel="stylesheet" href="/assets/css/styles.css">
         <script src="/assets/js/libraries/modernizr-yepnope.js"></script>
+        <script src="//maps.google.com/maps/api/js?sensor=true"></script>
     </head>
     <body class="signed-out contact-page">
         <!--[if lt IE 8]>
@@ -118,7 +119,9 @@
 	<div id="page-content">
 		<div class="container">
 			
-<div id="map"></div><!--/#map-->
+<div class="lede-image">
+  <div id="map"></div>
+</div><!--/.lede-image-->
 <div class="row">
   <div class="columns nine">
     <h4>Get in touch with us.</h4>
@@ -235,11 +238,7 @@
             yepnope([
                 {
                     load: ['/assets/js/libraries/fastclick.js', '/assets/js/bundle.js']
-                }
-                ,{
-                    load: ['//maps.googleapis.com/maps/api/js?sensor=false&amp;callback=window.mrktEng.contact.showMap']
-                }
-                ,{
+                },{
                     load: ['/assets/js/pages/contact.js']
                 }
             ]);

@@ -40,9 +40,19 @@ body.ppc-page {
           font-weight: 500;
         }
       }
+      .half.left, .half.right {
+        width: 47%;
+        input {
+          width: 100%;
+        }
+      }
       #terms {
         width: 30px;
         text-align: left;
+        margin-bottom: 20px;
+      }
+      .button {
+        width: auto;
       }
     }
   }

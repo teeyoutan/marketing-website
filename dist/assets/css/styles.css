@@ -1294,7 +1294,13 @@ body .small-note, body p.small-note {
     width: 100%;
     top: 0;
     left: 0;
-    z-index: 3; } }
+    z-index: 3; }
+  .lede-image {
+    background: #fff;
+    border: 1px solid #dadada;
+    -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+    padding: 3px; } }
 
 .hide-label {
   display: none; }
@@ -1538,6 +1544,25 @@ body.ppc-page h4 {
         body.ppc-page #ppc-form .terms a {
           font-size: 12px !important;
           font-weight: 500; }
+      body.ppc-page #ppc-form .half.left, body.ppc-page #ppc-form .half.right {
+        width: 47%; }
+        body.ppc-page #ppc-form .half.left input, body.ppc-page #ppc-form .half.right input {
+          width: 100%; }
       body.ppc-page #ppc-form #terms {
         width: 30px;
-        text-align: left; } }
+        text-align: left;
+        margin-bottom: 20px; }
+      body.ppc-page #ppc-form .button {
+        width: auto; } }
+
+body.contact-page .lede-image {
+  display: none; }
+@media only screen and (min-width: 768px) {
+  body.contact-page .lede-image {
+    display: block; }
+  body.contact-page #map {
+    height: 300px; }
+  body.contact-page .small-logo {
+    background: url(/assets/img/logo-small.jpg) top left no-repeat;
+    height: 21px;
+    width: 95px; } }

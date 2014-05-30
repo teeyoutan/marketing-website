@@ -19,7 +19,7 @@
         <link rel="stylesheet" href="{{assetsDir}}/css/fonts.css">
         <link rel="stylesheet" href="{{assetsDir}}/css/styles.css">
         <script src="{{assetsDir}}/js/libraries/modernizr-yepnope.js"></script>
-        {{~#if page.head_script ~}}<script src="/assets/js/pages/{{page.head_script}}"></script>{{/if}}
+        {{#if page.head_script ~}}<script src="{{page.head_script}}"></script>{{/if}}
     </head>
     <body class="signed-out{{#if page.compact_header}} compact-header{{/if}}{{#each page.body_class}} {{.}}{{/each}}">
         <!--[if lt IE 8]>

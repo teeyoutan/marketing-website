@@ -1,3 +1,12 @@
 body.contact-page {
-
+  .lede-image {display: none;}
+  @media only screen and (min-width: $tablet-min-width) {
+    .lede-image {display: block;}
+    #map {height: 300px;}
+    .small-logo {
+      background: url(/assets/img/logo-small.jpg) top left no-repeat;
+      height: 21px;
+      width: 95px;
+    }
+  }
 }
