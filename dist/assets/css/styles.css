@@ -1565,4 +1565,8 @@ body.contact-page .lede-image {
   body.contact-page .small-logo {
     background: url(/assets/img/logo-small.jpg) top left no-repeat;
     height: 21px;
-    width: 95px; } }
+    width: 95px; }
+  body.contact-page h5 {
+    margin-bottom: 0; }
+  body.contact-page p {
+    margin-top: 3px; } }
