@@ -96,11 +96,23 @@ module.exports = function(grunt) {
         hostname: '0.0.0.0',
         middleware: function(connect, options, middlewares){
           middlewares.push(function(req, res, next){
-            if(req.url !== '/account/info'){
-              return next();
+            if(req.url === '/account/free_trial_landing'){
+
+              res.writeHead(200, {'Content-Type': 'application/json'});
+              res.end( grunt.file.read('website-guts/endpoint-mocks/formSuccess.json') );
+
+            } else if(req.url === '/account/info') {
+
+              res.writeHead(200, {'Content-Type': 'application/json'});
+              res.end( grunt.file.read('website-guts/endpoint-mocks/accountInfo.json') );
+
             }
-            res.writeHead(200, {'Content-Type': 'application/json'});
-            res.end( grunt.file.read('website-guts/endpoint-mocks/accountInfo.json') );
+            else{
+
+              return next();
+
+            }
+
           });
           return middlewares;
         }
