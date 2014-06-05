@@ -4761,19 +4761,28 @@ $.fn.extend({
         };
         defaultOptions.phoneIsValid = function(phone) {
             if (typeof phone === "string") {
-                console.log("string");
                 var phoneOnlyDigits = phone.replace(/\D/g, "");
-                console.log(phoneOnlyDigits.length);
                 if (phoneOnlyDigits.length >= 10) {
-                    console.log("valid");
                     return true;
                 } else {
-                    console.log("not valid");
                     return false;
                 }
             } else {
                 return false;
-                console.log("not string");
+            }
+        };
+        defaultOptions.checkboxIsValid = function(checkbox) {
+            if ($(checkbox).prop("checked")) {
+                return true;
+            } else {
+                return false;
+            }
+        };
+        defaultOptions.urlIsValid = function(url) {
+            if (url) {
+                return true;
+            } else {
+                return false;
             }
         };
         defaultOptions.adjustClasses = function(element, isValid) {
@@ -4799,7 +4808,6 @@ $.fn.extend({
             }
         };
         defaultOptions.validateFields = function(args) {
-            console.log("validate fields");
             var allElementsValid = true;
             $.each(args.selector.find('input:not([type="hidden"])'), function(index, value) {
                 var element = $(value);
@@ -4819,26 +4827,40 @@ $.fn.extend({
                         } else {
                             settings.adjustClasses(element, true);
                         }
+                    } else if (type === "url") {
+                        if (settings.urlIsValid(element.val()) === false) {
+                            settings.adjustClasses(element, false);
+                            allElementsValid = false;
+                        } else {
+                            settings.adjustClasses(element, true);
+                        }
+                    } else if (type === "checkbox") {
+                        if (settings.checkboxIsValid(element) === false) {
+                            settings.adjustClasses(element, false);
+                            allElementsValid = false;
+                        } else {
+                            settings.adjustClasses(element, true);
+                        }
                     }
                 }
             });
             if (allElementsValid) {
                 return true;
+                $("body").removeClass("error");
             } else {
                 $("body").addClass("error");
                 return false;
             }
         };
         defaultOptions.submitData = function(callback) {
-            console.log("submitData running");
             var request;
             request = $.ajax({
                 type: "POST",
                 url: settings.url,
                 data: formSelector.serialize()
             });
-            request.always(function(data, textStatus) {
-                console.log("text status: " + textStatus);
+            console.log(request);
+            request.always(function() {
                 if (typeof callback === "function") {
                     callback(request);
                 }
@@ -4846,9 +4868,9 @@ $.fn.extend({
         };
         settings = $.extend(true, defaultOptions, options);
         formSelector.submit(function(event) {
+            console.log("running");
             if (typeof settings.before === "function") {
                 if (settings.before() === false) {
-                    console.log("before failed");
                     return false;
                 }
             }
@@ -4856,7 +4878,6 @@ $.fn.extend({
                 if (settings.validateFields({
                     selector: formSelector
                 }) === false) {
-                    console.log("validateFields failed");
                     return false;
                 }
             }

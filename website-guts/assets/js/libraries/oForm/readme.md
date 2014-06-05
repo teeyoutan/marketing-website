@@ -87,6 +87,10 @@ This function validates all the form field values. If the form field has a
 for `type="email"` the plugin will use the validation.validators.email function.
 If the type is something like text, it will just check for a non-empty string.
 
+If one of the fields is invalid, the function will add an `error` class to the
+`<body>`. If all the of fields are valid, the function will remove the `error`
+class from the `<body>`.
+
 ###submitData
 
 This function submits the form field data to the specified endpoint. It accepts
@@ -102,10 +106,17 @@ The function is passed one argument which is an object. the object contains
 one property named 'selector' and the value is the jQuery selector from when
 the plugin was initiated.
 
-###after: function
+###after: function (required)
 
-This function will be run after everything is done.
+This function will be run after the response on the XHR request is received.
+The function is passed one argument and that is the jQXHR object of the
+request/response.
+
+Use this function to create your success or failure handlers.
 
 ##To do's
 
 * add html5 history api (push state)
+* add custom validation option
+* scroll up to top of the window after everything is done
+* add processing body class with before function, remove it with after function

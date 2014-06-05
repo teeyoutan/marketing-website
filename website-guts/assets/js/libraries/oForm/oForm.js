@@ -34,21 +34,13 @@ $.fn.extend({
 
       if(typeof phone === 'string'){
 
-        console.log('string');
-
         var phoneOnlyDigits = phone.replace(/\D/g, '');
 
-        console.log(phoneOnlyDigits.length);
-
         if( phoneOnlyDigits.length >= 10 ){
-
-          console.log('valid');
 
           return true;
 
         } else {
-
-          console.log('not valid');
 
           return false;
 
@@ -58,7 +50,34 @@ $.fn.extend({
 
         return false;
 
-        console.log('not string');
+      }
+
+    };
+
+    defaultOptions.checkboxIsValid = function(checkbox){
+
+      if( $(checkbox).prop('checked') ){
+
+        return true;
+
+      } else {
+
+        return false;
+
+      }
+
+    };
+
+    defaultOptions.urlIsValid = function(url){
+
+      if(url){
+
+        return true;
+
+      } else {
+
+        return false;
+
       }
 
     };
@@ -110,8 +129,6 @@ $.fn.extend({
 
     defaultOptions.validateFields = function(args){
 
-        console.log('validate fields');
-
         var allElementsValid = true;
 
         $.each( args.selector.find('input:not([type="hidden"])'), function(index, value){
@@ -152,6 +169,34 @@ $.fn.extend({
 
               }
 
+            } else if(type === 'url'){
+
+              if( settings.urlIsValid(element.val()) === false ){
+
+                settings.adjustClasses(element, false);
+
+                allElementsValid = false;
+
+              } else {
+
+                settings.adjustClasses(element, true);
+
+              }
+
+            } else if(type === 'checkbox'){
+
+              if( settings.checkboxIsValid(element) === false ){
+
+                settings.adjustClasses(element, false);
+
+                allElementsValid = false;
+
+              } else {
+
+                settings.adjustClasses(element, true);
+
+              }
+
             }
 
           }
@@ -161,6 +206,8 @@ $.fn.extend({
         if( allElementsValid ){
 
           return true;
+
+          $('body').removeClass('error');
 
         } else {
 
@@ -174,8 +221,6 @@ $.fn.extend({
 
     defaultOptions.submitData = function(callback){
 
-      console.log('submitData running');
-
       var request;
 
       request = $.ajax({
@@ -186,9 +231,9 @@ $.fn.extend({
 
       });
 
-      request.always(function(data, textStatus){
+      console.log(request);
 
-        console.log('text status: ' + textStatus);
+      request.always(function(){
 
         if(typeof callback === 'function'){
 
@@ -204,11 +249,11 @@ $.fn.extend({
 
     formSelector.submit(function(event){
 
+      console.log('running');
+
       if(typeof settings.before === 'function'){
 
         if(settings.before() === false){
-
-          console.log('before failed');
 
           return false;
 
@@ -219,8 +264,6 @@ $.fn.extend({
       if(typeof settings.validateFields === 'function'){
 
         if(settings.validateFields({selector: formSelector}) === false){
-
-          console.log('validateFields failed');
 
           return false;
 
