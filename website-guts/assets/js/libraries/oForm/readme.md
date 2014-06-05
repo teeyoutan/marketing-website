@@ -22,12 +22,13 @@ See settings below for specifics on how each step works.
 
 Basic usage:
 
-    $('form').oForm();
+    $('form').oForm({url: '/whatever/path'});
 
 Advanced usage:
 
     $('form').oForm({
 
+        url: '/whatever/path',
         before: function(){ alert('hello'); },
         after: function(){ alert('world!') }
 
