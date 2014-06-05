@@ -66,10 +66,10 @@ This function adds/removes error classes from DOM elements. It accepts two
 arguments. The first argument is an HTML node. The second argument is a boolean
 value indicating if the DOM node is valid or not.
 
-For example, if the DOM node is [name='email'] and the field is invalid, the
+For example, if the DOM node is `name="email` and the field is invalid, the
 function will do the following:
 
-* add an `error` class to any DOM node of .email-related
+* add an `error` class to any DOM node of `class="email-related"`
 * remove a `hidden` class from the DOM node .email-error-message
 * add an `error` class to the DOM node [name='email']
 
@@ -79,7 +79,7 @@ If the field is valid, the function will do the opposite:
 * add a `hidden` class from the DOM node .email-error-message
 * remove an `error` class to the DOM node [name='email']
 
-###validation.validateFields: function
+###validateFields: function
 
 This function validates all the form field values. If the form field has a
 `required` attribute then the function will validate it. The function uses the
