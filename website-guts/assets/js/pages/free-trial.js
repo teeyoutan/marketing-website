@@ -11,5 +11,31 @@ $('form :input').each(function(index, elem) {
         $(label).addClass('hide-label');
 
     }
-  
- });
+
+});
+
+var beforeFunc, afterFunc;
+
+beforeFunc = function() {
+
+  console.log('beforeFunc running');
+
+  //return false;
+
+};
+
+afterFunc = function(arg) {
+
+  console.log('after function running');
+
+  console.log(arg);
+
+};
+
+$('#seo-form').oForm({
+
+  url: '/account/free_trial_landing',
+  before: beforeFunc,
+  after: afterFunc
+
+});

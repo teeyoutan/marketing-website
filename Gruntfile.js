@@ -55,7 +55,8 @@ module.exports = function(grunt) {
     aws: grunt.file.readJSON('configs/s3Config.json'),
     watch: {
       gruntfile: {
-          files: 'Gruntfile.js'
+          files: 'Gruntfile.js',
+          tasks: ['build']
       },
       assemble: {
         files: [
@@ -268,6 +269,7 @@ module.exports = function(grunt) {
             '<%= config.bowerDir %>/jquery-cookie/jquery.cookie.js',
             '<%= config.guts %>/assets/js/libraries/handlebars-v1.3.0.js',
             '<%= config.bowerDir %>/momentjs/moment.js',
+            '<%= config.guts %>/assets/js/libraries/oForm/oForm.js',
             '<%= config.temp %>/assets/js/global.js'
           ]
         }
