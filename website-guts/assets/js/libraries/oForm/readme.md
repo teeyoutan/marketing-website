@@ -92,9 +92,7 @@ If the type is something like text, it will just check for a non-empty string.
 This function submits the form field data to the specified endpoint. It accepts
 one argument which is a callback function to execute after the function is done.
 
-###
-
-before: function
+###before: function
 
 This function will be run before the form data is submitted. if the function
 return true, the form data will be submitted. If it returns false or undefined
@@ -104,9 +102,6 @@ The function is passed one argument which is an object. the object contains
 one property named 'selector' and the value is the jQuery selector from when
 the plugin was initiated.
 
-after: function
+###after: function
 
 This function will be run after everything is done.
-
-
-**/
