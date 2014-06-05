@@ -70,21 +70,21 @@ For example, if the DOM node is `name="email` and the field is invalid, the
 function will do the following:
 
 * add an `error` class to any DOM node of `class="email-related"`
-* remove a `hidden` class from the DOM node .email-error-message
-* add an `error` class to the DOM node [name='email']
+* remove a `hidden` class from the DOM node `class="email-error-message"`
+* add an `error` class to the DOM node `name="email"`
 
 If the field is valid, the function will do the opposite:
 
-* remove an `error` class to any DOM node of .email-related
-* add a `hidden` class from the DOM node .email-error-message
-* remove an `error` class to the DOM node [name='email']
+* remove an `error` class to any DOM node of `class="email-related"`
+* add a `hidden` class from the DOM node `class="email-error-message"`
+* remove an `error` class to the DOM node `name="email"`
 
 ###validateFields: function
 
 This function validates all the form field values. If the form field has a
 `required` attribute then the function will validate it. The function uses the
 `type` attribute to decide how to validate the value of the node. For example,
-for [type='email'] the plugin will use the validation.validators.email function.
+for `type="email"` the plugin will use the validation.validators.email function.
 If the type is something like text, it will just check for a non-empty string.
 
 ###submitData
