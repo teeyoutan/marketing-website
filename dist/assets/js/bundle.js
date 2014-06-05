@@ -4751,7 +4751,7 @@ $.fn.extend({
         defaultOptions = {};
         defaultOptions.validation = {};
         defaultOptions.validation.validators = {};
-        defaultOptions.validation.validators.email = function(email) {
+        defaultOptions.emailIsValid = function(email) {
             if (typeof email === "string") {
                 var emailRegEx = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
                 return emailRegEx.test(email);
@@ -4759,7 +4759,7 @@ $.fn.extend({
                 return false;
             }
         };
-        defaultOptions.validation.validators.phone = function(phone) {
+        defaultOptions.phoneIsValid = function(phone) {
             if (typeof phone === "string") {
                 console.log("string");
                 var phoneOnlyDigits = phone.replace(/\D/g, "");
@@ -4776,7 +4776,7 @@ $.fn.extend({
                 console.log("not string");
             }
         };
-        defaultOptions.validation.elementClasses = function(element, isValid) {
+        defaultOptions.adjustClasses = function(element, isValid) {
             var relatedClass, messageClass;
             relatedClass = "." + element.attr("name") + "-related";
             messageClass = "." + element.attr("name") + "-error-message";
@@ -4798,7 +4798,7 @@ $.fn.extend({
                 });
             }
         };
-        defaultOptions.validation.validateFields = function(args) {
+        defaultOptions.validateFields = function(args) {
             console.log("validate fields");
             var allElementsValid = true;
             $.each(args.selector.find('input:not([type="hidden"])'), function(index, value) {
@@ -4806,18 +4806,18 @@ $.fn.extend({
                 if (element.attr("required")) {
                     var type = element.attr("type");
                     if (type === "email") {
-                        if (settings.validation.validators.email(element.val()) === false) {
-                            settings.validation.elementClasses(element, false);
+                        if (settings.emailIsValid(element.val()) === false) {
+                            settings.adjustClasses(element, false);
                             allElementsValid = false;
                         } else {
-                            settings.validation.elementClasses(element, true);
+                            settings.adjustClasses(element, true);
                         }
                     } else if (type === "tel") {
-                        if (settings.validation.validators.phone(element.val()) === false) {
-                            settings.validation.elementClasses(element, false);
+                        if (settings.phoneIsValid(element.val()) === false) {
+                            settings.adjustClasses(element, false);
                             allElementsValid = false;
                         } else {
-                            settings.validation.elementClasses(element, true);
+                            settings.adjustClasses(element, true);
                         }
                     }
                 }
@@ -4852,8 +4852,8 @@ $.fn.extend({
                     return false;
                 }
             }
-            if (typeof settings.validation.validateFields === "function") {
-                if (settings.validation.validateFields({
+            if (typeof settings.validateFields === "function") {
+                if (settings.validateFields({
                     selector: formSelector
                 }) === false) {
                     console.log("validateFields failed");

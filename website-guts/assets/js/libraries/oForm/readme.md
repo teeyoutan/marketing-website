@@ -30,7 +30,7 @@ Advanced usage:
 
         url: '/whatever/path',
         before: function(){ alert('hello'); },
-        after: function(){ alert('world!') }
+        after: function(){ alert('world!'); }
 
     });
 
@@ -42,26 +42,25 @@ executed (see the advanced usage example in the usage section).
 
 ###url: string (required)
 
+Returns: `true` if the email is valid `false` if not
+
 The endpoint to which the form data with be POSTed.
 
-###validation: object
-
-###validation.validators: object
-
-###validation.validators.email: function
+###emailIsValid: function
 
 This is the function that validates an email address. The function accepts one
-parameter and that is the string of the email address. The function must
-return false if the email is invalid and true if the email is valid.
+parameter and that is the string of the email address.
 
-###validation.validators.phone: function
+###phoneIsValid: function
+
+Returns: `true` if the phone number is valid `false` if not
 
 This is the function that validates a phone number. The function accepts one
-parameter and that is the string of the phone number. The function must
-return false if the phone number is invalid and true if the phone number is
-valid.
+parameter and that is the string of the phone number.
 
-###validation.elementClasses: function
+###adjustClasses: function
+
+Returns: nothing
 
 This function adds/removes error classes from DOM elements. It accepts two
 arguments. The first argument is an HTML node. The second argument is a boolean
@@ -106,3 +105,7 @@ the plugin was initiated.
 ###after: function
 
 This function will be run after everything is done.
+
+##To do's
+
+* add html5 history api (push state)

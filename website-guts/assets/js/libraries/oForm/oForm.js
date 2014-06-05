@@ -14,7 +14,7 @@ $.fn.extend({
 
     defaultOptions.validation.validators = {};
 
-    defaultOptions.validation.validators.email = function(email){
+    defaultOptions.emailIsValid = function(email){
 
       if(typeof email === 'string'){
 
@@ -30,7 +30,7 @@ $.fn.extend({
 
     };
 
-    defaultOptions.validation.validators.phone = function(phone){
+    defaultOptions.phoneIsValid = function(phone){
 
       if(typeof phone === 'string'){
 
@@ -63,7 +63,7 @@ $.fn.extend({
 
     };
 
-    defaultOptions.validation.elementClasses = function(element, isValid){
+    defaultOptions.adjustClasses = function(element, isValid){
 
       var relatedClass, messageClass;
 
@@ -108,7 +108,7 @@ $.fn.extend({
 
     };
 
-    defaultOptions.validation.validateFields = function(args){
+    defaultOptions.validateFields = function(args){
 
         console.log('validate fields');
 
@@ -126,29 +126,29 @@ $.fn.extend({
 
             if(type === 'email'){
 
-              if( settings.validation.validators.email(element.val()) === false ){
+              if( settings.emailIsValid(element.val()) === false ){
 
-                settings.validation.elementClasses(element, false);
+                settings.adjustClasses(element, false);
 
                 allElementsValid = false;
 
               } else {
 
-                settings.validation.elementClasses(element, true);
+                settings.adjustClasses(element, true);
 
               }
 
             } else if(type === 'tel') {
 
-              if( settings.validation.validators.phone(element.val()) === false ){
+              if( settings.phoneIsValid(element.val()) === false ){
 
-                settings.validation.elementClasses(element, false);
+                settings.adjustClasses(element, false);
 
                 allElementsValid = false;
 
               } else {
 
-                settings.validation.elementClasses(element, true);
+                settings.adjustClasses(element, true);
 
               }
 
@@ -216,9 +216,9 @@ $.fn.extend({
 
       }
 
-      if(typeof settings.validation.validateFields === 'function'){
+      if(typeof settings.validateFields === 'function'){
 
-        if(settings.validation.validateFields({selector: formSelector}) === false){
+        if(settings.validateFields({selector: formSelector}) === false){
 
           console.log('validateFields failed');
 
