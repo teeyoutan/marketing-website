@@ -18,6 +18,8 @@
 module.exports = function(grunt) {
 
   require('time-grunt')(grunt);
+  //jit-grunt loads only the npm tasks required for the grunt task.
+  //makes livereload much faster.
   require('jit-grunt')(grunt, {
     replace: 'grunt-text-replace'
   });
