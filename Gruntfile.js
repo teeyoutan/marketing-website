@@ -18,6 +18,11 @@
 module.exports = function(grunt) {
 
   require('time-grunt')(grunt);
+  /*
+  require('jit-grunt')(grunt, {
+    replace: 'grunt-text-replace'
+  });
+  */
 
   // Project configuration.
   grunt.initConfig({
@@ -169,8 +174,8 @@ module.exports = function(grunt) {
         overwrite: true,
         replacements: [
           {
-            from: '../../',
-            to: '../../../'
+            from: 'website-guts/',
+            to: '../../../website-guts/'
           }
         ]
       }
@@ -344,6 +349,7 @@ module.exports = function(grunt) {
     'concat',
     'uglify',
     'sass',
+    'replace',
     'autoprefixer',
     'copy',
     'clean:postBuild'
@@ -357,7 +363,6 @@ module.exports = function(grunt) {
     'concat',
     'uglify',
     'sass',
-    'replace',
     'autoprefixer',
     'copy',
     's3',
