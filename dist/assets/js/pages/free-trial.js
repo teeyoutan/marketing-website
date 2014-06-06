@@ -11,18 +11,6 @@
     });
     $("#seo-form").oForm({
         url: "/account/free_trial_landing",
-        validation: {
-            name: function(value) {
-                window.console.log("whoa");
-                if (value.length > 1) {
-                    return true;
-                } else {
-                    return false;
-                }
-            }
-        },
-        after: function() {
-            console.log("SUCCESS");
-        }
+        after: function() {}
     });
 })(jQuery);

@@ -147,7 +147,7 @@ And to initiate the jQuery plugin:
       url: '/whatever-path',
       validation: {
         hair: function(value){
-          if(value.length >= 4){
+          if(value.length >= 3){
             return true;
           } else {
             return false;
@@ -182,6 +182,6 @@ Use this function to create your success or failure handlers.
 ##To do's
 
 * add html5 history api (push state)
-* add custom validation option
+* add more than inputs: password, radio, select, textarea
 * scroll up to top of the window after everything is done
 * add processing body class with before function, remove it with after function

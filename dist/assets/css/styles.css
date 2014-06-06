@@ -1308,6 +1308,10 @@ body .small-note, body p.small-note {
 .hide-label {
   display: none; }
 
+input[type="text"].error, input[type="url"].error, input[type="email"].error, input[type="tel"].error {
+  background-color: #fef3f3;
+  border-color: #f3b6b3; }
+
 /* pages */
 body.home-page {
   background: #003367 url(/assets/img/bg-header.png) repeat; }
