@@ -132,7 +132,9 @@ module.exports = function(grunt) {
       },
       livereload: {
         options: {
-          open: true,
+          open: {
+            target: 'http://0.0.0.0:9000/dist/'
+          },
           base: '.'
         }
       }
@@ -281,7 +283,7 @@ module.exports = function(grunt) {
       options: {
         mangle: false,
         compress: false,
-        beautify: true
+        beautify: false
       },
       globalJS: {
         files: {
