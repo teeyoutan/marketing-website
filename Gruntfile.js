@@ -27,10 +27,8 @@ module.exports = function(grunt) {
           variables: {
             environment: 'preview',
             assets_dir: '/assets',
+            sassSourceMap: false,
             compress_js: true,
-            sass_options: {
-              outputStyle: 'compressed'
-            },
             concat_banner: '(function($){ \n\n' +
                            '  window.optly = window.optly || {}; \n\n' +
                            '  window.optly.mrkt = window.optly.mrkt || {}; \n\n' +
@@ -48,10 +46,8 @@ module.exports = function(grunt) {
           variables: {
             environment: 'dev',
             assets_dir: '/assets',
+            sassSourceMap: true,
             compress_js: false,
-            sass_options: {
-              outputStyle: 'expanded'
-            },
             concat_banner: '(function($){ \n\n' +
                            '  window.optly = window.optly || {}; \n\n' +
                            '  window.optly.mrkt = window.optly.mrkt || {}; \n\n',
@@ -159,7 +155,9 @@ module.exports = function(grunt) {
     },
     sass: {
       styles: {
-        options: '<%= grunt.config.get("sass_options") %>',
+        options: {
+          sourceMap: '<%= grunt.config.get("concat_banner") %>'
+        },
         files: [
           {
             src: '<%= config.guts %>/assets/css/styles.scss',
@@ -183,6 +181,10 @@ module.exports = function(grunt) {
       }
     },
     copy: {
+      cssSourceMap: {
+        src: '<%= config.temp %>/css/styles.css.map',
+        dest: '<%= config.dist %>/assets/css/styles.css.map'
+      },
       js: {
         files: [
           {
