@@ -559,7 +559,7 @@ header {
     /*width: 35px;*/
     -webkit-background-size: 35px 35px;
     background-size: 35px 35px;
-    /*background: url('/assets/img/menu.svg') center center no-repeat;*/
+    /*background: image-url('menu.svg') center center no-repeat;*/
     text-align: center;
     border: 1px solid #fff;
     border-radius: 3px; }
@@ -592,7 +592,7 @@ header {
     position: absolute;
     height: 15px;
     width: 15px;
-    background: url('/assets/img/arrow.svg');
+    background: url("/arrow.svg");
     position: absolute;
     left: 5px;
     top: 17px;
@@ -663,7 +663,7 @@ header {
   #nav-menu, #user-nav-cont {
     display: none; }
   header {
-    background: url(/assets/img/bg-top-header.png) repeat-x, url(/assets/img/bg-header.png); }
+    background: url("/bg-top-header.png") repeat-x, url("/bg-header.png"); }
     header ul {
       text-align: right;
       padding: 0;
@@ -984,7 +984,7 @@ body {
   background-color: #fff;
   background-repeat: no-repeat;
   background-position: center bottom;
-  background-image: url('/assets/img/bg-shadow.png'); }
+  background-image: url("/bg-shadow.png"); }
 
 #page-content {
   background: #fff;
@@ -1315,7 +1315,7 @@ input[type="text"].error, input[type="url"].error, input[type="email"].error, in
 /* pages */
 body.home-page {
   display: none;
-  background: #003367 url(/assets/img/bg-header.png) repeat; }
+  background: #003367 url("/bg-header.png") repeat; }
   body.home-page h1 {
     color: #fff; }
   body.home-page form {
@@ -1419,7 +1419,7 @@ body.events-page .event-cont {
       font-weight: 500;
       color: #444; }
   body.events-page .show-past-events {
-    background: url(/assets/img/past-events.png) no-repeat left center;
+    background: url("/past-events.png") no-repeat left center;
     margin-left: 10px;
     padding-left: 63px;
     padding-top: 7px;
@@ -1571,7 +1571,7 @@ body.contact-page .lede-image {
   body.contact-page #map {
     height: 300px; }
   body.contact-page .small-logo {
-    background: url(/assets/img/logo-small.jpg) top left no-repeat;
+    background: url("/logo-small.jpg") top left no-repeat;
     height: 21px;
     width: 95px; }
   body.contact-page h5 {

@@ -1,6 +1,6 @@
 body.home-page {
   display: none;
-  background: #003367 url(/assets/img/bg-header.png) repeat;
+  background: #003367 image-url('bg-header.png') repeat;
   h1 {color: #fff;}
   form {display: none;}
   @media only screen and (min-width: $desktop-min-width){
