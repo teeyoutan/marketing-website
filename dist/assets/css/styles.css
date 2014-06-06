@@ -1314,6 +1314,7 @@ input[type="text"].error, input[type="url"].error, input[type="email"].error, in
 
 /* pages */
 body.home-page {
+  display: none;
   background: #003367 url(/assets/img/bg-header.png) repeat; }
   body.home-page h1 {
     color: #fff; }
@@ -1577,3 +1578,4 @@ body.contact-page .lede-image {
     margin-bottom: 0; }
   body.contact-page p {
     margin-top: 3px; } }
+/*# sourceMappingURL=styles.css.map */

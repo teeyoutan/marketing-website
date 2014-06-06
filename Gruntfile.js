@@ -28,6 +28,7 @@ module.exports = function(grunt) {
             environment: 'preview',
             assets_dir: '/assets',
             sassSourceMap: false,
+            sassImagePath: '/assets/img/',
             compress_js: true,
             concat_banner: '(function($){ \n\n' +
                            '  window.optly = window.optly || {}; \n\n' +
@@ -47,6 +48,7 @@ module.exports = function(grunt) {
             environment: 'dev',
             assets_dir: '/<%= config.dist %>/assets',
             sassSourceMap: true,
+            sassImagePath: '/dist/assets/img/',
             compress_js: false,
             concat_banner: '(function($){ \n\n' +
                            '  window.optly = window.optly || {}; \n\n' +
@@ -63,10 +65,6 @@ module.exports = function(grunt) {
     },
     aws: grunt.file.readJSON('configs/s3Config.json'),
     watch: {
-      gruntfile: {
-          files: 'Gruntfile.js',
-          tasks: ['build']
-      },
       assemble: {
         files: [
           '<%= config.content %>/{,*/}*.{md,hbs,yml,json}',
@@ -77,7 +75,7 @@ module.exports = function(grunt) {
       },
       sass: {
         files: '<%= config.guts %>/assets/css/**/*.scss',
-        tasks: ['sass', 'autoprefixer', 'clean:postBuild']
+        tasks: ['config:dev', 'sass', 'replace', 'autoprefixer', 'clean:postBuild']
       },
       img: {
         files: ['<%= config.guts %>/assets/img/*.{png,jpg,svg}'],
@@ -130,9 +128,7 @@ module.exports = function(grunt) {
       livereload: {
         options: {
           open: true,
-          base: [
-            '.'
-          ]
+          base: '.'
         }
       }
     },
@@ -156,16 +152,25 @@ module.exports = function(grunt) {
     sass: {
       styles: {
         options: {
-          sourceMap: '<%= grunt.config.get("concat_banner") %>'
+          sourceMap: true,
+          imagePath: '<%= grunt.config.get("sassImagePath") %>'
         },
         files: [
           {
             src: '<%= config.guts %>/assets/css/styles.scss',
             dest: '<%= config.temp %>/css/styles.css'
-          },
+          }
+        ]
+      }
+    },
+    replace: {
+      cssSourceMap: {
+        src: '<%= config.temp %>/css/styles.css.map',
+        overwrite: true,
+        replacements: [
           {
-            src: ['<%= config.guts %>/assets/css/fonts.scss'],
-            dest: '<%= config.dist %>/assets/css/fonts.css'
+            from: '../../',
+            to: '../../../'
           }
         ]
       }
@@ -184,6 +189,10 @@ module.exports = function(grunt) {
       cssSourceMap: {
         src: '<%= config.temp %>/css/styles.css.map',
         dest: '<%= config.dist %>/assets/css/styles.css.map'
+      },
+      cssFontFile: {
+        src: ['<%= config.guts %>/assets/css/fonts.css'],
+        dest: '<%= config.dist %>/assets/css/fonts.css'
       },
       js: {
         files: [
@@ -309,6 +318,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-text-replace');
 
   grunt.registerTask('server', [
     'config:dev',
@@ -318,6 +328,7 @@ module.exports = function(grunt) {
     'concat',
     'uglify',
     'sass',
+    'replace',
     'autoprefixer',
     'copy',
     'clean:postBuild',
@@ -334,8 +345,8 @@ module.exports = function(grunt) {
     'uglify',
     'sass',
     'autoprefixer',
-    'copy'//,
-    //'clean:postBuild'
+    'copy',
+    'clean:postBuild'
   ]);
 
   grunt.registerTask('preview', [
@@ -346,6 +357,7 @@ module.exports = function(grunt) {
     'concat',
     'uglify',
     'sass',
+    'replace',
     'autoprefixer',
     'copy',
     's3',
