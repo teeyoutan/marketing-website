@@ -203,7 +203,7 @@
                 {{/if}}
                 {{~#if page.page_script~}}
                 ,{
-                    load: ['/assets/js/pages/{{page.page_script}}']
+                    load: ['{{assetsDir}}/js/pages/{{page.page_script}}']
                 }
                 {{~/if}}
             ]);

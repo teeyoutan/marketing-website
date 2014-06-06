@@ -45,7 +45,7 @@ module.exports = function(grunt) {
         options: {
           variables: {
             environment: 'dev',
-            assets_dir: '/assets',
+            assets_dir: '/<%= config.dist %>/assets',
             sassSourceMap: true,
             compress_js: false,
             concat_banner: '(function($){ \n\n' +
@@ -131,7 +131,7 @@ module.exports = function(grunt) {
         options: {
           open: true,
           base: [
-            '<%= config.dist %>/'
+            '.'
           ]
         }
       }
@@ -334,8 +334,8 @@ module.exports = function(grunt) {
     'uglify',
     'sass',
     'autoprefixer',
-    'copy',
-    'clean:postBuild'
+    'copy'//,
+    //'clean:postBuild'
   ]);
 
   grunt.registerTask('preview', [
