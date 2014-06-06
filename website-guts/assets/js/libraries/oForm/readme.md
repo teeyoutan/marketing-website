@@ -36,27 +36,58 @@ Advanced usage:
 
 ##Settings
 
-Each of the settings below are the defaults, but you can override them by
-passing an object with properties of the same name when the oForm method is
-executed (see the advanced usage example in the usage section).
+You must pass required settings to the oForm method. Required settings have
+no default.
+
+Settings that are not required have a default behavior which is described below.
+You can override the default behavior by adding a property with the same key
+as the setting name to the options object passed to oForm.
+
+The advanced usage example above overrides the default behavior for the `before`
+and `after` settings.
 
 ###url: string (required)
 
-Returns: `true` if the email is valid `false` if not
-
 The endpoint to which the form data with be POSTed.
+
+**Note: the following validation functions are only executed if there is a
+`required` attribute on the HTML dom node. If you want to run a validation
+function on an HTML node that is not required, use the `validation` setting.**
 
 ###emailIsValid: function
 
+Returns: `true` if the email is valid `false` if not.
+
 This is the function that validates an email address. The function accepts one
-parameter and that is the string of the email address.
+argument and that is the string of the email address.
 
 ###phoneIsValid: function
 
-Returns: `true` if the phone number is valid `false` if not
+Returns: `true` if the phone number is valid `false` if not.
 
 This is the function that validates a phone number. The function accepts one
-parameter and that is the string of the phone number.
+argument and that is the string of the phone number.
+
+###checkboxIsValid: function
+
+Returns: `true` if the checkbox is valid, `false` if not.
+
+This is the function that validates a checkbox. The function accepts one
+parameter and that is the checkbox DOM node.
+
+###urlIsValid: function
+
+Returns: `true` if the URL is valid, `false` if not.
+
+This is the function that validates a URL. The function accepts one argument and
+that is the string of the URL.
+
+###textIsValid: function
+
+Returns: `true` if the text is valid, `false` if not.
+
+This is the function that validates a `[type='text']` input. The function
+accepts one argument and that is the string of the node's value.
 
 ###adjustClasses: function
 
@@ -82,14 +113,48 @@ If the field is valid, the function will do the opposite:
 ###validateFields: function
 
 This function validates all the form field values. If the form field has a
-`required` attribute then the function will validate it. The function uses the
-`type` attribute to decide how to validate the value of the node. For example,
-for `type="email"` the plugin will use the validation.validators.email function.
-If the type is something like text, it will just check for a non-empty string.
+`required` attribute then the function will validate it. By default the function
+uses the `type` attribute to decide how to validate the value of the node. For
+example, for `type="email"` the plugin will use the validation.validators.email
+function.
 
-If one of the fields is invalid, the function will add an `error` class to the
-`<body>`. If all the of fields are valid, the function will remove the `error`
-class from the `<body>`.
+If you want a different behavior than the default, see the `validation` setting.
+
+This function passes the return value from the specific validation function to
+adjustClasses.
+
+##validation
+
+This settings has no default. It provides you a way to override the default
+behavior for validating a form field.
+
+If you want to override the default behavior to validate a text
+input, you would do the following.
+
+1. Add a `data-validation` attribute with a value of the validation function (see example)
+2. Pass a `validation` property in the options object
+3. Add a validation function in the `validation` property that accepts one argument,
+which is the value of the form field
+
+For example, if you want to provide a custom validation function for a text input,
+your HTML should look like this:
+
+    <input type="text" required data-validation="hair" name="hair-color">
+
+And to initiate the jQuery plugin:
+
+    $('form').oForm({  
+      url: '/whatever-path',
+      validation: {
+        hair: function(value){
+          if(value.length >= 4){
+            return true;
+          } else {
+            return false;
+          }
+        }
+      }
+    });
 
 ###submitData
 

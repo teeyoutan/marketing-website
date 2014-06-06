@@ -25,24 +25,37 @@ module.exports = function(grunt) {
       preview: {
         options: {
           variables: {
-            'environment': 'preview',
-            'assets_dir': '/assets',
-            'compress_js': true,
-            'sass_options': {
+            environment: 'preview',
+            assets_dir: '/assets',
+            compress_js: true,
+            sass_options: {
               outputStyle: 'compressed'
-            }
+            },
+            concat_banner: '(function($){ \n\n' +
+                           '  window.optly = window.optly || {}; \n\n' +
+                           '  window.optly.mrkt = window.optly.mrkt || {}; \n\n' +
+                           '  try { \n\n',
+            concat_footer: '  } catch(error){ \n\n' +
+                           '  //report errors to GA \n\n' +
+                           '  window.console.log("js error: " + error);' +
+                           '  } \n' +
+                           '})(jQuery);'
           }
         }
       },
       dev: {
         options: {
           variables: {
-            'environment': 'dev',
-            'assets_dir': '/assets',
-            'compress_js': false,
-            'sass_options': {
+            environment: 'dev',
+            assets_dir: '/assets',
+            compress_js: false,
+            sass_options: {
               outputStyle: 'expanded'
-            }
+            },
+            concat_banner: '(function($){ \n\n' +
+                           '  window.optly = window.optly || {}; \n\n' +
+                           '  window.optly.mrkt = window.optly.mrkt || {}; \n\n',
+            concat_footer: '})(jQuery);'
           }
         }
       },
@@ -76,7 +89,7 @@ module.exports = function(grunt) {
       },
       js: {
         files: ['<%= config.guts %>/assets/js/**/*.js', '<%= config.temp %>/assets/js/**/*.js'],
-        tasks: ['jshint', 'concat', 'uglify']
+        tasks: ['config:dev', 'jshint', 'concat', 'uglify', 'clean:postBuild']
       },
       livereload: {
         options: {
@@ -239,19 +252,12 @@ module.exports = function(grunt) {
     concat: {
       temp: {
         options: {
-          banner: '(function($){ \n\n' +
-                    '  window.optly = window.optly || {}; \n\n' +
-                    '  window.optly.mrkt = window.optly.mrkt || {}; \n\n' +
-                    '  try { \n\n',
-          footer:   '  } catch(error){ \n\n' +
-                      '  //report errors to GA \n\n' +
-                      '  window.console.log("js error: " + error);' +
-                    '  } \n' +
-                  '})(jQuery);'
+          banner: '<%= grunt.config.get("concat_banner") %>',
+          footer: '<%= grunt.config.get("concat_footer") %>'
         },
         src: ['**/*.js', '!libraries/**/*.js'],
         expand: true,
-        cwd: '<%= config.guts %>/assets/js',
+        cwd: '<%= config.guts %>/assets/js/',
         dest: '<%= config.temp %>/assets/js/'
       }
     },

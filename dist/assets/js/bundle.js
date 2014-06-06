@@ -4785,6 +4785,13 @@ $.fn.extend({
                 return false;
             }
         };
+        defaultOptions.textIsValid = function(text) {
+            if (text) {
+                return true;
+            } else {
+                return false;
+            }
+        };
         defaultOptions.adjustClasses = function(element, isValid) {
             var relatedClass, messageClass;
             relatedClass = "." + element.attr("name") + "-related";
@@ -4810,37 +4817,24 @@ $.fn.extend({
         defaultOptions.validateFields = function(args) {
             var allElementsValid = true;
             $.each(args.selector.find('input:not([type="hidden"])'), function(index, value) {
-                var element = $(value);
-                if (element.attr("required")) {
+                var element, id, elementValue;
+                element = $(value);
+                dataValidation = $(element).attr("data-validation");
+                elementValue = element.val();
+                if (dataValidation && settings.validation[dataValidation]) {
+                    settings.adjustClasses(element, settings.validation[dataValidation](elementValue));
+                } else if (element.attr("required")) {
                     var type = element.attr("type");
                     if (type === "email") {
-                        if (settings.emailIsValid(element.val()) === false) {
-                            settings.adjustClasses(element, false);
-                            allElementsValid = false;
-                        } else {
-                            settings.adjustClasses(element, true);
-                        }
+                        settings.adjustClasses(element, settings.emailIsValid(elementValue));
                     } else if (type === "tel") {
-                        if (settings.phoneIsValid(element.val()) === false) {
-                            settings.adjustClasses(element, false);
-                            allElementsValid = false;
-                        } else {
-                            settings.adjustClasses(element, true);
-                        }
+                        settings.adjustClasses(element, settings.phoneIsValid(elementValue));
                     } else if (type === "url") {
-                        if (settings.urlIsValid(element.val()) === false) {
-                            settings.adjustClasses(element, false);
-                            allElementsValid = false;
-                        } else {
-                            settings.adjustClasses(element, true);
-                        }
+                        settings.adjustClasses(element, settings.urlIsValid(elementValue));
                     } else if (type === "checkbox") {
-                        if (settings.checkboxIsValid(element) === false) {
-                            settings.adjustClasses(element, false);
-                            allElementsValid = false;
-                        } else {
-                            settings.adjustClasses(element, true);
-                        }
+                        settings.adjustClasses(element, settings.checkboxIsValid(elementValue));
+                    } else if (type === "text") {
+                        settings.adjustClasses(element, settings.textIsValid(elementValue));
                     }
                 }
             });
@@ -4868,6 +4862,7 @@ $.fn.extend({
         };
         settings = $.extend(true, defaultOptions, options);
         formSelector.submit(function(event) {
+            event.preventDefault();
             console.log("running");
             if (typeof settings.before === "function") {
                 if (settings.before() === false) {
@@ -4890,46 +4885,42 @@ $.fn.extend({
 (function($) {
     window.optly = window.optly || {};
     window.optly.mrkt = window.optly.mrkt || {};
-    try {
-        window.optly.mrkt.isMobile = function() {
-            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-                return true;
-            } else {
-                return false;
-            }
-        };
-        window.optly.mrkt.mobileJS = function() {
-            if (window.optly.mrkt.isMobile()) {
-                FastClick.attach(document.body);
-                $("body").delegate(".mobile-nav-toggle", "click", function(e) {
-                    $("body").toggleClass("nav-open");
-                    e.preventDefault();
-                });
-                $(".user-nav-toggle").click(function(e) {
-                    $("body").toggleClass("user-nav-open");
-                    e.preventDefault();
-                });
-                $("#main-nav ul").each(function() {
-                    $(this).css("max-height", $(this).height() + "px");
-                });
-                $("body").addClass("mobile-nav-ready");
-                $("#main-nav > li").click(function() {
-                    $(this).toggleClass("active").find("ul").toggleClass("active");
-                });
-            }
-        };
-        window.optly.mrkt.mobileJS();
-        window.optly.mrkt.activeLinks = {};
-        window.optly.mrkt.activeLinks.currentPath = window.location.pathname;
-        window.optly.mrkt.activeLinks.markActiveLinks = function() {
-            $("a").each(function() {
-                if ($(this).attr("href") === window.optly.mrkt.activeLinks.currentPath || $(this).attr("href") + "/" === window.optly.mrkt.activeLinks.currentPath) {
-                    $(this).addClass("active");
-                }
+    window.optly.mrkt.isMobile = function() {
+        if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+            return true;
+        } else {
+            return false;
+        }
+    };
+    window.optly.mrkt.mobileJS = function() {
+        if (window.optly.mrkt.isMobile()) {
+            FastClick.attach(document.body);
+            $("body").delegate(".mobile-nav-toggle", "click", function(e) {
+                $("body").toggleClass("nav-open");
+                e.preventDefault();
             });
-        };
-        window.optly.mrkt.activeLinks.markActiveLinks();
-    } catch (error) {
-        window.console.log("js error: " + error);
-    }
+            $(".user-nav-toggle").click(function(e) {
+                $("body").toggleClass("user-nav-open");
+                e.preventDefault();
+            });
+            $("#main-nav ul").each(function() {
+                $(this).css("max-height", $(this).height() + "px");
+            });
+            $("body").addClass("mobile-nav-ready");
+            $("#main-nav > li").click(function() {
+                $(this).toggleClass("active").find("ul").toggleClass("active");
+            });
+        }
+    };
+    window.optly.mrkt.mobileJS();
+    window.optly.mrkt.activeLinks = {};
+    window.optly.mrkt.activeLinks.currentPath = window.location.pathname;
+    window.optly.mrkt.activeLinks.markActiveLinks = function() {
+        $("a").each(function() {
+            if ($(this).attr("href") === window.optly.mrkt.activeLinks.currentPath || $(this).attr("href") + "/" === window.optly.mrkt.activeLinks.currentPath) {
+                $(this).addClass("active");
+            }
+        });
+    };
+    window.optly.mrkt.activeLinks.markActiveLinks();
 })(jQuery);

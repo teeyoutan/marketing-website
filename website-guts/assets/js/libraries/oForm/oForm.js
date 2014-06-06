@@ -82,6 +82,20 @@ $.fn.extend({
 
     };
 
+    defaultOptions.textIsValid = function(text){
+
+      if(text){
+
+        return true;
+
+      } else {
+
+        return false;
+
+      }
+
+    };
+
     defaultOptions.adjustClasses = function(element, isValid){
 
       var relatedClass, messageClass;
@@ -133,69 +147,41 @@ $.fn.extend({
 
         $.each( args.selector.find('input:not([type="hidden"])'), function(index, value){
 
-          var element = $(value);
+          var element, id, elementValue;
 
-          //name = $(value).attr('name');
+          element = $(value);
 
-          if( element.attr('required') ){
+          dataValidation = $(element).attr('data-validation');
+
+          elementValue = element.val();
+
+          if( dataValidation && settings.validation[dataValidation] ){
+
+            settings.adjustClasses(element, settings.validation[dataValidation](elementValue) );
+
+          } else if( element.attr('required') ){
 
             var type = element.attr('type');
 
             if(type === 'email'){
 
-              if( settings.emailIsValid(element.val()) === false ){
-
-                settings.adjustClasses(element, false);
-
-                allElementsValid = false;
-
-              } else {
-
-                settings.adjustClasses(element, true);
-
-              }
+              settings.adjustClasses(element, settings.emailIsValid(elementValue) );
 
             } else if(type === 'tel') {
 
-              if( settings.phoneIsValid(element.val()) === false ){
-
-                settings.adjustClasses(element, false);
-
-                allElementsValid = false;
-
-              } else {
-
-                settings.adjustClasses(element, true);
-
-              }
+              settings.adjustClasses(element, settings.phoneIsValid(elementValue) );
 
             } else if(type === 'url'){
 
-              if( settings.urlIsValid(element.val()) === false ){
-
-                settings.adjustClasses(element, false);
-
-                allElementsValid = false;
-
-              } else {
-
-                settings.adjustClasses(element, true);
-
-              }
+              settings.adjustClasses(element, settings.urlIsValid(elementValue) );
 
             } else if(type === 'checkbox'){
 
-              if( settings.checkboxIsValid(element) === false ){
+              settings.adjustClasses(element, settings.checkboxIsValid(elementValue) );
 
-                settings.adjustClasses(element, false);
+            } else if(type === 'text'){
 
-                allElementsValid = false;
-
-              } else {
-
-                settings.adjustClasses(element, true);
-
-              }
+              settings.adjustClasses(element, settings.textIsValid(elementValue) );
 
             }
 
@@ -248,6 +234,8 @@ $.fn.extend({
     settings = $.extend(true, defaultOptions, options);
 
     formSelector.submit(function(event){
+
+      event.preventDefault();
 
       console.log('running');
 
