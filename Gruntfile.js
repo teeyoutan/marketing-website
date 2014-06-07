@@ -143,6 +143,7 @@ module.exports = function(grunt) {
       options: {
         layoutdir: '<%= config.guts %>/templates/layouts/',
         assetsDir: '<%= grunt.config.get("assets_dir") %>',
+        environment: '<%= grunt.config.get("environment") %>',
         data: '<%= config.content %>/**/*.json'
       },
       pages: {
