@@ -17,6 +17,21 @@ $('form :input').each(function(index, elem) {
 $('#seo-form').oForm({
 
   url: '/account/free_trial_landing',
+
+  reportValidationError: function(element){
+
+    console.log('error on: ' + $(element).attr('name'));
+
+    window.analytics.track(window.location.pathname, {
+
+      category: 'form field error',
+
+      label: $(element).attr('name')
+
+    });
+
+  },
+
   after: function(){
 
     //TO DO: add marketo code, remarketing code, etc.

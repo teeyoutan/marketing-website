@@ -96,6 +96,16 @@ $.fn.extend({
 
     };
 
+    defaultOptions.alertValidationError = function(element, isValid){
+
+      if(typeof settings.reportValidationError === 'function' && !isValid){
+
+        settings.reportValidationError(element);
+
+      }
+
+    }
+
     defaultOptions.adjustClasses = function(element, isValid){
 
       var relatedClass, messageClass;
@@ -103,6 +113,8 @@ $.fn.extend({
       relatedClass = '.' + element.attr('name') + '-related';
 
       messageClass = '.' + element.attr('name') + '-error-message';
+
+      settings.alertValidationError(element, isValid);
 
       if(isValid){
 
@@ -147,7 +159,7 @@ $.fn.extend({
 
         $.each( args.selector.find('input:not([type="hidden"])'), function(index, value){
 
-          var element, id, elementValue;
+          var element, id, elementValue, type, elementIsValid;
 
           element = $(value);
 
@@ -161,7 +173,7 @@ $.fn.extend({
 
           } else if( element.attr('required') ){
 
-            var type = element.attr('type');
+            type = element.attr('type');
 
             if(type === 'email'){
 
