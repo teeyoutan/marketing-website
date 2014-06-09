@@ -2,6 +2,7 @@
 <html class="no-js">
     <head>
         <meta charset="utf-8">
+        <script src="//cdn.optimizely.com/js/{{environmentVariables.optimizelyProjectID}}.js"></script>
         <script src="{{assetsDir}}/js/libraries/jquery.js"></script>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>Optimizely:{{#if page.seo_title}} {{page.seo_title}}{{else}} A/B testing software you'll actually use{{/if}}</title>
@@ -20,13 +21,11 @@
         <link rel="stylesheet" href="{{assetsDir}}/css/styles.css">
         <script src="{{assetsDir}}/js/libraries/modernizr-yepnope.js"></script>
         {{#if page.head_script ~}}<script src="{{page.head_script}}"></script>{{/if}}
-        {{#if environmentIsDev}}
         <script type="text/javascript">
           window.analytics=window.analytics||[],window.analytics.methods=["identify","group","track","page","pageview","alias","ready","on","once","off","trackLink","trackForm","trackClick","trackSubmit"],window.analytics.factory=function(t){return function(){var a=Array.prototype.slice.call(arguments);return a.unshift(t),window.analytics.push(a),window.analytics}};for(var i=0;i<window.analytics.methods.length;i++){var key=window.analytics.methods[i];window.analytics[key]=window.analytics.factory(key)}window.analytics.load=function(t){if(!document.getElementById("analytics-js")){var a=document.createElement("script");a.type="text/javascript",a.id="analytics-js",a.async=!0,a.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.io/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n)}},window.analytics.SNIPPET_VERSION="2.0.9",
-          window.analytics.load("l4usxygsxg");
+          window.analytics.load("{{environmentVariables.segmentProjectID}}");
           window.analytics.page();
         </script>
-        {{/if}}
     </head>
     <body class="signed-out{{#if page.compact_header}} compact-header{{/if}}{{#each page.body_class}} {{.}}{{/each}}">
         <!--[if lt IE 8]>

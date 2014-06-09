@@ -31,8 +31,7 @@ module.exports = function(grunt) {
         options: {
           variables: {
             environment: 'preview',
-            environmentIsProduction: true,
-            environmentIsDev: false,
+            environmentData: 'website-guts/data/environments/production/environmentVariables.json',
             assets_dir: '/assets',
             sassSourceMap: false,
             sassImagePath: '/assets/img/',
@@ -53,8 +52,7 @@ module.exports = function(grunt) {
         options: {
           variables: {
             environment: 'dev',
-            environmentIsProduction: true,
-            environmentIsDev: false,
+            environmentData: 'website-guts/data/environments/development/environmentVariables.json',
             assets_dir: '/<%= config.dist %>/assets',
             sassSourceMap: true,
             sassImagePath: '/dist/assets/img/',
@@ -149,7 +147,7 @@ module.exports = function(grunt) {
         assetsDir: '<%= grunt.config.get("assets_dir") %>',
         environmentIsProduction: '<%= grunt.config.get("environmentIsProduction") %>',
         environmentIsDev: '<%= grunt.config.get("environmentIsDev") %>',
-        data: '<%= config.content %>/**/*.json'
+        data: ['<%= config.content %>/**/*.json', '<%= grunt.config.get("environmentData") %>']
       },
       pages: {
         files: [
