@@ -4792,6 +4792,11 @@ $.fn.extend({
                 return false;
             }
         };
+        defaultOptions.alertValidationError = function(valid, element) {
+            if (typeof settings.reportValidationError === "function" && !valid) {
+                settings.reportValidationError(element);
+            }
+        };
         defaultOptions.adjustClasses = function(element, isValid) {
             var relatedClass, messageClass;
             relatedClass = "." + element.attr("name") + "-related";
@@ -4817,14 +4822,14 @@ $.fn.extend({
         defaultOptions.validateFields = function(args) {
             var allElementsValid = true;
             $.each(args.selector.find('input:not([type="hidden"])'), function(index, value) {
-                var element, id, elementValue;
+                var element, id, elementValue, type, elementIsValid;
                 element = $(value);
                 dataValidation = $(element).attr("data-validation");
                 elementValue = element.val();
                 if (dataValidation && settings.validation[dataValidation]) {
                     settings.adjustClasses(element, settings.validation[dataValidation](elementValue));
                 } else if (element.attr("required")) {
-                    var type = element.attr("type");
+                    type = element.attr("type");
                     if (type === "email") {
                         settings.adjustClasses(element, settings.emailIsValid(elementValue));
                     } else if (type === "tel") {

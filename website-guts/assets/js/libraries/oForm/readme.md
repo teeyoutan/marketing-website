@@ -123,7 +123,7 @@ If you want a different behavior than the default, see the `validation` setting.
 This function passes the return value from the specific validation function to
 adjustClasses.
 
-##validation
+###validation
 
 This settings has no default. It provides you a way to override the default
 behavior for validating a form field.
@@ -155,6 +155,12 @@ And to initiate the jQuery plugin:
         }
       }
     });
+
+###reportValidationError
+
+This function is executed each time there is a validation error on a form field.
+It gets passed one argument and that is the DOM node that was invalid. This is
+useful to report validation errors to tracking platforms like Google Analytics.
 
 ###submitData
 

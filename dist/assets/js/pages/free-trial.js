@@ -11,6 +11,13 @@
     });
     $("#seo-form").oForm({
         url: "/account/free_trial_landing",
+        reportValidationError: function(element) {
+            console.log("error on: " + $(element).attr("name"));
+            window.analytics.track(window.location.pathname, {
+                category: "form field error",
+                label: $(element).attr("name")
+            });
+        },
         after: function() {}
     });
 })(jQuery);
