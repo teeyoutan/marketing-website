@@ -11,7 +11,7 @@ body_class:
 	<div>
 		<article id="press-mentions">
 			<h3>News</h3>
-			{{#each pressMentions.items}}
+			{{#each press_mentions.items}}
 			<div class="press-feed-item">
 				<img src="{{logoUrl}}">
 				<time datetime="{{formatDate storyDate "%Y-%m-%d"}}">{{formatDate storyDate "%b. %Y"}}</time>
@@ -28,7 +28,7 @@ body_class:
 			<div id="press-releases">
 				<h3>Press Releases</h3>
 				<ul>
-					{{#each pressReleases.items}}
+					{{#each press_releases.items}}
 					<li>
 						<time datetime="{{formatDate releaseDate "%Y-%m-%d"}}">{{formatDate releaseDate "%b %Y"}}</time>
 						<p><a href="{{linkToRelease}}" target="_blank">{{releaseTitle}}</a></p>
@@ -44,7 +44,7 @@ body_class:
 				<h3>Company Information</h3>
 				<p><strong>Location:</strong><br>San Francisco, CA<br>Amsterdam, The Netherlands</p>
 				<p><strong>Founded:</strong> 2010</p>
-				<p><strong>Size:</strong> {{companyInfo.employeeCount}}+</p>
+				<p><strong>Size:</strong> {{website_info.employee_count}}+</p>
 				<h3>Investors</h3>
 				<p><strong>Venture:</strong> Benchmark, Bain Capital Ventures, Battery Ventures, Google Ventures, InterWest Partners</p>
 				<p><strong>Angels:</strong> Ariel Poler, Ashton Kutcher, Avichal Garg, Aydin Senkut, Brian Sugar, Chris Dixon, Chris Sacca, Deep Nishar, Elad Gil, Jonathan Heiliger, Joshua Schachter, Keval Desai, Mitch Kapor, Naval Ravikant, Nils Johnson, Paul Buchheit, Ram Shriram, Ron Conway, Sam Altman, Steve Chen, Steve Huffman</p>
