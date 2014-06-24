@@ -30,6 +30,7 @@ module.exports = function(grunt) {
       preview: {
         options: {
           variables: {
+            aws: grunt.file.readJSON('configs/s3Config.json'),
             environment: 'preview',
             environmentData: 'website-guts/data/environments/production/environmentVariables.json',
             assets_dir: '/assets',
@@ -70,7 +71,6 @@ module.exports = function(grunt) {
       temp: 'temp',
       bowerDir: 'bower_components'
     },
-    aws: grunt.file.readJSON('configs/s3Config.json'),
     watch: {
       assemble: {
         files: [
@@ -232,9 +232,9 @@ module.exports = function(grunt) {
     },
     s3: {
       options: {
-        key: '<%= aws.key %>',
-        secret: '<%= aws.secret %>',
-        bucket: '<%= aws.bucket %>',
+        key: '<%= grunt.config.get("aws.key") %>',
+        secret: '<%= grunt.config.get("aws.secret") %>',
+        bucket: '<%= grunt.config.get("aws.bucket") %>',
         access: 'public-read',
       },
       dev: {
