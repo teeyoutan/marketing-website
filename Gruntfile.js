@@ -149,6 +149,7 @@ module.exports = function(grunt) {
         environmentIsDev: '<%= grunt.config.get("environmentIsDev") %>',
         data: ['<%= config.content %>/**/*.json', '<%= grunt.config.get("environmentData") %>']
       },
+      //grunt.config.get('assembleOptions'),
       pages: {
         files: [
           {
@@ -162,10 +163,7 @@ module.exports = function(grunt) {
     },
     sass: {
       styles: {
-        options: {
-          sourceMap: true,
-          imagePath: '<%= grunt.config.get("sassImagePath") %>'
-        },
+        options: grunt.config.get("sassOptions"),
         files: [
           {
             src: '<%= config.guts %>/assets/css/styles.scss',
@@ -273,10 +271,7 @@ module.exports = function(grunt) {
     },
     concat: {
       temp: {
-        options: {
-          banner: '<%= grunt.config.get("concat_banner") %>',
-          footer: '<%= grunt.config.get("concat_footer") %>'
-        },
+        options: grunt.config.get("concatOptions"),
         src: ['**/*.js', '!libraries/**/*.js'],
         expand: true,
         cwd: '<%= config.guts %>/assets/js/',

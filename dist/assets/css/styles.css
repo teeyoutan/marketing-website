@@ -592,7 +592,7 @@ header {
     position: absolute;
     height: 15px;
     width: 15px;
-    background: url("/dist/assets/img//arrow.svg");
+    background: url("/arrow.svg");
     position: absolute;
     left: 5px;
     top: 17px;
@@ -663,7 +663,7 @@ header {
   #nav-menu, #user-nav-cont {
     display: none; }
   header {
-    background: url("/dist/assets/img//bg-top-header.png") repeat-x, url("/dist/assets/img//bg-header.png"); }
+    background: url("/bg-top-header.png") repeat-x, url("/bg-header.png"); }
     header ul {
       text-align: right;
       padding: 0;
@@ -984,7 +984,7 @@ body {
   background-color: #fff;
   background-repeat: no-repeat;
   background-position: center bottom;
-  background-image: url("/dist/assets/img//bg-shadow.png"); }
+  background-image: url("/bg-shadow.png"); }
 
 #page-content {
   background: #fff;
@@ -1314,7 +1314,7 @@ input[type="text"].error, input[type="url"].error, input[type="email"].error, in
 
 /* pages */
 body.home-page {
-  background: #003367 url("/dist/assets/img//bg-header.png") repeat; }
+  background: #003367 url("/bg-header.png") repeat; }
   body.home-page h1 {
     color: #fff; }
   body.home-page form {
@@ -1418,7 +1418,7 @@ body.events-page .event-cont {
       font-weight: 500;
       color: #444; }
   body.events-page .show-past-events {
-    background: url("/dist/assets/img//past-events.png") no-repeat left center;
+    background: url("/past-events.png") no-repeat left center;
     margin-left: 10px;
     padding-left: 63px;
     padding-top: 7px;
@@ -1570,11 +1570,10 @@ body.contact-page .lede-image {
   body.contact-page #map {
     height: 300px; }
   body.contact-page .small-logo {
-    background: url("/dist/assets/img//logo-small.jpg") top left no-repeat;
+    background: url("/logo-small.jpg") top left no-repeat;
     height: 21px;
     width: 95px; }
   body.contact-page h5 {
     margin-bottom: 0; }
   body.contact-page p {
     margin-top: 3px; } }
-/*# sourceMappingURL=styles.css.map */
