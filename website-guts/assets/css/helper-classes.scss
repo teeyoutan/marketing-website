@@ -62,6 +62,11 @@
 	text-shadow: 0 -1px 0 rgba(255,255,255,0.8);
 }
 
+.box-shadow {
+	-webkit-box-shadow: 0 0 3px 3px #EEE;
+    box-shadow: 0 0 3px 3px #EEE;
+}
+
 .divider-heading {
 	color: #006eb6;
 	margin: 25px 0;

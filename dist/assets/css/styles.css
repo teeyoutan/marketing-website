@@ -1231,6 +1231,10 @@ body {
   vertical-align: middle;
   text-shadow: 0 -1px 0 rgba(255, 255, 255, 0.8); }
 
+.box-shadow {
+  -webkit-box-shadow: 0 0 3px 3px #EEE;
+  box-shadow: 0 0 3px 3px #EEE; }
+
 .divider-heading {
   color: #006eb6;
   margin: 25px 0; }
@@ -1637,26 +1641,31 @@ body.partners .benefits-cont h3 {
 body.partners .benefits-cont ul {
   padding: 0; }
   body.partners .benefits-cont ul li {
-    margin: 5px 0 5px 25px;
-    text-align: left; }
+    margin: 0 auto; }
 body.partners .apply-today p {
   margin: 15px auto; }
 
-@media (min-width: 960px) {
+@media (min-width: 768px) {
   body.partners .center-desktop {
     width: 700px;
     margin: 0 auto; }
   body.partners .benefits-cont {
     background: #F7F7F7;
-    -webkit-box-shadow: 0 0 3px 3px #EEE;
-    box-shadow: 0 0 3px 3px #EEE;
     margin-top: 40px;
     overflow: hidden;
     padding: 0 10px; }
     body.partners .benefits-cont h3 {
-      font-size: 1.8em; }
+      font-size: 1.3em; }
+    body.partners .benefits-cont ul li {
+      margin: 5px 0 5px 25px;
+      text-align: left;
+      font-size: 0.9em; }
   body.partners .apply-today {
     text-align: center; }
     body.partners .apply-today p {
       width: 400px; } }
+
+@media (min-width: 960px) {
+  body.partners .benefits-cont h3 {
+    font-size: 1.8em; } }
 /*# sourceMappingURL=styles.css.map */

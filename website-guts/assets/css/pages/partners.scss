@@ -1,62 +1,82 @@
 body.partners {
 
-    .partners-desc.center-desktop {
-        margin-bottom: 10px;
+  .partners-desc.center-desktop {
+    margin-bottom: 10px;
+  }
+
+  .benefits-cont {
+
+    h3 {
+
+      border-bottom: 1px solid #c0c0c0;
+      text-align: center;
+      padding: 10px 0 5px 0;
+      font-size: 1.3em;
+    }
+
+    ul {
+      padding: 0;
+
+      li {
+        margin: 0 auto;
+      }
+    }
+  }
+
+  .apply-today {
+
+    p {
+      margin: 15px auto;
+    }
+  }
+}
+
+@media (min-width: $tablet-min-width) {
+  body.partners {
+
+    .center-desktop {
+      width: 700px;
+      margin:0 auto;
     }
 
     .benefits-cont {
+      background: #F7F7F7;
+      margin-top: 40px;
+      overflow: hidden;
+      padding: 0 10px;
 
-        h3 {
-            border-bottom: 1px solid #c0c0c0;
-            text-align: center;
-            padding: 10px 0 5px 0;
-            font-size: 1.3em;
+      h3 {
+        font-size: 1.3em;
+      }
+
+      ul {
+
+        li {
+          margin: 5px 0 5px 25px;
+          text-align: left;
+          font-size: .9em;
         }
-
-        ul {
-            padding: 0;
-
-            li {
-                margin: 5px 0 5px 25px;
-                text-align: left;
-            }
-        }
+      }
     }
 
     .apply-today {
-        p {
-            margin: 15px auto;
-        }
+      text-align: center;
+
+      p {
+        width: 400px;
+      }
     }
+  }
 }
 
 @media (min-width: $desktop-min-width) {
-    body.partners {
+  body.partners {
 
-        .center-desktop {
-            width: 700px;
-            margin:0 auto;
-        }
+    .benefits-cont {
 
-        .benefits-cont {
-            background: #F7F7F7;
-            -webkit-box-shadow: 0 0 3px 3px #EEE;
-            box-shadow: 0 0 3px 3px #EEE;
-            margin-top: 40px;
-            overflow: hidden;
-            padding: 0 10px;
-
-            h3 {
-                font-size: 1.8em;
-            }
-        }
-
-        .apply-today {
-            text-align: center;
-            p {
-                width: 400px;
-            }
-        }
-
+      h3 {
+        font-size: 1.8em;
+      }
     }
+  }
 }
