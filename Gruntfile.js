@@ -147,7 +147,7 @@ module.exports = function(grunt) {
         assetsDir: '<%= grunt.config.get("assets_dir") %>',
         environmentIsProduction: '<%= grunt.config.get("environmentIsProduction") %>',
         environmentIsDev: '<%= grunt.config.get("environmentIsDev") %>',
-        data: ['<%= config.content %>/**/*.json', '<%= grunt.config.get("environmentData") %>']
+        data: ['<%= config.content %>/**/*.json', '<%= config.content %>/**/*.yml', '<%= grunt.config.get("environmentData") %>']
       },
       pages: {
         files: [
