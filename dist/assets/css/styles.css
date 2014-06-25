@@ -978,6 +978,10 @@ body {
     font-weight: normal; }
     .sub-header-nav a.active {
       display: none; }
+  .sub-header-nav > li {
+    display: inline-block;
+    position: relative;
+    vertical-align: top; }
 
 #page-header-gradient {
   height: 25px;
@@ -1577,4 +1581,46 @@ body.contact-page .lede-image {
     margin-bottom: 0; }
   body.contact-page p {
     margin-top: 3px; } }
+
+/* layouts */
+body.benefits .for-menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  background: #fff;
+  border: 1px solid #eee;
+  overflow: hidden;
+  position: absolute;
+  right: 0;
+  top: -5px;
+  width: 143px;
+  z-index: 20; }
+  body.benefits .for-menu li {
+    font-size: inherit;
+    line-height: inherit;
+    margin: 0;
+    display: none;
+    position: relative; }
+    body.benefits .for-menu li:first-child {
+      background: #f7f7f7;
+      display: block; }
+      body.benefits .for-menu li:first-child a:after {
+        content: '\25be';
+        float: right; }
+  body.benefits .for-menu a {
+    padding: 6px 12px;
+    text-align: left; }
+    body.benefits .for-menu a:hover {
+      color: #006eb6; }
+  body.benefits .for-menu.shown li {
+    display: block; }
+    body.benefits .for-menu.shown li:first-child {
+      border-bottom: 1px solid #eee; }
+      body.benefits .for-menu.shown li:first-child a {
+        color: #006eb6; }
+body.benefits .for-menu-label {
+  padding-right: 155px;
+  vertical-align: top;
+  font-size: 0.8em;
+  color: #888; }
 /*# sourceMappingURL=styles.css.map */

@@ -161,6 +161,11 @@ textarea {
           display: none;
         }
       }
+      > li {
+        display: inline-block;
+        position: relative;
+        vertical-align: top;
+      }
     }
     #page-header-gradient {
         height: 25px;

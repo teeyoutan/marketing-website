@@ -1,0 +1,67 @@
+body.benefits {
+
+  .for-menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    background: #fff;
+    border: 1px solid #eee;
+    overflow: hidden;
+    position: absolute;
+    right: 0;
+    top: -5px;
+    width: 143px;
+    z-index: 20;
+
+    li {
+      font-size: inherit;
+      line-height: inherit;
+      margin: 0;
+      display: none;
+      position: relative;
+
+      &:first-child {
+        background: #f7f7f7;
+        display: block;
+
+        a {
+          
+          &:after {
+            content: '\25be';
+            float: right;
+          }
+        }
+      }
+    }
+
+    a {
+      padding: 6px 12px;
+      text-align: left;
+
+      &:hover {
+        color: #006eb6;
+      }
+    }
+    
+    &.shown {
+      li {
+        display: block;
+
+        &:first-child {
+          border-bottom: 1px solid #eee;
+
+          a {
+            color: #006eb6;
+          }
+        }
+      }
+    }
+  }
+
+  .for-menu-label {
+    padding-right: 155px;
+    vertical-align: top;
+    font-size: 0.8em;
+    color: #888;
+  }
+}
