@@ -45,7 +45,7 @@ module.exports = function(grunt) {
                            '  //report errors to GA \n\n' +
                            '  window.console.log("js error: " + error);' +
                            '  } \n' +
-                           '})(jQuery);'
+                           '\n\n})(jQuery);'
           }
         }
       },
@@ -69,6 +69,7 @@ module.exports = function(grunt) {
       guts: 'website-guts',
       dist: 'dist',
       temp: 'temp',
+      build: 'build',
       bowerDir: 'bower_components'
     },
     watch: {
@@ -90,7 +91,7 @@ module.exports = function(grunt) {
       },
       js: {
         files: ['<%= config.guts %>/assets/js/**/*.js', '<%= config.temp %>/assets/js/**/*.js'],
-        tasks: ['config:dev', 'jshint', 'concat', 'uglify', 'clean:postBuild']
+        tasks: ['config:dev', 'jshint:dev', 'concat', 'uglify', 'clean:postBuild']
       },
       livereload: {
         options: {
@@ -269,10 +270,20 @@ module.exports = function(grunt) {
           _gaq: false
         }
       },
+      dev: {
+        options: {
+          '-W087': true
+        }
+      },
       files: ['<%= config.guts %>/assets/js/**/*.js', '!<%= config.guts %>/assets/js/libraries/**/*.js']
     },
     concat: {
-      temp: {
+      modernizrYep: {
+        files: {
+          '<%= config.dist %>/assets/js/libraries/modernizr-yepnope.js': ['<%= config.guts %>/assets/js/libraries/modernizr-2.8.2.min.js','<%= config.bowerDir %>/yepnope/yepnope.1.5.4-min.js']
+        }
+      },
+      namespace: {
         options: {
           banner: '<%= grunt.config.get("concat_banner") %>',
           footer: '<%= grunt.config.get("concat_footer") %>'
@@ -280,7 +291,7 @@ module.exports = function(grunt) {
         src: ['**/*.js', '!libraries/**/*.js'],
         expand: true,
         cwd: '<%= config.guts %>/assets/js/',
-        dest: '<%= config.temp %>/assets/js/'
+        dest: '<%= config.dist %>/assets/js/'
       }
     },
     uglify: {
@@ -291,8 +302,8 @@ module.exports = function(grunt) {
       },
       globalJS: {
         files: {
-          '<%= config.dist %>/assets/js/libraries/modernizr-yepnope.js': ['<%= config.guts %>/assets/js/libraries/modernizr-2.8.2.min.js','<%= config.bowerDir %>/yepnope/yepnope.1.5.4-min.js'],
           '<%= config.dist %>/assets/js/libraries/fastclick.js': ['<%= config.bowerDir %>/fastclick/lib/fastclick.js'],
+          '<%= config.dist %>/assets/js/libraries/jquery.js': ['<%= config.dist %>/assets/js/libraries/jquery.js'],
           '<%= config.dist %>/assets/js/bundle.js': [
             '<%= config.bowerDir %>/jquery-cookie/jquery.cookie.js',
             '<%= config.guts %>/assets/js/libraries/handlebars-v1.3.0.js',
@@ -335,16 +346,16 @@ module.exports = function(grunt) {
 
   grunt.registerTask('server', [
     'config:dev',
-    'jshint',
+    'jshint:dev',
     'clean:preBuild',
     'assemble',
     'concat',
-    'uglify',
     'sass',
     'replace',
     'autoprefixer',
     'copy',
-    'clean:postBuild',
+    'uglify:globalJS',
+    //'clean:postBuild',
     'connect:livereload',
     'watch'
   ]);
@@ -355,7 +366,7 @@ module.exports = function(grunt) {
     'clean:preBuild',
     'assemble',
     'concat',
-    'uglify',
+    'uglify:pageFiles',
     'sass',
     'replace',
     'autoprefixer',
