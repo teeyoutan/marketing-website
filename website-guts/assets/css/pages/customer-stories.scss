@@ -1,9 +1,56 @@
 body.customer-stories-page {
   .sub-header-nav {text-align: right;}
+  .top-content {margin-bottom: 25px;}
   .video-container {
     @include responsive-vid-container(560, 325); 
     iframe {
       @include responsive-vid;
+    }
+  }
+  .case-studies-bg-container {
+    padding-top: 50px;
+    background: url(https://www.optimizely.com/static/img/customer-stories/cs-grid-bg.png);
+  }
+  .customer-grid-elm {
+    position: relative;
+    text-align: center;
+    border: 1px solid rgb(213, 213, 213);
+    background: rgb(255, 255, 255);
+    color: rgb(36, 36, 36);
+    margin-top: 20px;
+    margin-bottom: 20px;
+    .title-container {
+      background: #f8f8f8;
+      border-bottom: 1px solid #e9e9e9;
+      text-transform: uppercase;
+      padding: 0.8em 0;
+      font-size: 14px;
+      font-weight: 300;
+      letter-spacing: -1.2px;
+    }
+    .percent {
+      position: relative;
+      top: -5px;
+      left: -3px;
+    }
+    .customer-title {
+      display: inline-block;
+    }
+    .customer-inner-content {
+      padding: 20px;
+    }
+    .customer-logos {
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center center;
+      margin: 0 auto;
+    }
+    .button {
+      padding: 6px 12px;
+      font-size: 12px;
+      position: absolute;
+      bottom: 15px;
+      opacity: 0;
     }
   }
 }

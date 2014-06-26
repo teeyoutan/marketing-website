@@ -11,7 +11,7 @@
       logoUrl: "upworth-logo.png"
       logoW: 141
       logoH: 40
-      content: "Upworthy tested adding a recommended content module to its website to drive more social shares and engagement."
+      customerContent: "Upworthy tested adding a recommended content module to its website to drive more social shares and engagement."
       downloadUrl: "https://s3.amazonaws.com/optimizely-marketing/customer-stories/upworthy-casestudy.pdf"
     - 
       statPercent: false
@@ -20,7 +20,7 @@
       logoUrl: "code-dot-org-logo.png"
       logoW: 40
       logoH: 40
-      content: "Code.org optimized its headlines and CTA messaging to significantly increase sign-ups for its Hour of Code campaign."
+      customerContent: "Code.org optimized its headlines and CTA messaging to significantly increase sign-ups for its Hour of Code campaign."
       downloadUrl: "https://s3.amazonaws.com/optimizely-marketing/customer-stories/codeorg-casestudy.pdf"
     - 
       statPercent: 140
@@ -29,7 +29,7 @@
       logoUrl: "ironmountain-logo.png"
       logoW: 141
       logoH: 40
-      content: "Iron Mountain optimized its lead generation process to improve the quality of leads generated from its online sign-up form."
+      customerContent: "Iron Mountain optimized its lead generation process to improve the quality of leads generated from its online sign-up form."
       downloadUrl: "https://s3.amazonaws.com/optimizely-marketing/customer-stories/ironmountain-casestudy.pdf"
     - 
       statPercent: false
@@ -38,7 +38,7 @@
       logoUrl: "sony-logo.png"
       logoW: 141
       logoH: 40
-      content: "Sony optimized banners ads and product pages to drive more customers through the checkout funnel to makea final purchase on its website."
+      customerContent: "Sony optimized banners ads and product pages to drive more customers through the checkout funnel to makea final purchase on its website."
       downloadUrl: "https://s3.amazonaws.com/optimizely-marketing/customer-stories/sony-casestudy.pdf"
     - 
       statPercent: "49"
@@ -47,5 +47,5 @@
       logoUrl: "fab-logo.png"
       logoW: 141
       logoH: 40
-      content: "Fab tested different designs and messaging on its primary call to action button to see which would drive the more purchases."
+      customerContent: "Fab tested different designs and messaging on its primary call to action button to see which would drive the more purchases."
       downloadUrl: "https://s3.amazonaws.com/optimizely-marketing/customer-stories/fab-casestudy.pdf"
