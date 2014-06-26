@@ -15,6 +15,9 @@
 // use this if you want to match all subfolders:
 // '<%= config.src %>/templates/pages/**/*.hbs'
 
+//var handlebarsHelpers = require("./node_modules/handlebars-helpers/");
+//var gridClassHelper = require("./helpers/grid-class");
+
 module.exports = function(grunt) {
 
   require('time-grunt')(grunt);
@@ -45,7 +48,7 @@ module.exports = function(grunt) {
                            '  //report errors to GA \n\n' +
                            '  window.console.log("js error: " + error);' +
                            '  } \n' +
-                           '\n\n})(jQuery);'
+                           '})(jQuery);'
           }
         }
       },
@@ -70,6 +73,7 @@ module.exports = function(grunt) {
       dist: 'dist',
       temp: 'temp',
       build: 'build',
+      helpers: 'helpers',
       bowerDir: 'bower_components'
     },
     watch: {
@@ -91,7 +95,7 @@ module.exports = function(grunt) {
       },
       js: {
         files: ['<%= config.guts %>/assets/js/**/*.js', '<%= config.temp %>/assets/js/**/*.js'],
-        tasks: ['config:dev', 'jshint:dev', 'concat', 'uglify', 'clean:postBuild']
+        tasks: ['config:dev', 'jshint', 'concat', 'uglify', 'clean:postBuild']
       },
       livereload: {
         options: {
@@ -148,7 +152,8 @@ module.exports = function(grunt) {
         assetsDir: '<%= grunt.config.get("assets_dir") %>',
         environmentIsProduction: '<%= grunt.config.get("environmentIsProduction") %>',
         environmentIsDev: '<%= grunt.config.get("environmentIsDev") %>',
-        data: ['<%= config.content %>/**/*.json', '<%= config.content %>/**/*.yml', '<%= grunt.config.get("environmentData") %>']
+        data: ['<%= config.content %>/**/*.json', '<%= config.content %>/**/*.yml', '<%= grunt.config.get("environmentData") %>'],
+        helpers: ['<%= config.helpers %>/helper-*.js']
       },
       pages: {
         files: [
@@ -268,12 +273,14 @@ module.exports = function(grunt) {
           Handlebars: false,
           moment: false,
           _gaq: false
-        }
-      },
-      dev: {
-        options: {
-          '-W087': true
-        }
+        },
+        '-W087': (function() {
+          if(grunt.config.get("environment") == "dev") {
+            return true;
+          } else {
+            return false;
+          }
+        }())
       },
       files: ['<%= config.guts %>/assets/js/**/*.js', '!<%= config.guts %>/assets/js/libraries/**/*.js']
     },
@@ -346,7 +353,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('server', [
     'config:dev',
-    'jshint:dev',
+    'jshint',
     'clean:preBuild',
     'assemble',
     'concat',

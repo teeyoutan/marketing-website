@@ -1,0 +1,22 @@
+---
+layout: wrapper.hbs
+---
+<div id="main">
+  <div id="page-header">
+    <div class="container">
+      <div class="clearfix page-subheader-cont">
+        <h1>{{page.visible_title}}</h1>
+        <ul class="sub-header-nav">
+          <li class="sub-nav-about"><a href="#">Customer List</a></li>
+          <li class="sub-nav-"><a href="#">Customer Stories</a></li>
+        </ul>
+      </div><!---->
+    </div><!--/.container-->
+  </div><!--/#page-header-->
+  <div id="page-header-gradient"></div>
+  <div id="page-content">
+    {{#unless page.no_container}}<div class="container">{{/unless}}
+      {{> body }}
+    {{#unless page.no_container}}</div><!--/.container-->{{/unless}}
+  </div><!--/#content-->
+</div><!--/#main-->

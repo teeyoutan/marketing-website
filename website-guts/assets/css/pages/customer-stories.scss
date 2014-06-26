@@ -1,0 +1,22 @@
+body.customer-stories-page {
+  .sub-header-nav {text-align: right;}
+  .video-container {
+    @include responsive-vid-container(560, 325); 
+    iframe {
+      @include responsive-vid;
+    }
+  }
+}
+
+@media only screen and (min-width: $desktop-min-width) {
+
+	body.customer-stories-page {
+
+
+	}
+
+}
+
+@media only screen and (min-width: $tablet-min-width) {
+
+}
