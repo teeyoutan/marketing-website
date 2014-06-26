@@ -13,3 +13,78 @@ input[type=text], input[type=url], input[type=tel], input[type=email] {
     width: auto;
   }
 }
+
+form {
+
+  &.standard {
+
+    input {
+
+      &[type="text"],
+      &[type="email"] {
+        width: 100%;
+        font-size: 15px;
+        min-height: 38px;
+      }
+    }
+
+    label {
+      display: block;
+      margin: 0 0 0.5em;
+      color: #6b6b6b;
+      font-size: 12px;
+      font-weight: 500;
+      line-height: 1.4;
+    }
+
+    select {
+      border: 1px solid #bfcedf;
+      color: #354e8f;
+      font-size: 14px;
+      height: 2em;
+      padding: 4px;
+
+      &:not(.inline) {
+        width: 100%;
+      }
+    }
+
+    span {
+      display: inline-block;
+      margin-bottom: 3px;
+      color: #6b6b6b;
+      font-size: 12px;
+      font-weight: 500;
+      line-height: 1.4;
+    }
+
+    > ul {
+      > li+li {
+        margin-top: 20px;
+        overflow: hidden;
+      }
+    }
+
+    h4 {
+      font-weight: 300;
+    }
+
+    .label {
+      &.left {
+        clear: none;
+        float: left;
+        width: 48%;
+      }
+
+      &.right {
+        clear: none;
+        float: right;
+        width: 48%; 
+      }
+    }
+
+    .submit-cont {
+      clear: both;
+    }
+  }
+}

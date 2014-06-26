@@ -21,6 +21,9 @@ p {
 	font-size: 1.1em;
 	font-weight: 100;
 }
+li {
+	font-weight: 300;
+}
 a {
 	color: $link-color;
 	text-decoration: none;
@@ -60,6 +63,10 @@ a {
 	p {
 		font-size: .9em;
 		line-height: 1.6em;
+	}
+	li {
+		font-size: .9em;
+		line-height: 1.5;
 	}
 	time {
 		font-size: .6em;

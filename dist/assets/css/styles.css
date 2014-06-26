@@ -358,6 +358,9 @@ p {
   font-size: 1.1em;
   font-weight: 100; }
 
+li {
+  font-weight: 300; }
+
 a {
   color: #4d89e2;
   text-decoration: none;
@@ -395,6 +398,9 @@ a {
   p {
     font-size: 0.9em;
     line-height: 1.6em; }
+  li {
+    font-size: 0.9em;
+    line-height: 1.5; }
   time {
     font-size: 0.6em;
     color: #888;
@@ -845,6 +851,48 @@ input[type=text], input[type=url], input[type=tel], input[type=email] {
   input[type=text], input[type=url], input[type=tel], input[type=email] {
     width: auto; } }
 
+form.standard input[type="text"], form.standard input[type="email"] {
+  width: 100%;
+  font-size: 15px;
+  min-height: 38px; }
+form.standard label {
+  display: block;
+  margin: 0 0 0.5em;
+  color: #6b6b6b;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.4; }
+form.standard select {
+  border: 1px solid #bfcedf;
+  color: #354e8f;
+  font-size: 14px;
+  height: 2em;
+  padding: 4px; }
+  form.standard select:not(.inline) {
+    width: 100%; }
+form.standard span {
+  display: inline-block;
+  margin-bottom: 3px;
+  color: #6b6b6b;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.4; }
+form.standard > ul > li + li {
+  margin-top: 20px;
+  overflow: hidden; }
+form.standard h4 {
+  font-weight: 300; }
+form.standard .label.left {
+  clear: none;
+  float: left;
+  width: 48%; }
+form.standard .label.right {
+  clear: none;
+  float: right;
+  width: 48%; }
+form.standard .submit-cont {
+  clear: both; }
+
 /*! HTML5 Boilerplate v4.3.0 | MIT License | http://h5bp.com/ */
 /*
  * What follows is the result of much research on cross-browser styling.
@@ -860,7 +908,7 @@ input[type=text], input[type=url], input[type=tel], input[type=email] {
   box-sizing: border-box; }
 
 html {
-  color: #222;
+  color: #242424;
   font-size: 1em;
   line-height: 1.4;
   height: 100%; }
@@ -912,6 +960,10 @@ fieldset {
  */
 textarea {
   resize: vertical; }
+
+ul {
+  margin: 5px 0;
+  padding: 0; }
 
 /* ==========================================================================
    Browse Happy prompt
@@ -1199,6 +1251,9 @@ body {
   line-height: 1.4;
   padding: 0.6em 2.8em;
   text-align: center; }
+  .button.small {
+    font-size: 12px;
+    padding: 0.5em 1em; }
 
 .primary-button, body.home-page input[type=submit] {
   background: -webkit-gradient(linear, left top, left bottom, from(#90b71c), to(#7fa119));
@@ -1239,12 +1294,50 @@ body {
   -webkit-box-shadow: 0 0 3px 3px #EEE;
   box-shadow: 0 0 3px 3px #EEE; }
 
+.box {
+  background-color: white;
+  padding: 25px; }
+
+.list-unstyled {
+  list-style: none;
+  margin: 0;
+  padding: 0; }
+  .list-unstyled li {
+    margin: 0; }
+
 .divider-heading {
   color: #006eb6;
   margin: 25px 0; }
 
+.subheading {
+  color: #242424;
+  font-size: 1.9em;
+  margin-bottom: 30px;
+  text-align: center;
+  font-weight: 300; }
+
+.half {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 50%; }
+  .half.right {
+    padding-left: 10px; }
+  .half.left {
+    padding-right: 10px; }
+
+.a-right {
+  text-align: right; }
+
 .attention {
   margin: 20px 0; }
+
+.super {
+  display: block;
+  padding-bottom: 0.25em;
+  font-size: 0.45em;
+  line-height: 1;
+  text-align: center; }
 
 .logo {
   display: block;
@@ -1281,6 +1374,14 @@ body .small-note, body p.small-note {
 .landing-page-form li {
   list-style-type: none;
   margin-bottom: 10px; }
+
+@media screen and (min-width: 768px) {
+  .super {
+    text-align: left; }
+  .box {
+    -webkit-box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.07);
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.07);
+    border: 1px solid #ddd; } }
 
 @media only screen and (min-width: 960px) {
   .left {
@@ -1638,6 +1739,7 @@ body.contact-page .lede-image {
 /* layouts */
 body.benefits .for-menu {
   list-style: none;
+  cursor: pointer;
   margin: 0;
   padding: 0;
   background: #fff;
@@ -1649,7 +1751,7 @@ body.benefits .for-menu {
   width: 143px;
   z-index: 20; }
   body.benefits .for-menu li {
-    font-size: inherit;
+    font-size: 0.8em;
     line-height: inherit;
     margin: 0;
     display: none;
@@ -1676,4 +1778,37 @@ body.benefits .for-menu-label {
   vertical-align: top;
   font-size: 0.8em;
   color: #888; }
+body.benefits h5 {
+  color: #242424; }
+body.benefits blockquote {
+  background: url("/dist/assets/img//quote.png") 2px 4px no-repeat;
+  color: #006eb6;
+  padding-left: 50px;
+  margin: 20px 20px 20px 0; }
+  body.benefits blockquote .by {
+    color: #6b6b6b;
+    font-size: 0.8em;
+    text-align: right; }
+body.benefits .columns.seven li {
+  color: #242424;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.5;
+  list-style: none;
+  margin: 5px 0 5px; }
+body.benefits .sub-header-nav > li {
+  display: inline; }
+body.benefits .sub-header-nav .dropdown {
+  display: inline-block;
+  margin-top: 20px; }
+
+@media screen and (min-width: 768px) {
+  body.benefits .sub-header-nav > li {
+    display: inline-block; }
+  body.benefits .sub-header-nav .dropdown {
+    margin-top: 0; }
+  body.benefits .columns.seven li {
+    list-style: disc;
+    list-style-position: outside;
+    margin: 5px 0 5px 25px; } }
 /*# sourceMappingURL=styles.css.map */

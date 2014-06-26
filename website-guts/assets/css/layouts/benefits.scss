@@ -2,6 +2,7 @@ body.benefits {
 
   .for-menu {
     list-style: none;
+    cursor: pointer;
     margin: 0;
     padding: 0;
     background: #fff;
@@ -14,7 +15,7 @@ body.benefits {
     z-index: 20;
 
     li {
-      font-size: inherit;
+      font-size: 0.8em;
       line-height: inherit;
       margin: 0;
       display: none;
@@ -63,5 +64,66 @@ body.benefits {
     vertical-align: top;
     font-size: 0.8em;
     color: #888;
+  }
+
+  h5 {
+    color: #242424;
+  }
+
+  blockquote {
+    background: image-url("quote.png") 2px 4px no-repeat;
+    color: #006eb6;
+    padding-left: 50px;
+    margin: 20px 20px 20px 0;
+
+    .by {
+      color: #6b6b6b;
+      font-size: 0.8em;
+      text-align: right;
+    }
+  }
+
+  //TODO: make this global for li without breaking footer
+  .columns.seven {
+    li {
+      color: #242424;
+      font-size: 14px;
+      font-weight: 300;
+      line-height: 1.5;
+      list-style: none;
+      margin: 5px 0 5px;
+    }
+  }
+
+  .sub-header-nav {
+    > li {
+      display: inline;
+    }
+    .dropdown {
+      display: inline-block;
+      margin-top: 20px;
+    }
+  }
+}
+
+@media screen and (min-width: $tablet-min-width) {
+
+  body.benefits {
+    .sub-header-nav {
+      > li {
+        display: inline-block;
+      }
+      .dropdown {
+        margin-top: 0;
+      }
+    }
+
+    .columns.seven {
+      li {
+        list-style: disc;
+        list-style-position: outside;
+        margin: 5px 0 5px 25px;
+      }
+    }
   }
 }
