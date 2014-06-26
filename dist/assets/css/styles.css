@@ -1203,7 +1203,7 @@ body {
 .primary-button, body.home-page input[type=submit] {
   background: -webkit-gradient(linear, left top, left bottom, from(#90b71c), to(#7fa119));
   background: -webkit-linear-gradient(top, #90b71c 0%, #7fa119 100%);
-  background: linear-gradient(top, #90b71c 0%, #7fa119 100%);
+  background: linear-gradient(to bottom, #90b71c 0%, #7fa119 100%);
   border: 1px solid #7e9339;
   border-radius: 1px;
   color: #fff !important;
@@ -1234,6 +1234,17 @@ body {
   text-decoration: none;
   vertical-align: middle;
   text-shadow: 0 -1px 0 rgba(255, 255, 255, 0.8); }
+
+.box-shadow {
+  -webkit-box-shadow: 0 0 3px 3px #EEE;
+  box-shadow: 0 0 3px 3px #EEE; }
+
+.divider-heading {
+  color: #006eb6;
+  margin: 25px 0; }
+
+.attention {
+  margin: 20px 0; }
 
 .logo {
   display: block;
@@ -1307,7 +1318,49 @@ body .small-note, body p.small-note {
     border: 1px solid #dadada;
     -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
     box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
-    padding: 3px; } }
+    padding: 3px; }
+  .divider-heading {
+    overflow: hidden; }
+    .divider-heading h2 {
+      position: relative;
+      display: table;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 1em;
+      padding-right: 1em;
+      position: relative;
+      width: auto;
+      color: #006eb6;
+      text-align: center; }
+      .divider-heading h2:before, .divider-heading h2:after {
+        background: #dadada;
+        border-bottom: 1px solid #fff;
+        height: 2px;
+        content: " ";
+        display: block;
+        position: absolute;
+        top: 50%;
+        width: 9999%; }
+      .divider-heading h2:before {
+        left: -9999%; }
+      .divider-heading h2:after {
+        right: -9999%; }
+  .attention:before, .attention:after {
+    -webkit-background-size: 100%, 100%;
+    background-size: 100%, 100%;
+    background: url("/dist/assets/img//sepshadow.png") no-repeat center top;
+    content: " ";
+    display: block;
+    height: 30px;
+    width: 100%; }
+  .attention:before {
+    margin-bottom: 30px; }
+  .attention:after {
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
+    -webkit-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    transform: rotate(180deg);
+    margin-top: 30px; } }
 
 .hide-label {
   display: none; }

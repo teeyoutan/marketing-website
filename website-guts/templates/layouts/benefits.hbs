@@ -28,8 +28,18 @@ page_script: benefits.js
     </div><!--/#page-header-->
     <div id="page-header-gradient"></div>
     <div id="page-content">
-        {{#unless page.no_container}}<div class="container">{{/unless}}
-            {{> body }}
+        {{#unless page.no_container}}<div class="container row">{{/unless}}
+        <div class="row">
+            <div class="columns seven">
+                {{> body }}
+            </div>
+            <div class="columns five">
+                {{> module module.contact-form}}
+            </div>
+        </div>
+        <div class="attention center-desktop row">
+            <h3>Your improved site awaits <a href="/pricing" class="primary-button">View Plans &amp; Pricing</a></h3>
+        </div>
         {{#unless page.no_container}}</div><!--/.container-->{{/unless}}
     </div><!--/#content-->
 </div><!--/#main-->

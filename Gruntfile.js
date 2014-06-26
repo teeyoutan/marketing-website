@@ -147,7 +147,8 @@ module.exports = function(grunt) {
         assetsDir: '<%= grunt.config.get("assets_dir") %>',
         environmentIsProduction: '<%= grunt.config.get("environmentIsProduction") %>',
         environmentIsDev: '<%= grunt.config.get("environmentIsDev") %>',
-        data: ['<%= config.content %>/**/*.json', '<%= config.content %>/**/*.yml', '<%= grunt.config.get("environmentData") %>']
+        data: ['<%= config.content %>/**/*.json', '<%= config.content %>/**/*.yml', '<%= grunt.config.get("environmentData") %>'],
+        partials: ['<%= config.guts %>/templates/partials/*.{hbs, md}']
       },
       pages: {
         files: [
@@ -287,7 +288,7 @@ module.exports = function(grunt) {
       options: {
         mangle: false,
         compress: false,
-        beautify: false
+        beautify: true
       },
       globalJS: {
         files: {
