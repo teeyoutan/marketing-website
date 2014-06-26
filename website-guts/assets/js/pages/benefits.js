@@ -8,8 +8,7 @@ window.optly.mrkt.benefits.menu = function() {
   });
 
   /* Close menu when clicking away */
-  $('html').click(function(event) {
-    event.preventDefault();
+  $('html').click(function() {
     $('.for-menu').removeClass('shown');
   });
 

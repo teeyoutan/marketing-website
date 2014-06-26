@@ -7,8 +7,7 @@
             event.stopPropagation();
             $(this).toggleClass("shown");
         });
-        $("html").click(function(event) {
-            event.preventDefault();
+        $("html").click(function() {
             $(".for-menu").removeClass("shown");
         });
     };
