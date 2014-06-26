@@ -288,7 +288,7 @@ module.exports = function(grunt) {
       options: {
         mangle: false,
         compress: false,
-        beautify: true
+        beautify: false
       },
       globalJS: {
         files: {
