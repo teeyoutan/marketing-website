@@ -715,7 +715,8 @@ header {
       max-height: auto !important;
       min-width: 210px;
       text-align: left;
-      padding: 10px 0; }
+      padding: 10px 0;
+      z-index: 20; }
       #main-nav > li ul li {
         width: 100%; }
       #main-nav > li ul a {
@@ -1312,7 +1313,7 @@ body {
 .subheading {
   color: #242424;
   font-size: 1.9em;
-  margin-bottom: 30px;
+  margin: 0 0 38px;
   text-align: center;
   font-weight: 300; }
 
@@ -1749,19 +1750,22 @@ body.benefits .for-menu {
   right: 0;
   top: -5px;
   width: 143px;
-  z-index: 20; }
+  z-index: 19; }
   body.benefits .for-menu li {
-    font-size: 0.8em;
     line-height: inherit;
     margin: 0;
     display: none;
     position: relative; }
+    body.benefits .for-menu li a {
+      font-size: 13px; }
     body.benefits .for-menu li:first-child {
       background: #f7f7f7;
       display: block; }
-      body.benefits .for-menu li:first-child a:after {
-        content: '\25be';
-        float: right; }
+      body.benefits .for-menu li:first-child a {
+        color: #006eb6; }
+        body.benefits .for-menu li:first-child a:after {
+          content: '\25be';
+          float: right; }
   body.benefits .for-menu a {
     padding: 6px 12px;
     text-align: left; }

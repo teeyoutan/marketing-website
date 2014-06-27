@@ -12,20 +12,24 @@ body.benefits {
     right: 0;
     top: -5px;
     width: 143px;
-    z-index: 20;
+    z-index: 19;
 
     li {
-      font-size: 0.8em;
       line-height: inherit;
       margin: 0;
       display: none;
       position: relative;
+
+      a {
+        font-size: 13px;
+      }
 
       &:first-child {
         background: #f7f7f7;
         display: block;
 
         a {
+          color: #006eb6;
           
           &:after {
             content: '\25be';
