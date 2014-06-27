@@ -15,7 +15,7 @@ layout: wrapper.hbs
                     <li class="dropdown SL_hide">
                         <span class="for-menu-label">Optimizely for: </span>
                         <ul class="for-menu">
-                            {{#unless page.first_menu_item}}<li><a>{{page.visible_title}}</a></li>{{/unless}}
+                            {{#if page.first_menu_item}}<li><a>{{page.first_menu_item}}</a></li>{{else}}<li><a>{{page.visible_title}}</a></li>{{/if}}
                             {{#menu_items}}
                             <li><a href="{{url}}">{{name}}</a></li>
                             {{/menu_items}}
