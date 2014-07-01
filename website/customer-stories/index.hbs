@@ -1,0 +1,55 @@
+---
+layout: customers.hbs
+seo_title: "Optimizely: Customer Stories"
+visible_title: "Customer Stories"
+no_container: true
+page_script: customer-stories.js
+body_class:
+- customer-stories-page
+---
+<div id="customer-stories-content">
+  <div class="container">
+    <div class="row top-content">
+      {{#with customer_info.topBar}}
+        <div class="columns two-thirds">
+          <div class="video-container">
+            <iframe width="100%" height="100%" src="//www.youtube.com/embed/{{youTubeId}}" frameborder="0" allowfullscreen></iframe>
+          </div>
+        </div><!--/.columns-->
+        <div class="columns one-third">
+          <h2>{{rightHeader}}</h2>
+          <p>{{rightContent}}</p>
+        </div>
+      {{/with}}
+    </div><!--/.row-->
+  </div>
+  <div class="case-studies-bg-container">
+    <div class="case-studies-container container">
+      {{#each customer_info.customerList}}
+        {{#classgridstart @index}}
+          <div class="row">
+        {{/classgridstart}}
+            <div class="columns one-third customer-grid-elm">
+              <div class="title-container">
+                {{#if statPercent}}
+                  <span>{{statPercent}}</span>
+                  <span class="percent">% </span>
+                {{/if}}
+                {{#if statInt}}
+                  <span>{{statInt}}</span>
+                {{/if}}
+                <h4 class="customer-title">{{title}}</h1>
+              </div> <!-- .title-container -->
+              <div class="customer-inner-content">
+                <div class="customer-logos" style="background-image: url(../assets/img/customer-logos/{{logoUrl}}); width: {{logoW}}px; height: {{logoH}}px"></div>
+                <p>{{customerContent}}</p>
+                <a href="{{downloadUrl}}" target="_blank" class="button small">Download</a>
+              </div>
+            </div> <!-- .customer-grid-elm -->
+        {{#classgridfinish @index @last}}
+          </div>
+        {{/classgridfinish}}
+      {{/each}}
+    </div> <!-- .case-studies-container -->
+  </div> <!-- .case-studies-bg-container -->
+</div><!--#customer-stories-content -->
