@@ -15,9 +15,6 @@
 // use this if you want to match all subfolders:
 // '<%= config.src %>/templates/pages/**/*.hbs'
 
-//var handlebarsHelpers = require("./node_modules/handlebars-helpers/");
-//var gridClassHelper = require("./helpers/grid-class");
-
 module.exports = function(grunt) {
 
   require('time-grunt')(grunt);
@@ -57,7 +54,7 @@ module.exports = function(grunt) {
           variables: {
             environment: 'dev',
             environmentData: 'website-guts/data/environments/development/environmentVariables.json',
-            assets_dir: '/<%= config.dist %>/assets',
+            assets_dir: '/dist/assets',
             sassSourceMap: true,
             sassImagePath: '/dist/assets/img/',
             compress_js: false,
@@ -72,7 +69,6 @@ module.exports = function(grunt) {
       guts: 'website-guts',
       dist: 'dist',
       temp: 'temp',
-      build: 'build',
       helpers: 'helpers',
       bowerDir: 'bower_components'
     },
@@ -140,9 +136,9 @@ module.exports = function(grunt) {
       livereload: {
         options: {
           open: {
-            target: 'http://0.0.0.0:9000/dist/'
-          },
-          base: '.'
+            target: 'http://0.0.0.0:9000/dist',
+            base: '.'
+          }
         }
       }
     },

@@ -1,3 +1,9 @@
+(function($){ 
+
+  window.optly = window.optly || {}; 
+
+  window.optly.mrkt = window.optly.mrkt || {}; 
+
 /**
    * Set all elements within the collection to have the same height.
    */
@@ -71,4 +77,4 @@ $.fn.responsiveEqualHeightGrid = function() {
   return this;
 };
 
-$('.customer-grid-elm').responsiveEqualHeightGrid();
+$('.customer-grid-elm').responsiveEqualHeightGrid();})(jQuery);
