@@ -1,16 +1,16 @@
 /*
 
-	Logos
+  Logos
 
 */
 /*
 
-	Layout
+  Layout
 
 */
 /*
 
-	Type
+  Type
 
 */
 /*! normalize.css v3.0.1 | MIT License | git.io/normalize */
@@ -1631,65 +1631,6 @@ body.contact-page .lede-image {
   body.contact-page p {
     margin-top: 3px; } }
 
-<<<<<<< HEAD
-body.customer-stories-page .sub-header-nav {
-  text-align: right; }
-body.customer-stories-page .top-content {
-  margin-bottom: 25px; }
-body.customer-stories-page .video-container {
-  position: relative;
-  width: 100%;
-  padding-top: 58.03571%; }
-  body.customer-stories-page .video-container iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%; }
-body.customer-stories-page .case-studies-bg-container {
-  padding-top: 50px;
-  background: url(https://www.optimizely.com/static/img/customer-stories/cs-grid-bg.png); }
-body.customer-stories-page .customer-grid-elm {
-  position: relative;
-  text-align: center;
-  border: 1px solid #d5d5d5;
-  background: white;
-  color: #242424;
-  margin-top: 20px;
-  margin-bottom: 20px; }
-  body.customer-stories-page .customer-grid-elm .title-container {
-    background: #f8f8f8;
-    border-bottom: 1px solid #e9e9e9;
-    text-transform: uppercase;
-    padding: 0.8em 0;
-    font-size: 14px;
-    font-weight: 300;
-    letter-spacing: -1.2px; }
-  body.customer-stories-page .customer-grid-elm .percent {
-    position: relative;
-    top: -5px;
-    left: -3px; }
-  body.customer-stories-page .customer-grid-elm .customer-title {
-    display: inline-block; }
-  body.customer-stories-page .customer-grid-elm .customer-inner-content {
-    padding: 20px; }
-  body.customer-stories-page .customer-grid-elm .customer-logos {
-    background-repeat: no-repeat;
-    -webkit-background-size: contain contain;
-    background-size: contain;
-    background-position: center center;
-    margin: 0 auto; }
-  body.customer-stories-page .customer-grid-elm .button {
-    padding: 6px 12px;
-    font-size: 12px;
-    position: absolute;
-    bottom: 15px;
-    opacity: 0; }
-
-@media only screen and (min-width: 960px) { }
-
-@media only screen and (min-width: 768px) { }
-=======
 body.partners .partners-desc.center-desktop {
   margin-bottom: 10px; }
 body.partners .benefits-cont h3 {
@@ -1727,5 +1668,4 @@ body.partners .apply-today p {
 @media (min-width: 960px) {
   body.partners .benefits-cont h3 {
     font-size: 1.8em; } }
->>>>>>> 20c6b8159c23d36a480b28aea9db3603176e5ca3
 /*# sourceMappingURL=styles.css.map */
