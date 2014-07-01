@@ -14,7 +14,7 @@
       customerContent: "Upworthy tested adding a recommended content module to its website to drive more social shares and engagement."
       downloadUrl: "https://s3.amazonaws.com/optimizely-marketing/customer-stories/upworthy-casestudy.pdf"
     - 
-      statPercent: false
+      statPercent: 80
       statInt: false
       title: "More Student Sign-ups"
       logoUrl: "code-dot-org-logo.png"

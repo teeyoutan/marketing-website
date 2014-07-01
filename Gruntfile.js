@@ -69,7 +69,6 @@ module.exports = function(grunt) {
       guts: 'website-guts',
       dist: 'dist',
       temp: 'temp',
-      build: 'build',
       helpers: 'helpers',
       bowerDir: 'bower_components'
     },
@@ -109,7 +108,6 @@ module.exports = function(grunt) {
       options: {
         port: 9000,
         livereload: 35729,
-        base: '.',
         // change this to '0.0.0.0' to access the server from outside
         hostname: '0.0.0.0',
         middleware: function(connect, options, middlewares){
