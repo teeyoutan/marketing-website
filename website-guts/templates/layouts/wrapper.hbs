@@ -212,6 +212,11 @@
                     load: ['{{assetsDir}}/js/pages/{{page.page_script}}']
                 }
                 {{~/if}}
+                {{~#if layout_script~}}
+                ,{
+                    load: ['{{assetsDir}}/js/layouts/{{layout_script}}']
+                }
+                {{~/if}}
             ]);
         </script>
     </body>

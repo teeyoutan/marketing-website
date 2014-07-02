@@ -1,5 +1,14 @@
 ---
 layout: wrapper.hbs
+menu_items:
+- {name: Agencies, url: "/partners"}
+- {name: Developers, url: "/developers"}
+- {name: E-commerce, url: "/ecommerce"}
+- {name: Enterprises, url: "/enterprises"}
+- {name: Publishers, url: "/publishers"}
+- {name: Small Business, url: "/small-business"}
+layout_script: benefits.js
+test_property: True
 ---
 <div id="main">
     <div id="page-header">
@@ -15,7 +24,6 @@ layout: wrapper.hbs
                     <li class="dropdown SL_hide">
                         <span class="for-menu-label">Optimizely for: </span>
                         <ul class="for-menu">
-                            {{#if page.first_menu_item}}<li><a>{{page.first_menu_item}}</a></li>{{else}}<li><a>{{page.visible_title}}</a></li>{{/if}}
                             {{#menu_items}}
                             <li><a href="{{url}}">{{name}}</a></li>
                             {{/menu_items}}
@@ -28,15 +36,7 @@ layout: wrapper.hbs
     <div id="page-header-gradient"></div>
     <div id="page-content">
         {{#unless page.no_container}}<div class="container row">{{/unless}}
-        <h2 class="subheading">{{ page.subheading }}</h2>
-        <div class="row">
-            <div class="columns seven">
-                {{> body }}
-            </div>
-            <div class="columns five">
-                {{> contact_form }}
-            </div>
-        </div>
+        {{> body}}
         <div class="attention center-desktop row">
             <h3>Your improved site awaits <a href="/pricing" class="primary-button">View Plans &amp; Pricing</a></h3>
         </div>

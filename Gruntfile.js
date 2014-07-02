@@ -310,6 +310,12 @@ module.exports = function(grunt) {
             cwd: '<%= config.temp %>/assets/js/pages',
             src: '**/*.js',
             dest: '<%= config.dist %>/assets/js/pages'
+          },
+          {
+            expand: true,
+            cwd: '<%= config.temp %>/assets/js/layouts',
+            src: '**/*.js',
+            dest: '<%= config.dist %>/assets/js/layouts'
           }
         ]
       }
