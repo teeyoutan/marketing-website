@@ -3,9 +3,13 @@
       youTubeId: "C7WTDPksvAE"
       rightHeader: "12 Million More Sign-ups"
       rightContent: "Code.org used website optimization to bring computer science education to the world. With Optimizely, the team was able to quickly and easily improve the registration flow on their website, generating 12 million more sign-ups for the annual Hour of Code campaign."
+  cta: 
+      header: "Share your testing story"
+      content: "Big wins. Surprising test results. A real impact on your business. Tell us how you did it."
+      button: "Submit Your Story"
   customerList: 
     - 
-      statPercent: "28"
+      statPercent: "10"
       statInt: false
       title: "lift in social shares"
       logoUrl: "upworth-logo.png"

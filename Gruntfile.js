@@ -34,8 +34,9 @@ module.exports = function(grunt) {
             environment: 'preview',
             environmentData: 'website-guts/data/environments/production/environmentVariables.json',
             assets_dir: '/assets',
+            link_path: '',
             sassSourceMap: false,
-            sassImagePath: '/assets/img/',
+            sassImagePath: '/assets/img',
             compress_js: true,
             concat_banner: '(function($){ \n\n' +
                            '  window.optly = window.optly || {}; \n\n' +
@@ -55,8 +56,9 @@ module.exports = function(grunt) {
             environment: 'dev',
             environmentData: 'website-guts/data/environments/development/environmentVariables.json',
             assets_dir: '/dist/assets',
+            link_path: '/dist',
             sassSourceMap: true,
-            sassImagePath: '/dist/assets/img/',
+            sassImagePath: '/dist/assets/img',
             compress_js: false,
             concat_banner: '(function($){ \n\n' +
                            '  window.optly = window.optly || {}; \n\n' +
@@ -69,7 +71,7 @@ module.exports = function(grunt) {
       guts: 'website-guts',
       dist: 'dist',
       temp: 'temp',
-      helpers: 'helpers',
+      helpers: 'website-guts/helpers',
       bowerDir: 'bower_components'
     },
     watch: {
@@ -144,8 +146,11 @@ module.exports = function(grunt) {
     },
     assemble: {
       options: {
+        customVar: "Hello I'm a custom var",
         layoutdir: '<%= config.guts %>/templates/layouts/',
         assetsDir: '<%= grunt.config.get("assets_dir") %>',
+        linkPath: '<%= grunt.config.get("link_path") %>',
+        sassImagePath: '<%= grunt.config.get("sassImagePath") %>',
         environmentIsProduction: '<%= grunt.config.get("environmentIsProduction") %>',
         environmentIsDev: '<%= grunt.config.get("environmentIsDev") %>',
         data: ['<%= config.content %>/**/*.json', '<%= config.content %>/**/*.yml', '<%= grunt.config.get("environmentData") %>'],
