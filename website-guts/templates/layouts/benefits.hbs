@@ -8,14 +8,13 @@ menu_items:
 - {name: Publishers, url: "/publishers"}
 - {name: Small Business, url: "/small-business"}
 layout_script: benefits.js
-test_property: True
 ---
 <div id="main">
     <div id="page-header">
         <div class="container">
             <div class="clearfix page-subheader-cont">
                 <h1>
-                    {{#if page.optimizely_for}}<span class="super">Optimizely for</span>{{/if}}
+                    {{#if page.above_logo_text}}<span class="super">{{page.above_logo_text}}</span>{{else}}<span class="super">Optimizely for</span>{{/if}}
                     {{page.visible_title}}
                 </h1>
                 <ul class="sub-header-nav">
@@ -23,7 +22,7 @@ test_property: True
                     <li><a href="/benefits" class="current">Benefits</a></li>
                     <li class="dropdown SL_hide">
                         <span class="for-menu-label">Optimizely for: </span>
-                        <ul class="for-menu">
+                        <ul class="for-menu" data-current="{{page.visible_title}}">
                             {{#menu_items}}
                             <li><a href="{{url}}">{{name}}</a></li>
                             {{/menu_items}}
