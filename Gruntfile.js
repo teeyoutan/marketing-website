@@ -93,7 +93,7 @@ module.exports = function(grunt) {
       },
       js: {
         files: ['<%= config.guts %>/assets/js/**/*.js', '<%= config.temp %>/assets/js/**/*.js'],
-        tasks: ['config:dev', 'jshint', 'concat', 'uglify', 'clean:postBuild']
+        tasks: ['config:dev', 'jshint', 'concat', 'clean:postBuild']
       },
       livereload: {
         options: {
