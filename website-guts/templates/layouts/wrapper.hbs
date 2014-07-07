@@ -3,7 +3,6 @@
     <head>
         <meta charset="utf-8">
         <script src="//cdn.optimizely.com/js/{{environmentVariables.optimizelyProjectID}}.js"></script>
-        <script src="{{assetsDir}}/js/libraries/jquery.js"></script>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>Optimizely:{{#if page.seo_title}} {{page.seo_title}}{{else}} A/B testing software you'll actually use{{/if}}</title>
         {{!-- Standard meta tags --}}
@@ -27,7 +26,7 @@
           window.analytics.page();
         </script>
     </head>
-    <body class="signed-out{{#if page.compact_header}} compact-header{{/if}}{{#each page.body_class}} {{.}}{{/each}}">
+    <body class="signed-out{{#if page.compact_header}} compact-header{{/if}}{{#each layout_body_class}} {{.}}{{/each}}{{#each page.body_class}} {{.}}{{/each}}">
         <!--[if lt IE 8]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
@@ -196,6 +195,7 @@
                 </footer>
             </div><!--/#inner-wrapper-->
         </div><!--/#outer-wrapper-->
+        <script>window.jQuery || document.write('<script src="{{assetsDir}}/js/libraries/jquery-1.6.4.min.js"><\/script>')</script>
         <script>
             yepnope([
                 {
@@ -207,6 +207,11 @@
                     load: ['{{.}}']
                 }{{/each}}
                 {{/if}}
+                {{~#if layout_script~}}
+                ,{
+                    load: ['{{assetsDir}}/js/layouts/{{layout_script}}']
+                }
+                {{~/if}}
                 {{~#if page.page_script~}}
                 ,{
                     load: ['{{assetsDir}}/js/pages/{{page.page_script}}']
