@@ -54,7 +54,7 @@ module.exports = function(grunt) {
           variables: {
             environment: 'dev',
             environmentData: 'website-guts/data/environments/development/environmentVariables.json',
-            assets_dir: '/<%= config.dist %>/assets',
+            assets_dir: '/dist/assets',
             sassSourceMap: true,
             sassImagePath: '/dist/assets/img/',
             compress_js: false,
@@ -69,6 +69,7 @@ module.exports = function(grunt) {
       guts: 'website-guts',
       dist: 'dist',
       temp: 'temp',
+      helpers: 'helpers',
       bowerDir: 'bower_components'
     },
     watch: {
@@ -135,9 +136,9 @@ module.exports = function(grunt) {
       livereload: {
         options: {
           open: {
-            target: 'http://0.0.0.0:9000/dist/'
-          },
-          base: '.'
+            target: 'http://0.0.0.0:9000/dist',
+            base: '.'
+          }
         }
       }
     },
@@ -148,7 +149,8 @@ module.exports = function(grunt) {
         environmentIsProduction: '<%= grunt.config.get("environmentIsProduction") %>',
         environmentIsDev: '<%= grunt.config.get("environmentIsDev") %>',
         data: ['<%= config.content %>/**/*.json', '<%= config.content %>/**/*.yml', '<%= grunt.config.get("environmentData") %>'],
-        partials: ['<%= config.guts %>/templates/partials/*.{hbs, md}']
+        partials: ['<%= config.guts %>/templates/partials/*.{hbs, md}'],
+        helpers: ['<%= config.helpers %>/helper-*.js']
       },
       pages: {
         files: [
@@ -268,12 +270,24 @@ module.exports = function(grunt) {
           Handlebars: false,
           moment: false,
           _gaq: false
-        }
+        },
+        '-W087': (function() {
+          if(grunt.config.get("environment") == "dev") {
+            return true;
+          } else {
+            return false;
+          }
+        }())
       },
       files: ['<%= config.guts %>/assets/js/**/*.js', '!<%= config.guts %>/assets/js/libraries/**/*.js']
     },
     concat: {
-      temp: {
+      modernizrYep: {
+        files: {
+          '<%= config.dist %>/assets/js/libraries/modernizr-yepnope.js': ['<%= config.guts %>/assets/js/libraries/modernizr-2.8.2.min.js','<%= config.bowerDir %>/yepnope/yepnope.1.5.4-min.js']
+        }
+      },
+      namespace: {
         options: {
           banner: '<%= grunt.config.get("concat_banner") %>',
           footer: '<%= grunt.config.get("concat_footer") %>'
@@ -281,7 +295,7 @@ module.exports = function(grunt) {
         src: ['**/*.js', '!libraries/**/*.js'],
         expand: true,
         cwd: '<%= config.guts %>/assets/js/',
-        dest: '<%= config.temp %>/assets/js/'
+        dest: '<%= config.dist %>/assets/js/'
       }
     },
     uglify: {
@@ -292,8 +306,8 @@ module.exports = function(grunt) {
       },
       globalJS: {
         files: {
-          '<%= config.dist %>/assets/js/libraries/modernizr-yepnope.js': ['<%= config.guts %>/assets/js/libraries/modernizr-2.8.2.min.js','<%= config.bowerDir %>/yepnope/yepnope.1.5.4-min.js'],
           '<%= config.dist %>/assets/js/libraries/fastclick.js': ['<%= config.bowerDir %>/fastclick/lib/fastclick.js'],
+          '<%= config.dist %>/assets/js/libraries/jquery.js': ['<%= config.dist %>/assets/js/libraries/jquery.js'],
           '<%= config.dist %>/assets/js/bundle.js': [
             '<%= config.bowerDir %>/jquery-cookie/jquery.cookie.js',
             '<%= config.guts %>/assets/js/libraries/handlebars-v1.3.0.js',
@@ -340,12 +354,12 @@ module.exports = function(grunt) {
     'clean:preBuild',
     'assemble',
     'concat',
-    'uglify',
     'sass',
     'replace',
     'autoprefixer',
     'copy',
-    'clean:postBuild',
+    'uglify:globalJS',
+    //'clean:postBuild',
     'connect:livereload',
     'watch'
   ]);
@@ -356,7 +370,7 @@ module.exports = function(grunt) {
     'clean:preBuild',
     'assemble',
     'concat',
-    'uglify',
+    'uglify:pageFiles',
     'sass',
     'replace',
     'autoprefixer',
