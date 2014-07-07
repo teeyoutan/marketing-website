@@ -27,7 +27,7 @@
           window.analytics.page();
         </script>
     </head>
-    <body class="signed-out{{#if page.compact_header}} compact-header{{/if}}{{#each page.body_class}} {{.}}{{/each}}">
+    <body class="signed-out{{#if page.compact_header}} compact-header{{/if}}{{#each layout_body_class}} {{.}}{{/each}}{{#each page.body_class}} {{.}}{{/each}}">
         <!--[if lt IE 8]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
