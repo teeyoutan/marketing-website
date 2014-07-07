@@ -207,11 +207,11 @@ module.exports = function(grunt) {
         src: ['<%= config.guts %>/assets/css/fonts.css'],
         dest: '<%= config.dist %>/assets/css/fonts.css'
       },
-      js: {
+      jquery: {
         files: [
           {
-            src: '<%= config.bowerDir %>/jquery/jquery.js',
-            dest: '<%= config.dist %>/assets/js/libraries/jquery.js',
+            src: '<%= config.guts %>/assets/js/libraries/jquery-1.6.4.min.js',
+            dest: '<%= config.dist %>/assets/js/libraries/jquery-1.6.4.min.js',
             flatten: true,
             filter: 'isFile'
           }
@@ -306,7 +306,6 @@ module.exports = function(grunt) {
       globalJS: {
         files: {
           '<%= config.dist %>/assets/js/libraries/fastclick.js': ['<%= config.bowerDir %>/fastclick/lib/fastclick.js'],
-          '<%= config.dist %>/assets/js/libraries/jquery.js': ['<%= config.dist %>/assets/js/libraries/jquery.js'],
           '<%= config.dist %>/assets/js/bundle.js': [
             '<%= config.bowerDir %>/jquery-cookie/jquery.cookie.js',
             '<%= config.guts %>/assets/js/libraries/handlebars-v1.3.0.js',
@@ -358,7 +357,7 @@ module.exports = function(grunt) {
     'autoprefixer',
     'copy',
     'uglify:globalJS',
-    //'clean:postBuild',
+    'clean:postBuild',
     'connect:livereload',
     'watch'
   ]);
