@@ -1,9 +1,3 @@
-(function($){ 
-
-  window.optly = window.optly || {}; 
-
-  window.optly.mrkt = window.optly.mrkt || {}; 
-
 window.optly.mrkt.benefits = {};
 
 window.optly.mrkt.benefits.menuHandlers = function() {
@@ -29,4 +23,4 @@ window.optly.mrkt.benefits.menuOrder = function() {
 };
 
 window.optly.mrkt.benefits.menuHandlers();
-window.optly.mrkt.benefits.menuOrder();})(jQuery);
+window.optly.mrkt.benefits.menuOrder();
