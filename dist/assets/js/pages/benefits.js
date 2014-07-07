@@ -6,7 +6,7 @@
 
 window.optly.mrkt.benefits = {};
 
-window.optly.mrkt.benefits.menuHandlers = function() {
+window.optly.mrkt.benefitsLayout.menuHandlers = function() {
 
   $('body').delegate('.for-menu', 'click', function(event) {
     event.stopPropagation();
@@ -19,7 +19,7 @@ window.optly.mrkt.benefits.menuHandlers = function() {
   });
 };
 
-window.optly.mrkt.benefits.menuOrder = function() {
+window.optly.mrkt.benefitsLayout.menuOrder = function() {
   /* Changes the order of menu items and disables the current link */
 
   var currentPage = $('.for-menu').attr('data-current'),
@@ -28,5 +28,5 @@ window.optly.mrkt.benefits.menuOrder = function() {
   $(currentMenuItem).removeAttr('href').parent().insertBefore($('.for-menu li:first'));
 };
 
-window.optly.mrkt.benefits.menuHandlers();
-window.optly.mrkt.benefits.menuOrder();})(jQuery);
+window.optly.mrkt.benefitsLayout.menuHandlers();
+window.optly.mrkt.benefitsLayout.menuOrder();})(jQuery);

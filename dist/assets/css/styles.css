@@ -358,9 +358,6 @@ p {
   font-size: 1.1em;
   font-weight: 100; }
 
-li {
-  font-weight: 300; }
-
 a {
   color: #4d89e2;
   text-decoration: none;
@@ -848,32 +845,24 @@ input[type=text], input[type=url], input[type=tel], input[type=email] {
   min-height: 38px;
   width: 100%; }
 
-@media only screen and (min-width: 960px) {
-  input[type=text], input[type=url], input[type=tel], input[type=email] {
-    width: auto; } }
-
-form.standard input[type="text"], form.standard input[type="email"] {
-  width: 100%;
-  font-size: 15px;
-  min-height: 38px; }
-form.standard label {
-  display: block;
-  margin: 0 0 0.5em;
-  color: #6b6b6b;
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 1.4; }
-form.standard select {
+select {
   border: 1px solid #bfcedf;
   color: #354e8f;
   font-size: 14px;
   height: 2em;
   padding: 4px; }
-  form.standard select:not(.inline) {
+  select:not(.inline) {
     width: 100%; }
-form.standard span {
-  display: inline-block;
-  margin-bottom: 3px;
+
+@media only screen and (min-width: 960px) {
+  input[type=text], input[type=url], input[type=tel], input[type=email] {
+    width: auto; } }
+
+form.standard input[type="text"], form.standard input[type="email"] {
+  width: 100%; }
+form.standard label {
+  display: block;
+  margin: 0 0 0.5em;
   color: #6b6b6b;
   font-size: 12px;
   font-weight: 500;
@@ -883,16 +872,20 @@ form.standard > ul > li + li {
   overflow: hidden; }
 form.standard h4 {
   font-weight: 300; }
-form.standard .label.left {
-  clear: none;
-  float: left;
-  width: 48%; }
-form.standard .label.right {
-  clear: none;
-  float: right;
-  width: 48%; }
+form.standard .left {
+  float: left; }
+form.standard .right {
+  float: right; }
 form.standard .submit-cont {
-  clear: both; }
+  clear: both;
+  padding-top: 20px; }
+  form.standard .submit-cont button {
+    width: 100%; }
+
+@media only screen and (min-width: 960px) {
+  form.standard .submit-cont {
+    float: right;
+    padding-top: 0; } }
 
 /*! HTML5 Boilerplate v4.3.0 | MIT License | http://h5bp.com/ */
 /*
@@ -1332,6 +1325,8 @@ body {
 
 .attention {
   margin: 20px 0; }
+  .attention h3 {
+    text-align: center; }
 
 .super {
   display: block;
@@ -1738,7 +1733,7 @@ body.contact-page .lede-image {
     margin-top: 3px; } }
 
 /* layouts */
-body.benefits .for-menu {
+body.benefits-layout .for-menu {
   list-style: none;
   cursor: pointer;
   margin: 0;
@@ -1751,67 +1746,67 @@ body.benefits .for-menu {
   top: -5px;
   width: 143px;
   z-index: 19; }
-  body.benefits .for-menu li {
+  body.benefits-layout .for-menu li {
     line-height: inherit;
     margin: 0;
     display: none;
     position: relative; }
-    body.benefits .for-menu li a {
+    body.benefits-layout .for-menu li a {
       font-size: 13px; }
-    body.benefits .for-menu li:first-child {
+    body.benefits-layout .for-menu li:first-child {
       background: #f7f7f7;
       display: block; }
-      body.benefits .for-menu li:first-child a {
+      body.benefits-layout .for-menu li:first-child a {
         color: #006eb6; }
-        body.benefits .for-menu li:first-child a:after {
+        body.benefits-layout .for-menu li:first-child a:after {
           content: '\25be';
           float: right; }
-  body.benefits .for-menu a {
+  body.benefits-layout .for-menu a {
     padding: 6px 12px;
     text-align: left; }
-    body.benefits .for-menu a:hover {
+    body.benefits-layout .for-menu a:hover {
       color: #006eb6; }
-  body.benefits .for-menu.shown li {
+  body.benefits-layout .for-menu.shown li {
     display: block; }
-    body.benefits .for-menu.shown li:first-child {
+    body.benefits-layout .for-menu.shown li:first-child {
       border-bottom: 1px solid #eee; }
-      body.benefits .for-menu.shown li:first-child a {
+      body.benefits-layout .for-menu.shown li:first-child a {
         color: #006eb6; }
-body.benefits .for-menu-label {
+body.benefits-layout .for-menu-label {
   padding-right: 155px;
   vertical-align: top;
   font-size: 0.8em;
   color: #888; }
-body.benefits h5 {
+body.benefits-layout h5 {
   color: #242424; }
-body.benefits blockquote {
+body.benefits-layout blockquote {
   background: url("/dist/assets/img//quote.png") 2px 4px no-repeat;
   color: #006eb6;
   padding-left: 50px;
   margin: 20px 20px 20px 0; }
-  body.benefits blockquote .by {
+  body.benefits-layout blockquote .by {
     color: #6b6b6b;
     font-size: 0.8em;
     text-align: right; }
-body.benefits .columns.seven li {
+body.benefits-layout .columns.seven li {
   color: #242424;
   font-size: 14px;
   font-weight: 300;
   line-height: 1.5;
   list-style: none;
   margin: 5px 0 5px; }
-body.benefits .sub-header-nav > li {
+body.benefits-layout .sub-header-nav > li {
   display: inline; }
-body.benefits .sub-header-nav .dropdown {
+body.benefits-layout .sub-header-nav .dropdown {
   display: inline-block;
   margin-top: 20px; }
 
 @media screen and (min-width: 768px) {
-  body.benefits .sub-header-nav > li {
+  body.benefits-layout .sub-header-nav > li {
     display: inline-block; }
-  body.benefits .sub-header-nav .dropdown {
+  body.benefits-layout .sub-header-nav .dropdown {
     margin-top: 0; }
-  body.benefits .columns.seven li {
+  body.benefits-layout .columns.seven li {
     list-style: disc;
     list-style-position: outside;
     margin: 5px 0 5px 25px; } }
@@ -1859,7 +1854,7 @@ body.customer-stories-page .customer-grid-elm {
     padding: 20px; }
   body.customer-stories-page .customer-grid-elm .customer-logos {
     background-repeat: no-repeat;
-    -webkit-background-size: contain;
+    -webkit-background-size: contain contain;
     background-size: contain;
     background-position: center center;
     margin: 0 auto; }

@@ -1,4 +1,4 @@
-body.benefits {
+body.benefits-layout {
 
   .for-menu {
     list-style: none;
@@ -112,7 +112,7 @@ body.benefits {
 
 @media screen and (min-width: $tablet-min-width) {
 
-  body.benefits {
+  body.benefits-layout {
     .sub-header-nav {
       > li {
         display: inline-block;
