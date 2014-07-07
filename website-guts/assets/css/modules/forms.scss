@@ -8,8 +8,76 @@ input[type=text], input[type=url], input[type=tel], input[type=email] {
   width: 100%;
 }
 
+select {
+  border: 1px solid #bfcedf;
+  color: #354e8f;
+  font-size: 14px;
+  height: 2em;
+  padding: 4px;
+
+  &:not(.inline) {
+    width: 100%;
+  }
+}
+
 @media only screen and (min-width: $desktop-min-width){
   input[type=text], input[type=url], input[type=tel], input[type=email] {
     width: auto;
+  }
+}
+
+form {
+
+  &.standard {
+
+    input {
+
+      &[type="text"],
+      &[type="email"] {
+        width: 100%;
+      }
+    }
+
+    label {
+      display: block;
+      margin: 0 0 0.5em;
+      color: #6b6b6b;
+      font-size: 12px;
+      font-weight: 500;
+      line-height: 1.4;
+    }
+
+    > ul {
+      > li+li {
+        margin-top: 20px;
+        overflow: hidden;
+      }
+    }
+
+    h4 {
+      font-weight: 300;
+    }
+
+    .left {float: left;}
+    .right {float: right;}
+
+    .submit-cont {
+      clear: both;
+      padding-top: 20px;
+      button {
+        width: 100%;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: $desktop-min-width) {
+  form {
+    &.standard {
+      .submit-cont {
+        float: right;
+        padding-top: 0;
+      }
+    }
   }
 }
