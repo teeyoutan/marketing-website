@@ -207,6 +207,11 @@
                     load: ['{{.}}']
                 }{{/each}}
                 {{/if}}
+                {{~#if layout_script~}}
+                ,{
+                    load: ['{{assetsDir}}/js/layouts/{{layout_script}}']
+                }
+                {{~/if}}
                 {{~#if page.page_script~}}
                 ,{
                     load: ['{{assetsDir}}/js/pages/{{page.page_script}}']
