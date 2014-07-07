@@ -93,7 +93,7 @@ module.exports = function(grunt) {
       },
       js: {
         files: ['<%= config.guts %>/assets/js/**/*.js', '<%= config.temp %>/assets/js/**/*.js'],
-        tasks: ['config:dev', 'jshint', 'concat', 'uglify', 'clean:postBuild']
+        tasks: ['config:dev', 'jshint', 'concat', 'clean:postBuild']
       },
       livereload: {
         options: {
@@ -153,6 +153,7 @@ module.exports = function(grunt) {
         environmentIsProduction: '<%= grunt.config.get("environmentIsProduction") %>',
         environmentIsDev: '<%= grunt.config.get("environmentIsDev") %>',
         data: ['<%= config.content %>/**/*.json', '<%= config.content %>/**/*.yml', '<%= grunt.config.get("environmentData") %>'],
+        partials: ['<%= config.guts %>/templates/partials/*.{hbs, md}'],
         helpers: ['<%= config.helpers %>/helper-*.js']
       },
       pages: {
@@ -211,11 +212,11 @@ module.exports = function(grunt) {
         src: ['<%= config.guts %>/assets/css/fonts.css'],
         dest: '<%= config.dist %>/assets/css/fonts.css'
       },
-      js: {
+      jquery: {
         files: [
           {
-            src: '<%= config.bowerDir %>/jquery/jquery.js',
-            dest: '<%= config.dist %>/assets/js/libraries/jquery.js',
+            src: '<%= config.guts %>/assets/js/libraries/jquery-1.6.4.min.js',
+            dest: '<%= config.dist %>/assets/js/libraries/jquery-1.6.4.min.js',
             flatten: true,
             filter: 'isFile'
           },
@@ -334,7 +335,6 @@ module.exports = function(grunt) {
       globalJS: {
         files: {
           '<%= config.dist %>/assets/js/libraries/fastclick.js': ['<%= config.dist %>/assets/js/libraries/fastclick.js'],
-          '<%= config.dist %>/assets/js/libraries/jquery.js': ['<%= config.dist %>/assets/js/libraries/jquery.js'],
           '<%= config.dist %>/assets/js/bundle.js': ['<%= config.dist %>/assets/js/bundle.js']
         }
       },
