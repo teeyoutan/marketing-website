@@ -1,6 +1,30 @@
 body.customer-stories-page {
   .sub-header-nav {text-align: right;}
-  .top-content {margin-bottom: 25px;}
+  .top-content {
+    margin-bottom: 25px;
+    h2 {
+      margin: 20px 0 0 0;
+      font-size: 2.1em;
+      font-weight: 300;
+      line-height: 1.2;
+    }
+  }
+  #page-content {background: #f4f4f4;}
+  .callout {
+    text-align: center;
+    margin: 50px auto;
+    h3 {
+      text-align: center;
+      font-weight: 300;
+      margin: 0;
+    }
+    p {
+      font-size: 15px;
+      color: #666;
+      font-weight: 300;
+      line-height: 1.5;
+    }
+  }
   .video-container {
     @include responsive-vid-container(560, 325); 
     iframe {
@@ -8,8 +32,8 @@ body.customer-stories-page {
     }
   }
   .case-studies-bg-container {
-    padding-top: 50px;
-    background: url(https://www.optimizely.com/static/img/customer-stories/cs-grid-bg.png);
+    padding: 50px 0;
+    background: image-url("cs-grid-bg.png");
   }
   .customer-grid-elm {
     position: relative;
@@ -27,6 +51,9 @@ body.customer-stories-page {
       font-size: 14px;
       font-weight: 300;
       letter-spacing: -1.2px;
+      span {
+        font-weight: bold;
+      }
     }
     .percent {
       position: relative;
@@ -59,11 +86,29 @@ body.customer-stories-page {
 
 	body.customer-stories-page {
 
-
 	}
 
 }
 
 @media only screen and (min-width: $tablet-min-width) {
-
+  body.customer-stories-page {
+    .top-content {
+      h2 {
+        margin: 0;
+      }
+    }
+    .callout {
+      width: 460px;
+    }
+    .title-container {
+      h4,
+      span {
+        font-size: 1em;
+      }
+    }
+    p {
+      font-size: 0.9em;
+      line-height: 1.6em;
+    }
+  }
 }

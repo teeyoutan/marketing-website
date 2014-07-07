@@ -41,7 +41,7 @@ body_class:
                 <h4 class="customer-title">{{title}}</h1>
               </div> <!-- .title-container -->
               <div class="customer-inner-content">
-                <div class="customer-logos" style="background-image: url(../assets/img/customer-logos/{{logoUrl}}); width: {{logoW}}px; height: {{logoH}}px"></div>
+                <div class="customer-logos" style="background-image: url(../../assets/img/customer-logos/{{logoUrl}}); width: {{logoW}}px; height: {{logoH}}px"></div>
                 <p>{{customerContent}}</p>
                 <a href="{{downloadUrl}}" target="_blank" class="button small">Download</a>
               </div>
@@ -52,4 +52,12 @@ body_class:
       {{/each}}
     </div> <!-- .case-studies-container -->
   </div> <!-- .case-studies-bg-container -->
+  <div class="case-studies-cta container">
+    <div class="callout">
+        <h3>{{customer_info.cta.header}}</h3>
+        <p>{{customer_info.cta.content}}</p>
+        <!-- TODO: create endpoint -->
+        <a href="#" class="primary-button">{{customer_info.cta.button}}</a>
+    </div>
+  </div>
 </div><!--#customer-stories-content -->
