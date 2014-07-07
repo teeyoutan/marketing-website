@@ -146,7 +146,6 @@ module.exports = function(grunt) {
     },
     assemble: {
       options: {
-        customVar: "Hello I'm a custom var",
         layoutdir: '<%= config.guts %>/templates/layouts/',
         assetsDir: '<%= grunt.config.get("assets_dir") %>',
         linkPath: '<%= grunt.config.get("link_path") %>',
@@ -219,6 +218,9 @@ module.exports = function(grunt) {
             dest: '<%= config.dist %>/assets/js/libraries/jquery.js',
             flatten: true,
             filter: 'isFile'
+          },
+          {
+            '<%= config.dist %>/assets/js/libraries/fastclick.js': ['<%= config.bowerDir %>/fastclick/lib/fastclick.js']
           }
         ]
       },
@@ -291,15 +293,36 @@ module.exports = function(grunt) {
           '<%= config.dist %>/assets/js/libraries/modernizr-yepnope.js': ['<%= config.guts %>/assets/js/libraries/modernizr-2.8.2.min.js','<%= config.bowerDir %>/yepnope/yepnope.1.5.4-min.js']
         }
       },
-      namespace: {
+      namespacePages: {
         options: {
           banner: '<%= grunt.config.get("concat_banner") %>',
           footer: '<%= grunt.config.get("concat_footer") %>'
         },
-        src: ['**/*.js', '!libraries/**/*.js'],
+        src: ['pages/*.js', 'layouts/*.js'],
         expand: true,
         cwd: '<%= config.guts %>/assets/js/',
         dest: '<%= config.dist %>/assets/js/'
+      },
+      namespaceGlobal: {
+        options: {
+          banner: '<%= grunt.config.get("concat_banner") %>',
+          footer: '<%= grunt.config.get("concat_footer") %>'
+        },
+        src: ['global.js'],
+        expand: true,
+        cwd: '<%= config.guts %>/assets/js/',
+        dest: '<%= config.temp %>/assets/js/'
+      },
+      concatBundle: {
+        files: {
+          '<%= config.dist %>/assets/js/bundle.js': [
+            '<%= config.bowerDir %>/jquery-cookie/jquery.cookie.js',
+            '<%= config.guts %>/assets/js/libraries/handlebars-v1.3.0.js',
+            '<%= config.bowerDir %>/momentjs/moment.js',
+            '<%= config.guts %>/assets/js/libraries/oForm/oForm.js',
+            '<%= config.temp %>/assets/js/global.js'
+          ]
+        }
       }
     },
     uglify: {
@@ -310,24 +333,19 @@ module.exports = function(grunt) {
       },
       globalJS: {
         files: {
-          '<%= config.dist %>/assets/js/libraries/fastclick.js': ['<%= config.bowerDir %>/fastclick/lib/fastclick.js'],
+          '<%= config.dist %>/assets/js/libraries/fastclick.js': ['<%= config.dist %>/assets/js/libraries/fastclick.js'],
           '<%= config.dist %>/assets/js/libraries/jquery.js': ['<%= config.dist %>/assets/js/libraries/jquery.js'],
-          '<%= config.dist %>/assets/js/bundle.js': [
-            '<%= config.bowerDir %>/jquery-cookie/jquery.cookie.js',
-            '<%= config.guts %>/assets/js/libraries/handlebars-v1.3.0.js',
-            '<%= config.bowerDir %>/momentjs/moment.js',
-            '<%= config.guts %>/assets/js/libraries/oForm/oForm.js',
-            '<%= config.temp %>/assets/js/global.js'
-          ]
+          '<%= config.dist %>/assets/js/bundle.js': ['<%= config.dist %>/assets/js/bundle.js']
         }
       },
       pageFiles: {
         files: [
           {
             expand: true,
-            cwd: '<%= config.temp %>/assets/js/pages',
-            src: '**/*.js',
-            dest: '<%= config.dist %>/assets/js/pages'
+            cwd: '<%= config.dist %>/assets/js/',
+            src: 'pages/*.js',
+            dest: '<%= config.dist %>/assets/js/pages',
+            flatten: true
           }
         ]
       }
@@ -362,8 +380,7 @@ module.exports = function(grunt) {
     'replace',
     'autoprefixer',
     'copy',
-    'uglify:globalJS',
-    //'clean:postBuild',
+    'clean:postBuild',
     'connect:livereload',
     'watch'
   ]);
@@ -374,11 +391,11 @@ module.exports = function(grunt) {
     'clean:preBuild',
     'assemble',
     'concat',
-    'uglify:pageFiles',
+    'copy',
+    'uglify',
     'sass',
     'replace',
     'autoprefixer',
-    'copy',
     'clean:postBuild'
   ]);
 
