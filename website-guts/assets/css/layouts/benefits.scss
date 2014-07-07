@@ -1,0 +1,133 @@
+body.benefits-layout {
+
+  .for-menu {
+    list-style: none;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+    background: #fff;
+    border: 1px solid #eee;
+    overflow: hidden;
+    position: absolute;
+    right: 0;
+    top: -5px;
+    width: 143px;
+    z-index: 19;
+
+    li {
+      line-height: inherit;
+      margin: 0;
+      display: none;
+      position: relative;
+
+      a {
+        font-size: 13px;
+      }
+
+      &:first-child {
+        background: #f7f7f7;
+        display: block;
+
+        a {
+          color: #006eb6;
+          
+          &:after {
+            content: '\25be';
+            float: right;
+          }
+        }
+      }
+    }
+
+    a {
+      padding: 6px 12px;
+      text-align: left;
+
+      &:hover {
+        color: #006eb6;
+      }
+    }
+    
+    &.shown {
+      li {
+        display: block;
+
+        &:first-child {
+          border-bottom: 1px solid #eee;
+
+          a {
+            color: #006eb6;
+          }
+        }
+      }
+    }
+  }
+
+  .for-menu-label {
+    padding-right: 155px;
+    vertical-align: top;
+    font-size: 0.8em;
+    color: #888;
+  }
+
+  h5 {
+    color: #242424;
+  }
+
+  blockquote {
+    background: image-url("quote.png") 2px 4px no-repeat;
+    color: #006eb6;
+    padding-left: 50px;
+    margin: 20px 20px 20px 0;
+
+    .by {
+      color: #6b6b6b;
+      font-size: 0.8em;
+      text-align: right;
+    }
+  }
+
+  //TODO: make this global for li without breaking footer
+  .columns.seven {
+    li {
+      color: #242424;
+      font-size: 14px;
+      font-weight: 300;
+      line-height: 1.5;
+      list-style: none;
+      margin: 5px 0 5px;
+    }
+  }
+
+  .sub-header-nav {
+    > li {
+      display: inline;
+    }
+    .dropdown {
+      display: inline-block;
+      margin-top: 20px;
+    }
+  }
+}
+
+@media screen and (min-width: $tablet-min-width) {
+
+  body.benefits-layout {
+    .sub-header-nav {
+      > li {
+        display: inline-block;
+      }
+      .dropdown {
+        margin-top: 0;
+      }
+    }
+
+    .columns.seven {
+      li {
+        list-style: disc;
+        list-style-position: outside;
+        margin: 5px 0 5px 25px;
+      }
+    }
+  }
+}

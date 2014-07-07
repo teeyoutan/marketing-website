@@ -709,7 +709,8 @@ header {
       max-height: auto !important;
       min-width: 210px;
       text-align: left;
-      padding: 10px 0; }
+      padding: 10px 0;
+      z-index: 20; }
       #main-nav > li ul li {
         width: 100%; }
       #main-nav > li ul a {
@@ -841,9 +842,47 @@ input[type=text], input[type=url], input[type=tel], input[type=email] {
   min-height: 38px;
   width: 100%; }
 
+select {
+  border: 1px solid #bfcedf;
+  color: #354e8f;
+  font-size: 14px;
+  height: 2em;
+  padding: 4px; }
+  select:not(.inline) {
+    width: 100%; }
+
 @media only screen and (min-width: 960px) {
   input[type=text], input[type=url], input[type=tel], input[type=email] {
     width: auto; } }
+
+form.standard input[type="text"], form.standard input[type="email"] {
+  width: 100%; }
+form.standard label {
+  display: block;
+  margin: 0 0 0.5em;
+  color: #6b6b6b;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.4; }
+form.standard > ul > li + li {
+  margin-top: 20px;
+  overflow: hidden; }
+form.standard h4 {
+  font-weight: 300; }
+form.standard .left {
+  float: left; }
+form.standard .right {
+  float: right; }
+form.standard .submit-cont {
+  clear: both;
+  padding-top: 20px; }
+  form.standard .submit-cont button {
+    width: 100%; }
+
+@media only screen and (min-width: 960px) {
+  form.standard .submit-cont {
+    float: right;
+    padding-top: 0; } }
 
 /*! HTML5 Boilerplate v4.3.0 | MIT License | http://h5bp.com/ */
 /*
@@ -860,7 +899,7 @@ input[type=text], input[type=url], input[type=tel], input[type=email] {
   box-sizing: border-box; }
 
 html {
-  color: #222;
+  color: #242424;
   font-size: 1em;
   line-height: 1.4;
   height: 100%; }
@@ -912,6 +951,10 @@ fieldset {
  */
 textarea {
   resize: vertical; }
+
+ul {
+  margin: 5px 0;
+  padding: 0; }
 
 /* ==========================================================================
    Browse Happy prompt
@@ -978,6 +1021,10 @@ body {
     font-weight: normal; }
     .sub-header-nav a.active {
       display: none; }
+  .sub-header-nav > li {
+    display: inline-block;
+    position: relative;
+    vertical-align: top; }
 
 #page-header-gradient {
   height: 25px;
@@ -1195,6 +1242,9 @@ body {
   line-height: 1.4;
   padding: 0.6em 2.8em;
   text-align: center; }
+  .button.small {
+    font-size: 12px;
+    padding: 0.5em 1em; }
 
 .primary-button, body.home-page input[type=submit] {
   background: -webkit-gradient(linear, left top, left bottom, from(#90b71c), to(#7fa119));
@@ -1235,12 +1285,52 @@ body {
   -webkit-box-shadow: 0 0 3px 3px #EEE;
   box-shadow: 0 0 3px 3px #EEE; }
 
+.box {
+  background-color: white;
+  padding: 25px; }
+
+.list-unstyled {
+  list-style: none;
+  margin: 0;
+  padding: 0; }
+  .list-unstyled li {
+    margin: 0; }
+
 .divider-heading {
   color: #006eb6;
   margin: 25px 0; }
 
+.subheading {
+  color: #242424;
+  font-size: 1.9em;
+  margin: 0 0 38px;
+  text-align: center;
+  font-weight: 300; }
+
+.half {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 50%; }
+  .half.right {
+    padding-left: 10px; }
+  .half.left {
+    padding-right: 10px; }
+
+.a-right {
+  text-align: right; }
+
 .attention {
   margin: 20px 0; }
+  .attention h3 {
+    text-align: center; }
+
+.super {
+  display: block;
+  padding-bottom: 0.25em;
+  font-size: 0.45em;
+  line-height: 1;
+  text-align: center; }
 
 .logo {
   display: block;
@@ -1277,6 +1367,14 @@ body .small-note, body p.small-note {
 .landing-page-form li {
   list-style-type: none;
   margin-bottom: 10px; }
+
+@media screen and (min-width: 768px) {
+  .super {
+    text-align: left; }
+  .box {
+    -webkit-box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.07);
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.07);
+    border: 1px solid #ddd; } }
 
 @media only screen and (min-width: 960px) {
   .left {
@@ -1631,6 +1729,85 @@ body.contact-page .lede-image {
   body.contact-page p {
     margin-top: 3px; } }
 
+/* layouts */
+body.benefits-layout .for-menu {
+  list-style: none;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+  background: #fff;
+  border: 1px solid #eee;
+  overflow: hidden;
+  position: absolute;
+  right: 0;
+  top: -5px;
+  width: 143px;
+  z-index: 19; }
+  body.benefits-layout .for-menu li {
+    line-height: inherit;
+    margin: 0;
+    display: none;
+    position: relative; }
+    body.benefits-layout .for-menu li a {
+      font-size: 13px; }
+    body.benefits-layout .for-menu li:first-child {
+      background: #f7f7f7;
+      display: block; }
+      body.benefits-layout .for-menu li:first-child a {
+        color: #006eb6; }
+        body.benefits-layout .for-menu li:first-child a:after {
+          content: '\25be';
+          float: right; }
+  body.benefits-layout .for-menu a {
+    padding: 6px 12px;
+    text-align: left; }
+    body.benefits-layout .for-menu a:hover {
+      color: #006eb6; }
+  body.benefits-layout .for-menu.shown li {
+    display: block; }
+    body.benefits-layout .for-menu.shown li:first-child {
+      border-bottom: 1px solid #eee; }
+      body.benefits-layout .for-menu.shown li:first-child a {
+        color: #006eb6; }
+body.benefits-layout .for-menu-label {
+  padding-right: 155px;
+  vertical-align: top;
+  font-size: 0.8em;
+  color: #888; }
+body.benefits-layout h5 {
+  color: #242424; }
+body.benefits-layout blockquote {
+  background: url("/dist/assets/img//quote.png") 2px 4px no-repeat;
+  color: #006eb6;
+  padding-left: 50px;
+  margin: 20px 20px 20px 0; }
+  body.benefits-layout blockquote .by {
+    color: #6b6b6b;
+    font-size: 0.8em;
+    text-align: right; }
+body.benefits-layout .columns.seven li {
+  color: #242424;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.5;
+  list-style: none;
+  margin: 5px 0 5px; }
+body.benefits-layout .sub-header-nav > li {
+  display: inline; }
+body.benefits-layout .sub-header-nav .dropdown {
+  display: inline-block;
+  margin-top: 20px; }
+
+@media screen and (min-width: 768px) {
+  body.benefits-layout .sub-header-nav > li {
+    display: inline-block; }
+  body.benefits-layout .sub-header-nav .dropdown {
+    margin-top: 0; }
+  body.benefits-layout .columns.seven li {
+    list-style: disc;
+    list-style-position: outside;
+    margin: 5px 0 5px 25px; } }
+
 body.customer-stories-page .sub-header-nav {
   text-align: right; }
 body.customer-stories-page .top-content {
@@ -1674,7 +1851,7 @@ body.customer-stories-page .customer-grid-elm {
     padding: 20px; }
   body.customer-stories-page .customer-grid-elm .customer-logos {
     background-repeat: no-repeat;
-    -webkit-background-size: contain;
+    -webkit-background-size: contain contain;
     background-size: contain;
     background-position: center center;
     margin: 0 auto; }

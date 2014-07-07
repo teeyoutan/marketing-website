@@ -149,6 +149,7 @@ module.exports = function(grunt) {
         environmentIsProduction: '<%= grunt.config.get("environmentIsProduction") %>',
         environmentIsDev: '<%= grunt.config.get("environmentIsDev") %>',
         data: ['<%= config.content %>/**/*.json', '<%= config.content %>/**/*.yml', '<%= grunt.config.get("environmentData") %>'],
+        partials: ['<%= config.guts %>/templates/partials/*.{hbs, md}'],
         helpers: ['<%= config.helpers %>/helper-*.js']
       },
       pages: {

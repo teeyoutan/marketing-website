@@ -1,0 +1,52 @@
+---
+layout: wrapper.hbs
+menu_items:
+- name: "Agencies"
+  url: "/partners"
+- name: "Developers"
+  url: "/developers"
+- name: "E-commerce"
+  url: "/ecommerce"
+- name: "Enterprises"
+  url: "/enterprises"
+- name: "Publishers"
+  url: "/publishers"
+- name: "Small Business"
+  url: "/small-business"
+layout_body_class:
+- benefits-layout
+layout_script: benefits.js
+---
+<div id="main">
+    <div id="page-header">
+        <div class="container">
+            <div class="clearfix page-subheader-cont">
+                <h1>
+                    {{#if page.above_logo_text}}<span class="super">{{page.above_logo_text}}</span>{{else}}<span class="super">Optimizely for</span>{{/if}}
+                    {{page.visible_title}}
+                </h1>
+                <ul class="sub-header-nav">
+                    <li><a href="/pricing" class="">Plans and Pricing</a></li>
+                    <li><a href="/benefits" class="current">Benefits</a></li>
+                    <li class="dropdown SL_hide">
+                        <span class="for-menu-label">Optimizely for: </span>
+                        <ul class="for-menu" data-current="{{page.visible_title}}">
+                            {{#menu_items}}
+                            <li><a href="{{url}}">{{name}}</a></li>
+                            {{/menu_items}}
+                        </ul>
+                    </li>
+                </ul>
+            </div><!---->
+        </div><!--/.container-->
+    </div><!--/#page-header-->
+    <div id="page-header-gradient"></div>
+    <div id="page-content">
+        {{#unless page.no_container}}<div class="container row">{{/unless}}
+        {{> body}}
+        <div class="attention center-desktop row">
+            <h3>Your improved site awaits <a href="/pricing" class="primary-button">View Plans &amp; Pricing</a></h3>
+        </div>
+        {{#unless page.no_container}}</div><!--/.container-->{{/unless}}
+    </div><!--/#content-->
+</div><!--/#main-->

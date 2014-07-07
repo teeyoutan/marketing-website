@@ -27,6 +27,11 @@
 	line-height: 1.4;
 	padding: 0.6em 2.8em;
 	text-align: center;
+
+	&.small {
+		font-size: 12px;
+		padding: 0.5em 1em;
+	}
 }
 
 .primary-button {
@@ -67,13 +72,66 @@
     box-shadow: 0 0 3px 3px #EEE;
 }
 
+.box {
+	background-color: white;
+	padding: 25px;	
+}
+
+.list-unstyled {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+
+	li {
+		margin: 0;
+	}
+}
+
 .divider-heading {
 	color: #006eb6;
 	margin: 25px 0;
 }
 
+.subheading {
+	color: #242424;
+	font-size: 1.9em;
+	margin: 0 0 38px;
+	text-align: center;
+	font-weight: 300;
+}
+
+.half {
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	width: 50%;
+
+	&.right {
+		padding-left: 10px;
+	}
+
+	&.left {
+		padding-right: 10px;
+	}
+}
+
+.a-right {
+	text-align: right;
+}
+
 .attention {
 	margin: 20px 0;
+	h3 {
+		text-align: center;
+	}
+}
+
+.super {
+	display: block;
+	padding-bottom: 0.25em;
+	font-size: 0.45em;
+	line-height: 1;
+	text-align: center;
 }
 
 .logo {
@@ -113,6 +171,18 @@ body .small-note, body p.small-note {
 	li {
 		list-style-type: none;
 		margin-bottom: 10px;
+	}
+}
+
+@media screen and (min-width: $tablet-min-width) {
+	.super {
+		text-align: left;
+	}
+	.box {
+		-moz-box-shadow: 0px 2px 4px rgba(0,0,0,0.07);
+		-webkit-box-shadow: 0px 2px 4px rgba(0,0,0,0.07);
+		box-shadow: 0px 2px 4px rgba(0,0,0,0.07);
+		border: 1px solid #ddd;
 	}
 }
 
