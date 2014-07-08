@@ -4,7 +4,9 @@
 
   window.optly.mrkt = window.optly.mrkt || {}; 
 
-window.optly.mrktEng.index.testItOut = function(editURL){
+window.optly.mrkt.index = {};
+
+window.optly.mrkt.index.testItOut = function(editURL){
 
   //send user to the editor
   window.location = 'https://www.optimizely.com/edit?url=' + editURL;

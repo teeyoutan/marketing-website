@@ -592,7 +592,7 @@ header {
     position: absolute;
     height: 15px;
     width: 15px;
-    background: url("/dist/assets/img//arrow.svg");
+    background: url("/dist/assets/img/arrow.svg");
     position: absolute;
     left: 5px;
     top: 17px;
@@ -663,7 +663,7 @@ header {
   #nav-menu, #user-nav-cont {
     display: none; }
   header {
-    background: url("/dist/assets/img//bg-top-header.png") repeat-x, url("/dist/assets/img//bg-header.png"); }
+    background: url("/dist/assets/img/bg-top-header.png") repeat-x, url("/dist/assets/img/bg-header.png"); }
     header ul {
       text-align: right;
       padding: 0;
@@ -1031,7 +1031,7 @@ body {
   background-color: #fff;
   background-repeat: no-repeat;
   background-position: center bottom;
-  background-image: url("/dist/assets/img//bg-shadow.png"); }
+  background-image: url("/dist/assets/img/bg-shadow.png"); }
 
 #page-content {
   background: #fff;
@@ -1442,7 +1442,7 @@ body .small-note, body p.small-note {
   .attention:before, .attention:after {
     -webkit-background-size: 100%, 100%;
     background-size: 100%, 100%;
-    background: url("/dist/assets/img//sepshadow.png") no-repeat center top;
+    background: url("/dist/assets/img/sepshadow.png") no-repeat center top;
     content: " ";
     display: block;
     height: 30px;
@@ -1465,7 +1465,7 @@ input[type="text"].error, input[type="url"].error, input[type="email"].error, in
 
 /* pages */
 body.home-page {
-  background: #003367 url("/dist/assets/img//bg-header.png") repeat; }
+  background: #003367 url("/dist/assets/img/bg-header.png") repeat; }
   body.home-page h1 {
     color: #fff; }
   body.home-page form {
@@ -1569,7 +1569,7 @@ body.events-page .event-cont {
       font-weight: 500;
       color: #444; }
   body.events-page .show-past-events {
-    background: url("/dist/assets/img//past-events.png") no-repeat left center;
+    background: url("/dist/assets/img/past-events.png") no-repeat left center;
     margin-left: 10px;
     padding-left: 63px;
     padding-top: 7px;
@@ -1721,7 +1721,7 @@ body.contact-page .lede-image {
   body.contact-page #map {
     height: 300px; }
   body.contact-page .small-logo {
-    background: url("/dist/assets/img//logo-small.jpg") top left no-repeat;
+    background: url("/dist/assets/img/logo-small.jpg") top left no-repeat;
     height: 21px;
     width: 95px; }
   body.contact-page h5 {
@@ -1777,7 +1777,7 @@ body.benefits-layout .for-menu-label {
 body.benefits-layout h5 {
   color: #242424; }
 body.benefits-layout blockquote {
-  background: url("/dist/assets/img//quote.png") 2px 4px no-repeat;
+  background: url("/dist/assets/img/quote.png") 2px 4px no-repeat;
   color: #006eb6;
   padding-left: 50px;
   margin: 20px 20px 20px 0; }
@@ -1812,6 +1812,25 @@ body.customer-stories-page .sub-header-nav {
   text-align: right; }
 body.customer-stories-page .top-content {
   margin-bottom: 25px; }
+  body.customer-stories-page .top-content h2 {
+    margin: 20px 0 0 0;
+    font-size: 2.1em;
+    font-weight: 300;
+    line-height: 1.2; }
+body.customer-stories-page #page-content {
+  background: #f4f4f4; }
+body.customer-stories-page .callout {
+  text-align: center;
+  margin: 50px auto; }
+  body.customer-stories-page .callout h3 {
+    text-align: center;
+    font-weight: 300;
+    margin: 0; }
+  body.customer-stories-page .callout p {
+    font-size: 15px;
+    color: #666;
+    font-weight: 300;
+    line-height: 1.5; }
 body.customer-stories-page .video-container {
   position: relative;
   width: 100%;
@@ -1823,8 +1842,8 @@ body.customer-stories-page .video-container {
     width: 100%;
     height: 100%; }
 body.customer-stories-page .case-studies-bg-container {
-  padding-top: 50px;
-  background: url(https://www.optimizely.com/static/img/customer-stories/cs-grid-bg.png); }
+  padding: 50px 0;
+  background: url("/dist/assets/img/cs-grid-bg.png"); }
 body.customer-stories-page .customer-grid-elm {
   position: relative;
   text-align: center;
@@ -1841,6 +1860,8 @@ body.customer-stories-page .customer-grid-elm {
     font-size: 14px;
     font-weight: 300;
     letter-spacing: -1.2px; }
+    body.customer-stories-page .customer-grid-elm .title-container span {
+      font-weight: bold; }
   body.customer-stories-page .customer-grid-elm .percent {
     position: relative;
     top: -5px;
@@ -1851,7 +1872,7 @@ body.customer-stories-page .customer-grid-elm {
     padding: 20px; }
   body.customer-stories-page .customer-grid-elm .customer-logos {
     background-repeat: no-repeat;
-    -webkit-background-size: contain contain;
+    -webkit-background-size: contain;
     background-size: contain;
     background-position: center center;
     margin: 0 auto; }
@@ -1864,7 +1885,16 @@ body.customer-stories-page .customer-grid-elm {
 
 @media only screen and (min-width: 960px) { }
 
-@media only screen and (min-width: 768px) { }
+@media only screen and (min-width: 768px) {
+  body.customer-stories-page .top-content h2 {
+    margin: 0; }
+  body.customer-stories-page .callout {
+    width: 460px; }
+  body.customer-stories-page .title-container h4, body.customer-stories-page .title-container span {
+    font-size: 1em; }
+  body.customer-stories-page p {
+    font-size: 0.9em;
+    line-height: 1.6em; } }
 
 body.partners .partners-desc.center-desktop {
   margin-bottom: 10px; }
