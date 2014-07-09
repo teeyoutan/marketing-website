@@ -22,7 +22,7 @@ body.benefits-page {
     height: 275px;
     width: 100%;
     background-image: image-url('benefits/sprite.png');
-    background-position-x: center;
+    background-position: 0 0;
     background-repeat: no-repeat;
 
     &.actionable-data {
@@ -31,43 +31,43 @@ body.benefits-page {
 
     &.ideas-to-life {
       height: 332px;
-      background-position-y: -735px;
+      background-position: 0 -735px;
     }
 
     &.track {
-      background-position-y: -2327px;
+      background-position: 0 -2327px;
     }
 
     &.maintain-control {
-      background-position-y: -1067px;
+      background-position: 0 -1067px;
     }
 
     &.your-terms {
-      background-position-y: -2052px;
+      background-position: 0 -2052px;
     }
 
     &.tailored {
       height: 240px;
-      background-position-y: -1812px;
+      background-position: 0 -1812px;
     }
 
     &.notacoder {
       height: 260px;
-      background-position-y: -1342px;
+      background-position: 0 -1342px;
     }
 
     &.revenue-now {
       height: 210px;
-      background-position-y: -1602px;
+      background-position: 0 -1602px;
     }
 
     &.winning {
       height: 250px;
-      background-position-y: -485px;
+      background-position: 0 -485px;
     }
 
     &.customize {
-      background-position-y: -210px;
+      background-position: 0 -210px;
     }
   }
 

@@ -23,7 +23,7 @@ window.optly.mrkt.benefitsLayout.menuOrder = function() {
   /* Changes the order of menu items and disables the current link */
 
   var currentPage     = $('.for-menu').attr('data-current').split('/')[1],
-      currentMenuItem = $('.for-menu').find('a[href*=' + currentPage);
+      currentMenuItem = $('.for-menu').find('a[href*=' + currentPage + ']');
 
   $(currentMenuItem).removeClass('hide').removeAttr('href').parent().insertBefore($('.for-menu li:first'));
 };
