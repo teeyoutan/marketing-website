@@ -1,7 +1,10 @@
 
 body.customers-page {
+    #page-content {
+        background: #f4f4f4;
+    }
     .customer-grid-item {
-        margin-left: 0;
+        margin: 20px 0;
         height: 73px;
         background-position: 50% 0;
         background-repeat: no-repeat;
@@ -101,7 +104,12 @@ body.customers-page {
         .customer-grid-item {
             @include column;
             @include columns(3);
-            margin-left: 0;
+            margin-top: 20px;
+            margin-bottom: 20px;
+
+            &.first-tablet {
+                margin-left: 0;
+            }
         }
     } 
 }
@@ -112,7 +120,17 @@ body.customers-page {
         .customer-grid-item {
             @include column;
             @include columns(2.4);
-            margin-left: 0;
+            margin-top: 20px;
+            margin-bottom: 20px;
+
+
+            &.first-tablet {
+                margin-left: 2.1276595745%;
+            }
+            
+            &.first-desktop {
+                margin-left: 0;
+            }
         }
     } 
 }
