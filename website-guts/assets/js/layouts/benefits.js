@@ -1,4 +1,4 @@
-window.optly.mrkt.benefits = {};
+window.optly.mrkt.benefitsLayout = {};
 
 window.optly.mrkt.benefitsLayout.menuHandlers = function() {
 
@@ -16,10 +16,10 @@ window.optly.mrkt.benefitsLayout.menuHandlers = function() {
 window.optly.mrkt.benefitsLayout.menuOrder = function() {
   /* Changes the order of menu items and disables the current link */
 
-  var currentPage = $('.for-menu').attr('data-current'),
-      currentMenuItem = $('.for-menu').find('a:contains("' + currentPage + '")');
+  var currentPage     = $('.for-menu').attr('data-current').split('/')[1],
+      currentMenuItem = $('.for-menu').find('a[href*=' + currentPage);
 
-  $(currentMenuItem).removeAttr('href').parent().insertBefore($('.for-menu li:first'));
+  $(currentMenuItem).removeClass('hide').removeAttr('href').parent().insertBefore($('.for-menu li:first'));
 };
 
 window.optly.mrkt.benefitsLayout.menuHandlers();

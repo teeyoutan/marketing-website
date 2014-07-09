@@ -1769,6 +1769,8 @@ body.benefits-layout .for-menu {
       border-bottom: 1px solid #eee; }
       body.benefits-layout .for-menu.shown li:first-child a {
         color: #006eb6; }
+  body.benefits-layout .for-menu .hide {
+    display: none; }
 body.benefits-layout .for-menu-label {
   padding-right: 155px;
   vertical-align: top;
@@ -1933,3 +1935,57 @@ body.partners .apply-today p {
 @media (min-width: 960px) {
   body.partners .benefits-cont h3 {
     font-size: 1.8em; } }
+
+body.benefits-page {
+  /* subnav link */ }
+  body.benefits-page .super {
+    display: none; }
+  body.benefits-page #page-header h1 {
+    line-height: 55px; }
+  body.benefits-page .subheading {
+    margin-bottom: 8px; }
+  body.benefits-page h5 {
+    margin: 0; }
+  body.benefits-page .graphic {
+    height: 275px;
+    width: 100%;
+    background-image: url("/dist/assets/img/benefits/sprite.png");
+    background-position-x: center;
+    background-repeat: no-repeat; }
+    body.benefits-page .graphic.actionable-data {
+      height: 210px; }
+    body.benefits-page .graphic.ideas-to-life {
+      height: 332px;
+      background-position-y: -735px; }
+    body.benefits-page .graphic.track {
+      background-position-y: -2327px; }
+    body.benefits-page .graphic.maintain-control {
+      background-position-y: -1067px; }
+    body.benefits-page .graphic.your-terms {
+      background-position-y: -2052px; }
+    body.benefits-page .graphic.tailored {
+      height: 240px;
+      background-position-y: -1812px; }
+    body.benefits-page .graphic.notacoder {
+      height: 260px;
+      background-position-y: -1342px; }
+    body.benefits-page .graphic.revenue-now {
+      height: 210px;
+      background-position-y: -1602px; }
+    body.benefits-page .graphic.winning {
+      height: 250px;
+      background-position-y: -485px; }
+    body.benefits-page .graphic.customize {
+      background-position-y: -210px; }
+  body.benefits-page .benefits-copy h3 {
+    color: #006eb6; }
+  body.benefits-page .benefits {
+    font-weight: 500;
+    color: #0053a7; }
+
+@media screen and (min-width: 768px) {
+  body.benefits-page .benefits-main .row {
+    background: url("/dist/assets/img/benefits/bg-feature.png") no-repeat center 100%;
+    padding: 30px 0; }
+  body.benefits-page .benefits-copy.revenue-now p, body.benefits-page .benefits-copy.revenue-now h3 {
+    padding-right: 20px; } }
