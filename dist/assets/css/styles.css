@@ -1737,91 +1737,93 @@ body.contact-page .lede-image {
 
 body.customers-page #page-content {
   background: #f4f4f4; }
+body.customers-page #page-header-gradient {
+  background-color: #f4f4f4; }
+body.customers-page #page-content {
+  padding-bottom: 0; }
 body.customers-page .customer-grid-item {
-  margin: 20px 0;
-  height: 73px;
+  border-bottom: 1px solid #e1e1e1;
+  padding: 20px 0; }
+body.customers-page .customer-logo {
   background-position: 50% 0;
   background-repeat: no-repeat;
-  background-image: url("/dist/assets/img/customer-logos/customer-logos-sprite-1.png"); }
-  body.customers-page .customer-grid-item.sprite2 {
+  background-image: url("/dist/assets/img/customer-logos/customer-logos-sprite-1.png");
+  height: 73px; }
+  body.customers-page .customer-logo.sprite2 {
     background-image: url("/dist/assets/img/customer-logos/customer-logos-sprite-2.png"); }
-  body.customers-page .customer-grid-item.starbucks {
-    background-position: 50% -584px; }
-  body.customers-page .customer-grid-item.salesforce {
-    background-position: 50% -146px; }
-  body.customers-page .customer-grid-item.fico {
-    background-position: 50% -292px; }
-  body.customers-page .customer-grid-item.mtv {
-    background-position: 50% -511px; }
-  body.customers-page .customer-grid-item.abc {
-    background-position: 50% 0; }
-  body.customers-page .customer-grid-item.fox {
-    background-position: 50% -365px; }
-  body.customers-page .customer-grid-item.guardian {
-    background-position: 50% -438px; }
-  body.customers-page .customer-grid-item.cbs {
-    background-position: 50% -73px; }
-  body.customers-page .customer-grid-item.disney {
-    background-position: 50% -219px; }
-  body.customers-page .customer-grid-item.techcrunch {
-    background-position: 50% -657px; }
-  body.customers-page .customer-grid-item.clorox {
-    background-position: 50% -365px; }
-  body.customers-page .customer-grid-item.signals {
-    background-position: 50% -292px; }
-  body.customers-page .customer-grid-item.ruelala {
-    background-position: 50% -73px; }
-  body.customers-page .customer-grid-item.truste {
-    background-position: 50% -219px; }
-  body.customers-page .customer-grid-item.taskrabbit {
-    background-position: 50% -511px; }
-  body.customers-page .customer-grid-item.nymag {
-    background-position: 50% 0; }
-  body.customers-page .customer-grid-item.cars {
-    background-position: 50% -438px; }
-  body.customers-page .customer-grid-item.lendingtree {
-    background-position: 50% -730px; }
-  body.customers-page .customer-grid-item.ign {
-    background-position: 50% -1022px; }
-  body.customers-page .customer-grid-item.rocketlawyer {
-    background-position: 50% -949px; }
-  body.customers-page .customer-grid-item.demand {
-    background-position: 50% -803px; }
-  body.customers-page .customer-grid-item.legalzoom {
-    background-position: 50% -657px; }
-  body.customers-page .customer-grid-item.ae {
-    background-position: 50% -584px; }
-  body.customers-page .customer-grid-item.yelp {
-    background-position: 50% -146px; }
-  body.customers-page .customer-grid-item.livestrong {
-    background-position: 50% -876px; }
+body.customers-page .starbucks {
+  background-position: 50% -584px; }
+body.customers-page .salesforce {
+  background-position: 50% -146px; }
+body.customers-page .fico {
+  background-position: 50% -292px; }
+body.customers-page .mtv {
+  background-position: 50% -511px; }
+body.customers-page .abc {
+  background-position: 50% 0; }
+body.customers-page .fox {
+  background-position: 50% -365px; }
+body.customers-page .guardian {
+  background-position: 50% -438px; }
+body.customers-page .cbs {
+  background-position: 50% -73px; }
+body.customers-page .disney {
+  background-position: 50% -219px; }
+body.customers-page .techcrunch {
+  background-position: 50% -657px; }
+body.customers-page .clorox {
+  background-position: 50% -365px; }
+body.customers-page .signals {
+  background-position: 50% -292px; }
+body.customers-page .ruelala {
+  background-position: 50% -73px; }
+body.customers-page .truste {
+  background-position: 50% -219px; }
+body.customers-page .taskrabbit {
+  background-position: 50% -511px; }
+body.customers-page .nymag {
+  background-position: 50% 0; }
+body.customers-page .cars {
+  background-position: 50% -438px; }
+body.customers-page .lendingtree {
+  background-position: 50% -730px; }
+body.customers-page .ign {
+  background-position: 50% -1022px; }
+body.customers-page .rocketlawyer {
+  background-position: 50% -949px; }
+body.customers-page .demand {
+  background-position: 50% -803px; }
+body.customers-page .legalzoom {
+  background-position: 50% -657px; }
+body.customers-page .ae {
+  background-position: 50% -584px; }
+body.customers-page .yelp {
+  background-position: 50% -146px; }
+body.customers-page .livestrong {
+  background-position: 50% -876px; }
 
 @media screen and (min-width: 768px) {
   body.customers-page .customer-grid-item {
     float: left;
     margin: 0 0 0 2.1276595745%;
     width: 6.3829787%;
-    width: 23.4042552489%;
-    margin-top: 20px;
-    margin-bottom: 20px; }
+    width: 24.9361701383%;
+    margin: 0 0 20px 0; }
     body.customers-page .customer-grid-item:first-child {
       margin-left: 0; }
-    body.customers-page .customer-grid-item.first-tablet {
-      margin-left: 0; } }
+  body.customers-page .customer-logo {
+    border-right: 1px solid #e1e1e1; }
+  body.customers-page #page-content {
+    padding-bottom: 35px; } }
 
 @media screen and (min-width: 960px) {
   body.customers-page .customer-grid-item {
     float: left;
     margin: 0 0 0 2.1276595745%;
     width: 6.3829787%;
-    width: 18.2978722843%;
-    margin-top: 20px;
-    margin-bottom: 20px; }
+    width: 19.9999999391%;
+    margin: 0 0 20px 0; }
     body.customers-page .customer-grid-item:first-child {
-      margin-left: 0; }
-    body.customers-page .customer-grid-item.first-tablet {
-      margin-left: 2.1276595745%; }
-    body.customers-page .customer-grid-item.first-desktop {
       margin-left: 0; } }
 
 /* layouts */
