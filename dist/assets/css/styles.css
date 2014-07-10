@@ -674,7 +674,7 @@ header {
       display: none;
       background: -webkit-gradient(linear, left top, left bottom, from(#00558d), color-stop(15%, #006eb6), to(#006eb6));
       background: -webkit-linear-gradient(top, #00558d 0%, #006eb6 15%, #006eb6 100%);
-      background: linear-gradient(top, #00558d 0%, #006eb6 15%, #006eb6 100%); }
+      background: linear-gradient(to bottom, #00558d 0%, #006eb6 15%, #006eb6 100%); }
   #top-nav-cont {
     border-bottom: 1px solid #104682; }
   .logo-cont {
@@ -1262,6 +1262,12 @@ body {
   text-align: center;
   vertical-align: middle;
   text-shadow: 0 -1px 0px rgba(0, 0, 0, 0.23); }
+  .primary-button:hover, body.home-page input[type=submit]:hover {
+    -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.18);
+            box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.18);
+    background: #90b71c;
+    border-color: #68792f;
+    text-decoration: none; }
 
 .secondary-button {
   background: -webkit-gradient(linear, left top, left bottom, from(#90b71c), to(#7fa119));
@@ -1858,6 +1864,8 @@ body.benefits-layout .for-menu {
       border-bottom: 1px solid #eee; }
       body.benefits-layout .for-menu.shown li:first-child a {
         color: #006eb6; }
+  body.benefits-layout .for-menu .hide {
+    display: none; }
 body.benefits-layout .for-menu-label {
   padding-right: 155px;
   vertical-align: top;
@@ -2022,3 +2030,57 @@ body.partners .apply-today p {
 @media (min-width: 960px) {
   body.partners .benefits-cont h3 {
     font-size: 1.8em; } }
+
+body.benefits-page {
+  /* subnav link */ }
+  body.benefits-page .super {
+    display: none; }
+  body.benefits-page #page-header h1 {
+    line-height: 55px; }
+  body.benefits-page .subheading {
+    margin-bottom: 8px; }
+  body.benefits-page h5 {
+    margin: 0; }
+  body.benefits-page .graphic {
+    height: 275px;
+    width: 100%;
+    background-image: url("/dist/assets/img/benefits/sprite.png");
+    background-position: 50% 0;
+    background-repeat: no-repeat; }
+    body.benefits-page .graphic.actionable-data {
+      height: 210px; }
+    body.benefits-page .graphic.ideas-to-life {
+      height: 332px;
+      background-position: 50% -735px; }
+    body.benefits-page .graphic.track {
+      background-position: 50% -2327px; }
+    body.benefits-page .graphic.maintain-control {
+      background-position: 50% -1067px; }
+    body.benefits-page .graphic.your-terms {
+      background-position: 50% -2052px; }
+    body.benefits-page .graphic.tailored {
+      height: 240px;
+      background-position: 50% -1812px; }
+    body.benefits-page .graphic.notacoder {
+      height: 260px;
+      background-position: 50% -1342px; }
+    body.benefits-page .graphic.revenue-now {
+      height: 210px;
+      background-position: 50% -1602px; }
+    body.benefits-page .graphic.winning {
+      height: 250px;
+      background-position: 50% -485px; }
+    body.benefits-page .graphic.customize {
+      background-position: 50% -210px; }
+  body.benefits-page .benefits-copy h3 {
+    color: #006eb6; }
+  body.benefits-page .benefits {
+    font-weight: 500;
+    color: #0053a7; }
+
+@media screen and (min-width: 768px) {
+  body.benefits-page .benefits-main .row {
+    background: url("/dist/assets/img/benefits/bg-feature.png") no-repeat center 100%;
+    padding: 30px 0; }
+  body.benefits-page .benefits-copy.revenue-now p, body.benefits-page .benefits-copy.revenue-now h3 {
+    padding-right: 20px; } }
