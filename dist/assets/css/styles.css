@@ -1262,6 +1262,12 @@ body {
   text-align: center;
   vertical-align: middle;
   text-shadow: 0 -1px 0px rgba(0, 0, 0, 0.23); }
+  .primary-button:hover, body.home-page input[type=submit]:hover {
+    -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.18);
+            box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.18);
+    background: #90b71c;
+    border-color: #68792f;
+    text-decoration: none; }
 
 .secondary-button {
   background: -webkit-gradient(linear, left top, left bottom, from(#90b71c), to(#7fa119));
