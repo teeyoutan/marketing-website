@@ -1,0 +1,11 @@
+---
+question_list:
+    -
+        question: Where can I go to learn more about the Optimizely for iOS Beta?
+        answer: |
+            <p><a href='https://help.optimizely.com/hc/en-us/articles/201893400'>Click here</a> to access a detailed FAQ and links to documentation for the Optimizely for iOS Beta.</p>
+    -
+        question: What amount of technical expertise is required to use Optimizely?
+        answer: |
+             <p>Minimal technical expertise is necessary to use Optimizely.  We have built a what-you-see-is-what-you-get editor for making A/B tests.  Simply load your website in the editor, click on an element, and make your changes.  You can even <a href="/edit#url=www.google.com"> try the editor for yourself</a>.</p>
+             <p>For power users, we also provide the ability to write custom variation code with JavaScript. For more information, see <a href="https://help.optimizely.com/hc/en-us/articles/200039835"> this knowledge base article </a>.</p>

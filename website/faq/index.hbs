@@ -1,0 +1,15 @@
+---
+layout: faq.hbs
+visible_title: FAQ
+---
+<div class="button-controls">
+    <a class="secondary-button small expand-all">Expand All</a>
+    <a class="secondary-button small collapse-all">Collapse All</a>
+</div>
+
+<div class="accordion">
+    {{#with faq_content.question_list}}
+        <div class="question"><h5>{{question}}</h5></div>
+        <div class="answer">{{answer}}</div>
+    {{/with}}
+</div>

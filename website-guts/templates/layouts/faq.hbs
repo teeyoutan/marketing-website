@@ -1,0 +1,44 @@
+---
+layout: wrapper.hbs
+layout_script: false
+layout_body_class: false
+faq_navigation:
+-
+    text: Getting Started
+    url: /gettingstarted
+-
+    text: Webinar Signup
+    url: https://www.optimizely.com/resources/live-demo-webinar
+-
+    text: FAQ
+    url: /faq
+-
+    text: Knowledge Base
+    url: https://help.optimizely.com
+-
+    text: API Documentation
+    url: http://developers.optimizely.com
+-
+    text: Blog
+    url: http://blog.optimizely.com
+---
+<div id="main">
+    <div id="page-header">
+        <div class="container">
+            <div class="clearfix page-subheader-cont">
+                <h1>{{page.visible_title}}</h1>
+                <ul class="sub-header-nav">
+                    {{#each faq_navigation}}
+                    <li><a href="{{url}}">{{text}}</a></li>
+                    {{/each}}
+                </ul>
+            </div><!---->
+        </div><!--/.container-->
+    </div><!--/#page-header-->
+    <div id="page-header-gradient"></div>
+    <div id="page-content">
+        {{#unless page.no_container}}<div class="container">{{/unless}}
+            {{> body }}
+        {{#unless page.no_container}}</div><!--/.container-->{{/unless}}
+    </div><!--/#content-->
+</div><!--/#main-->
