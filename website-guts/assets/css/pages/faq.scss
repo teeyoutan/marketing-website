@@ -23,15 +23,16 @@ body.faq-page {
     }
 
     .answer {
-        padding: 5px 20px 20px;
         display: none;
+        margin: 0;
 
         p {
             margin-top: 0;
-        }
+            padding: 5px 20px;
 
-        &.open {
-            display: block;
+            &:last-child {
+                padding-bottom: 20px;
+            }
         }
     }
 

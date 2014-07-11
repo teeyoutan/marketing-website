@@ -1853,12 +1853,13 @@ body.faq-page .question {
   body.faq-page .question.open {
     background: #fff; }
 body.faq-page .answer {
-  padding: 5px 20px 20px;
-  display: none; }
+  display: none;
+  margin: 0; }
   body.faq-page .answer p {
-    margin-top: 0; }
-  body.faq-page .answer.open {
-    display: block; }
+    margin-top: 0;
+    padding: 5px 20px; }
+    body.faq-page .answer p:last-child {
+      padding-bottom: 20px; }
 
 /* layouts */
 body.benefits-layout .for-menu {

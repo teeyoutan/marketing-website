@@ -17,21 +17,21 @@ window.optly.mrkt.faq.accordion = function() {
   $(question).click(function(event) {
     event.preventDefault();
 
-    $(this).toggleClass('open').siblings().toggleClass('open');
+    $(this).toggleClass('open').next('.answer').slideToggle('fast');
   });
 
   $(expandAll).click(function(event){
     event.preventDefault();
 
     $(question).addClass('open');
-    $(answer).addClass('open');
+    $(answer).slideDown('fast');
   });
 
   $(collapseAll).click(function(event){
     event.preventDefault();
 
     $(question).removeClass('open');
-    $(answer).removeClass('open');
+    $(answer).slideUp('fast');
   });
 };
 
