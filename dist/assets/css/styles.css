@@ -1884,6 +1884,75 @@ body.faq-page .answer {
     body.faq-page .answer p:last-child {
       padding-bottom: 20px; }
 
+body.getting-started .slider ul {
+  list-style: none;
+  margin-left: 0; }
+body.getting-started .slider li {
+  margin-bottom: 20px; }
+body.getting-started .nextLink {
+  display: none; }
+body.getting-started .controls {
+  display: none; }
+
+@media only screen and (min-width: 960px) {
+  body.getting-started .nextLink {
+    display: inline;
+    font-size: 0.85em;
+    font-weight: 500; }
+  body.getting-started .controls {
+    display: block;
+    background: url("/dist/assets/img/gettingstarted/tracking-bg.png") no-repeat 50% 50%; }
+    body.getting-started .controls a {
+      margin-right: 172px;
+      color: #eee;
+      font-size: 0.75em;
+      font-weight: 500;
+      height: 2em;
+      line-height: 2;
+      text-align: center;
+      width: 24px;
+      display: inline-block;
+      text-decoration: none;
+      text-indent: -9999em; }
+      body.getting-started .controls a:hover {
+        cursor: pointer; }
+      body.getting-started .controls a.active {
+        background: url("/dist/assets/img/gettingstarted/current-slide.png") top center no-repeat;
+        text-indent: 0; }
+      body.getting-started .controls a:last-child {
+        margin-right: 0; }
+      body.getting-started .controls a:first-child {
+        margin-left: 44px; }
+  body.getting-started .slider {
+    max-width: 912px;
+    overflow: hidden;
+    margin-top: 35px;
+    margin-bottom: 10px; }
+    body.getting-started .slider h3, body.getting-started .slider h4 {
+      margin-top: 10px; }
+    body.getting-started .slider ul {
+      width: 6000px;
+      position: relative;
+      left: 0;
+      -webkit-transition: left 0.5s ease-in-out;
+              transition: left 0.5s ease-in-out; }
+      body.getting-started .slider ul li {
+        margin-bottom: 0;
+        padding-left: 3px; }
+      body.getting-started .slider ul.one {
+        left: 0; }
+      body.getting-started .slider ul.two {
+        left: -912px; }
+      body.getting-started .slider ul.three {
+        left: -1824px; }
+      body.getting-started .slider ul.four {
+        left: -2736px; }
+      body.getting-started .slider ul.five {
+        left: -3648px; }
+    body.getting-started .slider li {
+      max-width: 912px;
+      float: left; } }
+
 /* layouts */
 body.benefits-layout .for-menu {
   list-style: none;
