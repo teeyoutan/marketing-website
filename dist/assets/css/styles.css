@@ -1937,7 +1937,9 @@ body.getting-started .controls {
         position: absolute;
         color: #777777;
         left: -38px;
-        width: 100px; }
+        width: 100px;
+        margin: 0;
+        padding: 10px 0; }
       body.getting-started .controls a:hover {
         cursor: pointer; }
       body.getting-started .controls a.active {
