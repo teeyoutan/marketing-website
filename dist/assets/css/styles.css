@@ -1917,7 +1917,8 @@ body.getting-started .controls {
     font-weight: 500; }
   body.getting-started .controls {
     display: block;
-    background: url("/dist/assets/img/gettingstarted/tracking-bg.png") no-repeat 50% 50%; }
+    background: url("/dist/assets/img/gettingstarted/tracking-bg.png") no-repeat 50% 50%;
+    margin-bottom: 20px; }
     body.getting-started .controls a {
       margin-right: 172px;
       color: #eee;
@@ -1929,7 +1930,14 @@ body.getting-started .controls {
       width: 24px;
       display: inline-block;
       text-decoration: none;
-      text-indent: -9999em; }
+      text-indent: -9999em;
+      position: relative; }
+      body.getting-started .controls a p {
+        text-indent: 0;
+        position: absolute;
+        color: #777777;
+        left: -38px;
+        width: 100px; }
       body.getting-started .controls a:hover {
         cursor: pointer; }
       body.getting-started .controls a.active {

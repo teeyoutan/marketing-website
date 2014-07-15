@@ -34,6 +34,7 @@ body.getting-started {
         .controls {
             display: block;
             background: image-url('gettingstarted/tracking-bg.png') no-repeat 50% 50%;
+            margin-bottom: 20px;
 
             a {
                 margin-right: 172px;
@@ -47,6 +48,15 @@ body.getting-started {
                 display: inline-block;
                 text-decoration: none;
                 text-indent: -9999em;
+                position: relative;
+
+                p {
+                    text-indent: 0;
+                    position: absolute;
+                    color: #777777;
+                    left: -38px;
+                    width: 100px;
+                }
 
                 &:hover {
                     cursor: pointer;
