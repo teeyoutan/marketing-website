@@ -1,0 +1,99 @@
+body.live-demo-page {
+
+    #main {
+        padding-bottom: 50px;
+    }
+
+    .reasons {
+        margin-bottom: 30px;
+
+        h3 {
+            font-size: 25px;
+            font-weight: 300;
+        }
+    }
+
+    .date-container {
+        background-color: #f8f8f8;
+        border: 1px solid #d5d5d5;
+        padding: 10px 15px;
+        text-align: center;
+    }
+
+    .signup-month,
+    .signup-day {
+        font-weight: bold;
+        margin: 5px 0 0;
+    }
+
+    .signup-month {
+        text-transform: uppercase;
+    }
+
+    .signup-day {
+        font-size: 2em;
+        line-height: 1;
+        margin-bottom: 10px;
+    }
+
+    .bg-white {
+        background: #fff;
+        border-top: 1px solid #d5d5d5;
+        padding: 20px 0;
+    }
+
+    .ordered-rounded-numbers {
+        counter-reset: reasons-counter;
+        padding: 0;
+        li {
+            color: #6b6b6b;
+            font-size: 16px;
+            font-weight: 300;
+            line-height: 1.3;
+            list-style: none;
+            margin-bottom: 0.7em;
+            margin-left: 2em;
+            position: relative;
+
+            &:before {
+                -moz-box-sizing: border-box;
+                -webkit-box-sizing: border-box;
+                box-sizing: border-box;
+                -moz-border-radius: 50%;
+                -webkit-border-radius: 50%;
+                border-radius: 50%;
+                background-color: #d5d5d5;
+                color: white;
+                content: counter(reasons-counter);
+                counter-increment: reasons-counter;
+                display: inline-block;
+                font-weight: 500;
+                height: 1.5em;
+                left: -2em;
+                padding-top: 3px;
+                position: absolute;
+                text-align: center;
+                width: 1.5em;
+                content: counter(reasons-counter);
+                counter-increment: reasons-counter;
+            }
+        }
+    }
+
+    .signup-blurb {
+        h4,
+        h5 {
+            color: #242424;
+        }
+    }
+}
+
+@media only screen and (min-width: $tablet-min-width) {
+    .signup-blurb {
+        margin-top: 75px;
+    }
+
+    .bg-white {
+        border-bottom: 1px solid #d5d5d5;
+    }
+}

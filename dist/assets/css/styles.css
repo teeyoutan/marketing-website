@@ -1262,6 +1262,9 @@ body {
   text-align: center;
   vertical-align: middle;
   text-shadow: 0 -1px 0px rgba(0, 0, 0, 0.23); }
+  .primary-button.small, body.home-page input.small[type=submit] {
+    font-size: 12px;
+    padding: 0.5em 1em; }
   .primary-button:hover, body.home-page input[type=submit]:hover {
     -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.18);
             box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.18);
@@ -1373,6 +1376,9 @@ body .small-note, body p.small-note {
 .landing-page-form li {
   list-style-type: none;
   margin-bottom: 10px; }
+
+.blue {
+  color: #006eb6; }
 
 @media screen and (min-width: 768px) {
   .super {
@@ -1825,6 +1831,71 @@ body.customers-page .livestrong {
     margin: 0 0 20px 0; }
     body.customers-page .customer-grid-item:first-child {
       margin-left: 0; } }
+
+body.live-demo-page #main {
+  padding-bottom: 50px; }
+body.live-demo-page .reasons {
+  margin-bottom: 30px; }
+  body.live-demo-page .reasons h3 {
+    font-size: 25px;
+    font-weight: 300; }
+body.live-demo-page .date-container {
+  background-color: #f8f8f8;
+  border: 1px solid #d5d5d5;
+  padding: 10px 15px;
+  text-align: center; }
+body.live-demo-page .signup-month, body.live-demo-page .signup-day {
+  font-weight: bold;
+  margin: 5px 0 0; }
+body.live-demo-page .signup-month {
+  text-transform: uppercase; }
+body.live-demo-page .signup-day {
+  font-size: 2em;
+  line-height: 1;
+  margin-bottom: 10px; }
+body.live-demo-page .bg-white {
+  background: #fff;
+  border-top: 1px solid #d5d5d5;
+  padding: 20px 0; }
+body.live-demo-page .ordered-rounded-numbers {
+  counter-reset: reasons-counter;
+  padding: 0; }
+  body.live-demo-page .ordered-rounded-numbers li {
+    color: #6b6b6b;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.3;
+    list-style: none;
+    margin-bottom: 0.7em;
+    margin-left: 2em;
+    position: relative; }
+    body.live-demo-page .ordered-rounded-numbers li:before {
+      -moz-box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+      border-radius: 50%;
+      background-color: #d5d5d5;
+      color: white;
+      content: counter(reasons-counter);
+      counter-increment: reasons-counter;
+      display: inline-block;
+      font-weight: 500;
+      height: 1.5em;
+      left: -2em;
+      padding-top: 3px;
+      position: absolute;
+      text-align: center;
+      width: 1.5em;
+      content: counter(reasons-counter);
+      counter-increment: reasons-counter; }
+body.live-demo-page .signup-blurb h4, body.live-demo-page .signup-blurb h5 {
+  color: #242424; }
+
+@media only screen and (min-width: 768px) {
+  .signup-blurb {
+    margin-top: 75px; }
+  .bg-white {
+    border-bottom: 1px solid #d5d5d5; } }
 
 /* layouts */
 body.benefits-layout .for-menu {
