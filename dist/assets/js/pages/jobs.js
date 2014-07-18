@@ -21,6 +21,7 @@ window.optly.mrkt.jobsPage.testimonials = function() {
 
 $('#view-all-jobs').click(function() {
     $('html, body').animate({scrollTop: $('#jobs-list').offset().top}, 700);
+    return false;
 });
 
 window.optly.mrkt.jobsPage.testimonials();})(jQuery);
