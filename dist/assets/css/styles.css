@@ -2254,6 +2254,8 @@ body.jobs-layout .testimonials img {
   margin-right: 15px;
   width: 60px;
   float: left; }
+body.jobs-layout .testimonials q {
+  display: none; }
 body.jobs-layout .testimonials .name, body.jobs-layout .testimonials .employee-title {
   margin: 0; }
 body.jobs-layout .testimonials .employee-title {

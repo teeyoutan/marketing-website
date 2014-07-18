@@ -122,35 +122,35 @@
     <div class="row">
         <h2 class="heading center a-center blue">Why you’ll love it here</h2>
         <ul class="list-unstyled">
-          <li id="piggybank" class="">
+          <li id="piggybank">
             <h6>Compensation &amp; Rewards</h6>
             <p>Competitive pay, equity, referral/peer bonuses, and monthly recruiting raffle prizes</p>
           </li>
-          <li id="calendar" class="">
+          <li id="calendar">
             <h6>Rest &amp; Relaxation</h6>
             <p>Paid holidays, unlimited time off, and six weeks of paid parental leave</p>
           </li>
-          <li id="health" class="">
+          <li id="health">
             <h6>Healthcare Coverage</h6>
             <p>Premiums covered for you, your dependents, and your spouse or domestic partner</p>
           </li>
-          <li id="burger" class="">
+          <li id="burger">
             <h6>Meals on Us</h6>
             <p>Catered in-office lunch and dinner on weekdays and a fully stocked kitchen</p>
           </li>
-          <li id="bart" class="">
+          <li id="bart">
             <h6>Easy to get to</h6>
             <p>Convenient office location, free transit card, and secure bike storage</p>
           </li>
-          <li id="apple" class="">
+          <li id="apple">
             <h6>Brand New Gear</h6>
             <p>A shiny MacBook Pro or Air, a Thunderbolt Display, and any other gear you need</p>
           </li>
-          <li id="heart" class="">
+          <li id="heart">
             <h6>Gym Membership</h6>
             <p>Free Crunch Fitness membership or a health and wellness subsidy</p>
           </li>
-          <li id="pingpong" class="">
+          <li id="pingpong">
             <h6>We have fun</h6>
             <p>Frequent team outings, game nights, pool, video games, and a ping pong robot</p>
           </li>
@@ -160,36 +160,57 @@
 
 <div class="testimonials">
     <div class="container">
-        <h4 class="a-center">
-            <q>I love my job because I am surrounded by amazing talent and get to work on projects that keep me feeling challenged.</q>      
+        <h4 class="a-center quotes">
+            
+            <q>I love Optimizely because I get to work with brilliant people changing the Internet. I feel challenged and supported here.</q>
+            
+            <q>I get to work with people who are not only talented and accomplished, they’re also wonderful human beings. I like that we care about that.</q>
+            
+            <q>We are given the opportunity to take ownership of projects, making us all architects of the fast growing company.</q>
+            
+            <q>I really love working for a company that allows and encourages me to learn and grow. Plus, the free food isn’t too bad either.</q>
+              
         </h4>
 
         <ul class="employee-icons">
+            
             <li>
-                <img src="../assets/img/jobs/bradley.jpg">
-                <h5 class="name">Bradley</h5>
-                <h6 class="employee-title">Sales</h6>
+                <a href="#">
+                    <img src="../assets/img/jobs/bradley.jpg">
+                    <h5 class="name">Bradley</h5>
+                    <h6 class="employee-title">Sales</h6>
+                </a>
             </li>
+            
             <li>
-                <img src="../assets/img/jobs/bradley.jpg">
-                <h5 class="name">Bradley</h5>
-                <h6 class="employee-title">Sales</h6>
+                <a href="#">
+                    <img src="../assets/img/jobs/amelia.jpg">
+                    <h5 class="name">Amelia</h5>
+                    <h6 class="employee-title">Marketing</h6>
+                </a>
             </li>
+            
             <li>
-                <img src="../assets/img/jobs/bradley.jpg">
-                <h5 class="name">Bradley</h5>
-                <h6 class="employee-title">Sales</h6>
+                <a href="#">
+                    <img src="../assets/img/jobs/sophie.jpg">
+                    <h5 class="name">Sophie</h5>
+                    <h6 class="employee-title">Sales</h6>
+                </a>
             </li>
+            
             <li>
-                <img src="../assets/img/jobs/bradley.jpg">
-                <h5 class="name">Bradley</h5>
-                <h6 class="employee-title">Sales</h6>
+                <a href="#">
+                    <img src="../assets/img/jobs/brett.jpg">
+                    <h5 class="name">Brett</h5>
+                    <h6 class="employee-title">Success</h6>
+                </a>
             </li>
+            
         </ul>
     </div>
 </div>
 
-<div class="jobs-list">
+<div class="jobs-list" id="jobs-list">
     <div class="container">
         <div class="row">
             <div class="columns ten offset-one">
@@ -326,6 +347,8 @@
             yepnope([
                 {
                     load: ['/dist/assets/js/libraries/fastclick.js', '/dist/assets/js/bundle.js']
+                },{
+                    load: ['/dist/assets/js/pages/jobs.js']
                 }
             ]);
         </script>
