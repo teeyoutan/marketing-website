@@ -1372,6 +1372,19 @@ body {
           box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
   padding: 3px; }
 
+.cta form .url-input {
+  border: solid 1px #e3e3e3;
+  -webkit-box-shadow: inset 0 0px 10px 0 rgba(0, 0, 0, 0.2);
+          box-shadow: inset 0 0px 10px 0 rgba(0, 0, 0, 0.2);
+  color: #7f7f7f;
+  font-size: 16px;
+  height: 22px;
+  line-height: 22px;
+  padding: 5px 8px;
+  margin-bottom: 25px; }
+.cta form label {
+  display: none; }
+
 body .small-note, body p.small-note {
   font-size: 12px;
   line-height: 1.4em;
@@ -1469,7 +1482,10 @@ body .small-note, body p.small-note {
     -webkit-transform: rotate(180deg);
     -ms-transform: rotate(180deg);
         transform: rotate(180deg);
-    margin-top: 30px; } }
+    margin-top: 30px; }
+  .cta form .url-input {
+    width: 74%;
+    margin-bottom: 0; } }
 
 .hide-label {
   display: none; }
@@ -1883,6 +1899,85 @@ body.faq-page .answer {
     padding: 5px 20px; }
     body.faq-page .answer p:last-child {
       padding-bottom: 20px; }
+
+body.getting-started .slider ul {
+  list-style: none;
+  margin-left: 0; }
+body.getting-started .slider li {
+  margin-bottom: 20px; }
+body.getting-started .nextLink {
+  display: none; }
+body.getting-started .controls {
+  display: none; }
+
+@media only screen and (min-width: 960px) {
+  body.getting-started .nextLink {
+    display: inline;
+    font-size: 0.85em;
+    font-weight: 500; }
+  body.getting-started .controls {
+    display: block;
+    background: url("/dist/assets/img/gettingstarted/tracking-bg.png") no-repeat 50% 50%;
+    margin-bottom: 20px; }
+    body.getting-started .controls a {
+      margin-right: 172px;
+      color: #eee;
+      font-size: 0.75em;
+      font-weight: 500;
+      height: 2em;
+      line-height: 2;
+      text-align: center;
+      width: 24px;
+      display: inline-block;
+      text-decoration: none;
+      text-indent: -9999em;
+      position: relative; }
+      body.getting-started .controls a p {
+        text-indent: 0;
+        position: absolute;
+        color: #777777;
+        left: -38px;
+        width: 100px;
+        margin: 0;
+        padding: 10px 0; }
+      body.getting-started .controls a:hover {
+        cursor: pointer; }
+      body.getting-started .controls a.active {
+        background: url("/dist/assets/img/gettingstarted/current-slide.png") top center no-repeat;
+        text-indent: 0; }
+      body.getting-started .controls a:last-child {
+        margin-right: 0; }
+      body.getting-started .controls a:first-child {
+        margin-left: 44px; }
+  body.getting-started .slider {
+    max-width: 912px;
+    overflow: hidden;
+    margin-top: 35px;
+    margin-bottom: 10px; }
+    body.getting-started .slider h3, body.getting-started .slider h4 {
+      margin-top: 10px; }
+    body.getting-started .slider ul {
+      width: 6000px;
+      position: relative;
+      left: 0;
+      -webkit-transition: left 0.5s ease-in-out;
+              transition: left 0.5s ease-in-out; }
+      body.getting-started .slider ul li {
+        margin-bottom: 0;
+        padding-left: 3px; }
+      body.getting-started .slider ul.one {
+        left: 0; }
+      body.getting-started .slider ul.two {
+        left: -912px; }
+      body.getting-started .slider ul.three {
+        left: -1824px; }
+      body.getting-started .slider ul.four {
+        left: -2736px; }
+      body.getting-started .slider ul.five {
+        left: -3648px; }
+    body.getting-started .slider li {
+      max-width: 912px;
+      float: left; } }
 
 /* layouts */
 body.benefits-layout .for-menu {
