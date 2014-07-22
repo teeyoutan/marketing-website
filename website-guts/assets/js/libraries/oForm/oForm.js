@@ -213,13 +213,9 @@ $.fn.extend({
 
         });
 
-        console.log('invalidFields: ' + invalidFields);
-
         if( invalidFields === 0 ){
 
           $('body').removeClass('error');
-
-          console.log('all elements valid');
 
           return true;
 
@@ -265,8 +261,6 @@ $.fn.extend({
 
       event.preventDefault();
 
-      console.log('running');
-
       if(typeof settings.before === 'function'){
 
         if(settings.before() === false){
@@ -281,7 +275,7 @@ $.fn.extend({
 
         if(settings.validateFields({selector: formSelector}) === false){
 
-          return false;
+          return;
 
         }
 
