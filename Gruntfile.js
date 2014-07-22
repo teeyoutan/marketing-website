@@ -114,7 +114,7 @@ module.exports = function(grunt) {
         hostname: '0.0.0.0',
         middleware: function(connect, options, middlewares){
           middlewares.push(function(req, res, next){
-            if(req.url === '/account/free_trial_landing'){
+            if(req.method === 'POST'){
 
               res.writeHead(200, {'Content-Type': 'application/json'});
               res.end( grunt.file.read('website-guts/endpoint-mocks/formSuccess.json') );
