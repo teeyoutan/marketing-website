@@ -5451,6 +5451,20 @@ $.fn.extend({
 
     };
 
+    defaultOptions.reportValidationError = function(element){
+
+      console.log('reporting error on: ' + $(element).attr('name'));
+
+      window.analytics.track(window.location.pathname, {
+
+        category: 'form field error',
+
+        label: $(element).attr('name')
+
+      });
+
+    };
+
     defaultOptions.alertValidationError = function(element, isValid){
 
       if(typeof settings.reportValidationError === 'function' && !isValid){
