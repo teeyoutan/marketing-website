@@ -1,0 +1,55 @@
+---
+  topBar:
+      youTubeId: "C7WTDPksvAE"
+      rightHeader: "12 Million More Sign-ups"
+      rightContent: "Code.org used website optimization to bring computer science education to the world. With Optimizely, the team was able to quickly and easily improve the registration flow on their website, generating 12 million more sign-ups for the annual Hour of Code campaign."
+  cta: 
+      header: "Share your testing story"
+      content: "Big wins. Surprising test results. A real impact on your business. Tell us how you did it."
+      button: "Submit Your Story"
+  customerList: 
+    - 
+      statPercent: "10"
+      statInt: false
+      title: "lift in social shares"
+      logoUrl: "upworth-logo.png"
+      logoW: 141
+      logoH: 40
+      customerContent: "Upworthy tested adding a recommended content module to its website to drive more social shares and engagement."
+      downloadUrl: "https://s3.amazonaws.com/optimizely-marketing/customer-stories/upworthy-casestudy.pdf"
+    - 
+      statPercent: 80
+      statInt: false
+      title: "More Student Sign-ups"
+      logoUrl: "code-dot-org-logo.png"
+      logoW: 40
+      logoH: 40
+      customerContent: "Code.org optimized its headlines and CTA messaging to significantly increase sign-ups for its Hour of Code campaign."
+      downloadUrl: "https://s3.amazonaws.com/optimizely-marketing/customer-stories/codeorg-casestudy.pdf"
+    - 
+      statPercent: 140
+      statInt: false
+      title: "Increase in lead quality"
+      logoUrl: "ironmountain-logo.png"
+      logoW: 141
+      logoH: 40
+      customerContent: "Iron Mountain optimized its lead generation process to improve the quality of leads generated from its online sign-up form."
+      downloadUrl: "https://s3.amazonaws.com/optimizely-marketing/customer-stories/ironmountain-casestudy.pdf"
+    - 
+      statPercent: false
+      statInt: false
+      title: "Improved Checkout Funnel"
+      logoUrl: "sony-logo.png"
+      logoW: 141
+      logoH: 40
+      customerContent: "Sony optimized banners ads and product pages to drive more customers through the checkout funnel to makea final purchase on its website."
+      downloadUrl: "https://s3.amazonaws.com/optimizely-marketing/customer-stories/sony-casestudy.pdf"
+    - 
+      statPercent: "49"
+      statInt: false
+      title: "lift in 'Adds-to-Cart'"
+      logoUrl: "fab-logo.png"
+      logoW: 141
+      logoH: 40
+      customerContent: "Fab tested different designs and messaging on its primary call to action button to see which would drive the more purchases."
+      downloadUrl: "https://s3.amazonaws.com/optimizely-marketing/customer-stories/fab-casestudy.pdf"

@@ -15,7 +15,7 @@
 }
 
 html {
-    color: #222;
+    color: #242424;
     font-size: 1em;
     line-height: 1.4;
     height: 100%
@@ -81,6 +81,11 @@ fieldset {
 
 textarea {
     resize: vertical;
+}
+
+ul {
+  margin: 5px 0;
+  padding: 0;
 }
 
 /* ==========================================================================
@@ -160,6 +165,11 @@ textarea {
         &.active {
           display: none;
         }
+      }
+      > li {
+        display: inline-block;
+        position: relative;
+        vertical-align: top;
       }
     }
     #page-header-gradient {

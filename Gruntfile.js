@@ -30,11 +30,13 @@ module.exports = function(grunt) {
       preview: {
         options: {
           variables: {
+            aws: grunt.file.readJSON('configs/s3Config.json'),
             environment: 'preview',
             environmentData: 'website-guts/data/environments/production/environmentVariables.json',
             assets_dir: '/assets',
+            link_path: '',
             sassSourceMap: false,
-            sassImagePath: '/assets/img/',
+            sassImagePath: '/assets/img',
             compress_js: true,
             concat_banner: '(function($){ \n\n' +
                            '  window.optly = window.optly || {}; \n\n' +
@@ -53,9 +55,10 @@ module.exports = function(grunt) {
           variables: {
             environment: 'dev',
             environmentData: 'website-guts/data/environments/development/environmentVariables.json',
-            assets_dir: '/<%= config.dist %>/assets',
+            assets_dir: '/dist/assets',
+            link_path: '/dist',
             sassSourceMap: true,
-            sassImagePath: '/dist/assets/img/',
+            sassImagePath: '/dist/assets/img',
             compress_js: false,
             concat_banner: '(function($){ \n\n' +
                            '  window.optly = window.optly || {}; \n\n' +
@@ -68,9 +71,9 @@ module.exports = function(grunt) {
       guts: 'website-guts',
       dist: 'dist',
       temp: 'temp',
+      helpers: 'website-guts/helpers',
       bowerDir: 'bower_components'
     },
-    aws: grunt.file.readJSON('configs/s3Config.json'),
     watch: {
       assemble: {
         files: [
@@ -90,7 +93,7 @@ module.exports = function(grunt) {
       },
       js: {
         files: ['<%= config.guts %>/assets/js/**/*.js', '<%= config.temp %>/assets/js/**/*.js'],
-        tasks: ['config:dev', 'jshint', 'concat', 'uglify', 'clean:postBuild']
+        tasks: ['config:dev', 'jshint', 'concat', 'clean:postBuild']
       },
       livereload: {
         options: {
@@ -135,9 +138,9 @@ module.exports = function(grunt) {
       livereload: {
         options: {
           open: {
-            target: 'http://0.0.0.0:9000/dist/'
-          },
-          base: '.'
+            target: 'http://0.0.0.0:9000/dist',
+            base: '.'
+          }
         }
       }
     },
@@ -145,11 +148,14 @@ module.exports = function(grunt) {
       options: {
         layoutdir: '<%= config.guts %>/templates/layouts/',
         assetsDir: '<%= grunt.config.get("assets_dir") %>',
+        linkPath: '<%= grunt.config.get("link_path") %>',
+        sassImagePath: '<%= grunt.config.get("sassImagePath") %>',
         environmentIsProduction: '<%= grunt.config.get("environmentIsProduction") %>',
         environmentIsDev: '<%= grunt.config.get("environmentIsDev") %>',
-        data: ['<%= config.content %>/**/*.json', '<%= grunt.config.get("environmentData") %>']
+        data: ['<%= config.content %>/**/*.json', '<%= config.content %>/**/*.yml', '<%= grunt.config.get("environmentData") %>'],
+        partials: ['<%= config.guts %>/templates/partials/*.{hbs, md}'],
+        helpers: ['<%= config.helpers %>/helper-*.js']
       },
-      //grunt.config.get('assembleOptions'),
       pages: {
         files: [
           {
@@ -163,7 +169,10 @@ module.exports = function(grunt) {
     },
     sass: {
       styles: {
-        options: grunt.config.get("sassOptions"),
+        options: {
+          sourceMap: true,
+          imagePath: '<%= grunt.config.get("sassImagePath") %>'
+        },
         files: [
           {
             src: '<%= config.guts %>/assets/css/styles.scss',
@@ -203,13 +212,16 @@ module.exports = function(grunt) {
         src: ['<%= config.guts %>/assets/css/fonts.css'],
         dest: '<%= config.dist %>/assets/css/fonts.css'
       },
-      js: {
+      jquery: {
         files: [
           {
-            src: '<%= config.bowerDir %>/jquery/jquery.js',
-            dest: '<%= config.dist %>/assets/js/libraries/jquery.js',
+            src: '<%= config.guts %>/assets/js/libraries/jquery-1.6.4.min.js',
+            dest: '<%= config.dist %>/assets/js/libraries/jquery-1.6.4.min.js',
             flatten: true,
             filter: 'isFile'
+          },
+          {
+            '<%= config.dist %>/assets/js/libraries/fastclick.js': ['<%= config.bowerDir %>/fastclick/lib/fastclick.js']
           }
         ]
       },
@@ -230,9 +242,9 @@ module.exports = function(grunt) {
     },
     s3: {
       options: {
-        key: '<%= aws.key %>',
-        secret: '<%= aws.secret %>',
-        bucket: '<%= aws.bucket %>',
+        key: '<%= grunt.config.get("aws.key") %>',
+        secret: '<%= grunt.config.get("aws.secret") %>',
+        bucket: '<%= grunt.config.get("aws.bucket") %>',
         access: 'public-read',
       },
       dev: {
@@ -265,17 +277,53 @@ module.exports = function(grunt) {
           Handlebars: false,
           moment: false,
           _gaq: false
-        }
+        },
+        '-W087': (function() {
+          if(grunt.config.get("environment") == "dev") {
+            return true;
+          } else {
+            return false;
+          }
+        }())
       },
       files: ['<%= config.guts %>/assets/js/**/*.js', '!<%= config.guts %>/assets/js/libraries/**/*.js']
     },
     concat: {
-      temp: {
-        options: grunt.config.get("concatOptions"),
-        src: ['**/*.js', '!libraries/**/*.js'],
+      modernizrYep: {
+        files: {
+          '<%= config.dist %>/assets/js/libraries/modernizr-yepnope.js': ['<%= config.guts %>/assets/js/libraries/modernizr-2.8.2.min.js','<%= config.bowerDir %>/yepnope/yepnope.1.5.4-min.js']
+        }
+      },
+      namespacePages: {
+        options: {
+          banner: '<%= grunt.config.get("concat_banner") %>',
+          footer: '<%= grunt.config.get("concat_footer") %>'
+        },
+        src: ['pages/*.js', 'layouts/*.js'],
+        expand: true,
+        cwd: '<%= config.guts %>/assets/js/',
+        dest: '<%= config.dist %>/assets/js/'
+      },
+      namespaceGlobal: {
+        options: {
+          banner: '<%= grunt.config.get("concat_banner") %>',
+          footer: '<%= grunt.config.get("concat_footer") %>'
+        },
+        src: ['global.js'],
         expand: true,
         cwd: '<%= config.guts %>/assets/js/',
         dest: '<%= config.temp %>/assets/js/'
+      },
+      concatBundle: {
+        files: {
+          '<%= config.dist %>/assets/js/bundle.js': [
+            '<%= config.bowerDir %>/jquery-cookie/jquery.cookie.js',
+            '<%= config.guts %>/assets/js/libraries/handlebars-v1.3.0.js',
+            '<%= config.bowerDir %>/momentjs/moment.js',
+            '<%= config.guts %>/assets/js/libraries/oForm/oForm.js',
+            '<%= config.temp %>/assets/js/global.js'
+          ]
+        }
       }
     },
     uglify: {
@@ -286,24 +334,18 @@ module.exports = function(grunt) {
       },
       globalJS: {
         files: {
-          '<%= config.dist %>/assets/js/libraries/modernizr-yepnope.js': ['<%= config.guts %>/assets/js/libraries/modernizr-2.8.2.min.js','<%= config.bowerDir %>/yepnope/yepnope.1.5.4-min.js'],
-          '<%= config.dist %>/assets/js/libraries/fastclick.js': ['<%= config.bowerDir %>/fastclick/lib/fastclick.js'],
-          '<%= config.dist %>/assets/js/bundle.js': [
-            '<%= config.bowerDir %>/jquery-cookie/jquery.cookie.js',
-            '<%= config.guts %>/assets/js/libraries/handlebars-v1.3.0.js',
-            '<%= config.bowerDir %>/momentjs/moment.js',
-            '<%= config.guts %>/assets/js/libraries/oForm/oForm.js',
-            '<%= config.temp %>/assets/js/global.js'
-          ]
+          '<%= config.dist %>/assets/js/libraries/fastclick.js': ['<%= config.dist %>/assets/js/libraries/fastclick.js'],
+          '<%= config.dist %>/assets/js/bundle.js': ['<%= config.dist %>/assets/js/bundle.js']
         }
       },
       pageFiles: {
         files: [
           {
             expand: true,
-            cwd: '<%= config.temp %>/assets/js/pages',
-            src: '**/*.js',
-            dest: '<%= config.dist %>/assets/js/pages'
+            cwd: '<%= config.dist %>/assets/js/',
+            src: 'pages/*.js',
+            dest: '<%= config.dist %>/assets/js/pages',
+            flatten: true
           }
         ]
       }
@@ -334,7 +376,6 @@ module.exports = function(grunt) {
     'clean:preBuild',
     'assemble',
     'concat',
-    'uglify',
     'sass',
     'replace',
     'autoprefixer',
@@ -350,11 +391,11 @@ module.exports = function(grunt) {
     'clean:preBuild',
     'assemble',
     'concat',
+    'copy',
     'uglify',
     'sass',
     'replace',
     'autoprefixer',
-    'copy',
     'clean:postBuild'
   ]);
 
