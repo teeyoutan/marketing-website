@@ -82,3 +82,17 @@ window.optly.mrkt.activeLinks.markActiveLinks = function(){
 };
 
 window.optly.mrkt.activeLinks.markActiveLinks();
+
+jQuery.oFormGlobalOverrides = {};
+
+jQuery.oFormGlobalOverrides.reportValidationError = function(element){
+
+	window.analytics.track(window.location.pathname, {
+
+		category: 'form field error',
+
+		label: $(element).attr('name')
+
+	});
+
+};

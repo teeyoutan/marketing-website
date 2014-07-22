@@ -16,8 +16,6 @@ $('form :input').each(function(index, elem) {
 
 $('#seo-form').oForm({
 
-  url: '/account/free_trial_landing',
-
   after: function(){
 
     //TO DO: add marketo code, remarketing code, etc.

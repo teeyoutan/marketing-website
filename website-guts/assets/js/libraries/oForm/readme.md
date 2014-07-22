@@ -41,7 +41,10 @@ no default.
 
 Settings that are not required have a default behavior which is described below.
 You can override the default behavior by adding a property with the same key
-as the setting name to the options object passed to oForm.
+as the setting name to the options object passed to oForm. Additionally, you can
+globally override the settings by defining a jQuery.oFormGlobalOverrides before
+the plugin executes as an object. That object will overwrite any methods with
+the same name.
 
 The advanced usage example above overrides the default behavior for the `before`
 and `after` settings.

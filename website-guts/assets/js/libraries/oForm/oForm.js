@@ -56,57 +56,13 @@ $.fn.extend({
 
     defaultOptions.checkboxIsValid = function(checkbox){
 
-      if( $(checkbox).prop('checked') ){
-
-        return true;
-
-      } else {
-
-        return false;
-
-      }
+      return $(checkbox).prop('checked') ? true : false;
 
     };
 
-    defaultOptions.urlIsValid = function(url){
+    defaultOptions.stringHasValue = function(value){
 
-      if(url){
-
-        return true;
-
-      } else {
-
-        return false;
-
-      }
-
-    };
-
-    defaultOptions.textIsValid = function(text){
-
-      if(text){
-
-        return true;
-
-      } else {
-
-        return false;
-
-      }
-
-    };
-
-    defaultOptions.reportValidationError = function(element){
-
-      console.log('reporting error on: ' + $(element).attr('name'));
-
-      window.analytics.track(window.location.pathname, {
-
-        category: 'form field error',
-
-        label: $(element).attr('name')
-
-      });
+      return value ? true : false;
 
     };
 
@@ -127,8 +83,6 @@ $.fn.extend({
       relatedClass = '.' + element.attr('name') + '-related';
 
       messageClass = '.' + element.attr('name') + '-error-message';
-
-      settings.alertValidationError(element, isValid);
 
       if(isValid){
 
@@ -163,6 +117,8 @@ $.fn.extend({
 
         });
 
+        settings.alertValidationError(element, isValid);
+
       }
 
       return isValid;
@@ -193,6 +149,14 @@ $.fn.extend({
 
             switch(type){
 
+              case 'url':
+
+              case 'text':
+
+                settings.adjustClasses(element, settings.stringHasValue(elementValue)) ? undefined : invalidFields++;
+
+                break;
+
               case 'email':
 
                 settings.adjustClasses(element, settings.emailIsValid(elementValue)) ? undefined : invalidFields++;
@@ -205,21 +169,9 @@ $.fn.extend({
 
                 break;
 
-              case 'url':
-
-                settings.adjustClasses(element, settings.urlIsValid(elementValue)) ? undefined : invalidFields++;
-
-                break;
-
               case 'checkbox':
 
-                settings.adjustClasses(element, settings.checkboxIsValid(elementValue)) ? undefined : invalidFields++;
-
-                break;
-
-              case 'text':
-
-                settings.adjustClasses(element, settings.textIsValid(elementValue)) ? undefined : invalidFields++;
+                settings.adjustClasses(element, settings.checkboxIsValid(element)) ? undefined : invalidFields++;
 
             }
 
@@ -250,7 +202,7 @@ $.fn.extend({
       request = $.ajax({
 
         type: 'POST',
-        url: settings.url,
+        url: formSelector.attr('action') || settings.url,
         data: formSelector.serialize()
 
       });
@@ -268,6 +220,12 @@ $.fn.extend({
       });
 
     };
+
+    if( typeof jQuery.oFormGlobalOverrides === 'object'){
+
+      defaultOptions = $.extend(true, defaultOptions, jQuery.oFormGlobalOverrides);
+
+    }
 
     settings = $.extend(true, defaultOptions, options);
 
