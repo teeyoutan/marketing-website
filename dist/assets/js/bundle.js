@@ -5506,11 +5506,13 @@ $.fn.extend({
 
       }
 
+      return isValid;
+
     };
 
     defaultOptions.validateFields = function(args){
 
-        var allElementsValid = true;
+        var invalidFields = 0;
 
         $.each( args.selector.find('input:not([type="hidden"])'), function(index, value){
 
@@ -5530,25 +5532,35 @@ $.fn.extend({
 
             type = element.attr('type');
 
-            if(type === 'email'){
+            switch(type){
 
-              settings.adjustClasses(element, settings.emailIsValid(elementValue) );
+              case 'email':
 
-            } else if(type === 'tel') {
+                settings.adjustClasses(element, settings.emailIsValid(elementValue)) ? undefined : invalidFields++;
 
-              settings.adjustClasses(element, settings.phoneIsValid(elementValue) );
+                break;
 
-            } else if(type === 'url'){
+              case 'tel':
 
-              settings.adjustClasses(element, settings.urlIsValid(elementValue) );
+                settings.adjustClasses(element, settings.phoneIsValid(elementValue)) ? undefined : invalidFields++;
 
-            } else if(type === 'checkbox'){
+                break;
 
-              settings.adjustClasses(element, settings.checkboxIsValid(elementValue) );
+              case 'url':
 
-            } else if(type === 'text'){
+                settings.adjustClasses(element, settings.urlIsValid(elementValue)) ? undefined : invalidFields++;
 
-              settings.adjustClasses(element, settings.textIsValid(elementValue) );
+                break;
+
+              case 'checkbox':
+
+                settings.adjustClasses(element, settings.checkboxIsValid(elementValue)) ? undefined : invalidFields++;
+
+                break;
+
+              case 'text':
+
+                settings.adjustClasses(element, settings.textIsValid(elementValue)) ? undefined : invalidFields++;
 
             }
 
@@ -5556,11 +5568,15 @@ $.fn.extend({
 
         });
 
-        if( allElementsValid ){
+        console.log('invalidFields: ' + invalidFields);
 
-          return true;
+        if( invalidFields === 0 ){
 
           $('body').removeClass('error');
+
+          console.log('all elements valid');
+
+          return true;
 
         } else {
 
