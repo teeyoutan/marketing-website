@@ -5713,17 +5713,39 @@ window.optly.mrkt.activeLinks.markActiveLinks = function(){
 
 };
 
+window.optly.mrkt.inlineFormLabels = function(){
+
+	$('form.inline-labels :input').each(function(index, elem) {
+
+			var eId = $(elem).attr('id');
+
+			var label = null;
+
+			if (eId && (label = $(elem).parents('form').find('label[for='+eId+']')).length === 1) {
+
+					$(elem).attr('placeholder', $(label).html());
+
+					$(label).addClass('hide-label');
+
+			}
+
+	});
+
+};
+
+window.optly.mrkt.inlineFormLabels();
+
 window.optly.mrkt.activeLinks.markActiveLinks();
 
 jQuery.oFormGlobalOverrides = {};
 
 jQuery.oFormGlobalOverrides.reportValidationError = function(element){
 
-	window.analytics.track(window.location.pathname, {
+	window.analytics.track( $(element).attr('name') + ' validation error', {
 
 		category: 'form field error',
 
-		label: $(element).attr('name')
+		label: window.location.pathname
 
 	});
 

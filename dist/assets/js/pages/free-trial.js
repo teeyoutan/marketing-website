@@ -4,22 +4,6 @@
 
   window.optly.mrkt = window.optly.mrkt || {}; 
 
-$('form :input').each(function(index, elem) {
-
-    var eId = $(elem).attr('id');
-
-    var label = null;
-
-    if (eId && (label = $(elem).parents('form').find('label[for='+eId+']')).length === 1) {
-
-        $(elem).attr('placeholder', $(label).html());
-
-        $(label).addClass('hide-label');
-
-    }
-
-});
-
 $('#seo-form').oForm({
 
   before: function(){
@@ -48,33 +32,45 @@ $('#seo-form').oForm({
 
           if(resp.succeeded === true){
 
+            var name, email, path;
+
+            name = $('#name').val();
+
+            email = $('#email').val();
+
+            path = window.location.pathname;
+
             //add reporting
 
-            window.analytics.identify('USER ID', {
+            window.analytics.identify( email, {
 
-              name: $('#name').val(),
+              name: name,
 
-              email: $('#email').val()
+              email: email
 
             },{
 
               Marketo: true
 
-            }).track('/account/create/success', {
+            });
+
+            window.analytics.track('/account/create/success', {
 
               category: 'Accounts',
 
-              label: window.location.pathname
+              label: path
 
             },{
 
               Marketo: true
 
-            }).track('/free-trial/success', {
+            });
+
+            window.analytics.track('/free-trial/success', {
 
               category: 'Free trial',
 
-              label: window.location.pathname
+              label: path
 
             },{
 
