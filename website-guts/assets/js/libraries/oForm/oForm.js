@@ -121,6 +121,12 @@ $.fn.extend({
 
       }
 
+      if(element.attr('type') === 'checkbox'){
+
+        element.focus();
+
+      }
+
       return isValid;
 
     };

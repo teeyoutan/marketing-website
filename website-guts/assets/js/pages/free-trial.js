@@ -16,11 +16,83 @@ $('form :input').each(function(index, elem) {
 
 $('#seo-form').oForm({
 
-  after: function(){
+  before: function(){
 
-    //TO DO: add marketo code, remarketing code, etc.
+    $('body').toggleClass('processing');
 
-    //window.location = 'https://www.optimizely.com/edit?url=' + $('url');
+  },
+
+  after: function(response){
+
+    if(response.status === 200){
+
+        var resp;
+
+        try{
+
+          resp = $.parseJSON(response.responseText);
+
+        } catch (error){
+
+          //report json parsing error
+
+        }
+
+        if(typeof resp === 'object'){
+
+          if(resp.succeeded === true){
+
+            //add reporting
+
+            window.analytics.identify('USER ID', {
+
+              name: $('#name').val(),
+
+              email: $('#email').val()
+
+            },{
+
+              Marketo: true
+
+            }).track('/account/create/success', {
+
+              category: 'Accounts',
+
+              label: window.location.pathname
+
+            },{
+
+              Marketo: true
+
+            }).track('/free-trial/success', {
+
+              category: 'Free trial',
+
+              label: window.location.pathname
+
+            },{
+
+              Marketo: true
+
+            });
+            /*
+            setTimeout(function(){
+
+              window.location = 'https://www.optimizely.com/edit?url=' + $('#url').val();
+
+            }, 2000);
+            */
+          }
+
+        }
+
+    } else {
+
+      //failure from the api
+
+      $('body').toggleClass('processing');
+
+    }
 
   }
 
