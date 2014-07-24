@@ -1,102 +1,132 @@
 $('#seo-form').oForm({
 
-  beforeLocal: function(){
+  afterLocal: function(response, callback){
 
-    console.log('beforeLocal executing');
+    var runCallback, success, resp, parseResponseText;
 
-  },
+    runCallback = function(){
 
-  afterLocal: function(response){
+      if(typeof callback === 'function'){
 
-    console.log('afterLocal executing');
+        callback();
+
+      }
+
+    };
+
+    success = function(){
+
+      var name, email, path;
+
+      name = $('#name').val();
+
+      email = $('#email').val();
+
+      path = window.location.pathname;
+
+      //add reporting
+
+      window.analytics.identify( email, {
+
+        name: name,
+
+        email: email
+
+      },{
+
+        Marketo: true
+
+      });
+
+      window.analytics.track('/account/create/success', {
+
+        category: 'Accounts',
+
+        label: path
+
+      },{
+
+        Marketo: true
+
+      });
+
+      window.analytics.track('/free-trial/success', {
+
+        category: 'Free trial',
+
+        label: path
+
+      },{
+
+        Marketo: true
+
+      });
+
+      console.log('form submitted successfully');
+
+      setTimeout(function(){
+
+        console.log('send user to editor');
+
+        runCallback();
+
+        //window.location = 'https://www.optimizely.com/edit?url=' + $('#url').val();
+
+      }, 2000);
+
+    };
+
+    parseResponseText = function(){
+
+      try{
+
+        resp = $.parseJSON(response.responseText);
+
+      } catch (error){
+
+        //report json parsing error
+        //add return
+
+      }
+
+    };
 
     if(typeof response === 'object'){
 
-        if(response.status === 200){
+      if(response.status === 200){
 
-            var resp;
+        parseResponseText();
 
-            try{
+        if(typeof resp === 'object'){
 
-              resp = $.parseJSON(response.responseText);
+          if(resp.succeeded === true){
 
-            } catch (error){
+            success();
 
-              //report json parsing error
+          } else {
 
-            }
+            //resp.succeeded was not true
 
-            if(typeof resp === 'object'){
+            console.log('');
 
-              if(resp.succeeded === true){
-
-                var name, email, path;
-
-                name = $('#name').val();
-
-                email = $('#email').val();
-
-                path = window.location.pathname;
-
-                //add reporting
-
-                window.analytics.identify( email, {
-
-                  name: name,
-
-                  email: email
-
-                },{
-
-                  Marketo: true
-
-                });
-
-                window.analytics.track('/account/create/success', {
-
-                  category: 'Accounts',
-
-                  label: path
-
-                },{
-
-                  Marketo: true
-
-                });
-
-                window.analytics.track('/free-trial/success', {
-
-                  category: 'Free trial',
-
-                  label: path
-
-                },{
-
-                  Marketo: true
-
-                });
-
-                window.alert('form submitted successfully');
-
-                setTimeout(function(){
-
-                  console.log('send user to editor');
-
-                  //window.location = 'https://www.optimizely.com/edit?url=' + $('#url').val();
-
-                }, 2000);
-
-              }
-
-            }
-
-        } else {
-
-          //failure from the api
-
-          console.log('failure from the api - local function');
+          }
 
         }
+
+      } else {
+
+        //response code was not 200
+
+        console.log('failure from the api - local function');
+
+        runCallback();
+
+      }
+
+    } else {
+
+      //validation error
+      runCallback();
 
     }
 

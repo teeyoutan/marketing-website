@@ -5553,8 +5553,6 @@ $.fn.extend({
 
       });
 
-      console.log(request);
-
       request.always(function(){
 
         executeAfterCallbacks(request);
@@ -5575,11 +5573,9 @@ $.fn.extend({
 
       if(typeof settings.afterLocal === 'function'){
 
-        settings.afterLocal(response);
+        settings.afterLocal(response, settings.afterGlobal ? settings.afterGlobal : undefined);
 
-      }
-
-      if(typeof settings.afterGlobal === 'function'){
+      } else {
 
         settings.afterGlobal(response);
 
@@ -5593,7 +5589,7 @@ $.fn.extend({
 
       if(typeof settings.beforeLocal === 'function'){
 
-        if(settings.beforeLocal() === false){
+        if(settings.beforeLocal({selector: formSelector}) === false){
 
           return false;
 
@@ -5603,7 +5599,7 @@ $.fn.extend({
 
       if(typeof settings.beforeGlobal === 'function'){
 
-        if(settings.beforeGlobal() === false){
+        if(settings.beforeGlobal({selector: formSelector}) === false){
 
           return false;
 
@@ -5633,7 +5629,6 @@ $.fn.extend({
 
       }
 
-      //RUN AFTEREXECUTION FUNCTION HERE
       settings.submitData();
 
       event.preventDefault();
@@ -5782,11 +5777,7 @@ jQuery.oFormGlobalOverrides = {
 
 		console.log('afterCompleteGlobal executing');
 
-		setTimeout(function(){
-
-			$('body').toggleClass('processing');
-
-		}, 1500);
+		$('body').toggleClass('processing');
 
 	}
 

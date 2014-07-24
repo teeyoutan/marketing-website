@@ -166,23 +166,34 @@ useful to report validation errors to tracking platforms like Google Analytics.
 This function submits the form field data to the specified endpoint. It accepts
 one argument which is a callback function to execute after the function is done.
 
-###before: function
+###beforeGlobal and beforeLocal: function
 
-This function will be run before the form data is submitted. if the function
-return true, the form data will be submitted. If it returns false or undefined
-the form data will not be submitted.
+These functions will be executed before any other plugin code is executed. If
+either one of the functions return false then the plugin will not stop executing.
+The local function runs before the global function.
 
-The function is passed one argument which is an object. the object contains
+The function is passed one argument which is an object. The object contains
 one property named 'selector' and the value is the jQuery selector from when
 the plugin was initiated.
 
-###after: function (required)
+###afterGlobal and afterLocal: function (required)
 
-This function will be run after the response on the XHR request is received.
-The function is passed one argument and that is the jQXHR object of the
-request/response.
+Similar to the before functions, these functions will run after the plugin is
+finished executing. This could be after validation errors occur or after the
+plugin received data from the XHR request.
 
-Use this function to create your success or failure handlers.
+The local function executes first and is passed two arguments. The first is
+the response object from the jQuery jqXHR object XHR request. If no request
+was made the value of this argument will be undefined. The second argument is
+the afterGlobal function. If you have both an afterLocal and afterGlobal function
+then you need to execute the afterGlobal function by executing the argument when
+your afterLocal function is finished executing. This is because technically the
+plugin is still executing while the localAfter function is executing. If you don't
+have an afterGlobal function, this argument's value will be undefined. If you have
+only a globalAfter function, then plugin will execute it when it finishes since
+there is no localAfter function.
+
+Use these functions to create your success or failure handlers.
 
 ##To do's
 

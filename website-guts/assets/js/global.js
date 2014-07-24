@@ -130,11 +130,7 @@ jQuery.oFormGlobalOverrides = {
 
 		console.log('afterCompleteGlobal executing');
 
-		setTimeout(function(){
-
-			$('body').toggleClass('processing');
-
-		}, 1500);
+		$('body').toggleClass('processing');
 
 	}
 
