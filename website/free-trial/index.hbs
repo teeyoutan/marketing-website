@@ -24,7 +24,7 @@ compact_header: true
             <label for="name">Your Name</label>
             <input id="name" required data-validation="name" name="name" type="text">
           </li>
-          <li>
+          <li id="phone-email-cont">
             <div class="label half left email-related">
               <label for="email">Your email - no spam</label>
               <input id="email" required name="email" type="email">
@@ -36,12 +36,7 @@ compact_header: true
             </div>
           </li>
           <li class="terms">
-            <label class="checkbox">
-              <input type="checkbox" name="terms-of-service" required id="terms">
-              I agree to the
-              <span id="SL-link-terms" class="SL_swap"><a href="/terms" target="_blank">Terms of Service</a></span> and
-              <span id="SL-link-privacy" class="SL_swap"><a href="/privacy" target="_blank">Privacy Policy</a></span>.
-            </label>
+            <small>By clicking the <q>Test it Out</q> button below I agree to the <br><a href="/terms" target="_blank">Terms of Service</a> and <a href="/privacy" target="_blank">Privacy Policy</a>.</small>
           </li>
           <li class="a-center">
             <input type="submit" class="button processing-hide" value="Test it Out">

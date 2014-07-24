@@ -62,15 +62,11 @@ $('#seo-form').oForm({
 
       });
 
-      console.log('form submitted successfully');
-
       setTimeout(function(){
-
-        console.log('send user to editor');
 
         runCallback();
 
-        //window.location = 'https://www.optimizely.com/edit?url=' + $('#url').val();
+        window.location = 'https://www.optimizely.com/edit?url=' + $('#url').val();
 
       }, 2000);
 

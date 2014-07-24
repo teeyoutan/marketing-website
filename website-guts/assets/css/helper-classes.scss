@@ -119,21 +119,6 @@
 	font-weight: 300;
 }
 
-.half {
-	-moz-box-sizing: border-box;
-	-webkit-box-sizing: border-box;
-	box-sizing: border-box;
-	width: 50%;
-
-	&.right {
-		padding-left: 10px;
-	}
-
-	&.left {
-		padding-right: 10px;
-	}
-}
-
 .a-right {
 	text-align: right;
 }
@@ -225,6 +210,20 @@ body .small-note, body p.small-note {
 }
 
 @media only screen and (min-width: $desktop-min-width) {
+	.half {
+		-moz-box-sizing: border-box;
+		-webkit-box-sizing: border-box;
+		box-sizing: border-box;
+		width: 50%;
+
+		&.right {
+			padding-left: 10px;
+		}
+
+		&.left {
+			padding-right: 10px;
+		}
+	}
 	.left {float: left;}
 	.right {float: right;}
 	.sheet {
