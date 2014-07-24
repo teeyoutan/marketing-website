@@ -1,92 +1,102 @@
 $('#seo-form').oForm({
 
-  before: function(){
+  beforeLocal: function(){
 
-    $('body').toggleClass('processing');
+    console.log('beforeLocal executing');
 
   },
 
-  after: function(response){
+  afterLocal: function(response){
 
-    if(response.status === 200){
+    console.log('afterLocal executing');
 
-        var resp;
+    if(typeof response === 'object'){
 
-        try{
+        if(response.status === 200){
 
-          resp = $.parseJSON(response.responseText);
+            var resp;
 
-        } catch (error){
+            try{
 
-          //report json parsing error
+              resp = $.parseJSON(response.responseText);
+
+            } catch (error){
+
+              //report json parsing error
+
+            }
+
+            if(typeof resp === 'object'){
+
+              if(resp.succeeded === true){
+
+                var name, email, path;
+
+                name = $('#name').val();
+
+                email = $('#email').val();
+
+                path = window.location.pathname;
+
+                //add reporting
+
+                window.analytics.identify( email, {
+
+                  name: name,
+
+                  email: email
+
+                },{
+
+                  Marketo: true
+
+                });
+
+                window.analytics.track('/account/create/success', {
+
+                  category: 'Accounts',
+
+                  label: path
+
+                },{
+
+                  Marketo: true
+
+                });
+
+                window.analytics.track('/free-trial/success', {
+
+                  category: 'Free trial',
+
+                  label: path
+
+                },{
+
+                  Marketo: true
+
+                });
+
+                window.alert('form submitted successfully');
+
+                setTimeout(function(){
+
+                  console.log('send user to editor');
+
+                  //window.location = 'https://www.optimizely.com/edit?url=' + $('#url').val();
+
+                }, 2000);
+
+              }
+
+            }
+
+        } else {
+
+          //failure from the api
+
+          console.log('failure from the api - local function');
 
         }
-
-        if(typeof resp === 'object'){
-
-          if(resp.succeeded === true){
-
-            var name, email, path;
-
-            name = $('#name').val();
-
-            email = $('#email').val();
-
-            path = window.location.pathname;
-
-            //add reporting
-
-            window.analytics.identify( email, {
-
-              name: name,
-
-              email: email
-
-            },{
-
-              Marketo: true
-
-            });
-
-            window.analytics.track('/account/create/success', {
-
-              category: 'Accounts',
-
-              label: path
-
-            },{
-
-              Marketo: true
-
-            });
-
-            window.analytics.track('/free-trial/success', {
-
-              category: 'Free trial',
-
-              label: path
-
-            },{
-
-              Marketo: true
-
-            });
-            /*
-            setTimeout(function(){
-
-              window.location = 'https://www.optimizely.com/edit?url=' + $('#url').val();
-
-            }, 2000);
-            */
-          }
-
-        }
-
-    } else {
-
-      //failure from the api
-
-      $('body').toggleClass('processing');
 
     }
 

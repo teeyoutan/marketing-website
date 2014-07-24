@@ -104,16 +104,38 @@ window.optly.mrkt.inlineFormLabels();
 
 window.optly.mrkt.activeLinks.markActiveLinks();
 
-jQuery.oFormGlobalOverrides = {};
+jQuery.oFormGlobalOverrides = {
 
-jQuery.oFormGlobalOverrides.reportValidationError = function(element){
+	beforeGlobal: function(){
 
-	window.analytics.track( $(element).attr('name') + ' validation error', {
+		console.log('beforeGlobal executing');
 
-		category: 'form field error',
+		$('body').toggleClass('processing');
 
-		label: window.location.pathname
+	},
 
-	});
+	reportValidationError: function(element){
+
+			window.analytics.track( $(element).attr('name') + ' validation error', {
+
+				category: 'form field error',
+
+				label: window.location.pathname
+
+			});
+
+	},
+
+	afterGlobal: function(){
+
+		console.log('afterCompleteGlobal executing');
+
+		setTimeout(function(){
+
+			$('body').toggleClass('processing');
+
+		}, 1500);
+
+	}
 
 };

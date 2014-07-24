@@ -5557,11 +5557,7 @@ $.fn.extend({
 
       request.always(function(){
 
-        if(typeof callback === 'function'){
-
-          callback(request);
-
-        }
+        executeAfterCallbacks(request);
 
       });
 
@@ -5575,13 +5571,39 @@ $.fn.extend({
 
     settings = $.extend(true, defaultOptions, options);
 
+    var executeAfterCallbacks = function(response){
+
+      if(typeof settings.afterLocal === 'function'){
+
+        settings.afterLocal(response);
+
+      }
+
+      if(typeof settings.afterGlobal === 'function'){
+
+        settings.afterGlobal(response);
+
+      }
+
+    };
+
     formSelector.submit(function(event){
 
       event.preventDefault();
 
-      if(typeof settings.before === 'function'){
+      if(typeof settings.beforeLocal === 'function'){
 
-        if(settings.before() === false){
+        if(settings.beforeLocal() === false){
+
+          return false;
+
+        }
+
+      }
+
+      if(typeof settings.beforeGlobal === 'function'){
+
+        if(settings.beforeGlobal() === false){
 
           return false;
 
@@ -5591,7 +5613,19 @@ $.fn.extend({
 
       if(typeof settings.validateFields === 'function'){
 
-        if(settings.validateFields({selector: formSelector}) === false){
+        var validFields = settings.validateFields({
+
+          selector: formSelector,
+
+          localValidationCallback: settings.afterValidationLocal ? settings.afterValidationLocal : undefined,
+
+          globalValidationCallback: settings.afterValidationGlobal ? settings.afterValidationGlobal : undefined,
+
+        });
+
+        if(validFields === false){
+
+          executeAfterCallbacks(undefined);
 
           return;
 
@@ -5599,7 +5633,8 @@ $.fn.extend({
 
       }
 
-      settings.submitData(settings.after);
+      //RUN AFTEREXECUTION FUNCTION HERE
+      settings.submitData();
 
       event.preventDefault();
 
@@ -5721,17 +5756,39 @@ window.optly.mrkt.inlineFormLabels();
 
 window.optly.mrkt.activeLinks.markActiveLinks();
 
-jQuery.oFormGlobalOverrides = {};
+jQuery.oFormGlobalOverrides = {
 
-jQuery.oFormGlobalOverrides.reportValidationError = function(element){
+	beforeGlobal: function(){
 
-	window.analytics.track( $(element).attr('name') + ' validation error', {
+		console.log('beforeGlobal executing');
 
-		category: 'form field error',
+		$('body').toggleClass('processing');
 
-		label: window.location.pathname
+	},
 
-	});
+	reportValidationError: function(element){
+
+			window.analytics.track( $(element).attr('name') + ' validation error', {
+
+				category: 'form field error',
+
+				label: window.location.pathname
+
+			});
+
+	},
+
+	afterGlobal: function(){
+
+		console.log('afterCompleteGlobal executing');
+
+		setTimeout(function(){
+
+			$('body').toggleClass('processing');
+
+		}, 1500);
+
+	}
 
 };
 })(jQuery);
