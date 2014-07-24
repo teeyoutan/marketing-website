@@ -359,6 +359,6 @@ input[type="text"], input[type="url"], input[type="email"], input[type="tel"] {
 
 .processing-show, .error-show {display: none;}
 
-body.processing .processing-show, body.error .error-show {display: inherit;}
+body.processing-state .processing-show, body.error-state .error-show {display: inherit;}
 
-body.processing .processing-hide, body.error .error-hide {display: none;}
+body.processing-state .processing-hide, body.error-state .error-hide {display: none;}

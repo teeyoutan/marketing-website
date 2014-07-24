@@ -1500,10 +1500,10 @@ input[type="text"].error-show, input[type="url"].error-show, input[type="email"]
 .processing-show, .error-show {
   display: none; }
 
-body.processing .processing-show, body.error .error-show {
+body.processing-state .processing-show, body.error-state .error-show {
   display: inherit; }
 
-body.processing .processing-hide, body.error .error-hide {
+body.processing-state .processing-hide, body.error-state .error-hide {
   display: none; }
 
 /* pages */

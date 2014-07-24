@@ -108,9 +108,7 @@ jQuery.oFormGlobalOverrides = {
 
 	beforeGlobal: function(){
 
-		console.log('beforeGlobal executing');
-
-		$('body').toggleClass('processing');
+		$('body').toggleClass('processing-state');
 
 	},
 
@@ -130,7 +128,7 @@ jQuery.oFormGlobalOverrides = {
 
 		console.log('afterCompleteGlobal executing');
 
-		$('body').toggleClass('processing');
+		$('body').toggleClass('processing-state');
 
 	}
 
