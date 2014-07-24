@@ -78,7 +78,6 @@ window.optly.mrkt.activeLinks.markActiveLinks = function(){
 
 	});
 
-
 };
 
 window.optly.mrkt.inlineFormLabels = function(){

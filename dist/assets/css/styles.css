@@ -979,15 +979,6 @@ body.signed-out .signed-in-content {
 body.signed-in .signed-out-content {
   display: none; }
 
-.processing-show {
-  display: none; }
-
-body.processing .processing-show {
-  display: block; }
-
-body.processing .processing-hide {
-  display: none; }
-
 body {
   font-family: "Gotham SSm A", "Gotham SSm B", sans-serif;
   text-align: center; }
@@ -1499,9 +1490,18 @@ body .small-note, body p.small-note {
 .hide-label {
   display: none; }
 
-input[type="text"].error, input[type="url"].error, input[type="email"].error, input[type="tel"].error {
+input[type="text"].error-show, input[type="url"].error-show, input[type="email"].error-show, input[type="tel"].error-show {
   background-color: #fef3f3;
   border-color: #f3b6b3; }
+
+.processing-show, .error-show {
+  display: none; }
+
+body.processing .processing-show, body.error .error-show {
+  display: inherit; }
+
+body.processing .processing-hide, body.error .error-hide {
+  display: none; }
 
 /* pages */
 body.home-page {

@@ -120,14 +120,6 @@ ul {
         }
     }
 
-    //when the app is processing, use this class to update the ui to indicate it
-
-    .processing-show {display: none;}
-
-    body.processing .processing-show {display: block;}
-
-    body.processing .processing-hide {display: none;}
-
     body {
         font-family: $body-font-family;
         text-align: center;

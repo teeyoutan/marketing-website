@@ -5437,38 +5437,23 @@ $.fn.extend({
 
       relatedClass = '.' + element.attr('name') + '-related';
 
-      messageClass = '.' + element.attr('name') + '-error-message';
-
       if(isValid){
 
-        element.removeClass('error');
+        element.removeClass('error-show');
 
         $(relatedClass).each(function(index, value){
 
-          $(value).removeClass('error');
+          $(value).removeClass('error-show');
 
         });
-
-        $(messageClass).each(function(index, value){
-
-          $(value).addClass('hidden');
-
-        });
-
 
       } else {
 
-        element.addClass('error');
+        element.addClass('error-show');
 
         $(relatedClass).each(function(index, value){
 
-          $(value).addClass('error');
-
-        });
-
-        $(messageClass).each(function(index, value){
-
-          $(value).removeClass('hidden');
+          $(value).addClass('error-show');
 
         });
 
@@ -5709,7 +5694,6 @@ window.optly.mrkt.activeLinks.markActiveLinks = function(){
 		}
 
 	});
-
 
 };
 

@@ -103,15 +103,11 @@ value indicating if the DOM node is valid or not.
 For example, if the DOM node is `name="email` and the field is invalid, the
 function will do the following:
 
-* add an `error` class to any DOM node of `class="email-related"`
-* remove a `hidden` class from the DOM node `class="email-error-message"`
-* add an `error` class to the DOM node `name="email"`
+* add an `error-show` class to any DOM node of `class="email-related"`
 
 If the field is valid, the function will do the opposite:
 
-* remove an `error` class to any DOM node of `class="email-related"`
-* add a `hidden` class from the DOM node `class="email-error-message"`
-* remove an `error` class to the DOM node `name="email"`
+* remove a `error-show` class to any DOM node of `class="email-related"`
 
 ###validateFields: function
 
