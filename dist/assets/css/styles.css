@@ -1330,6 +1330,10 @@ body {
   .attention h3 {
     text-align: center; }
 
+.error {
+  color: #911d16;
+  font-weight: 400; }
+
 .super {
   display: block;
   padding-bottom: 0.25em;
