@@ -124,9 +124,39 @@ jQuery.oFormGlobalOverrides = {
 
 	},
 
-	afterGlobal: function(){
+	afterGlobal: function(resp){
 
 		console.log('afterCompleteGlobal executing');
+
+		if(typeof resp.responseJSON === 'object'){
+
+			if(!resp.responseJSON.succeeded){
+
+					//error from api, did not succeed, update ui
+
+					$('.error-message').text(resp.responseJSON.error);
+
+					$('body').addClass('error-state');
+
+			} else {
+
+				$('body').removeClass('error-state');
+
+			}
+
+		} else {
+
+			//response contained something that wasn't json, report this
+
+			window.analytics.track('invalid json', {
+
+				category: 'api error',
+
+				label: window.location.pathname
+
+			});
+
+		}
 
 		$('body').toggleClass('processing-state');
 

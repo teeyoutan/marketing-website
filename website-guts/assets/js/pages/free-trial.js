@@ -2,13 +2,13 @@ $('#seo-form').oForm({
 
   afterLocal: function(response, callback){
 
-    var runCallback, success, resp, parseResponseText;
+    var runCallback, success;
 
-    runCallback = function(){
+    runCallback = function(arg){
 
       if(typeof callback === 'function'){
 
-        callback();
+        callback(arg);
 
       }
 
@@ -64,7 +64,7 @@ $('#seo-form').oForm({
 
       setTimeout(function(){
 
-        runCallback();
+        runCallback(response);
 
         window.location = 'https://www.optimizely.com/edit?url=' + $('#url').val();
 
@@ -72,57 +72,19 @@ $('#seo-form').oForm({
 
     };
 
-    parseResponseText = function(){
+    console.log('outside function');
 
-      try{
+    console.log(response);
 
-        resp = $.parseJSON(response.responseText);
+    if(typeof response === 'object' && typeof response.responseJSON === 'object' && response.responseJSON.succeeded){
 
-      } catch (error){
+        console.log('inside function');
 
-        //report json parsing error
-        //add return
-
-      }
-
-    };
-
-    if(typeof response === 'object'){
-
-      if(response.status === 200){
-
-        parseResponseText();
-
-        if(typeof resp === 'object'){
-
-          if(resp.succeeded === true){
-
-            success();
-
-          } else {
-
-            //resp.succeeded was not true
-
-            console.log('');
-
-          }
-
-        }
-
-      } else {
-
-        //response code was not 200
-
-        console.log('failure from the api - local function');
-
-        runCallback();
-
-      }
+        success();
 
     } else {
 
-      //validation error
-      runCallback();
+      runCallback(response);
 
     }
 
