@@ -100,66 +100,22 @@ window.optly.mrkt.inlineFormLabels = function(){
 
 };
 
-window.optly.mrkt.inlineFormLabels();
+window.optly.mrkt.formDataStringToObject = function getJsonFromUrl(string) {
 
-window.optly.mrkt.activeLinks.markActiveLinks();
+	var data, result, i;
 
-jQuery.oFormGlobalOverrides = {
+  data = string.split('&');
 
-	beforeGlobal: function(){
+  result = {};
 
-		$('body').toggleClass('processing-state');
+  for(i=0; i<data.length; i++) {
 
-	},
+    var item = data[i].split('=');
 
-	reportValidationError: function(element){
+    result[item[0]] = item[1];
 
-			window.analytics.track( $(element).attr('name') + ' validation error', {
+  }
 
-				category: 'form field error',
-
-				label: window.location.pathname
-
-			});
-
-	},
-
-	afterGlobal: function(resp){
-
-		console.log(resp);
-
-		if(typeof resp.responseJSON === 'object'){
-
-			if(!resp.responseJSON.succeeded){
-
-					//error from api, did not succeed, update ui
-
-					$('.error-message').text(resp.responseJSON.error);
-
-					$('body').addClass('error-state');
-
-			} else {
-
-				$('body').removeClass('error-state');
-
-			}
-
-		} else {
-
-			//response contained something that wasn't json, report this
-
-			window.analytics.track('invalid json', {
-
-				category: 'api error',
-
-				label: window.location.pathname
-
-			});
-
-		}
-
-		$('body').toggleClass('processing-state');
-
-	}
+  return result;
 
 };

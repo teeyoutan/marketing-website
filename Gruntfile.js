@@ -333,7 +333,8 @@ module.exports = function(grunt) {
             '<%= config.guts %>/assets/js/libraries/handlebars-v1.3.0.js',
             '<%= config.bowerDir %>/momentjs/moment.js',
             '<%= config.bowerDir %>/oform/dist/oForm.min.js',
-            '<%= config.temp %>/assets/js/global.js'
+            '<%= config.temp %>/assets/js/global.js',
+            '<%= config.guts %>/assets/js/components/oForm-globals.js'
           ]
         }
       }
