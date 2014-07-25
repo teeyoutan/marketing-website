@@ -121,6 +121,11 @@ module.exports = function(grunt) {
                 res.writeHead(200, {'Content-Type': 'application/json'});
                 res.end( grunt.file.read('website-guts/endpoint-mocks/formSuccess.json') );
 
+              } else if(req.url === '/account/free_trial_landing/account_exists'){
+
+                res.writeHead(400, {'Content-Type': 'application/json'});
+                res.end( grunt.file.read('website-guts/endpoint-mocks/accountExists.json') );
+
               } else {
 
                 return next();
