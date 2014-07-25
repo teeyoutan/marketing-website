@@ -78,13 +78,7 @@ $('#seo-form').oForm({
 
     };
 
-    console.log('outside function');
-
-    console.log(response);
-
     if(typeof response === 'object' && typeof response.responseJSON === 'object' && response.responseJSON.succeeded){
-
-        console.log('inside function');
 
         success();
 

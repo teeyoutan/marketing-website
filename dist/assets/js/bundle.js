@@ -5489,8 +5489,6 @@ jQuery.oFormGlobalOverrides = {
 
 	afterGlobal: function(resp){
 
-		console.log('afterCompleteGlobal executing');
-
 		if(typeof resp.responseJSON === 'object'){
 
 			if(!resp.responseJSON.succeeded){
