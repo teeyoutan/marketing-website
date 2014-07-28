@@ -144,6 +144,29 @@ module.exports = function(grunt) {
         }
       }
     },
+    // assemble: {
+    //   options: {
+    //     layoutdir: '<%= config.guts %>/templates/layouts/',
+    //     assetsDir: '<%= grunt.config.get("assets_dir") %>',
+    //     linkPath: '<%= grunt.config.get("link_path") %>',
+    //     sassImagePath: '<%= grunt.config.get("sassImagePath") %>',
+    //     environmentIsProduction: '<%= grunt.config.get("environmentIsProduction") %>',
+    //     environmentIsDev: '<%= grunt.config.get("environmentIsDev") %>',
+    //     data: ['<%= config.content %>/**/*.json', '<%= config.content %>/**/*.yml', '<%= grunt.config.get("environmentData") %>'],
+    //     partials: ['<%= config.guts %>/templates/partials/*.{hbs, md}'],
+    //     helpers: ['<%= config.helpers %>/helper-*.js']
+    //   },
+    //   pages: {
+    //     files: [
+    //       {
+    //         src: ['**/*.hbs'],
+    //         dest: '<%= config.dist %>/',
+    //         cwd: '<%= config.content %>/',
+    //         expand: true
+    //       }
+    //     ]
+    //   }
+    // },
     assemble: {
       options: {
         layoutdir: '<%= config.guts %>/templates/layouts/',
@@ -153,8 +176,27 @@ module.exports = function(grunt) {
         environmentIsProduction: '<%= grunt.config.get("environmentIsProduction") %>',
         environmentIsDev: '<%= grunt.config.get("environmentIsDev") %>',
         data: ['<%= config.content %>/**/*.json', '<%= config.content %>/**/*.yml', '<%= grunt.config.get("environmentData") %>'],
-        partials: ['<%= config.guts %>/templates/partials/*.{hbs, md}'],
+        partials: ['<%= config.guts %>/templates/partials/*.hbs'],
         helpers: ['<%= config.helpers %>/helper-*.js']
+      },
+      modals: {
+        options: {
+          ext: '.hbs'
+        },
+        files: [
+          {
+            src: 'templates/components/modals/**/*.hbs',
+            dest: '<%= config.guts %>/templates/partials/',
+            cwd: '<%= config.guts %>/',
+            expand: true,
+            filter: 'isFile',
+            flatten: true,
+            rename: function(dest, src) {
+              var split = src.split('.');
+              return dest + split[0] + '_compiled';
+            }
+          }
+        ]
       },
       pages: {
         files: [

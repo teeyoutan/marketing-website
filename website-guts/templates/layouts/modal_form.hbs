@@ -1,0 +1,24 @@
+<div id="{{page.wrapper_id}}" class="modal-dialog-container" data-opty-modal="{{ page.data_attr_value }}">
+    <div class="dialog narrow">
+         <div class="modal-header">
+            <p class="normal-header header-h1">{{ page.modal_title }}</p>
+            {{#if page.modal_sub_header}}
+                <p>
+                    <span class="dynamic-content">{{page.modal_sub_header}}</span>
+                    <!-- <span class="optiverse-dynamic-content">By creating an account you can post in Optiverse and test drive Optimizely</span> -->
+                </p>
+            {{/if}}
+        </div>
+        <form action="{{page.form_action}}" method="POST" autocomplete="off">
+            <div class="modal-form-content">
+            {{> body }}
+            </div><!--/.modal-form-content-->
+            <div class="modal-footer">
+                <div class="buttons">
+                    <input type="submit" class="primary-button submit-btn translate" value="{{page.primary_button_text}} &raquo;">
+                    <input type="button" data-modal-btn="close" class="secondary-button close-btn translate" value="{{page.negative_action_button_text}}">
+                </div>
+            </div>
+        </form>
+    </div>
+</div> <!-- end .modal-dialog-container -->

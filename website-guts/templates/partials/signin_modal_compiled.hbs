@@ -1,0 +1,40 @@
+<div id="sign-in-dialog" class="modal-dialog-container" data-opty-modal="signin">
+    <div class="dialog narrow">
+         <div class="modal-header">
+            <p class="normal-header header-h1">Sign in to Optimizely</p>
+            
+        </div>
+        <form action="/account/signin" method="POST" autocomplete="off">
+            <div class="modal-form-content">
+            
+              <label>
+                  <span>Email address</span>
+                  <input type="text" name="email" />
+              </label>
+              <label>
+                  <span>Password</span>
+                  <input type="password" name="password" />
+              </label>
+              <div class="terms">
+                  <label class="spaced">
+                      <input type="checkbox" name="persist" checked="checked" />
+                      <p>Keep me signed in</p>
+                  </label>
+              </div>
+              <div class="options">
+                  <p>
+                      <a class="show-forgot-password">Forgot your password?</a><br />
+                      No account? <a class="show-create-account">Register here</a>
+                  </p>
+              </div>
+
+            </div><!--/.modal-form-content-->
+            <div class="modal-footer">
+                <div class="buttons">
+                    <input type="submit" class="primary-button submit-btn translate" value="Sign in &raquo;">
+                    <input type="button" data-modal-btn="close" class="secondary-button close-btn translate" value="Cancel">
+                </div>
+            </div>
+        </form>
+    </div>
+</div> <!-- end .modal-dialog-container -->
