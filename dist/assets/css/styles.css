@@ -1246,7 +1246,7 @@ body {
     font-size: 12px;
     padding: 0.5em 1em; }
 
-.primary-button, body.home-page input[type=submit] {
+.primary-button, body.home-page #cta input[type=submit] {
   background: -webkit-gradient(linear, left top, left bottom, from(#90b71c), to(#7fa119));
   background: -webkit-linear-gradient(top, #90b71c 0%, #7fa119 100%);
   background: linear-gradient(to bottom, #90b71c 0%, #7fa119 100%);
@@ -1262,7 +1262,7 @@ body {
   text-align: center;
   vertical-align: middle;
   text-shadow: 0 -1px 0px rgba(0, 0, 0, 0.23); }
-  .primary-button:hover, body.home-page input[type=submit]:hover {
+  .primary-button:hover, body.home-page #cta input[type=submit]:hover {
     -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.18);
             box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.18);
     background: #90b71c;
@@ -1499,7 +1499,7 @@ body.home-page {
   background: #003367 url("/dist/assets/img/bg-header.png") repeat; }
   body.home-page h1 {
     color: #fff; }
-  body.home-page form {
+  body.home-page #cta form {
     display: none; }
   @media only screen and (min-width: 960px) {
     body.home-page {
@@ -1536,42 +1536,42 @@ body.home-page {
           -webkit-transform: translateY(-75%);
               -ms-transform: translateY(-75%);
                   transform: translateY(-75%); }
+        body.home-page #cta form {
+          display: block;
+          background: -webkit-gradient(linear, left top, left bottom, from(#003366), to(#023f78));
+          background: -webkit-linear-gradient(top, #003366 0%, #023f78 100%);
+          background: linear-gradient(top, #003366 0%, #023f78 100%);
+          -webkit-box-shadow: 0px -2px 55px rgba(44, 89, 148, 0.82);
+                  box-shadow: 0px -2px 55px rgba(44, 89, 148, 0.82);
+          border: 1px solid #214e82;
+          padding: 16px;
+          width: 671px;
+          margin: 0 auto;
+          overflow: hidden;
+          -webkit-box-sizing: border-box;
+             -moz-box-sizing: border-box;
+                  box-sizing: border-box; }
+        body.home-page #cta input[type=text] {
+          border: solid 1px #e3e3e3;
+          -webkit-box-shadow: inset 0 0px 10px 0 rgba(0, 0, 0, 0.2);
+                  box-shadow: inset 0 0px 10px 0 rgba(0, 0, 0, 0.2);
+          color: #006eb6;
+          width: 446px;
+          font-size: 16px;
+          line-height: 22px;
+          padding: 5px 8px;
+          -webkit-box-sizing: border-box;
+             -moz-box-sizing: border-box;
+                  box-sizing: border-box;
+          height: 36px;
+          margin-right: 15px;
+          display: inline-block; }
+        body.home-page #cta input[type=submit] {
+          display: inline-block; }
       body.home-page h1 {
         text-align: center;
         font-size: 3.2em;
-        font-weight: 300; }
-      body.home-page form {
-        display: block;
-        background: -webkit-gradient(linear, left top, left bottom, from(#003366), to(#023f78));
-        background: -webkit-linear-gradient(top, #003366 0%, #023f78 100%);
-        background: linear-gradient(top, #003366 0%, #023f78 100%);
-        -webkit-box-shadow: 0px -2px 55px rgba(44, 89, 148, 0.82);
-                box-shadow: 0px -2px 55px rgba(44, 89, 148, 0.82);
-        border: 1px solid #214e82;
-        padding: 16px;
-        width: 671px;
-        margin: 0 auto;
-        overflow: hidden;
-        -webkit-box-sizing: border-box;
-           -moz-box-sizing: border-box;
-                box-sizing: border-box; }
-      body.home-page input[type=text] {
-        border: solid 1px #e3e3e3;
-        -webkit-box-shadow: inset 0 0px 10px 0 rgba(0, 0, 0, 0.2);
-                box-shadow: inset 0 0px 10px 0 rgba(0, 0, 0, 0.2);
-        color: #006eb6;
-        width: 446px;
-        font-size: 16px;
-        line-height: 22px;
-        padding: 5px 8px;
-        -webkit-box-sizing: border-box;
-           -moz-box-sizing: border-box;
-                box-sizing: border-box;
-        height: 36px;
-        margin-right: 15px;
-        display: inline-block; }
-      body.home-page input[type=submit] {
-        display: inline-block; } }
+        font-weight: 300; } }
 
 body.events-page li {
   list-style-type: none;
