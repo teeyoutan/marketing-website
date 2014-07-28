@@ -9006,4 +9006,5 @@ window.optly.mrkt.activeLinks.markActiveLinks = function(){
 };
 
 window.optly.mrkt.activeLinks.markActiveLinks();
-})(jQuery);
+
+console.log('modals script loaded');})(jQuery);

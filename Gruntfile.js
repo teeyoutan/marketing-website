@@ -309,10 +309,12 @@ module.exports = function(grunt) {
           banner: '<%= grunt.config.get("concat_banner") %>',
           footer: '<%= grunt.config.get("concat_footer") %>'
         },
-        src: ['global.js'],
-        expand: true,
-        cwd: '<%= config.guts %>/assets/js/',
-        dest: '<%= config.temp %>/assets/js/'
+        files: {
+          '<%= config.temp %>/assets/js/global.js': [
+            '<%= config.guts %>/assets/js/global.js', 
+            '<%= config.guts %>/assets/js/components/*.js'
+          ]
+        }
       },
       concatBundle: {
         files: {
