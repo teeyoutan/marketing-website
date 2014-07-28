@@ -9124,7 +9124,7 @@ function initiateModal() {
 
 function handlePopstate(e) {
   // Safari fires an initial popstate, we want to ignore this
-  if ((e.timeStamp - initialTime) > 20 || (e.timeStamp - lastPop) > 20) {
+  if ( (e.timeStamp - initialTime) > 20 ) {
     console.log('popstate modal open/close');
     if (sessionStorage.modalType === '' || sessionStorage.modalType === undefined) {
       if (!!sessionStorage.lastType) {
