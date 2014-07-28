@@ -344,6 +344,10 @@ h1, h2, h3, h4, h5, h6 {
   font-family: "Gotham A", "Gotham B", Helvetica, Arial, sans-serif;
   text-align: center; }
 
+h1 {
+  font-size: 2em;
+  font-weight: 100; }
+
 h3 {
   font-size: 1.8em;
   line-height: 1.2; }
@@ -364,6 +368,10 @@ a {
   font-weight: 100; }
   a:hover {
     text-decoration: underline; }
+
+.dialog .header-h1 {
+  font-size: 1.75em;
+  font-weight: 100; }
 
 /* type helper classes */
 .heading-underline, .sheet h3, body.press-page h3 {
