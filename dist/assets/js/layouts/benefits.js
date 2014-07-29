@@ -4,6 +4,8 @@
 
   window.optly.mrkt = window.optly.mrkt || {}; 
 
+  try { 
+
 window.optly.mrkt.benefitsLayout = {};
 
 window.optly.mrkt.benefitsLayout.menuHandlers = function() {
@@ -29,4 +31,9 @@ window.optly.mrkt.benefitsLayout.menuOrder = function() {
 };
 
 window.optly.mrkt.benefitsLayout.menuHandlers();
-window.optly.mrkt.benefitsLayout.menuOrder();})(jQuery);
+window.optly.mrkt.benefitsLayout.menuOrder();  } catch(error){ 
+
+  //report errors to GA 
+
+  window.console.log("js error: " + error);  } 
+})(jQuery);

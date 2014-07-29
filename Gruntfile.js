@@ -34,7 +34,6 @@ module.exports = function(grunt) {
             environmentData: 'website-guts/data/environments/production/environmentVariables.json',
             assets_dir: '//www.optimizelyassets.com',
             link_path: '',
-            sassSourceMap: false,
             sassImagePath: '//www.optimizelyassets.com/img',
             compress_js: true,
             concat_banner: '(function($){ \n\n' +
@@ -48,7 +47,7 @@ module.exports = function(grunt) {
                            '})(jQuery);'
           }
         }
-      }
+      },
       preview: {
         options: {
           variables: {
@@ -57,7 +56,6 @@ module.exports = function(grunt) {
             environmentData: 'website-guts/data/environments/production/environmentVariables.json',
             assets_dir: '/assets',
             link_path: '',
-            sassSourceMap: false,
             sassImagePath: '/assets/img',
             compress_js: true,
             concat_banner: '(function($){ \n\n' +
@@ -190,10 +188,25 @@ module.exports = function(grunt) {
       }
     },
     sass: {
-      styles: {
+      prod: {
+        options: {
+          sourceMap: false,
+          imagePath: '<%= grunt.config.get("sassImagePath") %>',
+          precision: 3,
+          outputStyle: 'compressed'
+        },
+        files: [
+          {
+            src: '<%= config.guts %>/assets/css/styles.scss',
+            dest: '<%= config.temp %>/css/styles.css'
+          }
+        ]
+      },
+      dev: {
         options: {
           sourceMap: true,
-          imagePath: '<%= grunt.config.get("sassImagePath") %>'
+          imagePath: '<%= grunt.config.get("sassImagePath") %>',
+          precision: 3
         },
         files: [
           {
@@ -405,7 +418,7 @@ module.exports = function(grunt) {
     'clean:preBuild',
     'assemble',
     'concat',
-    'sass',
+    'sass:dev',
     'replace',
     'autoprefixer',
     'copy',
@@ -422,7 +435,7 @@ module.exports = function(grunt) {
     'concat',
     'copy',
     'uglify',
-    'sass',
+    'sass:prod',
     'replace',
     'autoprefixer',
     'clean:postBuild'
