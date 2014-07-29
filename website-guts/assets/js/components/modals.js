@@ -1,5 +1,3 @@
-console.log('modals script loaded');
-
 window.optly = window.optly || {};
 window.optly.mrkt = window.optly.mrkt || {};
 var baseUrl = document.URL,
@@ -32,13 +30,16 @@ function setHistoryId(stateData) {
 
 function openModalHandler() {
   var modalType = $(this).data('modal-click');
+  console.log(baseUrl);
   // Check for History/SessionStorage support
   if (isHistorySupported) {
     var stateData = History.getState().data;
     stateData.modalType = modalType;
     setHistoryId(stateData);
-    History.pushState(stateData, 'modal open', baseUrl);
-  }
+    History.pushState(stateData, 'modal open', null);
+  } //else {
+    //window.location.hash = modalType;
+  //}
   window.optly.mrkt.openModal(modalType);
 }
 
@@ -51,6 +52,7 @@ function closeModalHandler(e) {
     if (isHistorySupported) {
       History.back();
     } else {
+      //window.location.hash = '';
       window.optly.mrkt.closeModal($modalCont.data('opty-modal'));
     }
   }
@@ -109,9 +111,16 @@ window.optly.mrkt.closeModal = function(modalType) {
 
 // Only use if History/Session Storage in Enabled
 function initiateModal() {
+  var modalType;
   //Trigger Dialog if # is present in URL
   if (sessionStorage.modalType === 'signup' || sessionStorage.modalType === 'signin') {
-    var modalType = sessionStorage.modalType;
+    modalType = sessionStorage.modalType;
+  } 
+  else if (History.getHash() === 'signup' || History.getHash() === 'signin') {
+    modalType = History.getHash();
+  }
+
+  if (modalType !== undefined) {
     window.optly.mrkt.openModal(modalType);
   }
 }
@@ -119,7 +128,6 @@ function initiateModal() {
 function handlePopstate(e) {
   // Safari fires an initial popstate, we want to ignore this
   if ( (e.timeStamp - initialTime) > 20 ) {
-    console.log('popstate modal open/close');
     if (sessionStorage.modalType === '' || sessionStorage.modalType === undefined) {
       if (!!sessionStorage.lastType) {
         window.optly.mrkt.openModal(sessionStorage.lastType);
