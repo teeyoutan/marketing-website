@@ -9098,6 +9098,10 @@ window.optly.mrkt.openModal = function(modalType) {
     storeModalState(modalType, true);
   }
 
+  if ( !$('html, body').hasClass('no-scroll') ) {
+    $('html, body').addClass('no-scroll');
+  } 
+
   // Fade out the modal and attach the close modal handler
   $elm.fadeToggle(function() {
     $elm.bind('click', closeModalHandler);
@@ -9112,6 +9116,11 @@ window.optly.mrkt.closeModal = function(modalType) {
     storeModalState(modalType, false);
   }
   
+  if ( $('html, body').hasClass('no-scroll') ) {
+    $('html, body').removeClass('no-scroll');
+  }
+
+  window.scrollTo(0,0);
   // Fade out the modal and remove the close modal handler
   $elm.fadeToggle(function() {
     $elm.unbind('click', closeModalHandler);
@@ -9148,13 +9157,21 @@ function handlePopstate(e) {
   lastPop = e.timeStamp;
 }
 
-function setModalHeight() {
-  if (window.innerWidth <= 720) {
-    if (!vhSupported) {
-      $.each($elms, function(key, value) {
+function setMobileProperties() {
+  if (!vhSupported) {
+    if (window.innerWidth <= 768) {
+      $.each($elms, function(key, $elm) {
         console.log('resize');
-        value.css({
-          height: window.innerHeight
+        $( $elm.children()[0] ).css({
+          height: window.innerHeight + 'px'
+        });
+      });
+    } 
+    else {
+      $.each($elms, function(key, $elm) {
+        console.log('resize');
+        $( $elm.children()[0] ).css({
+          height: 'auto'
         });
       });
     }
@@ -9179,6 +9196,11 @@ $('ul.utility-nav').delegate('[data-modal-click]', 'click', openModalHandler);
 testEl.css({
   height: '100vh'
 });
+
 vhSupported = testEl.height() === window.innerHeight;
+
+testEl.css({
+  height: '0px'
+});
 // Set the modal height
-$(window).bind('load resize', setModalHeight);})(jQuery);
+$(window).bind('load resize', setMobileProperties);})(jQuery);
