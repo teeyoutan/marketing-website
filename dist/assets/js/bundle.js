@@ -9022,7 +9022,10 @@ var baseUrl = document.URL,
   lastPop,
   testEl = $('#vh-test'),
   vhSupported,
-  evalHistoryStorage = Modernizr.history && !!window.sessionStorage;
+  isSafari = /Safari/.test(navigator.userAgent) && /Apple Computer/.test(navigator.vendor),
+  isIosSafari = /(iPhone|iPod|iPad).*AppleWebKit(?!.*Safari)/i.test(navigator.userAgent) || /(iPhone|iPod|iPad).*AppleWebKit/i.test(navigator.userAgent),
+  isIosChrome = !!navigator.userAgent.match('CriOS'),
+  isHistorySupported = Modernizr.history && !!window.sessionStorage && ( !(isIosSafari || isSafari) ) || isIosChrome;
 
 // FUNCTIONS
 
@@ -9039,7 +9042,7 @@ function setHistoryId(stateData) {
 function openModalHandler() {
   var modalType = $(this).data('modal-click');
   // Check for History/SessionStorage support
-  if (evalHistoryStorage) {
+  if (isHistorySupported) {
     var stateData = History.getState().data;
     stateData.modalType = modalType;
     setHistoryId(stateData);
@@ -9054,7 +9057,7 @@ function closeModalHandler(e) {
   if ($modalCont.find(e.target).length === 0 || $clickedElm.data('modal-btn') === 'close') {
     // move history back because this event is outside of the history navigation state
     //console.log('state data in close: ', History.getState().data);
-    if (evalHistoryStorage) {
+    if (isHistorySupported) {
       History.back();
     } else {
       window.optly.mrkt.closeModal($modalCont.data('opty-modal'));
@@ -9088,7 +9091,7 @@ function storeModalState(modalType, modalOpen) {
 window.optly.mrkt.openModal = function(modalType) {
   var $elm = $elms[modalType];
 
-  if (evalHistoryStorage) {
+  if (isHistorySupported) {
     // Update the modal state in the session storage
     storeModalState(modalType, true);
   }
@@ -9102,7 +9105,7 @@ window.optly.mrkt.openModal = function(modalType) {
 window.optly.mrkt.closeModal = function(modalType) {
   var $elm = $elms[modalType];
 
-  if (evalHistoryStorage) {
+  if (isHistorySupported) {
     // Update the modal state in the session storage
     storeModalState(modalType, false);
   }
@@ -9152,7 +9155,7 @@ function setModalHeight() {
 
 //INITIALIZATION
 
-if (evalHistoryStorage) {
+if (isHistorySupported) {
   // Check if modal state exists from previous page view 
   initiateModal();
   // Bind to popstate
