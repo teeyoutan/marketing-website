@@ -841,7 +841,7 @@ footer {
   #intl-domains li.last {
     padding-right: 0; } }
 
-input[type=text], input[type=url], input[type=tel], input[type=email] {
+input[type=text], input[type=url], input[type=tel], input[type=email], input[type=password] {
   border: 1px solid #c9c9c9;
   font-weight: 400;
   padding: 4px;
@@ -2142,7 +2142,7 @@ body.customer-stories-page .customer-grid-elm {
     padding: 20px; }
   body.customer-stories-page .customer-grid-elm .customer-logos {
     background-repeat: no-repeat;
-    -webkit-background-size: contain;
+    -webkit-background-size: contain contain;
             background-size: contain;
     background-position: center center;
     margin: 0 auto; }
