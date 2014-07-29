@@ -349,6 +349,31 @@ module.exports = function(grunt) {
           }
         ]
       }
+    },
+    'phantomcss-gitdiff': {
+      options: {
+        baseUrl: 'http://0.0.0.0:9000/',
+        serverRoot: 'dist/',
+        gitDiff: true,
+      },
+      desktop: {
+        options: {
+          screenshots: 'screens/desktop/',
+          viewportSize: [1024, 768]
+        },
+        src: [
+          'dist/{,**/}*.html'
+        ]
+      },
+      mobile: {
+        options: {
+          screenshots: 'screens/mobile/',
+          viewportSize: [320, 480]
+        },
+        src: [
+          'dist/{,**/}*.html'
+        ]
+      }
     }
   });
 
