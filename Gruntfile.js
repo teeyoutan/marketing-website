@@ -383,6 +383,17 @@ module.exports = function(grunt) {
             flatten: true
           }
         ]
+      },
+      layoutFiles: {
+        files: [
+          {
+            expand: true,
+            cwd: '<%= config.dist %>/assets/js/',
+            src: 'layouts/*.js',
+            dest: '<%= config.dist %>/assets/js/layouts',
+            flatten: true
+          }
+        ]
       }
     },
     'phantomcss-gitdiff': {
@@ -409,6 +420,18 @@ module.exports = function(grunt) {
           'dist/{,**/}*.html'
         ]
       }
+    },
+    imagemin: {
+      prod: {
+        files: [
+          {
+            cwd: '<%= config.guts %>/assets/img/',
+            src: '**/*.{jpg,jpeg,gif,png,svg}',
+            dest: '<%= config.dist %>/assets/img/',
+            expand: true
+          }
+        ]
+      }
     }
   });
 
@@ -433,7 +456,8 @@ module.exports = function(grunt) {
     'clean:preBuild',
     'assemble',
     'concat',
-    'copy',
+    'imagemin:prod',
+    'copy:cssFontFile',
     'uglify',
     'sass:prod',
     'replace',
