@@ -2142,7 +2142,7 @@ body.customer-stories-page .customer-grid-elm {
     padding: 20px; }
   body.customer-stories-page .customer-grid-elm .customer-logos {
     background-repeat: no-repeat;
-    -webkit-background-size: contain;
+    -webkit-background-size: contain contain;
             background-size: contain;
     background-position: center center;
     margin: 0 auto; }
