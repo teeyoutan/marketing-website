@@ -9009,12 +9009,13 @@ window.optly.mrkt.activeLinks.markActiveLinks();
 
 window.optly = window.optly || {};
 window.optly.mrkt = window.optly.mrkt || {};
+window.optly.mrkt.modal = {};
 var baseUrl = document.URL,
   History = window.History || {},
   Modernizr = window.Modernizr || {},
   $elms = {
-    signup: $('[data-opty-modal="signup"]'),
-    signin: $('[data-opty-modal="signin"]')
+    signup: $('[data-optly-modal="signup"]'),
+    signin: $('[data-optly-modal="signin"]')
   },
   initialTime = Date.now(),
   lastPop,
@@ -9049,7 +9050,7 @@ function openModalHandler() {
   } //else {
     //window.location.hash = modalType;
   //}
-  window.optly.mrkt.openModal(modalType);
+  window.optly.mrkt.modal.open(modalType);
 }
 
 function closeModalHandler(e) {
@@ -9062,7 +9063,7 @@ function closeModalHandler(e) {
       History.back();
     } else {
       //window.location.hash = '';
-      window.optly.mrkt.closeModal($modalCont.data('opty-modal'));
+      window.optly.mrkt.modal.close($modalCont.data('optly-modal'));
     }
   }
 }
@@ -9090,7 +9091,7 @@ function storeModalState(modalType, modalOpen) {
   }
 }
 
-window.optly.mrkt.openModal = function(modalType) {
+window.optly.mrkt.modal.open = function(modalType) {
   var $elm = $elms[modalType];
 
   if (isHistorySupported) {
@@ -9101,14 +9102,14 @@ window.optly.mrkt.openModal = function(modalType) {
   if ( !$('html, body').hasClass('no-scroll') ) {
     $('html, body').addClass('no-scroll');
   } 
-
+  
   // Fade out the modal and attach the close modal handler
   $elm.fadeToggle(function() {
     $elm.bind('click', closeModalHandler);
   });
 };
 
-window.optly.mrkt.closeModal = function(modalType) {
+window.optly.mrkt.modal.close = function(modalType) {
   var $elm = $elms[modalType];
 
   if (isHistorySupported) {
@@ -9121,6 +9122,8 @@ window.optly.mrkt.closeModal = function(modalType) {
   }
 
   window.scrollTo(0,0);
+  $elm.children()[0].scrollTop = 0;
+  
   // Fade out the modal and remove the close modal handler
   $elm.fadeToggle(function() {
     $elm.unbind('click', closeModalHandler);
@@ -9139,7 +9142,7 @@ function initiateModal() {
   }
 
   if (modalType !== undefined) {
-    window.optly.mrkt.openModal(modalType);
+    window.optly.mrkt.modal.open(modalType);
   }
 }
 
@@ -9148,10 +9151,10 @@ function handlePopstate(e) {
   if ( (e.timeStamp - initialTime) > 20 ) {
     if (sessionStorage.modalType === '' || sessionStorage.modalType === undefined) {
       if (!!sessionStorage.lastType) {
-        window.optly.mrkt.openModal(sessionStorage.lastType);
+        window.optly.mrkt.modal.open(sessionStorage.lastType);
       }
     } else {
-      window.optly.mrkt.closeModal(sessionStorage.modalType);
+      window.optly.mrkt.modal.close(sessionStorage.modalType);
     }
   }
   lastPop = e.timeStamp;

@@ -841,7 +841,7 @@ footer {
   #intl-domains li.last {
     padding-right: 0; } }
 
-input[type=text], input[type=url], input[type=tel], input[type=email] {
+input[type=text], input[type=url], input[type=tel], input[type=email], input[type=password] {
   border: 1px solid #c9c9c9;
   font-weight: 400;
   padding: 4px;
@@ -2360,7 +2360,7 @@ body.benefits-page {
         width: 100%; }
         .modal-dialog-container .dialog form .buttons input:first-child {
           margin: 0;
-          width: 130px;
+          width: auto;
           float: right; }
         .modal-dialog-container .dialog form .buttons input:last-child {
           margin-right: 10px;
