@@ -78,7 +78,46 @@ window.optly.mrkt.activeLinks.markActiveLinks = function(){
 
 	});
 
-
 };
 
 window.optly.mrkt.activeLinks.markActiveLinks();
+
+window.optly.mrkt.inlineFormLabels = function(){
+
+	$('form.inline-labels :input').each(function(index, elem) {
+
+			var eId = $(elem).attr('id');
+
+			var label = null;
+
+			if (eId && (label = $(elem).parents('form').find('label[for='+eId+']')).length === 1) {
+
+					$(elem).attr('placeholder', $(label).html());
+
+					$(label).addClass('hide-label');
+
+			}
+
+	});
+
+};
+
+window.optly.mrkt.formDataStringToObject = function getJsonFromUrl(string) {
+
+	var data, result, i;
+
+  data = string.split('&');
+
+  result = {};
+
+  for(i=0; i<data.length; i++) {
+
+    var item = data[i].split('=');
+
+    result[item[0]] = item[1];
+
+  }
+
+  return result;
+
+};

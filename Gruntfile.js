@@ -133,19 +133,31 @@ module.exports = function(grunt) {
         // change this to '0.0.0.0' to access the server from outside
         hostname: '0.0.0.0',
         middleware: function(connect, options, middlewares){
-          middlewares.push(function(req, res, next){
-            if(req.url === '/account/free_trial_landing'){
+          middlewares.unshift(function(req, res, next){
+            if(req.method === 'POST'){
 
-              res.writeHead(200, {'Content-Type': 'application/json'});
-              res.end( grunt.file.read('website-guts/endpoint-mocks/formSuccess.json') );
+              if(req.url === '/account/free_trial_landing'){
+
+                res.writeHead(200, {'Content-Type': 'application/json'});
+                res.end( grunt.file.read('website-guts/endpoint-mocks/formSuccess.json') );
+
+              } else if(req.url === '/account/free_trial_landing/account_exists'){
+
+                res.writeHead(400, {'Content-Type': 'application/json'});
+                res.end( grunt.file.read('website-guts/endpoint-mocks/accountExists.json') );
+
+              } else {
+
+                return next();
+
+              }
 
             } else if(req.url === '/account/info') {
 
               res.writeHead(200, {'Content-Type': 'application/json'});
               res.end( grunt.file.read('website-guts/endpoint-mocks/accountInfo.json') );
 
-            }
-            else{
+            } else{
 
               return next();
 
@@ -362,8 +374,9 @@ module.exports = function(grunt) {
             '<%= config.bowerDir %>/jquery-cookie/jquery.cookie.js',
             '<%= config.guts %>/assets/js/libraries/handlebars-v1.3.0.js',
             '<%= config.bowerDir %>/momentjs/moment.js',
-            '<%= config.guts %>/assets/js/libraries/oForm/oForm.js',
-            '<%= config.temp %>/assets/js/global.js'
+            '<%= config.bowerDir %>/oform/dist/oForm.min.js',
+            '<%= config.temp %>/assets/js/global.js',
+            '<%= config.guts %>/assets/js/components/oForm-globals.js'
           ]
         }
       }

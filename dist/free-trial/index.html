@@ -22,7 +22,7 @@
         
         <script type="text/javascript">
           window.analytics=window.analytics||[],window.analytics.methods=["identify","group","track","page","pageview","alias","ready","on","once","off","trackLink","trackForm","trackClick","trackSubmit"],window.analytics.factory=function(t){return function(){var a=Array.prototype.slice.call(arguments);return a.unshift(t),window.analytics.push(a),window.analytics}};for(var i=0;i<window.analytics.methods.length;i++){var key=window.analytics.methods[i];window.analytics[key]=window.analytics.factory(key)}window.analytics.load=function(t){if(!document.getElementById("analytics-js")){var a=document.createElement("script");a.type="text/javascript",a.id="analytics-js",a.async=!0,a.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.io/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n)}},window.analytics.SNIPPET_VERSION="2.0.9",
-          window.analytics.load("l4usxygsxg");
+          window.analytics.load('l4usxygsxg');
           window.analytics.page();
         </script>
     </head>
@@ -50,9 +50,9 @@
     <div id="ppc-form" class="landing-page-form">
       <h4 class="seo-form-heading">Test it Out for Free</h4>
       <p>Welcome to Optimizely. Sign up for a free account and test out the most popular <span id="symmetry_test">A/B testing tool</span> on the planet!</p>
-      <form id="seo-form" class="seo-form" action="/account/free_trial_landing" autocomplete="off" novalidate="novalidate">
+      <form id="seo-form" class="seo-form inline-labels" action="/account/free_trial_landing" autocomplete="off" novalidate="novalidate">
         
-        <p class="error"></p>
+        <p class="error-message error error-show"></p>
         <input id="utm_medium" type="hidden" name="utm_medium" value="direct">
         <ul>
           <li class="url-input-related">
@@ -63,7 +63,7 @@
             <label for="name">Your Name</label>
             <input id="name" required data-validation="name" name="name" type="text">
           </li>
-          <li>
+          <li id="phone-email-cont">
             <div class="label half left email-related">
               <label for="email">Your email - no spam</label>
               <input id="email" required name="email" type="email">
@@ -75,15 +75,11 @@
             </div>
           </li>
           <li class="terms">
-            <label class="checkbox">
-              <input type="checkbox" name="terms-of-service" required id="terms">
-              I agree to the
-              <span id="SL-link-terms" class="SL_swap"><a href="/terms" target="_blank">Terms of Service</a></span> and
-              <span id="SL-link-privacy" class="SL_swap"><a href="/privacy" target="_blank">Privacy Policy</a></span>.
-            </label>
+            <small>By clicking the <q>Test it Out</q> button below I agree to the <br><a href="/terms" target="_blank">Terms of Service</a> and <a href="/privacy" target="_blank">Privacy Policy</a>.</small>
           </li>
           <li class="a-center">
-            <input type="submit" class="button" value="Test it Out">
+            <input type="submit" class="button processing-hide" value="Test it Out">
+            <p class="processing-show">Processing...</p>
           </li>
         </ul>
       </form>

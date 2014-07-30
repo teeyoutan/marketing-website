@@ -1322,16 +1322,6 @@ body {
   text-align: center;
   font-weight: 300; }
 
-.half {
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  width: 50%; }
-  .half.right {
-    padding-left: 10px; }
-  .half.left {
-    padding-right: 10px; }
-
 .a-right {
   text-align: right; }
 
@@ -1339,6 +1329,10 @@ body {
   margin: 20px 0; }
   .attention h3 {
     text-align: center; }
+
+.error {
+  color: #911d16;
+  font-weight: 400; }
 
 .super {
   display: block;
@@ -1405,6 +1399,15 @@ body .small-note, body p.small-note {
     border: 1px solid #ddd; } }
 
 @media only screen and (min-width: 960px) {
+  .half {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 50%; }
+    .half.right {
+      padding-left: 10px; }
+    .half.left {
+      padding-right: 10px; }
   .left {
     float: left; }
   .right {
@@ -1490,9 +1493,18 @@ body .small-note, body p.small-note {
 .hide-label {
   display: none; }
 
-input[type="text"].error, input[type="url"].error, input[type="email"].error, input[type="tel"].error {
+input[type="text"].error-show, input[type="url"].error-show, input[type="email"].error-show, input[type="tel"].error-show {
   background-color: #fef3f3;
   border-color: #f3b6b3; }
+
+.processing-show, .error-show {
+  display: none; }
+
+body.processing-state .processing-show, body.error-state .error-show {
+  display: inherit; }
+
+body.processing-state .processing-hide, body.error-state .error-hide {
+  display: none; }
 
 /* pages */
 body.home-page {
@@ -1699,6 +1711,8 @@ body.privacy-page.remarketing-opt-out .opted-out {
 
 body.ppc-page h4 {
   text-align: center; }
+body.ppc-page #phone-email-cont div {
+  margin-bottom: 10px; }
 @media only screen and (min-width: 768px) {
   body.ppc-page input[type=text], body.ppc-page input[type=url], body.ppc-page input[type=tel], body.ppc-page input[type=email] {
     width: 400px;
@@ -1723,11 +1737,13 @@ body.ppc-page h4 {
       -webkit-transform: translateY(-50%);
           -ms-transform: translateY(-50%);
               transform: translateY(-50%); }
+      body.ppc-page #ppc-form #phone-email-cont div {
+        margin-bottom: auto; }
       body.ppc-page #ppc-form #url, body.ppc-page #ppc-form #name {
         width: 100%; }
       body.ppc-page #ppc-form .terms {
         clear: both;
-        padding-top: 25px;
+        padding: 10px 0;
         color: #999;
         font-size: 15px; }
         body.ppc-page #ppc-form .terms a {
