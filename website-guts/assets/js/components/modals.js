@@ -1,13 +1,13 @@
 window.optly = window.optly || {};
 window.optly.mrkt = window.optly.mrkt || {};
 window.optly.mrkt.modal = {};
-var baseUrl = document.URL,
-  History = window.History || {},
+var History = window.History || {},
   Modernizr = window.Modernizr || {},
   $elms = {
     signup: $('[data-optly-modal="signup"]'),
     signin: $('[data-optly-modal="signin"]')
   },
+  //baseUrl = document.URL,
   initialTime = Date.now(),
   lastPop,
   testEl = $('#vh-test'),
@@ -24,8 +24,11 @@ var baseUrl = document.URL,
 function setHistoryId(historyData) {
   var stateData = {};
   if (historyData._id) {
-    stateData._id += 1;
+    stateData._id = historyData._id + 1;
   } 
+  else if (sessionStorage._id) {
+    stateData._id = sessionStorage._id + 1;
+  }
   else {
     stateData._id = 1;
   }
@@ -33,15 +36,21 @@ function setHistoryId(historyData) {
 }
 
 function openModalHandler() {
-  var modalType = $(this).data('modal-click');
+  var title,
+    stateData,
+    modalType = $(this).data('modal-click');
 
   // Check for History/SessionStorage support and how many items are on the history stack
   if (isHistorySupported && historyIcrementor === 0) {
-    var stateData = setHistoryId(History.getState().data);
+    stateData = setHistoryId(History.getState().data);
     stateData.modalType = modalType;
-    // increment history count
+    // increment history count to track if pushstate should occur on next iteration
     historyIcrementor += 1;
-    History.pushState(stateData, null, baseUrl);
+    title = modalType.charAt(0).toUpperCase() + modalType.slice(1);
+    if (title === 'Signin') {
+      title = 'Login';
+    }
+    History.pushState(stateData, title);
   } //else {
     //window.location.hash = modalType;
   //}
