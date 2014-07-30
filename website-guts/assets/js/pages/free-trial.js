@@ -2,6 +2,10 @@ $('#seo-form').oForm({
 
   afterLocal: function(response, callback){
 
+    console.log('afterLocal: ');
+
+    console.log(response);
+
     var runCallback, success;
 
     runCallback = function(arg){
