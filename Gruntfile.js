@@ -32,9 +32,9 @@ module.exports = function(grunt) {
           variables: {
             environment: 'production',
             environmentData: 'website-guts/data/environments/production/environmentVariables.json',
-            assets_dir: '//www.optimizelyassets.com',
+            assets_dir: '/dist/assets',
             link_path: '',
-            sassImagePath: '//www.optimizelyassets.com/img',
+            sassImagePath: '/dist/assets/img',
             compress_js: true,
             concat_banner: '(function($){ \n\n' +
                            '  window.optly = window.optly || {}; \n\n' +
@@ -250,11 +250,12 @@ module.exports = function(grunt) {
       jquery: {
         files: [
           {
-            src: '<%= config.guts %>/assets/js/libraries/jquery-1.6.4.min.js',
-            dest: '<%= config.dist %>/assets/js/libraries/jquery-1.6.4.min.js',
-            flatten: true,
-            filter: 'isFile'
-          },
+            '<%= config.dist %>/assets/js/libraries/jquery-1.6.4.min.js': ['<%= config.guts %>/assets/js/libraries/jquery-1.6.4.min.js']
+          }
+        ]
+      },
+      fastclick: {
+        files: [
           {
             '<%= config.dist %>/assets/js/libraries/fastclick.js': ['<%= config.bowerDir %>/fastclick/lib/fastclick.js']
           }
@@ -269,6 +270,11 @@ module.exports = function(grunt) {
             expand: true
           }
         ]
+      },
+      jsBundle: {
+        files: {
+            '<%= config.dist %>/assets/js/bundle.js': ['<%= config.temp %>/assets/js/bundle.js']
+        }
       }
     },
     clean: {
@@ -351,7 +357,7 @@ module.exports = function(grunt) {
       },
       concatBundle: {
         files: {
-          '<%= config.dist %>/assets/js/bundle.js': [
+          '<%= config.temp %>/assets/js/bundle.js': [
             '<%= config.bowerDir %>/jquery-cookie/jquery.cookie.js',
             '<%= config.guts %>/assets/js/libraries/handlebars-v1.3.0.js',
             '<%= config.bowerDir %>/momentjs/moment.js',
@@ -369,8 +375,8 @@ module.exports = function(grunt) {
       },
       globalJS: {
         files: {
-          '<%= config.dist %>/assets/js/libraries/fastclick.js': ['<%= config.dist %>/assets/js/libraries/fastclick.js'],
-          '<%= config.dist %>/assets/js/bundle.js': ['<%= config.dist %>/assets/js/bundle.js']
+          '<%= config.dist %>/assets/js/libraries/fastclick.js': ['<%= config.bowerDir %>/fastclick/lib/fastclick.js'],
+          '<%= config.dist %>/assets/js/bundle.js': ['<%= config.temp %>/assets/js/bundle.js']
         }
       },
       pageFiles: {
@@ -458,6 +464,7 @@ module.exports = function(grunt) {
     'concat',
     'imagemin:prod',
     'copy:cssFontFile',
+    'copy:jquery',
     'uglify',
     'sass:prod',
     'replace',
