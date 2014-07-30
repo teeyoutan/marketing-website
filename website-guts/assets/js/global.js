@@ -80,6 +80,8 @@ window.optly.mrkt.activeLinks.markActiveLinks = function(){
 
 };
 
+window.optly.mrkt.activeLinks.markActiveLinks();
+
 window.optly.mrkt.inlineFormLabels = function(){
 
 	$('form.inline-labels :input').each(function(index, elem) {

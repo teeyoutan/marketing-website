@@ -5354,7 +5354,7 @@ var __module0__ = (function(__dependency1__, __dependency2__, __dependency3__, _
 }).call(this);
 
 /* oForm - Author: Kyle Rush - MIT license - https://github.com/kylerush/oform */ 
-$.fn.extend({oForm:function(options){var defaultOptions,settings,formSelector;formSelector=$(this),defaultOptions={},defaultOptions.validation={},defaultOptions.validation.validators={},defaultOptions.emailIsValid=function(email){if("string"==typeof email){var emailRegEx=/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;return emailRegEx.test(email)}return!1},defaultOptions.phoneIsValid=function(phone){if("string"==typeof phone){var phoneOnlyDigits=phone.replace(/\D/g,"");return phoneOnlyDigits.length>=10?!0:!1}return!1},defaultOptions.checkboxIsValid=function(checkbox){return $(checkbox).prop("checked")?!0:!1},defaultOptions.stringHasValue=function(value){return value?!0:!1},defaultOptions.alertValidationError=function(element,isValid){"function"!=typeof settings.reportValidationError||isValid||settings.reportValidationError(element)},defaultOptions.adjustClasses=function(element,isValid){var relatedClass="."+element.attr("name")+"-related";return isValid?(element.removeClass("error-show"),$(relatedClass).each(function(index,value){$(value).removeClass("error-show")})):(element.addClass("error-show"),$(relatedClass).each(function(index,value){$(value).addClass("error-show")}),settings.alertValidationError(element,isValid)),"checkbox"===element.attr("type")&&element.focus(),isValid},defaultOptions.validateFields=function(args){var invalidFields=0;return $.each(args.selector.find('input:not([type="hidden"])'),function(index,value){var element,dataValidation,elementValue,type,validate;if(element=$(value),dataValidation=$(element).attr("data-validation"),elementValue=element.val(),validate=function(valid){valid||invalidFields++},dataValidation&&settings.validation[dataValidation])settings.adjustClasses(element,settings.validation[dataValidation](elementValue));else if(element.attr("required"))switch(type=element.attr("type")){case"url":case"text":validate(settings.adjustClasses(element,settings.stringHasValue(elementValue)));break;case"email":validate(settings.adjustClasses(element,settings.emailIsValid(elementValue)));break;case"tel":validate(settings.adjustClasses(element,settings.phoneIsValid(elementValue)));break;case"checkbox":validate(settings.adjustClasses(element,settings.checkboxIsValid(element)))}}),0===invalidFields?($("body").removeClass("error-state"),!0):($("body").addClass("error-state"),!1)},defaultOptions.submitData=function(){var requestSettings,request;requestSettings={type:"POST",url:formSelector.attr("action")||settings.url,data:formSelector.serialize()},request=$.ajax(requestSettings),request.always(function(request){try{request.responseJSON=$.parseJSON(request.responseText),request.requestInfo=requestSettings}catch(error){}executeAfterCallbacks(request)})},"object"==typeof jQuery.oFormGlobalOverrides&&(defaultOptions=$.extend(!0,defaultOptions,jQuery.oFormGlobalOverrides)),settings=$.extend(!0,defaultOptions,options);var executeAfterCallbacks=function(response){"function"==typeof settings.afterLocal?settings.afterLocal(response,settings.afterGlobal?settings.afterGlobal:void 0):settings.afterGlobal(response)};formSelector.submit(function(event){if(event.preventDefault(),"function"==typeof settings.beforeLocal&&settings.beforeLocal({selector:formSelector})===!1)return!1;if("function"==typeof settings.beforeGlobal&&settings.beforeGlobal({selector:formSelector})===!1)return!1;if("function"==typeof settings.validateFields){var validFields=settings.validateFields({selector:formSelector,localValidationCallback:settings.afterValidationLocal?settings.afterValidationLocal:void 0,globalValidationCallback:settings.afterValidationGlobal?settings.afterValidationGlobal:void 0});if(validFields===!1)return void executeAfterCallbacks(void 0)}settings.submitData(),event.preventDefault()})}});
+$.fn.extend({oForm:function(options){var defaultOptions,settings,formSelector;formSelector=$(this),defaultOptions={},defaultOptions.validation={},defaultOptions.validation.validators={},defaultOptions.emailIsValid=function(email){if("string"==typeof email){var emailRegEx=/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;return emailRegEx.test(email)}return!1},defaultOptions.phoneIsValid=function(phone){if("string"==typeof phone){var phoneOnlyDigits=phone.replace(/\D/g,"");return phoneOnlyDigits.length>=10?!0:!1}return!1},defaultOptions.checkboxIsValid=function(checkbox){return $(checkbox).prop("checked")?!0:!1},defaultOptions.stringHasValue=function(value){return"string"==typeof value&&value?!0:!1},defaultOptions.alertValidationError=function(element,isValid){"function"!=typeof settings.reportValidationError||isValid||settings.reportValidationError(element)},defaultOptions.adjustClasses=function(element,isValid){var relatedClass="."+element.attr("name")+"-related";return isValid?(element.removeClass("error-show"),$(relatedClass).each(function(index,value){$(value).removeClass("error-show")})):(element.addClass("error-show"),$(relatedClass).each(function(index,value){$(value).addClass("error-show")}),settings.alertValidationError(element,isValid)),"checkbox"===element.attr("type")&&element.focus(),isValid},defaultOptions.validateFields=function(args){var invalidFields=0;return $.each(args.selector.find('input:not([type="hidden"]):not([type="submit"])'),function(index,value){var element,dataValidation,elementValue,type,validate;if(element=$(value),dataValidation=$(element).attr("data-validation"),elementValue=element.val(),validate=function(valid){valid||invalidFields++},dataValidation&&settings.validation[dataValidation])settings.adjustClasses(element,settings.validation[dataValidation](elementValue));else if(element.attr("required"))switch(type=element.attr("type")){case"url":case"text":validate(settings.adjustClasses(element,settings.stringHasValue(elementValue)));break;case"email":validate(settings.adjustClasses(element,settings.emailIsValid(elementValue)));break;case"tel":validate(settings.adjustClasses(element,settings.phoneIsValid(elementValue)));break;case"checkbox":validate(settings.adjustClasses(element,settings.checkboxIsValid(element)))}}),0===invalidFields?($("body").removeClass("error-state"),!0):($("body").addClass("error-state"),!1)},defaultOptions.submitData=function(callback){var requestSettings,response;requestSettings={type:"POST",url:formSelector.attr("action")||settings.url,data:formSelector.serialize()},response=$.ajax(requestSettings),response.always(function(){try{response.responseJSON=$.parseJSON(response.responseText),response.requestInfo=requestSettings}catch(error){}defaultOptions.executeAfterCallbacks(response,callback)})},defaultOptions.executeAfterCallbacks=function(response,callback){"function"==typeof settings.afterLocal?settings.afterLocal(response,settings.afterGlobal?settings.afterGlobal:void 0):"function"==typeof settings.afterGlobal&&settings.afterGlobal(response),"function"==typeof callback&&callback()},defaultOptions.overrideTestFunction=function(){return!1},"object"==typeof jQuery.oFormGlobalOverrides&&(defaultOptions=$.extend(!0,defaultOptions,jQuery.oFormGlobalOverrides)),settings=$.extend(!0,defaultOptions,options),formSelector.submit(function(event){if(event.preventDefault(),"function"==typeof settings.beforeLocal&&settings.beforeLocal({selector:formSelector})===!1)return!1;if("function"==typeof settings.beforeGlobal&&settings.beforeGlobal({selector:formSelector})===!1)return!1;if("function"==typeof settings.validateFields){var validFields=settings.validateFields({selector:formSelector});if(validFields===!1)return void defaultOptions.executeAfterCallbacks(void 0)}settings.submitData(),event.preventDefault()})}});
 (function($){ 
 
   window.optly = window.optly || {}; 
@@ -5443,6 +5443,8 @@ window.optly.mrkt.activeLinks.markActiveLinks = function(){
 
 };
 
+window.optly.mrkt.activeLinks.markActiveLinks();
+
 window.optly.mrkt.inlineFormLabels = function(){
 
 	$('form.inline-labels :input').each(function(index, elem) {
@@ -5483,9 +5485,127 @@ window.optly.mrkt.formDataStringToObject = function getJsonFromUrl(string) {
 
 };
 })(jQuery);
-window.optly.mrkt.inlineFormLabels();
+window.optly = window.optly || {};
 
-window.optly.mrkt.activeLinks.markActiveLinks();
+window.optly.mrkt = window.optly.mrkt || {};
+
+window.optly.mrkt.oForm = {};
+
+window.optly.mrkt.oForm.ppcFormDefaultResponseHandler = function(resp, callback){
+
+  var runCallback, success;
+
+  runCallback = function(arg){
+
+    if(typeof callback === 'function'){
+
+      callback(arg);
+
+    }
+
+  };
+
+  success = function(){
+
+    var name, email, path;
+
+    name = $('#name').val();
+
+    email = $('#email').val();
+
+    path = window.location.pathname;
+
+    //add reporting
+
+    window.analytics.identify( email, {
+
+      name: name,
+
+      email: email
+
+    },{
+
+      Marketo: true
+
+    });
+
+    window.analytics.track('/account/create/success', {
+
+      category: 'Accounts',
+
+      label: path
+
+    },{
+
+      Marketo: true
+
+    });
+
+    window.analytics.track('/free-trial/success', {
+
+      category: 'Free trial',
+
+      label: path
+
+    },{
+
+      Marketo: true
+
+    });
+
+    setTimeout(function(){
+
+      runCallback(callback);
+
+      window.location = 'https://www.optimizely.com/edit?url=' + $('#url').val();
+
+    }, 2000);
+
+  };
+
+  if(typeof resp === 'object'){
+
+    if(typeof resp.responseJSON === 'object'){
+
+      if(resp.responseJSON.succeeded){
+
+        success();
+
+      } else if(!resp.responseJSON.succeeded){
+
+          //error from api, did not succeed, update ui
+
+          $('.error-message').text(resp.responseJSON.error);
+
+          $('body').addClass('error-state');
+
+      } else {
+
+        $('body').removeClass('error-state');
+
+      }
+
+    } else {
+
+      //response contained something that wasn't json, report this
+
+      window.analytics.track('invalid json', {
+
+        category: 'api error',
+
+        label: window.location.pathname
+
+      });
+
+    }
+
+  } else {
+
+    $('body').toggleClass('processing-state');
+
+  }
+
+};
 
 jQuery.oFormGlobalOverrides = {
 
@@ -5504,48 +5624,6 @@ jQuery.oFormGlobalOverrides = {
         label: window.location.pathname
 
       });
-
-  },
-
-  afterGlobal: function(resp){
-
-    if(typeof resp === 'object'){
-
-      console.log(resp);
-
-      if(typeof resp.responseJSON === 'object'){
-
-        if(!resp.responseJSON.succeeded){
-
-            //error from api, did not succeed, update ui
-
-            $('.error-message').text(resp.responseJSON.error);
-
-            $('body').addClass('error-state');
-
-        } else {
-
-          $('body').removeClass('error-state');
-
-        }
-
-      } else {
-
-        //response contained something that wasn't json, report this
-
-        window.analytics.track('invalid json', {
-
-          category: 'api error',
-
-          label: window.location.pathname
-
-        });
-
-      }
-
-    }
-
-    $('body').toggleClass('processing-state');
 
   }
 
