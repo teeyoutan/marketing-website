@@ -27,6 +27,27 @@ module.exports = function(grunt) {
   // Project configuration.
   grunt.initConfig({
     config: {
+      production: {
+        options: {
+          variables: {
+            environment: 'production',
+            environmentData: 'website-guts/data/environments/production/environmentVariables.json',
+            assets_dir: '/dist/assets',
+            link_path: '',
+            sassImagePath: '/dist/assets/img',
+            compress_js: true,
+            concat_banner: '(function($){ \n\n' +
+                           '  window.optly = window.optly || {}; \n\n' +
+                           '  window.optly.mrkt = window.optly.mrkt || {}; \n\n' +
+                           '  try { \n\n',
+            concat_footer: '  } catch(error){ \n\n' +
+                           '  //report errors to GA \n\n' +
+                           '  window.console.log("js error: " + error);' +
+                           '  } \n' +
+                           '})(jQuery);'
+          }
+        }
+      },
       preview: {
         options: {
           variables: {
@@ -35,7 +56,6 @@ module.exports = function(grunt) {
             environmentData: 'website-guts/data/environments/production/environmentVariables.json',
             assets_dir: '/assets',
             link_path: '',
-            sassSourceMap: false,
             sassImagePath: '/assets/img',
             compress_js: true,
             concat_banner: '(function($){ \n\n' +
@@ -168,10 +188,25 @@ module.exports = function(grunt) {
       }
     },
     sass: {
-      styles: {
+      prod: {
+        options: {
+          sourceMap: false,
+          imagePath: '<%= grunt.config.get("sassImagePath") %>',
+          precision: 3,
+          outputStyle: 'compressed'
+        },
+        files: [
+          {
+            src: '<%= config.guts %>/assets/css/styles.scss',
+            dest: '<%= config.temp %>/css/styles.css'
+          }
+        ]
+      },
+      dev: {
         options: {
           sourceMap: true,
-          imagePath: '<%= grunt.config.get("sassImagePath") %>'
+          imagePath: '<%= grunt.config.get("sassImagePath") %>',
+          precision: 3
         },
         files: [
           {
@@ -215,11 +250,12 @@ module.exports = function(grunt) {
       jquery: {
         files: [
           {
-            src: '<%= config.guts %>/assets/js/libraries/jquery-1.6.4.min.js',
-            dest: '<%= config.dist %>/assets/js/libraries/jquery-1.6.4.min.js',
-            flatten: true,
-            filter: 'isFile'
-          },
+            '<%= config.dist %>/assets/js/libraries/jquery-1.6.4.min.js': ['<%= config.guts %>/assets/js/libraries/jquery-1.6.4.min.js']
+          }
+        ]
+      },
+      fastclick: {
+        files: [
           {
             '<%= config.dist %>/assets/js/libraries/fastclick.js': ['<%= config.bowerDir %>/fastclick/lib/fastclick.js']
           }
@@ -234,6 +270,11 @@ module.exports = function(grunt) {
             expand: true
           }
         ]
+      },
+      jsBundle: {
+        files: {
+            '<%= config.dist %>/assets/js/bundle.js': ['<%= config.temp %>/assets/js/bundle.js']
+        }
       }
     },
     clean: {
@@ -316,7 +357,7 @@ module.exports = function(grunt) {
       },
       concatBundle: {
         files: {
-          '<%= config.dist %>/assets/js/bundle.js': [
+          '<%= config.temp %>/assets/js/bundle.js': [
             '<%= config.bowerDir %>/jquery-cookie/jquery.cookie.js',
             '<%= config.guts %>/assets/js/libraries/handlebars-v1.3.0.js',
             '<%= config.bowerDir %>/momentjs/moment.js',
@@ -334,8 +375,8 @@ module.exports = function(grunt) {
       },
       globalJS: {
         files: {
-          '<%= config.dist %>/assets/js/libraries/fastclick.js': ['<%= config.dist %>/assets/js/libraries/fastclick.js'],
-          '<%= config.dist %>/assets/js/bundle.js': ['<%= config.dist %>/assets/js/bundle.js']
+          '<%= config.dist %>/assets/js/libraries/fastclick.js': ['<%= config.bowerDir %>/fastclick/lib/fastclick.js'],
+          '<%= config.dist %>/assets/js/bundle.js': ['<%= config.temp %>/assets/js/bundle.js']
         }
       },
       pageFiles: {
@@ -345,6 +386,17 @@ module.exports = function(grunt) {
             cwd: '<%= config.dist %>/assets/js/',
             src: 'pages/*.js',
             dest: '<%= config.dist %>/assets/js/pages',
+            flatten: true
+          }
+        ]
+      },
+      layoutFiles: {
+        files: [
+          {
+            expand: true,
+            cwd: '<%= config.dist %>/assets/js/',
+            src: 'layouts/*.js',
+            dest: '<%= config.dist %>/assets/js/layouts',
             flatten: true
           }
         ]
@@ -374,26 +426,20 @@ module.exports = function(grunt) {
           'dist/{,**/}*.html'
         ]
       }
+    },
+    imagemin: {
+      prod: {
+        files: [
+          {
+            cwd: '<%= config.guts %>/assets/img/',
+            src: '**/*.{jpg,jpeg,gif,png,svg}',
+            dest: '<%= config.dist %>/assets/img/',
+            expand: true
+          }
+        ]
+      }
     }
   });
-
-/*
-  grunt.loadNpmTasks('assemble');
-  grunt.loadNpmTasks('grunt-contrib-clean');
-  grunt.loadNpmTasks('grunt-contrib-connect');
-  grunt.loadNpmTasks('grunt-autoprefixer');
-  grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-sass');
-  grunt.loadNpmTasks('grunt-contrib-copy');
-  //do not load the npm grunt-s3 task when using 'grunt server' per: https://github.com/pifantastic/grunt-s3/issues/68
-  //do load it for running 'grunt preview'
-  //grunt.loadNpmTasks('grunt-s3');
-  grunt.loadNpmTasks('grunt-config');
-  grunt.loadNpmTasks('grunt-contrib-concat');
-  grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-text-replace');
-*/
 
   grunt.registerTask('server', [
     'config:dev',
@@ -401,7 +447,7 @@ module.exports = function(grunt) {
     'clean:preBuild',
     'assemble',
     'concat',
-    'sass',
+    'sass:dev',
     'replace',
     'autoprefixer',
     'copy',
@@ -411,14 +457,16 @@ module.exports = function(grunt) {
   ]);
 
   grunt.registerTask('build', [
-    'config:dev',
+    'config:production',
     'jshint',
     'clean:preBuild',
     'assemble',
     'concat',
-    'copy',
+    'imagemin:prod',
+    'copy:cssFontFile',
+    'copy:jquery',
     'uglify',
-    'sass',
+    'sass:prod',
     'replace',
     'autoprefixer',
     'clean:postBuild'
