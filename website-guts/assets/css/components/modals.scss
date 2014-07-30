@@ -102,7 +102,7 @@ $children: dialog;
 
 @media only screen and (min-width: $tablet-min-width) {
   .modal-dialog-container {
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     background: transparent;

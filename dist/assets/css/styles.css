@@ -2142,7 +2142,7 @@ body.customer-stories-page .customer-grid-elm {
     padding: 20px; }
   body.customer-stories-page .customer-grid-elm .customer-logos {
     background-repeat: no-repeat;
-    -webkit-background-size: contain contain;
+    -webkit-background-size: contain;
             background-size: contain;
     background-position: center center;
     margin: 0 auto; }
@@ -2344,7 +2344,7 @@ body.benefits-page {
 
 @media only screen and (min-width: 768px) {
   .modal-dialog-container {
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     background: transparent;
