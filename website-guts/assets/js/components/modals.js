@@ -25,7 +25,7 @@ function setHistoryId(historyData) {
   var stateData = {};
   if (historyData._id) {
     stateData._id = historyData._id + 1;
-  } 
+  }
   else if (sessionStorage._id) {
     stateData._id = sessionStorage._id + 1;
   }
@@ -114,8 +114,8 @@ window.optly.mrkt.modal.open = function(modalType) {
 
   if ( !$('html, body').hasClass('no-scroll') && window.innerWidth <= 768) {
     $('html, body').addClass('no-scroll');
-  } 
-  
+  }
+
   // Fade out the modal and attach the close modal handler
   $elm.fadeToggle(function() {
     $elm.bind('click', closeModalHandler);
@@ -132,7 +132,7 @@ window.optly.mrkt.modal.close = function(modalType) {
     // Update the modal state in the session storage
     storeModalState(modalType, false);
   }
-  
+
   if ( $('html, body').hasClass('no-scroll') ) {
     $('html, body').removeClass('no-scroll');
   }
@@ -152,8 +152,8 @@ function initiateModal() {
   //Trigger Dialog if # is present in URL
   if (sessionStorage.modalType === 'signup' || sessionStorage.modalType === 'signin') {
     modalType = sessionStorage.modalType;
-  } 
-  
+  }
+
   if (modalType !== undefined) {
     //historyIcrementor += 1;
     window.optly.mrkt.modal.open(modalType);
@@ -179,7 +179,7 @@ function handlePopstate(e) {
 function setMobileProperties() {
   if (!$('html, body').hasClass('no-scroll') && window.innerWidth <= 768) {
     $('html, body').addClass('no-scroll');
-  } 
+  }
   else if ( $('html, body').hasClass('no-scroll') && window.innerWidth > 768) {
     $('html, body').removeClass('no-scroll');
   }
@@ -190,7 +190,7 @@ function setMobileProperties() {
           height: window.innerHeight + 'px'
         });
       });
-    } 
+    }
     else {
       $.each($elms, function(key, $elm) {
         $( $elm.children()[0] ).css({
@@ -204,7 +204,7 @@ function setMobileProperties() {
 //INITIALIZATION
 
 if (isHistorySupported) {
-  // Check if modal state exists from previous page view 
+  // Check if modal state exists from previous page view
   initiateModal();
   // Bind to popstate
   window.addEventListener('popstate', handlePopstate);
