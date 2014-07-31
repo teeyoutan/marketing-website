@@ -8,7 +8,6 @@
         
         <meta name="description" content="Improve conversions through A/B Testing, Split Testing and Multivariate Testing with Optimizely!">
         <meta name="keywords" content="AB test, split test, multivariate testing, conversion rate">
-
         <meta name="viewport" content="width=device-width, initial-scale=1">
         
         <meta property="og:title" content="Optimizely: A/B testing software you'll actually use">
@@ -279,15 +278,12 @@
 </div> <!-- end .modal-dialog-container -->
 
         <div id="vh-test"></div>
-        <script>window.jQuery || document.write('<script src="/dist/assets/js/libraries/jquery-1.6.4.min.js"><\/script>')</script>
         <script>
-            yepnope([
-                {
-                    load: ['/dist/assets/js/libraries/fastclick.js', '/dist/assets/js/bundle.js']
-                },{
-                    load: ['/dist/assets/js/pages/free-trial.js']
-                }
-            ]);
+          var optly = optly || {};
+          optly.mrkt = {} || {};
+          optly.mrkt.assetsDir = '/dist/assets';
         </script>
+        <script>window.jQuery || document.write('<script src="/dist/assets/js/libraries/jquery-1.6.4.min.js"></script>')</script>
+        <script src="/dist/assets/js/bundle.js" defer></script><script src="/dist/assets/js/pages/free-trial.js" defer></script>
     </body>
 </html>
