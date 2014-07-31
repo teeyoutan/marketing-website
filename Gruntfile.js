@@ -100,7 +100,8 @@ module.exports = function(grunt) {
         files: [
           '<%= config.content %>/{,*/}*.{md,hbs,yml,json}',
           '<%= config.guts %>/templates/**/*.hbs',
-          '<%= config.content %>/**/*.hbs'
+          '<%= config.content %>/**/*.hbs',
+          '!<%= config.guts %>/templates/client/**/*.hbs'
         ],
         tasks: ['config:dev', 'assemble']
       },
@@ -115,6 +116,10 @@ module.exports = function(grunt) {
       js: {
         files: ['<%= config.guts %>/assets/js/**/*.js', '<%= config.temp %>/assets/js/**/*.js'],
         tasks: ['config:dev', 'jshint', 'concat', 'clean:postBuild']
+      },
+      clientHandlebarsTemplates: {
+        files: ['<%= config.guts %>/templates/client/**/*.hbs'],
+        tasks: ['config:dev', 'jshint', 'handlebars', 'concat', 'clean:postBuild']
       },
       livereload: {
         options: {
@@ -397,7 +402,7 @@ module.exports = function(grunt) {
             '<%= config.bowerDir %>/history.js/scripts/bundled-uncompressed/html4+html5/jquery.history.js',
             '<%= config.guts %>/assets/js/libraries/handlebars-v1.3.0.js',
             '<%= config.bowerDir %>/momentjs/moment.js',
-            '<%= config.temp %>/assets/js/handlebarsTemplates.js'
+            '<%= config.temp %>/assets/js/handlebarsTemplates.js',
             '<%= config.bowerDir %>/oform/dist/oForm.min.js',
             '<%= config.temp %>/assets/js/global.js',
             '<%= config.guts %>/assets/js/components/oForm-globals.js'

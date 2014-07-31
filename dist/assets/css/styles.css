@@ -1280,14 +1280,10 @@ html.no-scroll, body.no-scroll {
   text-align: center;
   vertical-align: middle;
   text-shadow: 0 -1px 0px rgba(0, 0, 0, 0.23); }
-<<<<<<< HEAD
-  .primary-button.small, body.home-page input.small[type=submit] {
+  .primary-button.small, body.home-page #cta input.small[type=submit] {
     font-size: 12px;
     padding: 0.5em 1em; }
-  .primary-button:hover, body.home-page input[type=submit]:hover {
-=======
   .primary-button:hover, body.home-page #cta input[type=submit]:hover {
->>>>>>> c6ceed1cdb50119694ff2430ae5bf355579784d5
     -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.18);
             box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.18);
     background: #90b71c;
@@ -2233,7 +2229,7 @@ body.customer-stories-page .customer-grid-elm {
     padding: 20px; }
   body.customer-stories-page .customer-grid-elm .customer-logos {
     background-repeat: no-repeat;
-    -webkit-background-size: contain;
+    -webkit-background-size: contain contain;
             background-size: contain;
     background-position: center center;
     margin: 0 auto; }
