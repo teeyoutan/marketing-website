@@ -8,9 +8,18 @@ window.optly.mrkt.events = {};
 
 window.optly.mrkt.events.showEvents = function(url, div){
 
-  var templateContext = {};
+  var templateContext, htmlDecode;
+
+  templateContext = {};
 
   templateContext.events = [];
+
+  htmlDecode = function(text) {
+    var urlRegex = /(https?:\/\/[^\s]+)/g;
+    return text.replace(urlRegex, function(url) {
+        return '<a href="' + url + '">' + url + '</a>';
+    });
+  };
 
   $.get(url).always(function(data, textStatus, jqXHR){
 
@@ -26,7 +35,7 @@ window.optly.mrkt.events.showEvents = function(url, div){
 
           for(i = 0; i <= data.feed.entry.length - 1; i++){
 
-            var entry, eventData, venue, startDate, endDate, zeroRegEx;
+            var entry, eventData, venue, startDate, endDate, zeroRegEx, description;
 
             entry = data.feed.entry[i];
 
@@ -41,6 +50,8 @@ window.optly.mrkt.events.showEvents = function(url, div){
               venue = entry.gd$where[0].valueString.split(' /')[0];
 
             }
+
+            description = entry.content.$t.split('-- ')['1'].trim().replace(/\r?\n|\r/g, '');
 
             eventData = {
 
@@ -60,7 +71,7 @@ window.optly.mrkt.events.showEvents = function(url, div){
 
               endYear: endDate.format('YYYY'),
 
-              description: entry.content.$t.split('-- ')[1],
+              description: htmlDecode( description ),
 
               venue: venue
 
@@ -70,7 +81,9 @@ window.optly.mrkt.events.showEvents = function(url, div){
 
           }
 
-          $(div).append(window.optly.mrkt.templates.eventDisplay(templateContext));
+          //console.log(window.optly.mrkt.templates.eventDisplay(templateContext));
+
+          $(div).html(window.optly.mrkt.templates.eventDisplay(templateContext));
 
         } else {
 
