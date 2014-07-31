@@ -124,6 +124,11 @@ module.exports = function(grunt) {
               res.writeHead(200, {'Content-Type': 'application/json'});
               res.end( grunt.file.read('website-guts/endpoint-mocks/accountInfo.json') );
 
+            } else if(req.url === '/experiment/load_recent?max_experiments=5') {
+
+              res.writeHead(200, {'Content-Type': 'application/json'});
+              res.end( grunt.file.read('website-guts/endpoint-mocks/lastFiveExperiments.json') );
+
             }
             else{
 
@@ -330,7 +335,8 @@ module.exports = function(grunt) {
         },
         files: {
           '<%= config.temp %>/assets/js/global.js': [
-            '<%= config.guts %>/assets/js/global.js', 
+            '<%= config.guts %>/assets/js/global.js',
+            '<%= config.guts %>/assets/js/services/*.js', 
             '<%= config.guts %>/assets/js/components/*.js'
           ]
         }
