@@ -185,8 +185,27 @@ module.exports = function(grunt) {
         environmentIsProduction: '<%= grunt.config.get("environmentIsProduction") %>',
         environmentIsDev: '<%= grunt.config.get("environmentIsDev") %>',
         data: ['<%= config.content %>/**/*.json', '<%= config.content %>/**/*.yml', '<%= grunt.config.get("environmentData") %>'],
-        partials: ['<%= config.guts %>/templates/partials/*.{hbs, md}'],
+        partials: ['<%= config.guts %>/templates/partials/*.hbs'],
         helpers: ['<%= config.helpers %>/helper-*.js']
+      },
+      modals: {
+        options: {
+          ext: '.hbs'
+        },
+        files: [
+          {
+            src: 'templates/components/modals/**/*.hbs',
+            dest: '<%= config.guts %>/templates/partials/',
+            cwd: '<%= config.guts %>/',
+            expand: true,
+            filter: 'isFile',
+            flatten: true,
+            rename: function(dest, src) {
+              var split = src.split('.');
+              return dest + split[0] + '_compiled';
+            }
+          }
+        ]
       },
       pages: {
         files: [
@@ -363,15 +382,18 @@ module.exports = function(grunt) {
           banner: '<%= grunt.config.get("concat_banner") %>',
           footer: '<%= grunt.config.get("concat_footer") %>'
         },
-        src: ['global.js'],
-        expand: true,
-        cwd: '<%= config.guts %>/assets/js/',
-        dest: '<%= config.temp %>/assets/js/'
+        files: {
+          '<%= config.temp %>/assets/js/global.js': [
+            '<%= config.guts %>/assets/js/global.js', 
+            '<%= config.guts %>/assets/js/components/*.js'
+          ]
+        }
       },
       concatBundle: {
         files: {
           '<%= config.temp %>/assets/js/bundle.js': [
             '<%= config.bowerDir %>/jquery-cookie/jquery.cookie.js',
+            '<%= config.bowerDir %>/history.js/scripts/bundled-uncompressed/html4+html5/jquery.history.js',
             '<%= config.guts %>/assets/js/libraries/handlebars-v1.3.0.js',
             '<%= config.bowerDir %>/momentjs/moment.js',
             '<%= config.bowerDir %>/oform/dist/oForm.min.js',

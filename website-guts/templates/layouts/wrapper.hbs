@@ -44,8 +44,8 @@
                             </a>
                             <div id="utility-nav-cont">
                                 <ul class="signed-out-content utility-nav nav">
-                                    <li class="first"><a href="#">Sign Up</a></li>
-                                    <li class="last"><a href="#">Log In</a></li>
+                                    <li class="first"><a data-modal-click="signup">Sign Up</a></li>
+                                    <li class="last"><a data-modal-click="signin">Log In</a></li>
                                 </ul><!--/.signed-in-content-->
                                 <ul class="signed-in-content utility-nav nav">
                                     <li class="first"><a href="">Dashboard</a></li>
@@ -195,6 +195,9 @@
                 </footer>
             </div><!--/#inner-wrapper-->
         </div><!--/#outer-wrapper-->
+        {{> signup_modal_compiled }}
+        {{> signin_modal_compiled }}
+        <div id="vh-test"></div>
         <script>window.jQuery || document.write('<script src="{{assetsDir}}/js/libraries/jquery-1.6.4.min.js"><\/script>')</script>
         <script>
             yepnope([

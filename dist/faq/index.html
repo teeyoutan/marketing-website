@@ -44,8 +44,8 @@
                             </a>
                             <div id="utility-nav-cont">
                                 <ul class="signed-out-content utility-nav nav">
-                                    <li class="first"><a href="#">Sign Up</a></li>
-                                    <li class="last"><a href="#">Log In</a></li>
+                                    <li class="first"><a data-modal-click="signup">Sign Up</a></li>
+                                    <li class="last"><a data-modal-click="signin">Log In</a></li>
                                 </ul><!--/.signed-in-content-->
                                 <ul class="signed-in-content utility-nav nav">
                                     <li class="first"><a href="">Dashboard</a></li>
@@ -326,6 +326,105 @@
                 </footer>
             </div><!--/#inner-wrapper-->
         </div><!--/#outer-wrapper-->
+        <div id="signup-dialog" class="modal-dialog-container" data-optly-modal="signup">
+    <div class="dialog narrow">
+         <div class="modal-header">
+            <p class="normal-header header-h1">Create a free account</p>
+            
+                <p>
+                    <span class="dynamic-content">You&#x27;re seconds away from running A/B tests!</span>
+                    <!-- <span class="optiverse-dynamic-content">By creating an account you can post in Optiverse and test drive Optimizely</span> -->
+                </p>
+            
+        </div>
+        <form action="/account/create" method="POST" autocomplete="off">
+            <div class="modal-form-content">
+            
+              <label id="name-label">
+                  <span>Name</span>
+                  <input type="text" name="name" />
+              </label>
+              <label>
+                  <span>Work email address</span>
+                  <input type="text" name="email" />
+              </label>
+              <label>
+                  <span>Password</span>
+                  <h5 class="password-req">Must use at least 8 characters and a mix of upper/lowercase letters, numbers or symbols</h5>
+                  <input type="password" name="password1" class="password1" />
+              </label>
+              <label>
+                  <span>Confirm password</span>
+                  <input type="password" name="password2" />
+              </label>
+              <label id="phone-label">
+                  <span>Phone number</span>
+                  <input type="text" name="phone_number" />
+              </label>
+              <div class="terms">
+                  <input type="checkbox" name="terms-of-service" />
+                  <p>
+                      I agree to the <a href="/dist/terms" target="_blank">Terms of Service</a> and <a href="/dist/privacy" target="_blank">Privacy Policy</a>.
+                  </p>
+              </div>
+              <!-- <input id="hidden" type="hidden" name="hidden" value="" /> -->
+              <div class="options">
+                  <p>Already have an Optimizely account? <a class="show-sign-in" data-modal-click="signin">Sign in here</a></p>
+              </div>
+
+            </div><!--/.modal-form-content-->
+            <div class="modal-footer">
+                <div class="buttons">
+                    <input type="submit" class="primary-button submit-btn translate" value="Create account &raquo;">
+                    <input type="button" data-modal-btn="close" class="secondary-button close-btn translate" value="Cancel">
+                </div>
+            </div>
+        </form>
+    </div>
+</div> <!-- end .modal-dialog-container -->
+
+        <div id="sign-in-dialog" class="modal-dialog-container" data-optly-modal="signin">
+    <div class="dialog narrow">
+         <div class="modal-header">
+            <p class="normal-header header-h1">Sign in to Optimizely</p>
+            
+        </div>
+        <form action="/account/signin" method="POST" autocomplete="off">
+            <div class="modal-form-content">
+            
+              <label>
+                  <span>Email address</span>
+                  <input type="text" name="email" />
+              </label>
+              <label>
+                  <span>Password</span>
+                  <input type="password" name="password" />
+              </label>
+              <div class="terms">
+                  <label class="spaced">
+                      <input type="checkbox" name="persist" checked="checked" />
+                      <p>Keep me signed in</p>
+                  </label>
+              </div>
+              <div class="options">
+                  <p>
+                      <a class="show-forgot-password">Forgot your password?</a><br />
+                      No account? <a class="show-create-account" data-modal-click="signup">Register here</a>
+                  </p>
+              </div>
+
+            </div><!--/.modal-form-content-->
+            <div class="modal-footer">
+                <div class="buttons">
+                    <input type="submit" class="primary-button submit-btn translate" value="Sign in &raquo;">
+                    <input type="button" data-modal-btn="close" class="secondary-button close-btn translate" value="Cancel">
+                </div>
+            </div>
+        </form>
+    </div>
+</div> <!-- end .modal-dialog-container -->
+
+        <div id="vh-test"></div>
         <script>window.jQuery || document.write('<script src="/dist/assets/js/libraries/jquery-1.6.4.min.js"><\/script>')</script>
         <script>
             yepnope([
