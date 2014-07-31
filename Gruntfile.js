@@ -313,11 +313,6 @@ module.exports = function(grunt) {
             expand: true
           }
         ]
-      },
-      jsBundle: {
-        files: {
-            '<%= config.dist %>/assets/js/bundle.js': ['<%= config.temp %>/assets/js/bundle.js']
-        }
       }
     },
     clean: {
