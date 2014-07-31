@@ -4,6 +4,7 @@ visible_title: Live Optimizely Walkthrough
 body_class:
 - live-demo-page
 compact_header: true
+page_script: webinar.js
 ---
 
 <div id="page-header">
@@ -63,3 +64,12 @@ compact_header: true
         </div>
     </div>
 </div>
+
+<script id="webinar-display" type="text/x-handlebars-template">
+  <div class="columns one-third date-container">
+      <img src="../../assets/img/live-demo-webinar/calendar-icon.png">
+      <p class="signup-month">{{month}}</p>
+      <p class="signup-day">{{day}}</p>
+      <a href="#" class="primary-button small">Register</a>
+  </div>
+</script>
