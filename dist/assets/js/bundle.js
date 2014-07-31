@@ -8645,277 +8645,6 @@ var __module0__ = (function(__dependency1__, __dependency2__, __dependency3__, _
     }
 }).call(this);
 
-$.fn.extend({
-
-  oForm: function(options){
-
-    var defaultOptions, settings, formSelector;
-
-    formSelector = $(this);
-
-    //setup all the default options
-
-    defaultOptions = {};
-
-    defaultOptions.validation = {};
-
-    defaultOptions.validation.validators = {};
-
-    defaultOptions.emailIsValid = function(email){
-
-      if(typeof email === 'string'){
-
-          var emailRegEx = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
-          return emailRegEx.test(email);
-
-      } else {
-
-        return false;
-
-      }
-
-    };
-
-    defaultOptions.phoneIsValid = function(phone){
-
-      if(typeof phone === 'string'){
-
-        var phoneOnlyDigits = phone.replace(/\D/g, '');
-
-        if( phoneOnlyDigits.length >= 10 ){
-
-          return true;
-
-        } else {
-
-          return false;
-
-        }
-
-      } else {
-
-        return false;
-
-      }
-
-    };
-
-    defaultOptions.checkboxIsValid = function(checkbox){
-
-      if( $(checkbox).prop('checked') ){
-
-        return true;
-
-      } else {
-
-        return false;
-
-      }
-
-    };
-
-    defaultOptions.urlIsValid = function(url){
-
-      if(url){
-
-        return true;
-
-      } else {
-
-        return false;
-
-      }
-
-    };
-
-    defaultOptions.textIsValid = function(text){
-
-      if(text){
-
-        return true;
-
-      } else {
-
-        return false;
-
-      }
-
-    };
-
-    defaultOptions.adjustClasses = function(element, isValid){
-
-      var relatedClass, messageClass;
-
-      relatedClass = '.' + element.attr('name') + '-related';
-
-      messageClass = '.' + element.attr('name') + '-error-message';
-
-      if(isValid){
-
-        element.removeClass('error');
-
-        $(relatedClass).each(function(index, value){
-
-          $(value).removeClass('error');
-
-        });
-
-        $(messageClass).each(function(index, value){
-
-          $(value).addClass('hidden');
-
-        });
-
-
-      } else {
-
-        element.addClass('error');
-
-        $(relatedClass).each(function(index, value){
-
-          $(value).addClass('error');
-
-        });
-
-        $(messageClass).each(function(index, value){
-
-          $(value).removeClass('hidden');
-
-        });
-
-      }
-
-    };
-
-    defaultOptions.validateFields = function(args){
-
-        var allElementsValid = true;
-
-        $.each( args.selector.find('input:not([type="hidden"])'), function(index, value){
-
-          var element, id, elementValue;
-
-          element = $(value);
-
-          dataValidation = $(element).attr('data-validation');
-
-          elementValue = element.val();
-
-          if( dataValidation && settings.validation[dataValidation] ){
-
-            settings.adjustClasses(element, settings.validation[dataValidation](elementValue) );
-
-          } else if( element.attr('required') ){
-
-            var type = element.attr('type');
-
-            if(type === 'email'){
-
-              settings.adjustClasses(element, settings.emailIsValid(elementValue) );
-
-            } else if(type === 'tel') {
-
-              settings.adjustClasses(element, settings.phoneIsValid(elementValue) );
-
-            } else if(type === 'url'){
-
-              settings.adjustClasses(element, settings.urlIsValid(elementValue) );
-
-            } else if(type === 'checkbox'){
-
-              settings.adjustClasses(element, settings.checkboxIsValid(elementValue) );
-
-            } else if(type === 'text'){
-
-              settings.adjustClasses(element, settings.textIsValid(elementValue) );
-
-            }
-
-          }
-
-        });
-
-        if( allElementsValid ){
-
-          return true;
-
-          $('body').removeClass('error');
-
-        } else {
-
-          $('body').addClass('error');
-
-          return false;
-
-        }
-
-    };
-
-    defaultOptions.submitData = function(callback){
-
-      var request;
-
-      request = $.ajax({
-
-        type: 'POST',
-        url: settings.url,
-        data: formSelector.serialize()
-
-      });
-
-      console.log(request);
-
-      request.always(function(){
-
-        if(typeof callback === 'function'){
-
-          callback(request);
-
-        }
-
-      });
-
-    };
-
-    settings = $.extend(true, defaultOptions, options);
-
-    formSelector.submit(function(event){
-
-      event.preventDefault();
-
-      console.log('running');
-
-      if(typeof settings.before === 'function'){
-
-        if(settings.before() === false){
-
-          return false;
-
-        }
-
-      }
-
-      if(typeof settings.validateFields === 'function'){
-
-        if(settings.validateFields({selector: formSelector}) === false){
-
-          return false;
-
-        }
-
-      }
-
-      settings.submitData(settings.after);
-
-      event.preventDefault();
-
-    });
-
-  }
-
-});
-
 (function($){ 
 
   window.optly = window.optly || {}; 
@@ -9002,10 +8731,49 @@ window.optly.mrkt.activeLinks.markActiveLinks = function(){
 
 	});
 
-
 };
 
 window.optly.mrkt.activeLinks.markActiveLinks();
+
+window.optly.mrkt.inlineFormLabels = function(){
+
+	$('form.inline-labels :input').each(function(index, elem) {
+
+			var eId = $(elem).attr('id');
+
+			var label = null;
+
+			if (eId && (label = $(elem).parents('form').find('label[for='+eId+']')).length === 1) {
+
+					$(elem).attr('placeholder', $(label).html());
+
+					$(label).addClass('hide-label');
+
+			}
+
+	});
+
+};
+
+window.optly.mrkt.formDataStringToObject = function getJsonFromUrl(string) {
+
+	var data, result, i;
+
+  data = string.split('&');
+
+  result = {};
+
+  for(i=0; i<data.length; i++) {
+
+    var item = data[i].split('=');
+
+    result[item[0]] = item[1];
+
+  }
+
+  return result;
+
+};
 
 window.optly = window.optly || {};
 window.optly.mrkt = window.optly.mrkt || {};
@@ -9424,4 +9192,291 @@ testEl.css({
   height: '0px'
 });
 // Set the modal height
-$(window).bind('load resize', setMobileProperties);})(jQuery);
+$(window).bind('load resize', setMobileProperties);
+window.optly = window.optly || {};
+
+window.optly.mrkt = window.optly.mrkt || {};
+
+window.optly.mrkt.oForm = {};
+
+window.optly.mrkt.oForm.ppcFormDefaultResponseHandler = function(resp, callback){
+
+  var runCallback, success;
+
+  runCallback = function(arg){
+
+    if(typeof callback === 'function'){
+
+      callback(arg);
+
+    }
+
+  };
+
+  success = function(){
+
+    var name, email, path;
+
+    name = $('#name').val();
+
+    email = $('#email').val();
+
+    path = window.location.pathname;
+
+    //add reporting
+
+    window.analytics.identify( email, {
+
+      name: name,
+
+      email: email
+
+    },{
+
+      Marketo: true
+
+    });
+
+    window.analytics.track('/account/create/success', {
+
+      category: 'Accounts',
+
+      label: path
+
+    },{
+
+      Marketo: true
+
+    });
+
+    window.analytics.track('/free-trial/success', {
+
+      category: 'Free trial',
+
+      label: path
+
+    },{
+
+      Marketo: true
+
+    });
+
+    setTimeout(function(){
+
+      runCallback(callback);
+
+      window.location = 'https://www.optimizely.com/edit?url=' + $('#url').val();
+
+    }, 2000);
+
+  };
+
+  if(typeof resp === 'object'){
+
+    if(typeof resp.responseJSON === 'object'){
+
+      if(resp.responseJSON.succeeded){
+
+        success();
+
+      } else if(!resp.responseJSON.succeeded){
+
+          //error from api, did not succeed, update ui
+
+          $('.error-message').text(resp.responseJSON.error);
+
+          $('body').addClass('error-state');
+
+      } else {
+
+        $('body').removeClass('error-state');
+
+      }
+
+    } else {
+
+      //response contained something that wasn't json, report this
+
+      window.analytics.track('invalid json', {
+
+        category: 'api error',
+
+        label: window.location.pathname
+
+      });
+
+    }
+
+  } else {
+
+    $('body').toggleClass('processing-state');
+
+  }
+
+};
+
+jQuery.oFormGlobalOverrides = {
+
+  beforeGlobal: function(){
+
+    $('body').toggleClass('processing-state');
+
+  },
+
+  reportValidationError: function(element){
+
+      window.analytics.track( $(element).attr('name') + ' validation error', {
+
+        category: 'form field error',
+
+        label: window.location.pathname
+
+      });
+
+  }
+
+};
+})(jQuery);
+window.optly = window.optly || {};
+
+window.optly.mrkt = window.optly.mrkt || {};
+
+window.optly.mrkt.oForm = {};
+
+window.optly.mrkt.oForm.ppcFormDefaultResponseHandler = function(resp, callback){
+
+  var runCallback, success;
+
+  runCallback = function(arg){
+
+    if(typeof callback === 'function'){
+
+      callback(arg);
+
+    }
+
+  };
+
+  success = function(){
+
+    var name, email, path;
+
+    name = $('#name').val();
+
+    email = $('#email').val();
+
+    path = window.location.pathname;
+
+    //add reporting
+
+    window.analytics.identify( email, {
+
+      name: name,
+
+      email: email
+
+    },{
+
+      Marketo: true
+
+    });
+
+    window.analytics.track('/account/create/success', {
+
+      category: 'Accounts',
+
+      label: path
+
+    },{
+
+      Marketo: true
+
+    });
+
+    window.analytics.track('/free-trial/success', {
+
+      category: 'Free trial',
+
+      label: path
+
+    },{
+
+      Marketo: true
+
+    });
+
+    setTimeout(function(){
+
+      runCallback(callback);
+
+      window.location = 'https://www.optimizely.com/edit?url=' + $('#url').val();
+
+    }, 2000);
+
+  };
+
+  if(typeof resp === 'object'){
+
+    if(typeof resp.responseJSON === 'object'){
+
+      if(resp.responseJSON.succeeded){
+
+        success();
+
+      } else if(!resp.responseJSON.succeeded){
+
+          //error from api, did not succeed, update ui
+
+          $('.error-message').text(resp.responseJSON.error);
+
+          $('body').addClass('error-state');
+
+      } else {
+
+        $('body').removeClass('error-state');
+
+      }
+
+    } else {
+
+      //response contained something that wasn't json, report this
+
+      window.analytics.track('invalid json', {
+
+        category: 'api error',
+
+        label: window.location.pathname
+
+      });
+
+    }
+
+  } else {
+
+    $('body').toggleClass('processing-state');
+
+  }
+
+};
+
+jQuery.oFormGlobalOverrides = {
+
+  beforeGlobal: function(){
+
+    $('body').toggleClass('processing-state');
+
+  },
+
+  reportValidationError: function(element){
+
+      window.analytics.track( $(element).attr('name') + ' validation error', {
+
+        category: 'form field error',
+
+        label: window.location.pathname
+
+      });
+
+  }
+
+};

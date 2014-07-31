@@ -11,9 +11,9 @@ compact_header: true
     <div id="ppc-form" class="landing-page-form">
       <h4 class="seo-form-heading">Test it Out for Free</h4>
       <p>Welcome to Optimizely. Sign up for a free account and test out the most popular <span id="symmetry_test">A/B testing tool</span> on the planet!</p>
-      <form id="seo-form" class="seo-form" action="/account/free_trial_landing" autocomplete="off" novalidate="novalidate">
+      <form id="seo-form" class="seo-form inline-labels" action="/account/free_trial_landing" autocomplete="off" novalidate="novalidate">
         {{!-- Form submit errors get shown here --}}
-        <p class="error"></p>
+        <p class="error-message error error-show"></p>
         <input id="utm_medium" type="hidden" name="utm_medium" value="direct">
         <ul>
           <li class="url-input-related">
@@ -24,7 +24,7 @@ compact_header: true
             <label for="name">Your Name</label>
             <input id="name" required data-validation="name" name="name" type="text">
           </li>
-          <li>
+          <li id="phone-email-cont">
             <div class="label half left email-related">
               <label for="email">Your email - no spam</label>
               <input id="email" required name="email" type="email">
@@ -36,15 +36,11 @@ compact_header: true
             </div>
           </li>
           <li class="terms">
-            <label class="checkbox">
-              <input type="checkbox" name="terms-of-service" required id="terms">
-              I agree to the
-              <span id="SL-link-terms" class="SL_swap"><a href="/terms" target="_blank">Terms of Service</a></span> and
-              <span id="SL-link-privacy" class="SL_swap"><a href="/privacy" target="_blank">Privacy Policy</a></span>.
-            </label>
+            <small>By clicking the <q>Test it Out</q> button below I agree to the <br><a href="/terms" target="_blank">Terms of Service</a> and <a href="/privacy" target="_blank">Privacy Policy</a>.</small>
           </li>
           <li class="a-center">
-            <input type="submit" class="button" value="Test it Out">
+            <input type="submit" class="button processing-hide" value="Test it Out">
+            <p class="processing-show">Processing...</p>
           </li>
         </ul>
       </form>
