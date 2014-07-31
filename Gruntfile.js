@@ -471,14 +471,14 @@ module.exports = function(grunt) {
 
   grunt.registerTask('server', [
     'config:dev',
-    'jshint', //JS
+    'jshint',
     'clean:preBuild',
     'assemble',
-    'concat', //JS
+    'concat',
     'sass:dev',
     'replace',
     'autoprefixer',
-    'copy', //JS
+    'copy',
     'clean:postBuild',
     'connect:livereload',
     'watch'
