@@ -2,28 +2,28 @@
 <html class="no-js">
     <head>
         <meta charset="utf-8">
-        <script>window.jQuery || document.write('<script src="/dist/assets/js/libraries/jquery-1.6.4.min.js"><\/script>')</script>
-        <script src="//cdn.optimizely.com/js/1205230573.js"></script>
+        <script>window.jQuery || document.write('<script src="{{assetsDir}}/js/libraries/jquery-1.6.4.min.js"><\/script>')</script>
+        <script src="//cdn.optimizely.com/js/{{environmentVariables.optimizelyProjectID}}.js"></script>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Optimizely: Optimizely: Customer Stories</title>
-        
-        <meta name="description" content="Improve conversions through A/B Testing, Split Testing and Multivariate Testing with Optimizely!">
+        <title>Optimizely:{{#if page.seo_title}} {{page.seo_title}}{{else}} A/B testing software you'll actually use{{/if}}</title>
+        {{!-- Standard meta tags --}}
+        <meta name="description" content="{{#if page.description}}{{page.description}}{{else}}Improve conversions through A/B Testing, Split Testing and Multivariate Testing with Optimizely!{{/if}}">
         <meta name="keywords" content="AB test, split test, multivariate testing, conversion rate">
 
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        
-        <meta property="og:title" content="Optimizely: A/B testing software you'll actually use">
-        <meta property="og:description" content="Optimizely: Improve conversions through A/B Testing, Split Testing and Multivariate Testing with Optimizely!">
+        {{!-- Open Graph meta tags --}}
+        <meta property="og:title" content="Optimizely:{{#if page.og_title}}{{page.og_title}}{{else}} A/B testing software you'll actually use{{/if}}">
+        <meta property="og:description" content="Optimizely:{{#if page.og_description}}{{page.og_description}}{{else}} Improve conversions through A/B Testing, Split Testing and Multivariate Testing with Optimizely!{{/if}}">
 
         <!-- Place favicon.ico and apple-touch-icon(s) in the root directory -->
 
-        <link rel="stylesheet" href="/dist/assets/css/fonts.css">
-        <link rel="stylesheet" href="/dist/assets/css/styles.css">
-        <script src="/dist/assets/js/libraries/modernizr-yepnope.js"></script>
-        
+        <link rel="stylesheet" href="{{assetsDir}}/css/fonts.css">
+        <link rel="stylesheet" href="{{assetsDir}}/css/styles.css">
+        <script src="{{assetsDir}}/js/libraries/modernizr-yepnope.js"></script>
+        {{#if page.head_script ~}}<script src="{{page.head_script}}"></script>{{/if}}
         <script type="text/javascript">
           window.analytics=window.analytics||[],window.analytics.methods=["identify","group","track","page","pageview","alias","ready","on","once","off","trackLink","trackForm","trackClick","trackSubmit"],window.analytics.factory=function(t){return function(){var a=Array.prototype.slice.call(arguments);return a.unshift(t),window.analytics.push(a),window.analytics}};for(var i=0;i<window.analytics.methods.length;i++){var key=window.analytics.methods[i];window.analytics[key]=window.analytics.factory(key)}window.analytics.load=function(t){if(!document.getElementById("analytics-js")){var a=document.createElement("script");a.type="text/javascript",a.id="analytics-js",a.async=!0,a.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.io/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n)}},window.analytics.SNIPPET_VERSION="2.0.9",
-          window.analytics.load('l4usxygsxg');
+          window.analytics.load('{{environmentVariables.segmentProjectID}}');
           window.analytics.page();
         </script>
         <script>
@@ -227,14 +227,14 @@ window.optly.mrkt.services.xhr = {
 
 </script>
     </head>
-    <body class="signed-out customer-stories-page">
+    <body class="signed-out{{#if page.compact_header}} compact-header{{/if}}{{#each layout_body_class}} {{.}}{{/each}}{{#each page.body_class}} {{.}}{{/each}}">
         <!--[if lt IE 8]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
         <div id="outer-wrapper">
             <div id="inner-wrapper">
                 <header>
-                    
+                    {{#unless page.compact_header}}
                     <div id="top-nav-cont">
                         <div class="container">
                             <div href="#" class="mobile-nav-toggle" id="nav-menu">menu</div>
@@ -257,25 +257,25 @@ window.optly.mrkt.services.xhr = {
                             </div><!--/#utility-nav-cont-->
                         </div><!--/.container-->
                     </div><!--/#top-nav-cont-->
-                    
+                    {{/unless}}
                     <div id="main-nav-cont">
                         <div class="container">
                             <p class="logo-cont"><a class="logo" href="/">Optimizely</a></p>
-                            
+                            {{#unless page.compact_header}}
                             <nav>
                                 <ul id="main-nav" class="nav">
                                     <li class="first">
                                         <p>Product</p>
                                         <ul>
-                                            <li class="first"><a href="/dist/benefits">Benefits</a></li>
-                                            <li><a href="/dist/pricing">Plans and Pricing</a></li>
-                                            <li><a href="/dist/mobile">Mobile</a></li>
-                                            <li><a href="/dist/customers">Customer List</a></li>
-                                            <li><a href="/dist/customers/customer-stories">Customer Stories</a></li>
-                                            <li class="last"><a href="/dist/resources/live-demo-webinar">Live Demo Signup</a></li>
+                                            <li class="first"><a href="{{linkPath}}/benefits">Benefits</a></li>
+                                            <li><a href="{{linkPath}}/pricing">Plans and Pricing</a></li>
+                                            <li><a href="{{linkPath}}/mobile">Mobile</a></li>
+                                            <li><a href="{{linkPath}}/customers">Customer List</a></li>
+                                            <li><a href="{{linkPath}}/customers/customer-stories">Customer Stories</a></li>
+                                            <li class="last"><a href="{{linkPath}}/resources/live-demo-webinar">Live Demo Signup</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="/dist/pricing">Pricing</a></li>
+                                    <li><a href="{{linkPath}}/pricing">Pricing</a></li>
                                     <li>
                                         <p>Optiverse</p>
                                         <ul>
@@ -287,170 +287,24 @@ window.optly.mrkt.services.xhr = {
                                     <li>
                                         <p>Resources</p>
                                         <ul>
-                                            <li><a href="/dist/ab-testing">What is A/B testing?</a></li>
-                                            <li><a href="/dist/split-testing">What is split testing?</a></li>
-                                            <li><a href="/dist/resources/multivariate-testing">What is multivariate testing?</a></li>
-                                            <li><a href="/dist/gettingstarted">Gestting Started</a></li>
-                                            <li><a href="/dist/faq">FAQ</a></li>
+                                            <li><a href="{{linkPath}}/ab-testing">What is A/B testing?</a></li>
+                                            <li><a href="{{linkPath}}/split-testing">What is split testing?</a></li>
+                                            <li><a href="{{linkPath}}/resources/multivariate-testing">What is multivariate testing?</a></li>
+                                            <li><a href="{{linkPath}}/gettingstarted">Gestting Started</a></li>
+                                            <li><a href="{{linkPath}}/faq">FAQ</a></li>
                                             <li><a href="http://developers.optimizely.com">Developer platform</a></li>
                                             <li><a href="http://certification.optimizely.com">Certification</a></li>
-                                            <li><a href="/dist/partners">Solutions Partners</a></li>
+                                            <li><a href="{{linkPath}}/partners">Solutions Partners</a></li>
                                             <li><a href="http://blog.optimizely.com">Blog</a></li>
                                         </ul>
                                     </li>
-                                    <li class="last"><a href="/dist/jobs">Jobs</a></li>
+                                    <li class="last"><a href="{{linkPath}}/jobs">Jobs</a></li>
                                 </ul><!--#main-nav-->
-                            </nav>
+                            </nav>{{/unless}}
                         </div><!--/container-->
                     </div><!--/#main-nav-cont-->
                 </header>
-                
-<div id="main">
-  <div id="page-header">
-    <div class="container">
-      <div class="clearfix page-subheader-cont">
-        <h1>Customer Stories</h1>
-        <ul class="sub-header-nav">
-          <li class="sub-nav-about"><a href="/dist/customers">Customer List</a></li>
-          <li class="sub-nav-"><a href="/dist/customer-stories/">Customer Stories</a></li>
-        </ul>
-      </div><!---->
-    </div><!--/.container-->
-  </div><!--/#page-header-->
-  <div id="page-header-gradient"></div>
-  <div id="page-content">
-    
-      
-<div id="customer-stories-content">
-  <div class="container">
-    <div class="row top-content">
-      
-        <div class="columns two-thirds">
-          <div class="video-container">
-            <iframe width="100%" height="100%" src="//www.youtube.com/embed/C7WTDPksvAE" frameborder="0" allowfullscreen></iframe>
-          </div>
-        </div><!--/.columns-->
-        <div class="columns one-third">
-          <h2>12 Million More Sign-ups</h2>
-          <p>Code.org used website optimization to bring computer science education to the world. With Optimizely, the team was able to quickly and easily improve the registration flow on their website, generating 12 million more sign-ups for the annual Hour of Code campaign.</p>
-        </div>
-      
-    </div><!--/.row-->
-  </div>
-  <div class="case-studies-bg-container">
-    <div class="case-studies-container container">
-      
-        
-          <div class="row">
-        
-            <div class="columns one-third customer-grid-elm">
-              <div class="title-container">
-                
-                  <span>10</span>
-                  <span class="percent">% </span>
-                
-                
-                <h4 class="customer-title">lift in social shares</h1>
-              </div> <!-- .title-container -->
-              <div class="customer-inner-content">
-                <div class="customer-logos" style="background-image: url(../../assets/img/customer-logos/upworth-logo.png); width: 141px; height: 40px"></div>
-                <p>Upworthy tested adding a recommended content module to its website to drive more social shares and engagement.</p>
-                <a href="https://s3.amazonaws.com/optimizely-marketing/customer-stories/upworthy-casestudy.pdf" target="_blank" class="button small">Download</a>
-              </div>
-            </div> <!-- .customer-grid-elm -->
-        
-      
-        
-            <div class="columns one-third customer-grid-elm">
-              <div class="title-container">
-                
-                  <span>80</span>
-                  <span class="percent">% </span>
-                
-                
-                <h4 class="customer-title">More Student Sign-ups</h1>
-              </div> <!-- .title-container -->
-              <div class="customer-inner-content">
-                <div class="customer-logos" style="background-image: url(../../assets/img/customer-logos/code-dot-org-logo.png); width: 40px; height: 40px"></div>
-                <p>Code.org optimized its headlines and CTA messaging to significantly increase sign-ups for its Hour of Code campaign.</p>
-                <a href="https://s3.amazonaws.com/optimizely-marketing/customer-stories/codeorg-casestudy.pdf" target="_blank" class="button small">Download</a>
-              </div>
-            </div> <!-- .customer-grid-elm -->
-        
-      
-        
-            <div class="columns one-third customer-grid-elm">
-              <div class="title-container">
-                
-                  <span>140</span>
-                  <span class="percent">% </span>
-                
-                
-                <h4 class="customer-title">Increase in lead quality</h1>
-              </div> <!-- .title-container -->
-              <div class="customer-inner-content">
-                <div class="customer-logos" style="background-image: url(../../assets/img/customer-logos/ironmountain-logo.png); width: 141px; height: 40px"></div>
-                <p>Iron Mountain optimized its lead generation process to improve the quality of leads generated from its online sign-up form.</p>
-                <a href="https://s3.amazonaws.com/optimizely-marketing/customer-stories/ironmountain-casestudy.pdf" target="_blank" class="button small">Download</a>
-              </div>
-            </div> <!-- .customer-grid-elm -->
-        
-          </div>
-        
-      
-        
-          <div class="row">
-        
-            <div class="columns one-third customer-grid-elm">
-              <div class="title-container">
-                
-                
-                <h4 class="customer-title">Improved Checkout Funnel</h1>
-              </div> <!-- .title-container -->
-              <div class="customer-inner-content">
-                <div class="customer-logos" style="background-image: url(../../assets/img/customer-logos/sony-logo.png); width: 141px; height: 40px"></div>
-                <p>Sony optimized banners ads and product pages to drive more customers through the checkout funnel to makea final purchase on its website.</p>
-                <a href="https://s3.amazonaws.com/optimizely-marketing/customer-stories/sony-casestudy.pdf" target="_blank" class="button small">Download</a>
-              </div>
-            </div> <!-- .customer-grid-elm -->
-        
-      
-        
-            <div class="columns one-third customer-grid-elm">
-              <div class="title-container">
-                
-                  <span>49</span>
-                  <span class="percent">% </span>
-                
-                
-                <h4 class="customer-title">lift in &#x27;Adds-to-Cart&#x27;</h1>
-              </div> <!-- .title-container -->
-              <div class="customer-inner-content">
-                <div class="customer-logos" style="background-image: url(../../assets/img/customer-logos/fab-logo.png); width: 141px; height: 40px"></div>
-                <p>Fab tested different designs and messaging on its primary call to action button to see which would drive the more purchases.</p>
-                <a href="https://s3.amazonaws.com/optimizely-marketing/customer-stories/fab-casestudy.pdf" target="_blank" class="button small">Download</a>
-              </div>
-            </div> <!-- .customer-grid-elm -->
-        
-          </div>
-        
-      
-    </div> <!-- .case-studies-container -->
-  </div> <!-- .case-studies-bg-container -->
-  <div class="case-studies-cta container">
-    <div class="callout">
-        <h3>Share your testing story</h3>
-        <p>Big wins. Surprising test results. A real impact on your business. Tell us how you did it.</p>
-        <!-- TODO: create endpoint -->
-        <a href="#" class="primary-button">Submit Your Story</a>
-    </div>
-  </div>
-</div><!--#customer-stories-content -->
-
-    
-  </div><!--/#content-->
-</div><!--/#main-->
-
+                {{> body }}
                 <footer>
                     <div class="container">
                         <p><a class="logo" href="/">Optimizely</a></p>
@@ -458,9 +312,9 @@ window.optly.mrkt.services.xhr = {
                             <div class="left">
                                 <p>&copy 2014, Optimizely. All rights reserved</p>
                                 <ul id="legalese" class="clearfix">
-                                    <li class="terms"><a href="/dist/terms">Terms of Service</a> &nbsp;<span class="separater">|</span></li>
-                                    <li><a href="/dist/privacy">Privacy Policy</a> &nbsp;<span class="separater">|</span></li>
-                                    <li class="security"><a href="/dist/security">Security</a></li>
+                                    <li class="terms"><a href="{{linkPath}}/terms">Terms of Service</a> &nbsp;<span class="separater">|</span></li>
+                                    <li><a href="{{linkPath}}/privacy">Privacy Policy</a> &nbsp;<span class="separater">|</span></li>
+                                    <li class="security"><a href="{{linkPath}}/security">Security</a></li>
                                 </ul>
                                 <ul class="social-links">
                                     <li><a href="http://twitter.com/optimizely" class="twitter">Twitter</a></li>
@@ -473,32 +327,32 @@ window.optly.mrkt.services.xhr = {
                                     <li id="footer-nav-features" class="footer-nav-column">
                                         <h4>Product features &amp; benefits</h4>
                                         <ul>
-                                            <li><a href="/dist/pricing">Plans and pricing</a></li>
-                                            <li><a href="/dist/benefits">Benefits</a></li>
-                                            <li><a href="/dist/mobile">iOS beta</a></li>
-                                            <li><a href="/dist/partners">Optimizely for Angencies</a></li>
+                                            <li><a href="{{linkPath}}/pricing">Plans and pricing</a></li>
+                                            <li><a href="{{linkPath}}/benefits">Benefits</a></li>
+                                            <li><a href="{{linkPath}}/mobile">iOS beta</a></li>
+                                            <li><a href="{{linkPath}}/partners">Optimizely for Angencies</a></li>
                                             <li><a href="http://developers.optimizely.com">Optimizely for Developers</a></li>
-                                            <li><a href="/dist/ecommerce">Optimizely for e-commerce</a></li>
-                                            <li><a href="/dist/enterprises">Optimizely for enterprises</a></li>
-                                            <li><a href="/dist/publishers">Optimizely for publishers</a></li>
-                                            <li><a href="/dist/small-business">Optimizely for small business</a></li>
+                                            <li><a href="{{linkPath}}/ecommerce">Optimizely for e-commerce</a></li>
+                                            <li><a href="{{linkPath}}/enterprises">Optimizely for enterprises</a></li>
+                                            <li><a href="{{linkPath}}/publishers">Optimizely for publishers</a></li>
+                                            <li><a href="{{linkPath}}/small-business">Optimizely for small business</a></li>
                                         </ul>
                                     </li>
                                     <li id="footer-nav-customers" class="footer-nav-column">
                                         <h4>Customers</h4>
                                         <ul>
-                                            <li><a href="/dist/customers">Customer list</a></li>
-                                            <li><a href="/dist/customers/customer-stories">Customer stories</a></li>
+                                            <li><a href="{{linkPath}}/customers">Customer list</a></li>
+                                            <li><a href="{{linkPath}}/customers/customer-stories">Customer stories</a></li>
                                         </ul>
                                     </li>
                                     <li id="footer-nav-resources" class="footer-nav-column">
                                         <h4>Resources</h4>
                                         <ul>
-                                            <li><a href="/dist/ab-testing">What is a/b testing?</a></li>
-                                            <li><a href="/dist/split-testing">What is split testing?</a></li>
-                                            <li><a href="/dist/gettingstarted">Getting started</a></li>
-                                            <li><a href="/dist/live-demo-webinar">Live demo signup</a></li>
-                                            <li><a href="/dist/faq">FAQ</a></li>
+                                            <li><a href="{{linkPath}}/ab-testing">What is a/b testing?</a></li>
+                                            <li><a href="{{linkPath}}/split-testing">What is split testing?</a></li>
+                                            <li><a href="{{linkPath}}/gettingstarted">Getting started</a></li>
+                                            <li><a href="{{linkPath}}/live-demo-webinar">Live demo signup</a></li>
+                                            <li><a href="{{linkPath}}/faq">FAQ</a></li>
                                             <li><a href="http://help.optimizely.com">Knowledge base</a></li>
                                             <li><a href="http://developers.optimizely.com">API documentation</a></li>
                                             <li><a href="http://blog.optimizely.com">Blog</a></li>
@@ -507,19 +361,19 @@ window.optly.mrkt.services.xhr = {
                                     <li id="footer-nav-about" class="footer-nav-column">
                                         <h4>About</h4>
                                         <ul>
-                                            <li><a href="/dist/about">About</a></li>
-                                            <li><a href="/dist/jobs">Jobs</a></li>
-                                            <li><a href="/dist/press">Press</a></li>
-                                            <li><a href="/dist/events">Events</a></li>
-                                            <li><a href="/dist/contact">Contact</a></li>
+                                            <li><a href="{{linkPath}}/about">About</a></li>
+                                            <li><a href="{{linkPath}}/jobs">Jobs</a></li>
+                                            <li><a href="{{linkPath}}/press">Press</a></li>
+                                            <li><a href="{{linkPath}}/events">Events</a></li>
+                                            <li><a href="{{linkPath}}/contact">Contact</a></li>
                                         </ul>
                                     </li>
                                     <li id="footer-nav-other" class="footer-nav-column">
                                         <h4>Other</h4>
                                         <ul>
                                             <li><a href="http://success.optimizely.com">Customer sucess</a></li>
-                                            <li><a href="/dist/demo">Request a demo</a></li>
-                                            <li><a href="/dist/opt_out">Opt out</a></li>
+                                            <li><a href="{{linkPath}}/demo">Request a demo</a></li>
+                                            <li><a href="{{linkPath}}/opt_out">Opt out</a></li>
                                         </ul>
                                     </li>
                                 </ul><!--/#footer-nav-->
@@ -541,112 +395,30 @@ window.optly.mrkt.services.xhr = {
                 </footer>
             </div><!--/#inner-wrapper-->
         </div><!--/#outer-wrapper-->
-        <div id="signup-dialog" class="modal-dialog-container" data-optly-modal="signup">
-    <div class="dialog narrow">
-         <div class="modal-header">
-            <p class="normal-header header-h1">Create a free account</p>
-            
-                <p>
-                    <span class="dynamic-content">You&#x27;re seconds away from running A/B tests!</span>
-                    <!-- <span class="optiverse-dynamic-content">By creating an account you can post in Optiverse and test drive Optimizely</span> -->
-                </p>
-            
-        </div>
-        <form action="/account/create" method="POST" autocomplete="off">
-            <div class="modal-form-content">
-            
-              <label id="name-label">
-                  <span>Name</span>
-                  <input type="text" name="name" />
-              </label>
-              <label>
-                  <span>Work email address</span>
-                  <input type="text" name="email" />
-              </label>
-              <label>
-                  <span>Password</span>
-                  <h5 class="password-req">Must use at least 8 characters and a mix of upper/lowercase letters, numbers or symbols</h5>
-                  <input type="password" name="password1" class="password1" />
-              </label>
-              <label>
-                  <span>Confirm password</span>
-                  <input type="password" name="password2" />
-              </label>
-              <label id="phone-label">
-                  <span>Phone number</span>
-                  <input type="text" name="phone_number" />
-              </label>
-              <div class="terms">
-                  <input type="checkbox" name="terms-of-service" />
-                  <p>
-                      I agree to the <a href="/dist/terms" target="_blank">Terms of Service</a> and <a href="/dist/privacy" target="_blank">Privacy Policy</a>.
-                  </p>
-              </div>
-              <!-- <input id="hidden" type="hidden" name="hidden" value="" /> -->
-              <div class="options">
-                  <p>Already have an Optimizely account? <a class="show-sign-in" data-modal-click="signin">Sign in here</a></p>
-              </div>
-
-            </div><!--/.modal-form-content-->
-            <div class="modal-footer">
-                <div class="buttons">
-                    <input type="submit" class="primary-button submit-btn translate" value="Create account &raquo;">
-                    <input type="button" data-modal-btn="close" class="secondary-button close-btn translate" value="Cancel">
-                </div>
-            </div>
-        </form>
-    </div>
-</div> <!-- end .modal-dialog-container -->
-
-        <div id="sign-in-dialog" class="modal-dialog-container" data-optly-modal="signin">
-    <div class="dialog narrow">
-         <div class="modal-header">
-            <p class="normal-header header-h1">Sign in to Optimizely</p>
-            
-        </div>
-        <form action="/account/signin" method="POST" autocomplete="off">
-            <div class="modal-form-content">
-            
-              <label>
-                  <span>Email address</span>
-                  <input type="text" name="email" />
-              </label>
-              <label>
-                  <span>Password</span>
-                  <input type="password" name="password" />
-              </label>
-              <div class="terms">
-                  <label class="spaced">
-                      <input type="checkbox" name="persist" checked="checked" />
-                      <p>Keep me signed in</p>
-                  </label>
-              </div>
-              <div class="options">
-                  <p>
-                      <a class="show-forgot-password">Forgot your password?</a><br />
-                      No account? <a class="show-create-account" data-modal-click="signup">Register here</a>
-                  </p>
-              </div>
-
-            </div><!--/.modal-form-content-->
-            <div class="modal-footer">
-                <div class="buttons">
-                    <input type="submit" class="primary-button submit-btn translate" value="Sign in &raquo;">
-                    <input type="button" data-modal-btn="close" class="secondary-button close-btn translate" value="Cancel">
-                </div>
-            </div>
-        </form>
-    </div>
-</div> <!-- end .modal-dialog-container -->
-
+        {{> signup_modal_compiled }}
+        {{> signin_modal_compiled }}
         <div id="vh-test"></div>
         <script type="text/javascript" data-yepnope >
             yepnope([
                 {
-                    load: ['/dist/assets/js/libraries/fastclick.js', '/dist/assets/js/bundle.js']
-                },{
-                    load: ['/dist/assets/js/pages/customer-stories.js']
+                    load: ['{{assetsDir}}/js/libraries/fastclick.js', '{{assetsDir}}/js/bundle.js']
                 }
+                {{~#if page.script_dependencies~}}
+                {{#each page.script_dependencies}}
+                ,{
+                    load: ['{{.}}']
+                }{{/each}}
+                {{/if}}
+                {{~#if layout_script~}}
+                ,{
+                    load: ['{{assetsDir}}/js/layouts/{{layout_script}}']
+                }
+                {{~/if}}
+                {{~#if page.page_script~}}
+                ,{
+                    load: ['{{assetsDir}}/js/pages/{{page.page_script}}']
+                }
+                {{~/if}}
             ]);
         </script>
     </body>

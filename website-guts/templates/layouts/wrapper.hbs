@@ -2,6 +2,7 @@
 <html class="no-js">
     <head>
         <meta charset="utf-8">
+        <script>window.jQuery || document.write('<script src="{{assetsDir}}/js/libraries/jquery-1.6.4.min.js"><\/script>')</script>
         <script src="//cdn.optimizely.com/js/{{environmentVariables.optimizelyProjectID}}.js"></script>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>Optimizely:{{#if page.seo_title}} {{page.seo_title}}{{else}} A/B testing software you'll actually use{{/if}}</title>
@@ -25,6 +26,7 @@
           window.analytics.load('{{environmentVariables.segmentProjectID}}');
           window.analytics.page();
         </script>
+        <script src="../../assets/js/services/user_state.js?__inline=true"></script>
     </head>
     <body class="signed-out{{#if page.compact_header}} compact-header{{/if}}{{#each layout_body_class}} {{.}}{{/each}}{{#each page.body_class}} {{.}}{{/each}}">
         <!--[if lt IE 8]>
@@ -43,11 +45,11 @@
                                 </svg>
                             </a>
                             <div id="utility-nav-cont">
-                                <ul class="signed-out-content utility-nav nav">
+                                <ul class="signed-out-content utility-nav nav" data-show="loggedout">
                                     <li class="first"><a data-modal-click="signup">Sign Up</a></li>
                                     <li class="last"><a data-modal-click="signin">Log In</a></li>
                                 </ul><!--/.signed-in-content-->
-                                <ul class="signed-in-content utility-nav nav">
+                                <ul class="signed-in-content utility-nav nav" data-show="loggedin">
                                     <li class="first"><a href="">Dashboard</a></li>
                                     <li><a href="">Experiments</a></li>
                                     <li><a href="">Support</a></li>
@@ -197,8 +199,7 @@
         {{> signup_modal_compiled }}
         {{> signin_modal_compiled }}
         <div id="vh-test"></div>
-        <script>window.jQuery || document.write('<script src="{{assetsDir}}/js/libraries/jquery-1.6.4.min.js"><\/script>')</script>
-        <script>
+        <script type="text/javascript" data-yepnope >
             yepnope([
                 {
                     load: ['{{assetsDir}}/js/libraries/fastclick.js', '{{assetsDir}}/js/bundle.js']

@@ -116,30 +116,38 @@ window.optly.mrkt.services.xhr = {
           callbacks[index](response);
           responses.push(response);
         }
-
+        if (index === tranformedArgs.length - 1) {
+          $.event.trigger('loginDataRecieved', responses);
+        }
       }.bind(this) );
     }.bind(this) );
 
     return true;
-  }
-  
-};
+  },
 
-window.optly.mrkt.services.userStateService = {
-  
-  getLoginStatus: function(setCookie) {
+  readCookie: function (name) {
+    // Escape regexp special characters (thanks kangax!)
+    name = name.replace(/([.*+?^=!:${}()|[\]\/\\])/g, '\\$1');
+
+    var regex = new RegExp('(?:^|;)\\s?' + name + '=(.*?)(?:;|$)','i'),
+        match = document.cookie.match(regex);
+
+    return match && window.unescape(match[1]);
+  }, 
+
+  getLoginStatus: function(setCookie, requestParams) {
+    var deffereds;
     // for testing
     if (setCookie) {
-      $.cookie('optimizely_signed_in', '1');
+      document.cookie = 'optimizely_signed_in=1';
     }
-    if ( $.cookie('optimizely_signed_in') ) {
-      return true;
+    if ( !!this.readCookie('optimizely_signed_in') ) {
+      deffereds = this.makeRequest.apply(this, requestParams);
     }
-    return false;
+    return deffereds;
   }
-
+  
 };
-
 
 (function() {
   var accountData,
@@ -184,7 +192,6 @@ window.optly.mrkt.services.userStateService = {
     experimentDataCallback
   );
 
-  var resp = window.optly.mrkt.services.xhr.makeRequest(acctParams, expParams);
-  console.log(resp);
-
+  return window.optly.mrkt.services.xhr.getLoginStatus(true, [acctParams, expParams]);
 }());
+
