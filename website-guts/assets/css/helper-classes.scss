@@ -8,6 +8,22 @@
 	}
 }
 
+html,
+body {
+  &.no-scroll {
+    overflow: hidden;
+    height: 100%;
+  }
+}
+
+// Tests is vh CSS property is supported
+#vh-test {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	z-index: 1;
+}
+
 .callout {
 	box-shadow: 0px 2px 4px rgba(0,0,0,0.07);
 	background-color: white;
@@ -98,7 +114,7 @@
 
 .box {
 	background-color: white;
-	padding: 25px;	
+	padding: 25px;
 }
 
 .list-unstyled {
@@ -124,21 +140,6 @@
 	font-weight: 300;
 }
 
-.half {
-	-moz-box-sizing: border-box;
-	-webkit-box-sizing: border-box;
-	box-sizing: border-box;
-	width: 50%;
-
-	&.right {
-		padding-left: 10px;
-	}
-
-	&.left {
-		padding-right: 10px;
-	}
-}
-
 .a-right {
 	text-align: right;
 }
@@ -148,6 +149,11 @@
 	h3 {
 		text-align: center;
 	}
+}
+
+.error {
+	color: #911d16;
+	font-weight: 400;
 }
 
 .super {
@@ -234,6 +240,20 @@ body .small-note, body p.small-note {
 }
 
 @media only screen and (min-width: $desktop-min-width) {
+	.half {
+		-moz-box-sizing: border-box;
+		-webkit-box-sizing: border-box;
+		box-sizing: border-box;
+		width: 50%;
+
+		&.right {
+			padding-left: 10px;
+		}
+
+		&.left {
+			padding-right: 10px;
+		}
+	}
 	.left {float: left;}
 	.right {float: right;}
 	.sheet {
@@ -295,7 +315,7 @@ body .small-note, body p.small-note {
             width: auto;
             color: #006eb6;
             text-align: center;
-            &:before, 
+            &:before,
             &:after {
                 background: #dadada;
                 border-bottom: 1px solid #fff;
@@ -354,8 +374,16 @@ body .small-note, body p.small-note {
 }
 
 input[type="text"], input[type="url"], input[type="email"], input[type="tel"] {
-	&.error {
+	&.error-show {
 		background-color: #fef3f3;
 		border-color: #f3b6b3;
 	}
 }
+
+//classes for processing and error states on forms
+
+.processing-show, .error-show {display: none;}
+
+body.processing-state .processing-show, body.error-state .error-show {display: inherit;}
+
+body.processing-state .processing-hide, body.error-state .error-hide {display: none;}

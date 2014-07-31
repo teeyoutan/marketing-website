@@ -1,5 +1,8 @@
 body.ppc-page {
   h4 {text-align: center;}
+  #phone-email-cont div {
+    margin-bottom: 10px;
+  }
   @media only screen and (min-width: $tablet-min-width) {
     input[type=text], input[type=url], input[type=tel], input[type=email] {
       width: 400px;
@@ -29,10 +32,13 @@ body.ppc-page {
       position: relative;
       top: 50%;
       transform: translateY(-50%);
+      #phone-email-cont div {
+        margin-bottom: auto;
+      }
       #url, #name {width: 100%;}
       .terms {
         clear: both;
-        padding-top: 25px;
+        padding: 10px 0;
         color: #999;
         font-size: 15px;
         a {

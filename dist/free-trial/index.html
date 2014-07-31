@@ -22,7 +22,7 @@
         
         <script type="text/javascript">
           window.analytics=window.analytics||[],window.analytics.methods=["identify","group","track","page","pageview","alias","ready","on","once","off","trackLink","trackForm","trackClick","trackSubmit"],window.analytics.factory=function(t){return function(){var a=Array.prototype.slice.call(arguments);return a.unshift(t),window.analytics.push(a),window.analytics}};for(var i=0;i<window.analytics.methods.length;i++){var key=window.analytics.methods[i];window.analytics[key]=window.analytics.factory(key)}window.analytics.load=function(t){if(!document.getElementById("analytics-js")){var a=document.createElement("script");a.type="text/javascript",a.id="analytics-js",a.async=!0,a.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.io/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n)}},window.analytics.SNIPPET_VERSION="2.0.9",
-          window.analytics.load("l4usxygsxg");
+          window.analytics.load('l4usxygsxg');
           window.analytics.page();
         </script>
     </head>
@@ -50,9 +50,9 @@
     <div id="ppc-form" class="landing-page-form">
       <h4 class="seo-form-heading">Test it Out for Free</h4>
       <p>Welcome to Optimizely. Sign up for a free account and test out the most popular <span id="symmetry_test">A/B testing tool</span> on the planet!</p>
-      <form id="seo-form" class="seo-form" action="/account/free_trial_landing" autocomplete="off" novalidate="novalidate">
+      <form id="seo-form" class="seo-form inline-labels" action="/account/free_trial_landing" autocomplete="off" novalidate="novalidate">
         
-        <p class="error"></p>
+        <p class="error-message error error-show"></p>
         <input id="utm_medium" type="hidden" name="utm_medium" value="direct">
         <ul>
           <li class="url-input-related">
@@ -63,7 +63,7 @@
             <label for="name">Your Name</label>
             <input id="name" required data-validation="name" name="name" type="text">
           </li>
-          <li>
+          <li id="phone-email-cont">
             <div class="label half left email-related">
               <label for="email">Your email - no spam</label>
               <input id="email" required name="email" type="email">
@@ -75,15 +75,11 @@
             </div>
           </li>
           <li class="terms">
-            <label class="checkbox">
-              <input type="checkbox" name="terms-of-service" required id="terms">
-              I agree to the
-              <span id="SL-link-terms" class="SL_swap"><a href="/terms" target="_blank">Terms of Service</a></span> and
-              <span id="SL-link-privacy" class="SL_swap"><a href="/privacy" target="_blank">Privacy Policy</a></span>.
-            </label>
+            <small>By clicking the <q>Test it Out</q> button below I agree to the <br><a href="/terms" target="_blank">Terms of Service</a> and <a href="/privacy" target="_blank">Privacy Policy</a>.</small>
           </li>
           <li class="a-center">
-            <input type="submit" class="button" value="Test it Out">
+            <input type="submit" class="button processing-hide" value="Test it Out">
+            <p class="processing-show">Processing...</p>
           </li>
         </ul>
       </form>
@@ -184,6 +180,105 @@
                 </footer>
             </div><!--/#inner-wrapper-->
         </div><!--/#outer-wrapper-->
+        <div id="signup-dialog" class="modal-dialog-container" data-optly-modal="signup">
+    <div class="dialog narrow">
+         <div class="modal-header">
+            <p class="normal-header header-h1">Create a free account</p>
+            
+                <p>
+                    <span class="dynamic-content">You&#x27;re seconds away from running A/B tests!</span>
+                    <!-- <span class="optiverse-dynamic-content">By creating an account you can post in Optiverse and test drive Optimizely</span> -->
+                </p>
+            
+        </div>
+        <form action="/account/create" method="POST" autocomplete="off">
+            <div class="modal-form-content">
+            
+              <label id="name-label">
+                  <span>Name</span>
+                  <input type="text" name="name" />
+              </label>
+              <label>
+                  <span>Work email address</span>
+                  <input type="text" name="email" />
+              </label>
+              <label>
+                  <span>Password</span>
+                  <h5 class="password-req">Must use at least 8 characters and a mix of upper/lowercase letters, numbers or symbols</h5>
+                  <input type="password" name="password1" class="password1" />
+              </label>
+              <label>
+                  <span>Confirm password</span>
+                  <input type="password" name="password2" />
+              </label>
+              <label id="phone-label">
+                  <span>Phone number</span>
+                  <input type="text" name="phone_number" />
+              </label>
+              <div class="terms">
+                  <input type="checkbox" name="terms-of-service" />
+                  <p>
+                      I agree to the <a href="/dist/terms" target="_blank">Terms of Service</a> and <a href="/dist/privacy" target="_blank">Privacy Policy</a>.
+                  </p>
+              </div>
+              <!-- <input id="hidden" type="hidden" name="hidden" value="" /> -->
+              <div class="options">
+                  <p>Already have an Optimizely account? <a class="show-sign-in" data-modal-click="signin">Sign in here</a></p>
+              </div>
+
+            </div><!--/.modal-form-content-->
+            <div class="modal-footer">
+                <div class="buttons">
+                    <input type="submit" class="primary-button submit-btn translate" value="Create account &raquo;">
+                    <input type="button" data-modal-btn="close" class="secondary-button close-btn translate" value="Cancel">
+                </div>
+            </div>
+        </form>
+    </div>
+</div> <!-- end .modal-dialog-container -->
+
+        <div id="sign-in-dialog" class="modal-dialog-container" data-optly-modal="signin">
+    <div class="dialog narrow">
+         <div class="modal-header">
+            <p class="normal-header header-h1">Sign in to Optimizely</p>
+            
+        </div>
+        <form action="/account/signin" method="POST" autocomplete="off">
+            <div class="modal-form-content">
+            
+              <label>
+                  <span>Email address</span>
+                  <input type="text" name="email" />
+              </label>
+              <label>
+                  <span>Password</span>
+                  <input type="password" name="password" />
+              </label>
+              <div class="terms">
+                  <label class="spaced">
+                      <input type="checkbox" name="persist" checked="checked" />
+                      <p>Keep me signed in</p>
+                  </label>
+              </div>
+              <div class="options">
+                  <p>
+                      <a class="show-forgot-password">Forgot your password?</a><br />
+                      No account? <a class="show-create-account" data-modal-click="signup">Register here</a>
+                  </p>
+              </div>
+
+            </div><!--/.modal-form-content-->
+            <div class="modal-footer">
+                <div class="buttons">
+                    <input type="submit" class="primary-button submit-btn translate" value="Sign in &raquo;">
+                    <input type="button" data-modal-btn="close" class="secondary-button close-btn translate" value="Cancel">
+                </div>
+            </div>
+        </form>
+    </div>
+</div> <!-- end .modal-dialog-container -->
+
+        <div id="vh-test"></div>
         <script>window.jQuery || document.write('<script src="/dist/assets/js/libraries/jquery-1.6.4.min.js"><\/script>')</script>
         <script>
             yepnope([
