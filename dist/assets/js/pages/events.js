@@ -8,6 +8,10 @@ window.optly.mrkt.events = {};
 
 window.optly.mrkt.events.showEvents = function(url, div){
 
+  var templateContext = {};
+
+  templateContext.events = [];
+
   $.get(url).always(function(data, textStatus, jqXHR){
 
     if(jqXHR.status === 200){
@@ -16,23 +20,9 @@ window.optly.mrkt.events.showEvents = function(url, div){
 
         if( data.feed.entry instanceof Array ){
 
-          var i, events, eventHTML, eventTemplate;
+          var i, container;
 
-          events = '';
-
-          eventHTML = '<div class="event-cont">' +
-                        '<div class="left">' +
-                            '<time>{{startMonth}} {{startDay}} - {{endMonth}} {{endDay}}, {{endYear}}</time>' +
-                            '<p class="venue">{{venue}}</p>' +
-                            '<p>{{cityState}}</p>' +
-                          '</div>' +
-                          '<div class="right">' +
-                            '<h4><a href="{{link}} target="_blank">{{title}}</a></h4>' +
-                            '<p>{{description}}</p>' +
-                          '</div>' +
-                      '</div><!--/.event-cont-->';
-
-          eventTemplate = Handlebars.compile(eventHTML);
+          container = {};
 
           for(i = 0; i <= data.feed.entry.length - 1; i++){
 
@@ -76,11 +66,11 @@ window.optly.mrkt.events.showEvents = function(url, div){
 
             };
 
-            events += eventTemplate(eventData);
+            templateContext.events.push(eventData);
 
           }
 
-          $(div).append(events);
+          $(div).append(window.optly.mrkt.templates.eventDisplay(templateContext));
 
         } else {
 
