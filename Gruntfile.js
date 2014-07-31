@@ -21,7 +21,8 @@ module.exports = function(grunt) {
   //jit-grunt loads only the npm tasks required for the grunt task.
   //makes livereload much faster.
   require('jit-grunt')(grunt, {
-    replace: 'grunt-text-replace'
+    replace: 'grunt-text-replace',
+    handlebars: 'grunt-contrib-handlebars'
   });
 
   // Project configuration.
@@ -363,7 +364,8 @@ module.exports = function(grunt) {
             '<%= config.guts %>/assets/js/libraries/handlebars-v1.3.0.js',
             '<%= config.bowerDir %>/momentjs/moment.js',
             '<%= config.guts %>/assets/js/libraries/oForm/oForm.js',
-            '<%= config.temp %>/assets/js/global.js'
+            '<%= config.temp %>/assets/js/global.js',
+            '<%= config.temp %>/assets/js/handlebarsTemplates.js'
           ]
         }
       }
@@ -439,6 +441,19 @@ module.exports = function(grunt) {
           }
         ]
       }
+    },
+    handlebars: {
+      compile: {
+        options: {
+          namespace: 'optly.mrkt.templates',
+          processName: function(filePath){
+            return filePath.replace(/^.*[\\\/]/, '').replace('.hbs', '');
+          }
+        },
+        files: {
+          '<%= config.temp %>/assets/js/handlebarsTemplates.js': ['<%= config.guts %>/templates/client/**/*.hbs']
+        }
+      }
     }
   });
 
@@ -447,6 +462,7 @@ module.exports = function(grunt) {
     'jshint',
     'clean:preBuild',
     'assemble',
+    'handlebars',
     'concat',
     'sass:dev',
     'replace',

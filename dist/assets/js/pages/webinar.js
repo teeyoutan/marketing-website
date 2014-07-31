@@ -4,6 +4,10 @@
 
   window.optly.mrkt = window.optly.mrkt || {}; 
 
+var eventDisplayHTML, templateContext, dateArray, i;
+
+window.optly.mrkt.webinar = {};
+
 window.optly.mrkt.webinar.getThursdays = function() {
 
   var numDates,
@@ -54,4 +58,23 @@ window.optly.mrkt.webinar.getThursdays = function() {
   return dates;
 
 };
+
+templateContext = {};
+
+templateContext.thursdays = [];
+
+dateArray = window.optly.mrkt.webinar.getThursdays();
+
+for(i = 0; i < dateArray.length; i++){
+  var container, date;
+  container = {};
+  date = moment(dateArray[i]);
+  container.month = date.format('MMMM');
+  container.day = date.format('D');
+  templateContext.thursdays.push(container);
+}
+
+eventDisplayHTML = window.optly.mrkt.templates.webinarEventDisplay(templateContext);
+
+$('#events').html(eventDisplayHTML);
 })(jQuery);
