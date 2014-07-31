@@ -77,4 +77,8 @@ for(i = 0; i < dateArray.length; i++){
 eventDisplayHTML = window.optly.mrkt.templates.webinarEventDisplay(templateContext);
 
 $('#events').html(eventDisplayHTML);
+
+$('body').delegate('.register-btn', 'click', function(){
+  window.optly.mrkt.modal.open('webinar-signup');
+});
 })(jQuery);
