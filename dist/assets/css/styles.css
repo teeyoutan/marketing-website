@@ -2374,17 +2374,17 @@ body.benefits-page {
     width: 100%;
     cursor: auto;
     overflow-y: scroll; }
-  .modal-dialog-container .modal-header {
+  .modal-dialog-container .modal-header, .modal-dialog-container .modal-footer {
     background: #f8f8f8;
     padding: 20px 40px; }
-    .modal-dialog-container .modal-header p {
-      margin: 0; }
-    .modal-dialog-container .modal-header span {
-      font-weight: 400;
-      font-size: 0.8em; }
-    .modal-dialog-container .modal-header p.normal-header {
-      font-family: "Gotham A", "Gotham B", Helvetica, Arial, sans-serif;
-      color: #006eb6; }
+  .modal-dialog-container .modal-header p {
+    margin: 0; }
+  .modal-dialog-container .modal-header span {
+    font-weight: 400;
+    font-size: 0.8em; }
+  .modal-dialog-container .modal-header p.normal-header {
+    font-family: "Gotham A", "Gotham B", Helvetica, Arial, sans-serif;
+    color: #006eb6; }
   .modal-dialog-container form {
     background: transparent;
     width: 100%;
@@ -2423,8 +2423,6 @@ body.benefits-page {
       .modal-dialog-container form .options a {
         text-decoration: none; }
     .modal-dialog-container form .modal-footer {
-      padding: 20px 40px;
-      background: #f8f8f8;
       border-top: 1px solid #eee; }
       .modal-dialog-container form .modal-footer input {
         font-size: 12px;
