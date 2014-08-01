@@ -3,33 +3,45 @@
     <head>
         <meta charset="utf-8">
         <script>window.jQuery || document.write('<script src="/dist/assets/js/libraries/jquery-1.6.4.min.js"><\/script>')</script>
-        <script src="//cdn.optimizely.com/js/1205230573.js"></script>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Optimizely: About</title>
-        
-        <meta name="description" content="Improve conversions through A/B Testing, Split Testing and Multivariate Testing with Optimizely!">
-        <meta name="keywords" content="AB test, split test, multivariate testing, conversion rate">
-
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        
-        <meta property="og:title" content="Optimizely: A/B testing software you'll actually use">
-        <meta property="og:description" content="Optimizely: Improve conversions through A/B Testing, Split Testing and Multivariate Testing with Optimizely!">
-
-        <!-- Place favicon.ico and apple-touch-icon(s) in the root directory -->
-
-        <link rel="stylesheet" href="/dist/assets/css/fonts.css">
-        <link rel="stylesheet" href="/dist/assets/css/styles.css">
-        <script src="/dist/assets/js/libraries/modernizr-yepnope.js"></script>
-        
-        <script type="text/javascript">
-          window.analytics=window.analytics||[],window.analytics.methods=["identify","group","track","page","pageview","alias","ready","on","once","off","trackLink","trackForm","trackClick","trackSubmit"],window.analytics.factory=function(t){return function(){var a=Array.prototype.slice.call(arguments);return a.unshift(t),window.analytics.push(a),window.analytics}};for(var i=0;i<window.analytics.methods.length;i++){var key=window.analytics.methods[i];window.analytics[key]=window.analytics.factory(key)}window.analytics.load=function(t){if(!document.getElementById("analytics-js")){var a=document.createElement("script");a.type="text/javascript",a.id="analytics-js",a.async=!0,a.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.io/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n)}},window.analytics.SNIPPET_VERSION="2.0.9",
-          window.analytics.load('l4usxygsxg');
-          window.analytics.page();
+        <script>
+            function saySomething(thing) {
+                console.log(thing);
+            };
+            window.optly_q = [
+                [saySomething, 'hello'],
+                [saySomething, 'goodbye']
+            ];
         </script>
         <script>
 window.optly = window.optly || {};
 window.optly.mrkt = window.optly.mrkt || {};
 window.optly.mrkt.services = window.optly.mrkt.services || {};
+
+var optly_QFactory = function(userData) {
+  this.customerData = userData[0];
+  this.experimentData = userData[1];
+
+  this.callQ = function(args, i) {
+    if (typeof args[i] === 'function') {
+      args[i].apply( args[i], args.slice(1) );
+    }
+    else {
+      for(var nestedI = 0; nestedI < args[i].length; nestedI += 1) {
+        if (typeof args[i][nestedI] === 'function') {
+          args[i][nestedI].apply( args[i][nestedI], args[i].slice(1) );
+        }
+      }
+    }
+  };
+
+  this.push = function(defferedArgs) {
+    console.log('push function', defferedArgs);
+    for (var i = 0; i < defferedArgs.length; i += 1) {
+      this.callQ(defferedArgs, i);
+    } 
+  };
+
+};
 
 window.optly.mrkt.services.xhr = {
   makeRequest: function() {
@@ -146,7 +158,11 @@ window.optly.mrkt.services.xhr = {
           responses.push(response);
         }
         if (index === tranformedArgs.length - 1) {
-          $.event.trigger('loginDataRecieved', responses);
+          var oldQue = window.optly_q;
+          window.optly_q = new optly_QFactory(responses);
+          console.log('old q', oldQue);
+          window.optly_q.push(oldQue);
+          console.log('new que: ', responses);
         }
       }.bind(this) );
     }.bind(this) );
@@ -192,12 +208,10 @@ window.optly.mrkt.services.xhr = {
 
   function accountDataCallback(data) {
     accountData = data;
-    console.log('acct data: ', data);
   }
 
   function experimentDataCallback(data) {
     experimentData = data;
-    console.log('exp data: ', data);
   }
 
   acctParams = new RequestParams(
@@ -226,6 +240,29 @@ window.optly.mrkt.services.xhr = {
 
 
 </script>
+        <script src="//cdn.optimizely.com/js/1205230573.js"></script>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Optimizely: About</title>
+        
+        <meta name="description" content="Improve conversions through A/B Testing, Split Testing and Multivariate Testing with Optimizely!">
+        <meta name="keywords" content="AB test, split test, multivariate testing, conversion rate">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <meta property="og:title" content="Optimizely: A/B testing software you'll actually use">
+        <meta property="og:description" content="Optimizely: Improve conversions through A/B Testing, Split Testing and Multivariate Testing with Optimizely!">
+
+        <!-- Place favicon.ico and apple-touch-icon(s) in the root directory -->
+
+        <link rel="stylesheet" href="/dist/assets/css/fonts.css">
+        <link rel="stylesheet" href="/dist/assets/css/styles.css">
+        <script src="/dist/assets/js/libraries/modernizr-yepnope.js"></script>
+        
+        <script type="text/javascript">
+          window.analytics=window.analytics||[],window.analytics.methods=["identify","group","track","page","pageview","alias","ready","on","once","off","trackLink","trackForm","trackClick","trackSubmit"],window.analytics.factory=function(t){return function(){var a=Array.prototype.slice.call(arguments);return a.unshift(t),window.analytics.push(a),window.analytics}};for(var i=0;i<window.analytics.methods.length;i++){var key=window.analytics.methods[i];window.analytics[key]=window.analytics.factory(key)}window.analytics.load=function(t){if(!document.getElementById("analytics-js")){var a=document.createElement("script");a.type="text/javascript",a.id="analytics-js",a.async=!0,a.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.io/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n)}},window.analytics.SNIPPET_VERSION="2.0.9",
+          window.analytics.load('l4usxygsxg');
+          window.analytics.page();
+        </script>
     </head>
     <body class="signed-out about-page">
         <!--[if lt IE 8]>

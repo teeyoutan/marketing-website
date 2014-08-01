@@ -3,6 +3,16 @@
     <head>
         <meta charset="utf-8">
         <script>window.jQuery || document.write('<script src="{{assetsDir}}/js/libraries/jquery-1.6.4.min.js"><\/script>')</script>
+        <script>
+            function saySomething(thing) {
+                console.log(thing);
+            };
+            window.optly_q = [
+                [saySomething, 'hello'],
+                [saySomething, 'goodbye']
+            ];
+        </script>
+        <script src="../../assets/js/services/user_state.js?__inline=true"></script>
         <script src="//cdn.optimizely.com/js/{{environmentVariables.optimizelyProjectID}}.js"></script>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>Optimizely:{{#if page.seo_title}} {{page.seo_title}}{{else}} A/B testing software you'll actually use{{/if}}</title>
@@ -26,7 +36,6 @@
           window.analytics.load('{{environmentVariables.segmentProjectID}}');
           window.analytics.page();
         </script>
-        <script src="../../assets/js/services/user_state.js?__inline=true"></script>
     </head>
     <body class="signed-out{{#if page.compact_header}} compact-header{{/if}}{{#each layout_body_class}} {{.}}{{/each}}{{#each page.body_class}} {{.}}{{/each}}">
         <!--[if lt IE 8]>

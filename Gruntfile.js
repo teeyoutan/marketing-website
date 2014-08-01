@@ -124,10 +124,6 @@ module.exports = function(grunt) {
           '<%= config.dist %>/assets/css/**/*.css',
           '<%= config.dist %>/assets/js/**/*.js'
         ]
-      },
-      headXHR: {
-        files: ['<%= config.guts %>/assets/js/services/user_state.js'],
-        tasks: ['config:dev', 'inline', 'assemble']
       }
     },
     connect: {

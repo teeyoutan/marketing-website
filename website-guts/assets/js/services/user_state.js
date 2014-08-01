@@ -2,6 +2,32 @@ window.optly = window.optly || {};
 window.optly.mrkt = window.optly.mrkt || {};
 window.optly.mrkt.services = window.optly.mrkt.services || {};
 
+var optly_QFactory = function(userData) {
+  this.customerData = userData[0];
+  this.experimentData = userData[1];
+
+  this.callQ = function(args, i) {
+    if (typeof args[i] === 'function') {
+      args[i].apply( args[i], args.slice(1) );
+    }
+    else {
+      for(var nestedI = 0; nestedI < args[i].length; nestedI += 1) {
+        if (typeof args[i][nestedI] === 'function') {
+          args[i][nestedI].apply( args[i][nestedI], args[i].slice(1) );
+        }
+      }
+    }
+  };
+
+  this.push = function(defferedArgs) {
+    console.log('push function', defferedArgs);
+    for (var i = 0; i < defferedArgs.length; i += 1) {
+      this.callQ(defferedArgs, i);
+    } 
+  };
+
+};
+
 window.optly.mrkt.services.xhr = {
   makeRequest: function() {
     var deffereds = [], callbacks = [], defferedPromise;
@@ -117,7 +143,11 @@ window.optly.mrkt.services.xhr = {
           responses.push(response);
         }
         if (index === tranformedArgs.length - 1) {
-          $.event.trigger('loginDataRecieved', responses);
+          var oldQue = window.optly_q;
+          window.optly_q = new optly_QFactory(responses);
+          console.log('old q', oldQue);
+          window.optly_q.push(oldQue);
+          console.log('new que: ', responses);
         }
       }.bind(this) );
     }.bind(this) );
@@ -163,12 +193,10 @@ window.optly.mrkt.services.xhr = {
 
   function accountDataCallback(data) {
     accountData = data;
-    console.log('acct data: ', data);
   }
 
   function experimentDataCallback(data) {
     experimentData = data;
-    console.log('exp data: ', data);
   }
 
   acctParams = new RequestParams(
