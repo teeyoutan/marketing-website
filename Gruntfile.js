@@ -115,7 +115,7 @@ module.exports = function(grunt) {
       },
       js: {
         files: ['<%= config.guts %>/assets/js/**/*.js', '<%= config.temp %>/assets/js/**/*.js'],
-        tasks: ['config:dev', 'jshint', 'concat', 'clean:postBuild']
+        tasks: ['config:dev', 'jshint', 'handlebars', 'concat', 'clean:postBuild']
       },
       clientHandlebarsTemplates: {
         files: ['<%= config.guts %>/templates/client/**/*.hbs'],

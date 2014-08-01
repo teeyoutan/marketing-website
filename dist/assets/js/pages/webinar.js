@@ -71,6 +71,7 @@ for(i = 0; i < dateArray.length; i++){
   date = moment(dateArray[i]);
   container.month = date.format('MMMM');
   container.day = date.format('D');
+  container.dateLong = date.format('M-D-YYYY');
   templateContext.thursdays.push(container);
 }
 
@@ -78,7 +79,23 @@ eventDisplayHTML = window.optly.mrkt.templates.webinarEventDisplay(templateConte
 
 $('#events').html(eventDisplayHTML);
 
-$('body').delegate('.register-btn', 'click', function(){
+$('body').delegate('.register-btn', 'click', function(e){
+
+  e.preventDefault();
+
+  var dateString, dateLong, elem;
+
+  elem = $(this);
+
+  dateString = elem.attr('data-date-string');
+
+  dateLong = elem.attr('data-date-long');
+
+  $('#date-string').text(dateString);
+
+  $('#date-long').val(dateLong);
+
   window.optly.mrkt.modal.open('webinar-signup');
+
 });
 })(jQuery);

@@ -98,16 +98,21 @@
               <p>Selected date:</p>
             </div>
             <div class="right">
-              <h4>Live Optimizely Walkthrough</h4>
-              <p class="webinar-date">Thursday, July 31</p>
-              <p class="webinar-time">11 <span class="small-caps">AM</span> PST / 2 <span class="small-caps">PM</span> EST</p>
-              <p class="webinar-cal-links"><a>Google Calendar</a> | <a>iCal</a> | <a>Outlook</a></p>
+              <div class="webinar-detail-info">
+                <h4>Live Optimizely Walkthrough</h4>
+                <p class="webinar-date">Thursday, <span id="date-string">July 31</span></p>
+                <p class="webinar-time">11 <span class="small-caps">AM</span> PST / 2 <span class="small-caps">PM</span> EST</p>
+                <p class="webinar-cal-links"><a>Google Calendar</a> | <a>iCal</a> | <a>Outlook</a></p>
+              </div>
             </div>
           </div>
           <label for="name">Name: </label>
           <input type="text" id="name" name="name"></input>
           <label>Email: </label>
           <input type="email" id="email" name="email"></input>
+          <input type="hidden" name="WebinarRegistrationDate" id="date-long" value="">
+          <input type="hidden" name="lpId" value="-1">
+          <input type="hidden" name="subId" value="56">
 
             </div><!--/.modal-form-content-->
             <div class="modal-footer">

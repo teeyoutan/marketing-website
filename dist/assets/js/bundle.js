@@ -8723,7 +8723,19 @@ function program1(depth0,data) {
   if (helper = helpers.day) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.day); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</p>\n    <a href=\"#\" class=\"primary-button small\" class=\"register-btn\" data-modal-click=\"webinar-signup\">Register</a>\n</div>\n";
+    + "</p>\n    <a href=\"\" class=\"primary-button small register-btn\" data-date-string=\"";
+  if (helper = helpers.month) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.month); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + " ";
+  if (helper = helpers.day) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.day); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\" data-date-long=\"";
+  if (helper = helpers.dateLong) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.dateLong); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\">Register</a>\n</div>\n";
   return buffer;
   }
 

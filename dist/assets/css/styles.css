@@ -2432,7 +2432,7 @@ body.benefits-page {
         padding: 0.5em 1.4em; }
       .modal-dialog-container form .modal-footer input:first-child {
         margin-bottom: 10px; }
-  .modal-dialog-container#webinar-signup-modal #webinar-info-cont .right {
+  .modal-dialog-container#webinar-signup-modal .webinar-detail-info {
     background: url("/dist/assets/img/live-demo-webinar/calendar-icon.png") no-repeat top left;
     padding-left: 40px;
     width: 350px; }
