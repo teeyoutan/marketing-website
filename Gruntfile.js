@@ -308,11 +308,6 @@ module.exports = function(grunt) {
             expand: true
           }
         ]
-      },
-      jsBundle: {
-        files: {
-            '<%= config.dist %>/assets/js/bundle.js': ['<%= config.temp %>/assets/js/bundle.js']
-        }
       }
     },
     clean: {
@@ -389,15 +384,12 @@ module.exports = function(grunt) {
           footer: '<%= grunt.config.get("concat_footer") %>'
         },
         files: {
-          '<%= config.temp %>/assets/js/global.js': [
-            '<%= config.guts %>/assets/js/global.js',
-            '<%= config.guts %>/assets/js/components/*.js'
-          ]
+            '<%= config.temp %>/assets/js/global.js': ['<%= config.guts %>/assets/js/global.js', '<%= config.guts %>/assets/js/components/*.js']
         }
       },
       concatBundle: {
         files: {
-          '<%= config.temp %>/assets/js/bundle.js': [
+          '<%= config.dist %>/assets/js/bundle.js': [
             '<%= config.bowerDir %>/jquery-cookie/jquery.cookie.js',
             '<%= config.bowerDir %>/history.js/scripts/bundled-uncompressed/html4+html5/jquery.history.js',
             '<%= config.guts %>/assets/js/libraries/handlebars-v1.3.0.js',
@@ -419,7 +411,7 @@ module.exports = function(grunt) {
       globalJS: {
         files: {
           '<%= config.dist %>/assets/js/libraries/fastclick.js': ['<%= config.bowerDir %>/fastclick/lib/fastclick.js'],
-          '<%= config.dist %>/assets/js/bundle.js': ['<%= config.temp %>/assets/js/bundle.js']
+          '<%= config.dist %>/assets/js/bundle.js': ['<%= config.dist %>/assets/js/bundle.js']
         }
       },
       pageFiles: {
