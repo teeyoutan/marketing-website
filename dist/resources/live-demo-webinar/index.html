@@ -84,50 +84,6 @@
         </div>
     </div>
 </div>
-<div id="webinar-signup-modal" class="modal-dialog-container" data-optly-modal="webinar-signup">
-    <div class="dialog narrow">
-         <div class="modal-header">
-            <p class="normal-header header-h1">Webinar Signup</p>
-            
-        </div>
-        <form action="" method="POST" autocomplete="off">
-            <div class="modal-form-content">
-            
-          <div id="webinar-info-cont" class="clearfix">
-            <div class="left">
-              <p>Selected date:</p>
-            </div>
-            <div class="right">
-              <div class="webinar-detail-info">
-  <h4>Live Optimizely Walkthrough</h4>
-  <p class="webinar-date">Thursday, <span id="date-string">July 31</span></p>
-  <p class="webinar-time">11 <span class="small-caps">AM</span> PST / 2 <span class="small-caps">PM</span> EST</p>
-  <p class="webinar-cal-links"><a href="">Google Calendar</a> | <a href="">iCal</a> | <a href="">Outlook</a></p>
-</div>
-
-            </div>
-          </div>
-          <label for="name">Name: </label>
-          <input type="text" id="name" name="name"></input>
-          <label>Email: </label>
-          <input type="email" id="email" name="email"></input>
-          <input type="hidden" name="WebinarRegistrationDate" id="date-long" value="">
-          <input type="hidden" name="lpId" value="-1">
-          <input type="hidden" name="subId" value="56">
-          <input type="hidden" name="FirstName" value="">
-          <input type="hidden" name="LastName" value="">
-
-            </div><!--/.modal-form-content-->
-            <div class="modal-footer">
-                <div class="buttons">
-                    <input type="submit" class="primary-button submit-btn translate" value="Register &raquo;">
-                    <input type="button" data-modal-btn="close" class="secondary-button close-btn translate" value="Cancel">
-                </div>
-            </div>
-        </form>
-    </div>
-</div> <!-- end .modal-dialog-container -->
-
 
 </div>
 
@@ -223,18 +179,15 @@
         </div><!--/#outer-wrapper-->
         <div id="signup-dialog" class="modal-dialog-container" data-optly-modal="signup">
     <div class="dialog narrow">
-         <div class="modal-header">
-            <p class="normal-header header-h1">Create a free account</p>
-            
-                <p>
-                    <span class="dynamic-content">You&#x27;re seconds away from running A/B tests!</span>
-                    <!-- <span class="optiverse-dynamic-content">By creating an account you can post in Optiverse and test drive Optimizely</span> -->
-                </p>
-            
-        </div>
         <form action="/account/create" method="POST" autocomplete="off">
-            <div class="modal-form-content">
             
+            <div class="modal-header">
+                <p class="normal-header header-h1">Create a free account</p>
+                <p>You&#x27;re seconds away from running A/B tests!</p>
+            </div><!--/.modal-header-->
+            
+            <div class="modal-body">
+                
               <label id="name-label">
                   <span>Name</span>
                   <input type="text" name="name" />
@@ -267,26 +220,26 @@
                   <p>Already have an Optimizely account? <a class="show-sign-in" data-modal-click="signin">Sign in here</a></p>
               </div>
 
-            </div><!--/.modal-form-content-->
+            </div><!--/.modal-body-->
             <div class="modal-footer">
-                <div class="buttons">
-                    <input type="submit" class="primary-button submit-btn translate" value="Create account &raquo;">
-                    <input type="button" data-modal-btn="close" class="secondary-button close-btn translate" value="Cancel">
-                </div>
-            </div>
+                <input type="submit" class="primary-button submit-btn translate" value="Create account &raquo;">
+                <input type="button" data-modal-btn="close" class="secondary-button close-btn translate" value="Cancel">
+            </div><!--/.modal-footer-->
         </form>
-    </div>
+    </div><!--/.dialog.narrow-->
 </div> <!-- end .modal-dialog-container -->
 
         <div id="sign-in-dialog" class="modal-dialog-container" data-optly-modal="signin">
     <div class="dialog narrow">
-         <div class="modal-header">
-            <p class="normal-header header-h1">Sign in to Optimizely</p>
-            
-        </div>
         <form action="/account/signin" method="POST" autocomplete="off">
-            <div class="modal-form-content">
             
+            <div class="modal-header">
+                <p class="normal-header header-h1">Sign in to Optimizely</p>
+                
+            </div><!--/.modal-header-->
+            
+            <div class="modal-body">
+                
               <label>
                   <span>Email address</span>
                   <input type="text" name="email" />
@@ -308,15 +261,35 @@
                   </p>
               </div>
 
-            </div><!--/.modal-form-content-->
-            <div class="modal-footer">
-                <div class="buttons">
-                    <input type="submit" class="primary-button submit-btn translate" value="Sign in &raquo;">
-                    <input type="button" data-modal-btn="close" class="secondary-button close-btn translate" value="Cancel">
-                </div>
-            </div>
+            </div><!--/.modal-body-->
+            <div class="modal-footer no-negative-btn">
+                <input type="submit" class="primary-button submit-btn translate" value="Sign in &raquo;">
+                
+            </div><!--/.modal-footer-->
         </form>
-    </div>
+    </div><!--/.dialog.narrow-->
+</div> <!-- end .modal-dialog-container -->
+<div id="webinar-signup-modal" class="modal-dialog-container" data-optly-modal="webinar-signup">
+    <div class="dialog narrow">
+        
+            
+            <div class="modal-header">
+                <p class="normal-header header-h1">Webinar Signup</p>
+                <p>This is a test!</p>
+            </div><!--/.modal-header-->
+            
+            <div class="modal-body">
+                
+
+<p>This is modal content!</p>
+
+            </div><!--/.modal-body-->
+            <div class="modal-footer">
+                <input type="submit" class="primary-button submit-btn translate" value="Register &raquo;">
+                <input type="button" data-modal-btn="close" class="secondary-button close-btn translate" value="Cancel">
+            </div><!--/.modal-footer-->
+        
+    </div><!--/.dialog.narrow-->
 </div> <!-- end .modal-dialog-container -->
 
         <div id="vh-test"></div>

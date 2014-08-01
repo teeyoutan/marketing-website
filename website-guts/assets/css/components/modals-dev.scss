@@ -1,0 +1,153 @@
+$children: dialog;
+
+html,
+body {
+  &.modal-open {
+    overflow: hidden;
+    height: 100%;
+  }
+}
+
+.modal-dialog-container {
+  width: 100%;
+  height: 100%;
+  display: none;
+  cursor: pointer;
+  background: #fff;
+  @include z-index-nested(modal-dialog-container, $children, 100, 100);
+  .dialog {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: #fff;
+    box-shadow: 0 2px 10px #333;
+    text-align: left;
+    cursor: auto;
+    overflow-y: scroll;
+  }
+  .modal-header, .modal-footer {
+    background: #f8f8f8;
+    padding: 20px 40px;
+  }
+  .modal-header {
+    border-bottom: 1px solid #eee;
+    p {margin: 0;}
+    span {
+      font-weight: 400;
+      font-size: 0.8em;
+    }
+    p.normal-header {
+      font-family: $gotham-large-type;
+      color: #006eb6;
+    }
+  }
+  .modal-body {
+    padding: 22px 42px;
+  }
+  .modal-footer {
+    border-top: 1px solid #eee;
+  }
+  .modal-body {
+    background: transparent;
+    width: 100%;
+    font-size: 0.8em;
+    .modal-form-content {
+      padding: 20px 40px;
+    }
+    h5 {
+      margin: 0;
+      font-size: 0.9em;
+      font-weight: 100;
+      color: #6b6b6b;
+      text-align: left;
+    }
+    input {
+      width: 100%;
+      display: inline-block;
+    }
+    label {
+      display: block;
+      span {
+        margin: 6px 0 3px 0;
+        display: inline-block;
+        line-height: 1.4;
+      }
+    }
+    a {
+      text-decoration: underline;
+      cursor: pointer;
+    }
+    .terms {
+      margin: 15px 0;
+      font-weight: 400;
+      input {
+        margin-right: 3px;
+        width: auto;
+        height: auto;
+      }
+      input,
+      p {
+        display: inline;
+      }
+    }
+    .options {
+      text-align: center;
+      a {
+        text-decoration: none;
+      }
+    }
+  }
+  &#webinar-signup-modal {
+    .webinar-detail-info {
+      background: image-url('live-demo-webinar/calendar-icon.png') no-repeat top left;
+      padding-left: 40px;
+      width: 350px;
+    }
+    h4 {margin: 0;}
+    p {
+      margin: 0;
+    }
+    p.webinar-date {
+      font-weight: 500;
+      font-size: 1.3em;
+    }
+    p.webinar-time {
+      font-size: 1.2em;
+    }
+  }
+}
+
+@media only screen and (min-width: $tablet-min-width) {
+  html,
+  body {
+    &.modal-open {
+      overflow: visible;
+      height: auto;
+    }
+  }
+  .modal-dialog-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: transparent;
+    background-image: radial-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) 35%, rgba(0, 0, 0, 0.498039));
+    .dialog {
+      position: relative;
+      width: 600px;
+      height: auto;
+      margin: 100px auto 0 auto;
+      overflow: hidden;
+    }
+    .modal-footer {
+      @extend .clearfix;
+      .primary-button {
+        float: right;
+      }
+      .secondary-button {
+        float: left;
+      }
+    }
+  }
+}

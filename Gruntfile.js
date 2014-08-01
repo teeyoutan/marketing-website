@@ -192,7 +192,7 @@ module.exports = function(grunt) {
         environmentIsDev: '<%= grunt.config.get("environmentIsDev") %>',
         data: ['<%= config.content %>/**/*.json', '<%= config.content %>/**/*.yml', '<%= grunt.config.get("environmentData") %>'],
         partials: ['<%= config.guts %>/templates/partials/*.hbs'],
-        helpers: ['<%= config.helpers %>/helper-*.js']
+        helpers: ['<%= config.helpers %>/**/*.js']
       },
       modals: {
         options: {
@@ -333,34 +333,47 @@ module.exports = function(grunt) {
     },
     jshint: {
       options: {
-        trailing: true,
-        curly: true,
-        eqeqeq: true,
-        indent: 4,
-        latedef: true,
-        noempty: true,
-        nonbsp: true,
-        undef: true,
-        unused: true,
-        quotmark: 'single',
-        browser: true,
-        globals: {
-          jQuery: true,
-          $: true,
-          console: false,
-          Handlebars: false,
-          moment: false,
-          _gaq: false
+        options: {
+          trailing: true,
+          curly: true,
+          eqeqeq: true,
+          indent: 4,
+          latedef: true,
+          noempty: true,
+          nonbsp: true,
+          undef: true,
+          unused: true,
+          quotmark: 'single',
+          browser: true,
+          '-W087': (function() {
+            if(grunt.config.get("environment") == "dev") {
+              return true;
+            } else {
+              return false;
+            }
+          }())
         },
-        '-W087': (function() {
-          if(grunt.config.get("environment") == "dev") {
-            return true;
-          } else {
-            return false;
-          }
-        }())
-      },
-      files: ['<%= config.guts %>/assets/js/**/*.js', '!<%= config.guts %>/assets/js/libraries/**/*.js']
+        clientSide: {
+          with_overrides: {
+            globals: {
+              jQuery: true,
+              $: true,
+              console: false,
+              moment: false,
+              _gaq: false
+            }
+          },
+          files: ['<%= config.guts %>/assets/js/**/*.js', '!<%= config.guts %>/assets/js/libraries/**/*.js']
+        },
+        serverSide: {
+          with_overrides: {
+            globals: {
+              module: false
+            }
+          },
+          files: ['<%= config.guts %>/helpers/*.js']
+        }
+      }
     },
     concat: {
       modernizrYep: {

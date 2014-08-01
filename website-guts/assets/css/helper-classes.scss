@@ -8,14 +8,6 @@
 	}
 }
 
-html,
-body {
-  &.no-scroll {
-    overflow: hidden;
-    height: 100%;
-  }
-}
-
 // Tests is vh CSS property is supported
 #vh-test {
 	position: fixed;
