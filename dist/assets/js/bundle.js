@@ -9006,9 +9006,7 @@ window.optly.mrkt.modal.open = function(modalType) {
     storeModalState(modalType, true);
   }
 
-  if ( !$('html, body').hasClass('no-scroll') && window.innerWidth <= 768) {
-    $('html, body').addClass('no-scroll');
-  }
+  $('html, body').addClass('modal-open');
 
   // Fade out the modal and attach the close modal handler
   $elm.fadeToggle(function() {
@@ -9027,9 +9025,7 @@ window.optly.mrkt.modal.close = function(modalType) {
     storeModalState(modalType, false);
   }
 
-  if ( $('html, body').hasClass('no-scroll') ) {
-    $('html, body').removeClass('no-scroll');
-  }
+  $('html, body').removeClass('modal-open');
 
   window.scrollTo(0,0);
   $elm.children()[0].scrollTop = 0;
@@ -9068,12 +9064,6 @@ function handlePopstate(e) {
 }
 
 function setMobileProperties() {
-  if (!$('html, body').hasClass('no-scroll') && window.innerWidth <= 768) {
-    $('html, body').addClass('no-scroll');
-  }
-  else if ( $('html, body').hasClass('no-scroll') && window.innerWidth > 768) {
-    $('html, body').removeClass('no-scroll');
-  }
   if (!vhSupported) {
     if (window.innerWidth <= 768) {
       $.each($elms, function(key, $elm) {
