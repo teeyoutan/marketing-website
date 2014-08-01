@@ -16,7 +16,6 @@ $children: dialog;
     background: #fff;
     box-shadow: 0 2px 10px #333;
     text-align: left;
-    width: 100%;
     cursor: auto;
     overflow-y: scroll;
   }
@@ -25,6 +24,7 @@ $children: dialog;
     padding: 20px 40px;
   }
   .modal-header {
+    border-bottom: 1px solid #eee;
     p {margin: 0;}
     span {
       font-weight: 400;
@@ -35,7 +35,13 @@ $children: dialog;
       color: #006eb6;
     }
   }
-  form {
+  .modal-body {
+    padding: 22px 42px;
+  }
+  .modal-footer {
+    border-top: 1px solid #eee;
+  }
+  .modal-body {
     background: transparent;
     width: 100%;
     font-size: 0.8em;
@@ -84,17 +90,6 @@ $children: dialog;
         text-decoration: none;
       }
     }
-    .modal-footer {
-      border-top: 1px solid #eee;
-      input {
-        font-size: 12px;
-        font-weight: 400;
-        padding: 0.5em 1.4em
-      }
-      input:first-child {
-        margin-bottom: 10px;
-      }
-    }
   }
   &#webinar-signup-modal {
     .webinar-detail-info {
@@ -129,21 +124,14 @@ $children: dialog;
       height: auto;
       margin: 100px auto 0 auto;
       overflow: hidden;
-      form {
-        .buttons {
-          @extend .clearfix;
-          width: 100%;
-            input:first-child {
-              margin: 0;
-              width: auto;
-              float: right;
-            }
-            input:last-child {
-              margin-right: 10px;
-              width: 78px;
-              float: left;
-            }
-        }
+    }
+    .modal-footer {
+      @extend .clearfix;
+      .primary-button {
+        float: right;
+      }
+      .secondary-button {
+        float: left;
       }
     }
   }

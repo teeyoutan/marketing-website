@@ -1225,10 +1225,10 @@ body {
   h2, h3 {
     page-break-after: avoid; } }
 
-.clearfix:before, .sheet > div:before, body.events-page .event-cont:before, body.press-page .press-feed-item:before, .modal-dialog-container .dialog form .buttons:before, .clearfix:after, .sheet > div:after, body.events-page .event-cont:after, body.press-page .press-feed-item:after, .modal-dialog-container .dialog form .buttons:after {
+.clearfix:before, .sheet > div:before, body.events-page .event-cont:before, body.press-page .press-feed-item:before, .modal-dialog-container .modal-footer:before, .clearfix:after, .sheet > div:after, body.events-page .event-cont:after, body.press-page .press-feed-item:after, .modal-dialog-container .modal-footer:after {
   content: " ";
   display: table; }
-.clearfix:after, .sheet > div:after, body.events-page .event-cont:after, body.press-page .press-feed-item:after, .modal-dialog-container .dialog form .buttons:after {
+.clearfix:after, .sheet > div:after, body.events-page .event-cont:after, body.press-page .press-feed-item:after, .modal-dialog-container .modal-footer:after {
   clear: both; }
 
 html.no-scroll, body.no-scroll {
@@ -2371,65 +2371,62 @@ body.benefits-page {
     -webkit-box-shadow: 0 2px 10px #333;
             box-shadow: 0 2px 10px #333;
     text-align: left;
-    width: 100%;
     cursor: auto;
     overflow-y: scroll; }
   .modal-dialog-container .modal-header, .modal-dialog-container .modal-footer {
     background: #f8f8f8;
     padding: 20px 40px; }
-  .modal-dialog-container .modal-header p {
-    margin: 0; }
-  .modal-dialog-container .modal-header span {
-    font-weight: 400;
-    font-size: 0.8em; }
-  .modal-dialog-container .modal-header p.normal-header {
-    font-family: "Gotham A", "Gotham B", Helvetica, Arial, sans-serif;
-    color: #006eb6; }
-  .modal-dialog-container form {
+  .modal-dialog-container .modal-header {
+    border-bottom: 1px solid #eee; }
+    .modal-dialog-container .modal-header p {
+      margin: 0; }
+    .modal-dialog-container .modal-header span {
+      font-weight: 400;
+      font-size: 0.8em; }
+    .modal-dialog-container .modal-header p.normal-header {
+      font-family: "Gotham A", "Gotham B", Helvetica, Arial, sans-serif;
+      color: #006eb6; }
+  .modal-dialog-container .modal-body {
+    padding: 22px 42px; }
+  .modal-dialog-container .modal-footer {
+    border-top: 1px solid #eee; }
+  .modal-dialog-container .modal-body {
     background: transparent;
     width: 100%;
     font-size: 0.8em; }
-    .modal-dialog-container form .modal-form-content {
+    .modal-dialog-container .modal-body .modal-form-content {
       padding: 20px 40px; }
-    .modal-dialog-container form h5 {
+    .modal-dialog-container .modal-body h5 {
       margin: 0;
       font-size: 0.9em;
       font-weight: 100;
       color: #6b6b6b;
       text-align: left; }
-    .modal-dialog-container form input {
+    .modal-dialog-container .modal-body input {
       width: 100%;
       display: inline-block; }
-    .modal-dialog-container form label {
+    .modal-dialog-container .modal-body label {
       display: block; }
-      .modal-dialog-container form label span {
+      .modal-dialog-container .modal-body label span {
         margin: 6px 0 3px 0;
         display: inline-block;
         line-height: 1.4; }
-    .modal-dialog-container form a {
+    .modal-dialog-container .modal-body a {
       text-decoration: underline;
       cursor: pointer; }
-    .modal-dialog-container form .terms {
+    .modal-dialog-container .modal-body .terms {
       margin: 15px 0;
       font-weight: 400; }
-      .modal-dialog-container form .terms input {
+      .modal-dialog-container .modal-body .terms input {
         margin-right: 3px;
         width: auto;
         height: auto; }
-      .modal-dialog-container form .terms input, .modal-dialog-container form .terms p {
+      .modal-dialog-container .modal-body .terms input, .modal-dialog-container .modal-body .terms p {
         display: inline; }
-    .modal-dialog-container form .options {
+    .modal-dialog-container .modal-body .options {
       text-align: center; }
-      .modal-dialog-container form .options a {
+      .modal-dialog-container .modal-body .options a {
         text-decoration: none; }
-    .modal-dialog-container form .modal-footer {
-      border-top: 1px solid #eee; }
-      .modal-dialog-container form .modal-footer input {
-        font-size: 12px;
-        font-weight: 400;
-        padding: 0.5em 1.4em; }
-      .modal-dialog-container form .modal-footer input:first-child {
-        margin-bottom: 10px; }
   .modal-dialog-container#webinar-signup-modal .webinar-detail-info {
     background: url("/dist/assets/img/live-demo-webinar/calendar-icon.png") no-repeat top left;
     padding-left: 40px;
@@ -2458,14 +2455,8 @@ body.benefits-page {
       height: auto;
       margin: 100px auto 0 auto;
       overflow: hidden; }
-      .modal-dialog-container .dialog form .buttons {
-        width: 100%; }
-        .modal-dialog-container .dialog form .buttons input:first-child {
-          margin: 0;
-          width: auto;
-          float: right; }
-        .modal-dialog-container .dialog form .buttons input:last-child {
-          margin-right: 10px;
-          width: 78px;
-          float: left; } }
+    .modal-dialog-container .modal-footer .primary-button, .modal-dialog-container .modal-footer body.home-page #cta input[type=submit], body.home-page #cta .modal-dialog-container .modal-footer input[type=submit] {
+      float: right; }
+    .modal-dialog-container .modal-footer .secondary-button {
+      float: left; } }
 /*# sourceMappingURL=styles.css.map */
