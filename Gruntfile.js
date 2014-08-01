@@ -101,7 +101,7 @@ module.exports = function(grunt) {
           '<%= config.guts %>/templates/**/*.hbs',
           '<%= config.content %>/**/*.hbs'
         ],
-        tasks: ['config:dev', 'assemble']
+        tasks: ['config:dev', 'inline', 'assemble']
       },
       sass: {
         files: '<%= config.guts %>/assets/css/**/*.scss',
@@ -113,7 +113,7 @@ module.exports = function(grunt) {
       },
       js: {
         files: ['<%= config.guts %>/assets/js/**/*.js', '<%= config.temp %>/assets/js/**/*.js'],
-        tasks: ['config:dev', 'jshint', 'concat', 'clean:postBuild']
+        tasks: ['config:dev', 'jshint', 'inline', 'assemble' ,'concat', 'clean:postBuild']
       },
       livereload: {
         options: {
@@ -366,7 +366,7 @@ module.exports = function(grunt) {
     concat: {
       modernizrYep: {
         files: {
-          '<%= config.dist %>/assets/js/libraries/modernizr-yepnope.js': ['<%= config.guts %>/assets/js/libraries/modernizr-2.8.2.min.js','<%= config.bowerDir %>/yepnope/yepnope.1.5.4-min.js']
+          '<%= config.dist %>/assets/js/libraries/modernizr.2.8.3.min.js': ['<%= config.guts %>/assets/js/libraries/modernizr.2.8.3.min.js']
         }
       },
       namespacePages: {
@@ -385,11 +385,7 @@ module.exports = function(grunt) {
           footer: '<%= grunt.config.get("concat_footer") %>'
         },
         files: {
-          '<%= config.temp %>/assets/js/global.js': [
-            '<%= config.guts %>/assets/js/global.js',
-            '!<%= config.guts %>/assets/js/services/user_state.js', 
-            '<%= config.guts %>/assets/js/components/*.js'
-          ]
+            '<%= config.temp %>/assets/js/global.js': ['<%= config.guts %>/assets/js/global.js', '<%= config.guts %>/assets/js/components/*.js']
         }
       },
       concatBundle: {

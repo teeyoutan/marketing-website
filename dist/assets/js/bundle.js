@@ -8669,6 +8669,20 @@ window.optly.mrkt.isMobile = function(){
 
 };
 
+window.optly.mrkt.loadScript = function(uri){
+
+	var script = document.createElement('script');
+
+	script.type = 'text/javascript';
+
+	script.async = true;
+
+	script.src = uri;
+
+	document.getElementsByTagName('head')[0].appendChild(script);
+
+};
+
 window.optly.mrkt.mobileJS = function(){
 
 	if( window.optly.mrkt.isMobile() ){
@@ -8777,16 +8791,21 @@ window.optly.mrkt.formDataStringToObject = function getJsonFromUrl(string) {
 
 };
 
+//load fastclick on mobile devices
+if(window.optly.mrkt.isMobile){
+
+	window.optly.mrkt.loadScript(window.optly.mrkt.assetsDir + '/js/libraries/jquery-1.6.4.min.js');
+
+}
+
 window.optly = window.optly || {};
 window.optly.mrkt = window.optly.mrkt || {};
 window.optly.mrkt.modal = {};
 var History = window.History || {},
   Modernizr = window.Modernizr || {},
-  $elms = {
-    signup: $('[data-optly-modal="signup"]'),
-    signin: $('[data-optly-modal="signin"]')
-  },
-  //baseUrl = document.URL,
+  $modalElms = $('[data-optly-modal]'),
+  $elms = {},
+  baseUrl = document.URL,
   initialTime = Date.now(),
   lastPop,
   testEl = $('#vh-test'),
@@ -8796,7 +8815,20 @@ var History = window.History || {},
   isIosChrome = !!navigator.userAgent.match('CriOS'),
   isHistorySupported = Modernizr.history && !!window.sessionStorage && ( !(isIosSafari || isSafari) ) || isIosChrome,
   historyIcrementor = 0,
-  modalState = {};
+  modalState = {},
+  historyTimestamp,
+  modalTypes = [];
+
+// CACHE ELEMENTS
+if ( $modalElms ) {
+  $.each( $modalElms, function(index, elm) {
+    var $elm = $(elm),
+      modalType = $elm.data('optly-modal');
+
+    modalTypes.push(modalType);
+    $elms[ modalType ] = $elm;
+  });
+}
 
 // FUNCTIONS
 
@@ -8804,7 +8836,7 @@ function setHistoryId(historyData) {
   var stateData = {};
   if (historyData._id) {
     stateData._id = historyData._id + 1;
-  } 
+  }
   else if (sessionStorage._id) {
     stateData._id = sessionStorage._id + 1;
   }
@@ -8814,11 +8846,12 @@ function setHistoryId(historyData) {
   return stateData;
 }
 
-function openModalHandler() {
+function openModalHandler(e) {
   var title,
     stateData,
     modalType = $(this).data('modal-click');
 
+  e.preventDefault();
   // Check for History/SessionStorage support and how many items are on the history stack
   if (isHistorySupported && historyIcrementor === 0) {
     stateData = setHistoryId(History.getState().data);
@@ -8829,7 +8862,8 @@ function openModalHandler() {
     if (title === 'Signin') {
       title = 'Login';
     }
-    History.pushState(stateData, title);
+    historyTimestamp = Date.now();
+    History.pushState(stateData, title, baseUrl);
   } //else {
     //window.location.hash = modalType;
   //}
@@ -8837,6 +8871,7 @@ function openModalHandler() {
 }
 
 function closeModalHandler(e) {
+  e.preventDefault();
   var $modalCont = $(this);
   var $clickedElm = $(e.target);
   if ($modalCont.find(e.target).length === 0 || $clickedElm.data('modal-btn') === 'close') {
@@ -8877,7 +8912,7 @@ function storeModalState(modalType, modalOpen) {
 
 window.optly.mrkt.modal.open = function(modalType) {
   var $elm = $elms[modalType];
-
+  console.log('open modal');
   // if modalState exists then close modal of the currently open modal state
   if(modalState.type !== undefined) {
     window.optly.mrkt.modal.close(modalState.type);
@@ -8893,8 +8928,8 @@ window.optly.mrkt.modal.open = function(modalType) {
 
   if ( !$('html, body').hasClass('no-scroll') && window.innerWidth <= 768) {
     $('html, body').addClass('no-scroll');
-  } 
-  
+  }
+
   // Fade out the modal and attach the close modal handler
   $elm.fadeToggle(function() {
     $elm.bind('click', closeModalHandler);
@@ -8911,7 +8946,7 @@ window.optly.mrkt.modal.close = function(modalType) {
     // Update the modal state in the session storage
     storeModalState(modalType, false);
   }
-  
+
   if ( $('html, body').hasClass('no-scroll') ) {
     $('html, body').removeClass('no-scroll');
   }
@@ -8927,19 +8962,16 @@ window.optly.mrkt.modal.close = function(modalType) {
 
 // Only use if History/Session Storage in Enabled
 function initiateModal() {
-  var modalType;
-  //Trigger Dialog if # is present in URL
-  if (sessionStorage.modalType === 'signup' || sessionStorage.modalType === 'signin') {
-    modalType = sessionStorage.modalType;
-  } 
-  
-  if (modalType !== undefined) {
-    //historyIcrementor += 1;
+  var modalType = sessionStorage.modalType;
+  //Trigger Dialog if modal type is present in session storage
+  if (modalType !== undefined  && modalTypes.indexOf( sessionStorage.modalType ) !== -1) {
     window.optly.mrkt.modal.open(modalType);
   }
+
 }
 
 function handlePopstate(e) {
+
   // Safari fires an initial popstate, we want to ignore this
   if ( (e.timeStamp - initialTime) > 20 ) {
     if (sessionStorage.modalType === '' || sessionStorage.modalType === undefined) {
@@ -8958,7 +8990,7 @@ function handlePopstate(e) {
 function setMobileProperties() {
   if (!$('html, body').hasClass('no-scroll') && window.innerWidth <= 768) {
     $('html, body').addClass('no-scroll');
-  } 
+  }
   else if ( $('html, body').hasClass('no-scroll') && window.innerWidth > 768) {
     $('html, body').removeClass('no-scroll');
   }
@@ -8969,7 +9001,7 @@ function setMobileProperties() {
           height: window.innerHeight + 'px'
         });
       });
-    } 
+    }
     else {
       $.each($elms, function(key, $elm) {
         $( $elm.children()[0] ).css({
@@ -8983,7 +9015,7 @@ function setMobileProperties() {
 //INITIALIZATION
 
 if (isHistorySupported) {
-  // Check if modal state exists from previous page view 
+  // Check if modal state exists from previous page view
   initiateModal();
   // Bind to popstate
   window.addEventListener('popstate', handlePopstate);
@@ -9004,6 +9036,7 @@ testEl.css({
 });
 // Set the modal height
 $(window).bind('load resize', setMobileProperties);
+
 window.optly = window.optly || {};
 
 window.optly.mrkt = window.optly.mrkt || {};
@@ -9148,10 +9181,55 @@ jQuery.oFormGlobalOverrides = {
 
 };
 
-$(document).bind('loginDataRecieved', function() {
-  var $showItems = $('[data-show]');
-  console.log($showItems);
-});})(jQuery);
+var $userDataElms = $('[data-show-user-state]');
+
+function templateExpData($elm, userData, expData) {
+  var $expLink = $( $elm.find('.edit') );
+  $expLink.attr('href', 'https://www.optimizely.com/edit?experiment_id=' + expData.id);
+  if (!expData.can_edit) {
+    $expLink.addClass('disabled');
+    $expLink.bind('click', function(e) {
+      e.preventDefault();
+    });
+  }
+  $elm.find('.experiment-description').text(expData.description);
+  if (expData.has_started) {
+    $elm.find('.experiment-results').css({display: 'block'});
+  }
+}
+
+function showUtilityNav($elms) {
+  var userData = window.optly.mrkt.userInfo.account;
+  var expData = window.optly.mrkt.userInfo.experiments;
+  $.each($elms, function(index, elm) {
+    var $elm = $(elm);
+    if( $elm.data('show-user-state') === 'logged-out') {
+      $elm.css({display: 'none'});
+    } 
+    else if ( $elm.data('show-user-state') === 'logged-in' ) {
+      $elm.find('.customer-email').text(userData.email);
+      $elm.css({display: 'block'});
+      var $expContainer = $elm.find('span.experiment-container');
+      
+      $.each(expData.experiments, function(index, data) {
+        if (index === 0) {
+          templateExpData($expContainer, userData, data);
+          $expContainer.attr('id', 'exp-cont-' + (index + 1) );
+        }
+        else {
+          var $cloned = $expContainer.clone();
+          $cloned.attr('id', 'exp-cont-' + (index + 1) );
+          //var $allExpElms = $('span.experiment-container');
+          templateExpData($cloned, userData, data);
+          $cloned.insertAfter( $('#exp-cont-' + index) );
+        }
+      });
+      $elm.find('#view-all-experiments-link').attr('href', 'https://www.optimizely.com/dashboard?project_id=' + userData.account_id);
+    }
+  });
+}
+
+window.optly_q.push([showUtilityNav, $userDataElms]);})(jQuery);
 window.optly = window.optly || {};
 
 window.optly.mrkt = window.optly.mrkt || {};

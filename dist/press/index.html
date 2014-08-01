@@ -4,32 +4,39 @@
         <meta charset="utf-8">
         <script>window.jQuery || document.write('<script src="/dist/assets/js/libraries/jquery-1.6.4.min.js"><\/script>')</script>
         <script>
-            function saySomething(thing) {
-                console.log(thing);
-            };
-            window.optly_q = [
-                [saySomething, 'hello'],
-                [saySomething, 'goodbye']
-            ];
+            window.optly_q = [];
         </script>
         <script>
 window.optly = window.optly || {};
 window.optly.mrkt = window.optly.mrkt || {};
+window.optly.mrkt.userInfo = window.optly.mrkt.userInfo || {};
 window.optly.mrkt.services = window.optly.mrkt.services || {};
 
-var optly_QFactory = function(userData) {
-  this.customerData = userData[0];
-  this.experimentData = userData[1];
+console.log('first def: ', 'some new message', window.optly.mrkt.userInfo);
+
+var optly_QFactory = function() {
+
+  this.transformQuedArgs = function(quedArgs) {
+    $.each(quedArgs, function(index, arg) {
+      if (this[ arg ] !== undefined) {
+        quedArgs[ index ] = this[ arg ];
+      }
+    }.bind(this));
+  };
 
   this.parseQ = function(fnQ, i) {
+    var quedArgs;
     if (typeof fnQ[i] === 'function') {
+      quedArgs = fnQ.slice(1);
 
-      fnQ[i].apply( fnQ[i], fnQ.slice(1) );
+      fnQ[i].apply( fnQ[i], quedArgs );
     }
     else {
       for(var nestedI = 0; nestedI < fnQ[i].length; nestedI += 1) {
         if (typeof fnQ[i][nestedI] === 'function') {
-          fnQ[i][nestedI].apply( fnQ[i][nestedI], fnQ[i].slice(1) );
+          quedArgs = fnQ[i].slice(1);
+
+          fnQ[i][nestedI].apply( fnQ[i][nestedI], quedArgs );
         }
       }
     }
@@ -158,8 +165,12 @@ window.optly.mrkt.services.xhr = {
           responses.push(response);
         }
         if (index === tranformedArgs.length - 1) {
+          window.optly.mrkt.userInfo = window.optly.mrkt.userInfo || {};
           var oldQue = window.optly_q;
-          window.optly_q = new optly_QFactory(responses);
+          window.optly.mrkt.userInfo.account = responses[0];
+          window.optly.mrkt.userInfo.experiments = responses[1];
+          console.log(responses);
+          window.optly_q = new optly_QFactory();
           window.optly_q.push(oldQue);
         }
       }.bind(this) );
@@ -244,7 +255,6 @@ window.optly.mrkt.services.xhr = {
         
         <meta name="description" content="Improve conversions through A/B Testing, Split Testing and Multivariate Testing with Optimizely!">
         <meta name="keywords" content="AB test, split test, multivariate testing, conversion rate">
-
         <meta name="viewport" content="width=device-width, initial-scale=1">
         
         <meta property="og:title" content="Optimizely: A/B testing software you'll actually use">
@@ -254,7 +264,7 @@ window.optly.mrkt.services.xhr = {
 
         <link rel="stylesheet" href="/dist/assets/css/fonts.css">
         <link rel="stylesheet" href="/dist/assets/css/styles.css">
-        <script src="/dist/assets/js/libraries/modernizr-yepnope.js"></script>
+        <script src="/dist/assets/js/libraries/modernizr.2.8.3.min.js"></script>
         
         <script type="text/javascript">
           window.analytics=window.analytics||[],window.analytics.methods=["identify","group","track","page","pageview","alias","ready","on","once","off","trackLink","trackForm","trackClick","trackSubmit"],window.analytics.factory=function(t){return function(){var a=Array.prototype.slice.call(arguments);return a.unshift(t),window.analytics.push(a),window.analytics}};for(var i=0;i<window.analytics.methods.length;i++){var key=window.analytics.methods[i];window.analytics[key]=window.analytics.factory(key)}window.analytics.load=function(t){if(!document.getElementById("analytics-js")){var a=document.createElement("script");a.type="text/javascript",a.id="analytics-js",a.async=!0,a.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.io/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n)}},window.analytics.SNIPPET_VERSION="2.0.9",
@@ -262,7 +272,7 @@ window.optly.mrkt.services.xhr = {
           window.analytics.page();
         </script>
     </head>
-    <body class="signed-out press-page">
+     <body class="signed-out press-page">
         <!--[if lt IE 8]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
@@ -279,21 +289,43 @@ window.optly.mrkt.services.xhr = {
                                 </svg>
                             </a>
                             <div id="utility-nav-cont">
-                                <ul class="signed-out-content utility-nav nav" data-show="loggedout">
+                                <ul class="signed-out-content utility-nav nav" data-show-user-state="logged-out">
                                     <li class="first"><a data-modal-click="signup">Sign Up</a></li>
                                     <li class="last"><a data-modal-click="signin">Log In</a></li>
                                 </ul><!--/.signed-in-content-->
-                                <ul class="signed-in-content utility-nav nav" data-show="loggedin">
+                                <ul class="signed-in-content utility-nav nav" data-show-user-state="logged-in">
                                     <li class="first"><a href="">Dashboard</a></li>
-                                    <li><a href="">Experiments</a></li>
-                                    <li><a href="">Support</a></li>
-                                    <li class="last"><a href="">kyle@optimizely.com</a></li>
+                                    <li id="experiment-nav-item">
+                                        <a href="">Experiments</a>
+                                        <ul class="dropdown-menu-top">
+                                          <div class="message"></div>
+                                          <span class="experiment-container">
+                                            <li>
+                                              <a class="edit" href="https://www.optimizely.com/edit?experiment_id=" data-enable="can-edit">
+                                                <span class="experiment-description"></span>
+                                              </a>
+                                              <a class="experiment-results" data-show="has-started">Results</a>
+                                            </li>
+                                          </span>
+                                          <li class="view-all-experiments" data-show="dashboard-link">
+                                            <a id="view-all-experiments-link" href="https://www.optimizely.com/dashboard?project_id=">
+                                              <span>View All Experiments</span>
+                                            </a>
+                                          </li>
+                                          <li class="show-create-experiment" data-modal-click="create-exp">
+                                            + <a href="javascript:void(0)">Create New Experiment</a>
+                                          </li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="">Implementation</a></li>
+                                    <li><a href="">Learning center</a></li>
+                                    <li class="last"><a class="customer-email" href="">kyle@optimizely.com</a></li>
                                 </ul><!--/.signed-out-content-->
                             </div><!--/#utility-nav-cont-->
                         </div><!--/.container-->
                     </div><!--/#top-nav-cont-->
                     
-                    <div id="main-nav-cont">
+                    <div id="main-nav-cont" class="main-nav">
                         <div class="container">
                             <p class="logo-cont"><a class="logo" href="/">Optimizely</a></p>
                             
@@ -603,12 +635,15 @@ window.optly.mrkt.services.xhr = {
 </div> <!-- end .modal-dialog-container -->
 
         <div id="vh-test"></div>
-        <script type="text/javascript" data-yepnope >
-            yepnope([
-                {
-                    load: ['/dist/assets/js/libraries/fastclick.js', '/dist/assets/js/bundle.js']
-                }
-            ]);
+        <script>
+          var optly = optly || {};
+          optly.mrkt = {} || {};
+          optly.mrkt.assetsDir = '/dist/assets';
         </script>
+        <script>window.jQuery || document.write('<script src="/dist/assets/js/libraries/jquery-1.6.4.min.js"><\/script>')</script>
+        <script src="/dist/assets/js/bundle.js" defer></script>
+        
+        
+        
     </body>
 </html>

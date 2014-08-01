@@ -1,20 +1,33 @@
 window.optly = window.optly || {};
 window.optly.mrkt = window.optly.mrkt || {};
+window.optly.mrkt.userInfo = window.optly.mrkt.userInfo || {};
 window.optly.mrkt.services = window.optly.mrkt.services || {};
-console.log('*****something new******');
-var optly_QFactory = function(userData) {
-  this.customerData = userData[0];
-  this.experimentData = userData[1];
+
+console.log('first def: ', 'some new message', window.optly.mrkt.userInfo);
+
+var optly_QFactory = function() {
+
+  this.transformQuedArgs = function(quedArgs) {
+    $.each(quedArgs, function(index, arg) {
+      if (this[ arg ] !== undefined) {
+        quedArgs[ index ] = this[ arg ];
+      }
+    }.bind(this));
+  };
 
   this.parseQ = function(fnQ, i) {
+    var quedArgs;
     if (typeof fnQ[i] === 'function') {
+      quedArgs = fnQ.slice(1);
 
-      fnQ[i].apply( fnQ[i], fnQ.slice(1) );
+      fnQ[i].apply( fnQ[i], quedArgs );
     }
     else {
       for(var nestedI = 0; nestedI < fnQ[i].length; nestedI += 1) {
         if (typeof fnQ[i][nestedI] === 'function') {
-          fnQ[i][nestedI].apply( fnQ[i][nestedI], fnQ[i].slice(1) );
+          quedArgs = fnQ[i].slice(1);
+
+          fnQ[i][nestedI].apply( fnQ[i][nestedI], quedArgs );
         }
       }
     }
@@ -143,8 +156,12 @@ window.optly.mrkt.services.xhr = {
           responses.push(response);
         }
         if (index === tranformedArgs.length - 1) {
+          window.optly.mrkt.userInfo = window.optly.mrkt.userInfo || {};
           var oldQue = window.optly_q;
-          window.optly_q = new optly_QFactory(responses);
+          window.optly.mrkt.userInfo.account = responses[0];
+          window.optly.mrkt.userInfo.experiments = responses[1];
+          console.log(responses);
+          window.optly_q = new optly_QFactory();
           window.optly_q.push(oldQue);
         }
       }.bind(this) );
