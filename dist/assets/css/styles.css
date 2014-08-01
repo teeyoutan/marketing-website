@@ -338,7 +338,8 @@ td, th {
   padding: 0; }
 
 body {
-  font-family: "Gotham SSm A", "Gotham SSm B", sans-serif; }
+  font-family: "Gotham SSm A", "Gotham SSm B", sans-serif;
+  color: #242424; }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: "Gotham A", "Gotham B", Helvetica, Arial, sans-serif;
@@ -848,7 +849,8 @@ input[type=text], input[type=url], input[type=tel], input[type=email], input[typ
   color: #242424;
   font-size: 0.93em;
   min-height: 38px;
-  width: 100%; }
+  width: 100%;
+  margin-bottom: 5px; }
 
 select {
   border: 1px solid #bfcedf;
@@ -1520,6 +1522,10 @@ body .small-note, body p.small-note {
 input[type="text"].error-show, input[type="url"].error-show, input[type="email"].error-show, input[type="tel"].error-show {
   background-color: #fef3f3;
   border-color: #f3b6b3; }
+
+.small-caps {
+  font-variant: small-caps;
+  text-transform: lowercase; }
 
 .processing-show, .error-show {
   display: none; }
@@ -2382,7 +2388,6 @@ body.benefits-page {
   .modal-dialog-container form {
     background: transparent;
     width: 100%;
-    color: #6b6b6b;
     font-size: 0.8em; }
     .modal-dialog-container form .modal-form-content {
       padding: 20px 40px; }
@@ -2394,8 +2399,7 @@ body.benefits-page {
       text-align: left; }
     .modal-dialog-container form input {
       width: 100%;
-      display: inline-block;
-      height: 38px; }
+      display: inline-block; }
     .modal-dialog-container form label {
       display: block; }
       .modal-dialog-container form label span {
@@ -2428,6 +2432,19 @@ body.benefits-page {
         padding: 0.5em 1.4em; }
       .modal-dialog-container form .modal-footer input:first-child {
         margin-bottom: 10px; }
+  .modal-dialog-container#webinar-signup-modal #webinar-info-cont .right {
+    background: url("/dist/assets/img/live-demo-webinar/calendar-icon.png") no-repeat top left;
+    padding-left: 40px;
+    width: 350px; }
+  .modal-dialog-container#webinar-signup-modal h4 {
+    margin: 0; }
+  .modal-dialog-container#webinar-signup-modal p {
+    margin: 0; }
+  .modal-dialog-container#webinar-signup-modal p.webinar-date {
+    font-weight: 500;
+    font-size: 1.3em; }
+  .modal-dialog-container#webinar-signup-modal p.webinar-time {
+    font-size: 1.2em; }
 
 @media only screen and (min-width: 768px) {
   .modal-dialog-container {

@@ -36,7 +36,6 @@ $children: dialog;
   form {
     background: transparent;
     width: 100%;
-    color: #6b6b6b;
     font-size: 0.8em;
     .modal-form-content {
       padding: 20px 40px;
@@ -51,7 +50,6 @@ $children: dialog;
     input {
       width: 100%;
       display: inline-block;
-      height: 38px;
     }
     label {
       display: block;
@@ -94,8 +92,26 @@ $children: dialog;
         padding: 0.5em 1.4em
       }
       input:first-child {
-        margin-bottom: 10px; 
+        margin-bottom: 10px;
       }
+    }
+  }
+  &#webinar-signup-modal {
+    #webinar-info-cont .right {
+      background: image-url('live-demo-webinar/calendar-icon.png') no-repeat top left;
+      padding-left: 40px;
+      width: 350px;
+    }
+    h4 {margin: 0;}
+    p {
+      margin: 0;
+    }
+    p.webinar-date {
+      font-weight: 500;
+      font-size: 1.3em;
+    }
+    p.webinar-time {
+      font-size: 1.2em;
     }
   }
 }
