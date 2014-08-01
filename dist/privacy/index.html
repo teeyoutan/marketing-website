@@ -21,23 +21,23 @@ var optly_QFactory = function(userData) {
   this.customerData = userData[0];
   this.experimentData = userData[1];
 
-  this.callQ = function(args, i) {
-    if (typeof args[i] === 'function') {
-      args[i].apply( args[i], args.slice(1) );
+  this.parseQ = function(fnQ, i) {
+    if (typeof fnQ[i] === 'function') {
+
+      fnQ[i].apply( fnQ[i], fnQ.slice(1) );
     }
     else {
-      for(var nestedI = 0; nestedI < args[i].length; nestedI += 1) {
-        if (typeof args[i][nestedI] === 'function') {
-          args[i][nestedI].apply( args[i][nestedI], args[i].slice(1) );
+      for(var nestedI = 0; nestedI < fnQ[i].length; nestedI += 1) {
+        if (typeof fnQ[i][nestedI] === 'function') {
+          fnQ[i][nestedI].apply( fnQ[i][nestedI], fnQ[i].slice(1) );
         }
       }
     }
   };
 
-  this.push = function(defferedArgs) {
-    console.log('push function', defferedArgs);
-    for (var i = 0; i < defferedArgs.length; i += 1) {
-      this.callQ(defferedArgs, i);
+  this.push = function(fnQ) {
+    for (var i = 0; i < fnQ.length; i += 1) {
+      this.parseQ(fnQ, i);
     } 
   };
 
@@ -160,9 +160,7 @@ window.optly.mrkt.services.xhr = {
         if (index === tranformedArgs.length - 1) {
           var oldQue = window.optly_q;
           window.optly_q = new optly_QFactory(responses);
-          console.log('old q', oldQue);
           window.optly_q.push(oldQue);
-          console.log('new que: ', responses);
         }
       }.bind(this) );
     }.bind(this) );
