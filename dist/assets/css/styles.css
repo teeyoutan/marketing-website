@@ -2357,7 +2357,8 @@ html.modal-open, body.modal-open {
   opacity: 0;
   visibility: hidden;
   -webkit-transition: visibility 0.4s, opacity 0.4s;
-          transition: visibility 0.4s, opacity 0.4s; }
+          transition: visibility 0.4s, opacity 0.4s;
+  overflow: scroll; }
 
 .modal-dialog-container.visible {
   opacity: 1;
