@@ -142,7 +142,12 @@ module.exports = function(grunt) {
           middlewares.unshift(function(req, res, next){
             if(req.method === 'POST'){
 
-              if(req.url === '/account/free_trial_landing'){
+              if(req.url === '/webinar/register'){
+
+                res.writeHead(200, {'Content-Type': 'application/json'});
+                res.end( grunt.file.read('website-guts/endpoint-mocks/webinarSuccess.json') );
+
+              } else if(req.url === '/account/free_trial_landing'){
 
                 res.writeHead(200, {'Content-Type': 'application/json'});
                 res.end( grunt.file.read('website-guts/endpoint-mocks/formSuccess.json') );

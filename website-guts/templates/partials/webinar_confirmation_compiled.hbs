@@ -1,9 +1,9 @@
-<div id="webinar-signup-modal" class="modal-dialog-container webinar-modal" data-optly-modal="webinar-signup">
+<div id="webinar-confirmation-modal" class="modal-dialog-container webinar-modal" data-optly-modal="webinar-confirmation">
     <div class="dialog narrow">
-        <form action="/webinar/register" method="POST" autocomplete="off" id="webinar-registration-form">
+        
             
             <div class="modal-header">
-                <p class="normal-header header-h1">Webinar Signup</p>
+                <p class="normal-header header-h1">Thank you!</p>
                 
             </div><!--/.modal-header-->
             
@@ -23,23 +23,15 @@
 
             </div>
           </div>
-          <label for="name">Name: </label>
-          <input type="text" id="name" name="name"></input>
-          <label>Email: </label>
-          <input type="email" id="email" name="email"></input>
-          <input type="hidden" name="WebinarRegistrationDate" id="date-long" value="">
-          <input type="hidden" name="lpId" value="-1">
-          <input type="hidden" name="subId" value="56">
-          <input type="hidden" name="FirstName" value="">
-          <input type="hidden" name="LastName" value="">
+          <p>You will receive an email with all the information you'll need to join the meeting. We are excited to walk you through the features of our website testing solution.</p>
 
             </div><!--/.modal-body-->
-            <div class="modal-footer">
+            <div class="modal-footer no-primary-button">
                 <button>test</button>
-                <input type="submit" class="primary-button submit-btn translate" value="Register &raquo;">
-                <input type="button" data-modal-btn="close" class="secondary-button close-btn translate" value="Cancel">
+                
+                <input type="button" data-modal-btn="close" class="secondary-button close-btn translate" value="Close">
             </div><!--/.modal-footer-->
-        </form>
+        
     </div><!--/.dialog.narrow-->
     <form method="POST" action="/test">
     <input type="submit" value="test">

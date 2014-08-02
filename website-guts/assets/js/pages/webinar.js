@@ -69,26 +69,57 @@ for(i = 0; i < dateArray.length; i++){
   templateContext.thursdays.push(container);
 }
 
-eventDisplayHTML = window.optly.mrkt.templates.webinarEventDisplay(templateContext);
+$(function(){
 
-$('#events').html(eventDisplayHTML);
+  eventDisplayHTML = window.optly.mrkt.templates.webinarEventDisplay(templateContext);
 
-$('body').delegate('.register-btn', 'click', function(e){
+  $('#events').html(eventDisplayHTML);
 
-  e.preventDefault();
+  $('body').delegate('.register-btn', 'click', function(e){
 
-  var dateString, dateLong, elem;
+    e.preventDefault();
 
-  elem = $(this);
+    var dateString, dateLong, elem;
 
-  dateString = elem.attr('data-date-string');
+    elem = $(this);
 
-  dateLong = elem.attr('data-date-long');
+    dateString = elem.attr('data-date-string');
 
-  $('#date-string').text(dateString);
+    dateLong = elem.attr('data-date-long');
 
-  $('#date-long').val(dateLong);
+    $('#date-string').text(dateString);
 
-  window.optly.mrkt.modal.open('webinar-signup');
+    $('#date-long').val(dateLong);
+
+    //window.optly.mrkt.modal.open('webinar-signup');
+
+    window.optly.mrkt.modal.open('webinar-signup');
+
+    console.log(typeof($().oForm));
+
+    console.log($('#webinar-registration-form'));
+
+    $('#webinar-registration-form').submit(function(){
+
+      console.log('SUBMITTED');
+
+    });
+
+    /*
+
+    $('#webinar-registration-form').oForm({
+
+      afterLocal: function(resp){
+
+        console.log('YAY');
+
+      }
+
+    });
+
+    */
+
+
+  });
 
 });

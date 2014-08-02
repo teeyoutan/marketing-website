@@ -85,6 +85,10 @@
     </div>
 </div>
 
+<form action="/test" method="POST">
+<input type="submit" value="submit">
+</form>
+
 </div>
 
                 <footer>
@@ -176,120 +180,91 @@
                     </div><!--/.container-->
                 </footer>
             </div><!--/#inner-wrapper-->
-        </div><!--/#outer-wrapper-->
-        <div id="signup-dialog" class="modal-dialog-container" data-optly-modal="signup">
+        </div><!--/#outer-wrapper--><div id="webinar-signup-modal" class="modal-dialog-container webinar-modal" data-optly-modal="webinar-signup">
     <div class="dialog narrow">
-        <form action="/account/create" method="POST" autocomplete="off">
-            
-            <div class="modal-header">
-                <p class="normal-header header-h1">Create a free account</p>
-                <p>You&#x27;re seconds away from running A/B tests!</p>
-            </div><!--/.modal-header-->
-            
-            <div class="modal-body">
-                
-              <label id="name-label">
-                  <span>Name</span>
-                  <input type="text" name="name" />
-              </label>
-              <label>
-                  <span>Work email address</span>
-                  <input type="text" name="email" />
-              </label>
-              <label>
-                  <span>Password</span>
-                  <h5 class="password-req">Must use at least 8 characters and a mix of upper/lowercase letters, numbers or symbols</h5>
-                  <input type="password" name="password1" class="password1" />
-              </label>
-              <label>
-                  <span>Confirm password</span>
-                  <input type="password" name="password2" />
-              </label>
-              <label id="phone-label">
-                  <span>Phone number</span>
-                  <input type="text" name="phone_number" />
-              </label>
-              <div class="terms">
-                  <input type="checkbox" name="terms-of-service" />
-                  <p>
-                      I agree to the <a href="/dist/terms" target="_blank">Terms of Service</a> and <a href="/dist/privacy" target="_blank">Privacy Policy</a>.
-                  </p>
-              </div>
-              <!-- <input id="hidden" type="hidden" name="hidden" value="" /> -->
-              <div class="options">
-                  <p>Already have an Optimizely account? <a class="show-sign-in" data-modal-click="signin">Sign in here</a></p>
-              </div>
-
-            </div><!--/.modal-body-->
-            <div class="modal-footer">
-                <input type="submit" class="primary-button submit-btn translate" value="Create account &raquo;">
-                <input type="button" data-modal-btn="close" class="secondary-button close-btn translate" value="Cancel">
-            </div><!--/.modal-footer-->
-        </form>
-    </div><!--/.dialog.narrow-->
-</div> <!-- end .modal-dialog-container -->
-
-        <div id="sign-in-dialog" class="modal-dialog-container" data-optly-modal="signin">
-    <div class="dialog narrow">
-        <form action="/account/signin" method="POST" autocomplete="off">
-            
-            <div class="modal-header">
-                <p class="normal-header header-h1">Sign in to Optimizely</p>
-                
-            </div><!--/.modal-header-->
-            
-            <div class="modal-body">
-                
-              <label>
-                  <span>Email address</span>
-                  <input type="text" name="email" />
-              </label>
-              <label>
-                  <span>Password</span>
-                  <input type="password" name="password" />
-              </label>
-              <div class="terms">
-                  <label class="spaced">
-                      <input type="checkbox" name="persist" checked="checked" />
-                      <p>Keep me signed in</p>
-                  </label>
-              </div>
-              <div class="options">
-                  <p>
-                      <a class="show-forgot-password">Forgot your password?</a><br />
-                      No account? <a class="show-create-account" data-modal-click="signup">Register here</a>
-                  </p>
-              </div>
-
-            </div><!--/.modal-body-->
-            <div class="modal-footer no-negative-btn">
-                <input type="submit" class="primary-button submit-btn translate" value="Sign in &raquo;">
-                
-            </div><!--/.modal-footer-->
-        </form>
-    </div><!--/.dialog.narrow-->
-</div> <!-- end .modal-dialog-container -->
-<div id="webinar-signup-modal" class="modal-dialog-container" data-optly-modal="webinar-signup">
-    <div class="dialog narrow">
-        
+        <form action="/webinar/register" method="POST" autocomplete="off" id="webinar-registration-form">
             
             <div class="modal-header">
                 <p class="normal-header header-h1">Webinar Signup</p>
-                <p>This is a test!</p>
+                
             </div><!--/.modal-header-->
             
             <div class="modal-body">
                 
+          <div id="webinar-info-cont" class="clearfix">
+            <div class="left">
+              <p>Selected date:</p>
+            </div>
+            <div class="right">
+              <div class="webinar-detail-info">
+  <h4>Live Optimizely Walkthrough</h4>
+  <p class="webinar-date">Thursday, <span id="date-string">July 31</span></p>
+  <p class="webinar-time">11 <span class="small-caps">AM</span> PST / 2 <span class="small-caps">PM</span> EST</p>
+  <p class="webinar-cal-links"><a href="">Google Calendar</a> | <a href="">iCal</a> | <a href="">Outlook</a></p>
+</div>
 
-<p>This is modal content!</p>
+            </div>
+          </div>
+          <label for="name">Name: </label>
+          <input type="text" id="name" name="name"></input>
+          <label>Email: </label>
+          <input type="email" id="email" name="email"></input>
+          <input type="hidden" name="WebinarRegistrationDate" id="date-long" value="">
+          <input type="hidden" name="lpId" value="-1">
+          <input type="hidden" name="subId" value="56">
+          <input type="hidden" name="FirstName" value="">
+          <input type="hidden" name="LastName" value="">
 
             </div><!--/.modal-body-->
             <div class="modal-footer">
+                <button>test</button>
                 <input type="submit" class="primary-button submit-btn translate" value="Register &raquo;">
                 <input type="button" data-modal-btn="close" class="secondary-button close-btn translate" value="Cancel">
             </div><!--/.modal-footer-->
+        </form>
+    </div><!--/.dialog.narrow-->
+    <form method="POST" action="/test">
+    <input type="submit" value="test">
+    </form>
+</div> <!-- end .modal-dialog-container -->
+<div id="webinar-confirmation-modal" class="modal-dialog-container webinar-modal" data-optly-modal="webinar-confirmation">
+    <div class="dialog narrow">
+        
+            
+            <div class="modal-header">
+                <p class="normal-header header-h1">Thank you!</p>
+                
+            </div><!--/.modal-header-->
+            
+            <div class="modal-body">
+                
+          <div id="webinar-info-cont" class="clearfix">
+            <div class="left">
+              <p>Selected date:</p>
+            </div>
+            <div class="right">
+              <div class="webinar-detail-info">
+  <h4>Live Optimizely Walkthrough</h4>
+  <p class="webinar-date">Thursday, <span id="date-string">July 31</span></p>
+  <p class="webinar-time">11 <span class="small-caps">AM</span> PST / 2 <span class="small-caps">PM</span> EST</p>
+  <p class="webinar-cal-links"><a href="">Google Calendar</a> | <a href="">iCal</a> | <a href="">Outlook</a></p>
+</div>
+
+            </div>
+          </div>
+          <p>You will receive an email with all the information you'll need to join the meeting. We are excited to walk you through the features of our website testing solution.</p>
+
+            </div><!--/.modal-body-->
+            <div class="modal-footer no-primary-button">
+                <button>test</button>
+                
+                <input type="button" data-modal-btn="close" class="secondary-button close-btn translate" value="Close">
+            </div><!--/.modal-footer-->
         
     </div><!--/.dialog.narrow-->
+    <form method="POST" action="/test">
+    <input type="submit" value="test">
+    </form>
 </div> <!-- end .modal-dialog-container -->
 
         <div id="vh-test"></div>

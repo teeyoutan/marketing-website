@@ -2428,18 +2428,19 @@ html.modal-open, body.modal-open {
       text-align: center; }
       .modal-dialog-container .modal-body .options a {
         text-decoration: none; }
-  .modal-dialog-container#webinar-signup-modal .webinar-detail-info {
+  .modal-dialog-container.webinar-modal .webinar-detail-info {
     background: url("/dist/assets/img/live-demo-webinar/calendar-icon.png") no-repeat top left;
     padding-left: 40px;
-    width: 350px; }
-  .modal-dialog-container#webinar-signup-modal h4 {
+    width: 350px;
+    padding-bottom: 10px; }
+  .modal-dialog-container.webinar-modal h4 {
     margin: 0; }
-  .modal-dialog-container#webinar-signup-modal p {
+  .modal-dialog-container.webinar-modal p {
     margin: 0; }
-  .modal-dialog-container#webinar-signup-modal p.webinar-date {
+  .modal-dialog-container.webinar-modal p.webinar-date {
     font-weight: 500;
     font-size: 1.3em; }
-  .modal-dialog-container#webinar-signup-modal p.webinar-time {
+  .modal-dialog-container.webinar-modal p.webinar-time {
     font-size: 1.2em; }
 
 @media only screen and (min-width: 768px) {
@@ -2462,5 +2463,7 @@ html.modal-open, body.modal-open {
     .modal-dialog-container .modal-footer .primary-button, .modal-dialog-container .modal-footer body.home-page #cta input[type=submit], body.home-page #cta .modal-dialog-container .modal-footer input[type=submit] {
       float: right; }
     .modal-dialog-container .modal-footer .secondary-button {
-      float: left; } }
+      float: left; }
+    .modal-dialog-container .modal-footer.no-primary-button .secondary-button {
+      float: right; } }
 /*# sourceMappingURL=styles.css.map */
