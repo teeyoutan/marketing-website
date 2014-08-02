@@ -63,9 +63,11 @@ for(i = 0; i < dateArray.length; i++){
   var container, date;
   container = {};
   date = moment(dateArray[i]);
+  container.index = i;
   container.month = date.format('MMMM');
   container.day = date.format('D');
   container.dateLong = date.format('M-D-YYYY');
+  container.calDate = date.format('YYYYMMDD');
   templateContext.thursdays.push(container);
 }
 
@@ -79,31 +81,19 @@ $(function(){
 
     e.preventDefault();
 
-    var dateString, dateLong, elem;
+    var index, dateString, dateLong, elem;
 
     elem = $(this);
 
-    dateString = elem.attr('data-date-string');
+    index = parseInt( elem.attr('data-index') );
 
-    dateLong = elem.attr('data-date-long');
+    $('.webinar-detail-info').each(function(){
 
-    $('#date-string').text(dateString);
-
-    $('#date-long').val(dateLong);
-
-    //window.optly.mrkt.modal.open('webinar-signup');
-
-    window.optly.mrkt.modal.open('webinar-signup');
-
-    console.log(typeof($().oForm));
-
-    console.log($('#webinar-registration-form'));
-
-    $('#webinar-registration-form').submit(function(){
-
-      console.log('SUBMITTED');
+      $(this).html( window.optly.mrkt.templates.webinarEventDetail(templateContext.thursdays[index]) );
 
     });
+
+    window.optly.mrkt.modal.open('webinar-signup');
 
     /*
 

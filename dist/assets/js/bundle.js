@@ -8707,6 +8707,40 @@ function program1(depth0,data) {
   return buffer;
   });
 
+this["optly"]["mrkt"]["templates"]["webinarEventDetail"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
+
+
+  buffer += "<h4>Live Optimizely Walkthrough</h4>\n<p class=\"webinar-date\">Thursday, <span id=\"date-string\">";
+  if (helper = helpers.month) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.month); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + " ";
+  if (helper = helpers.day) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.day); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</span></p>\n<p class=\"webinar-time\">11 <span class=\"small-caps\">AM</span> PST / 2 <span class=\"small-caps\">PM</span> EST</p>\n<p class=\"webinar-cal-links\"><a href=\"http://www.google.com/calendar/event?action=TEMPLATE&text=Live%20Optimizely%20Walkthrough&dates=";
+  if (helper = helpers.calDate) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.calDate); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "T180000Z/";
+  if (helper = helpers.calDate) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.calDate); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "T184500Z&details=45-minute%20walkthrough%20of%20Optimizely's%20website%20testing%20platform.&location=&trp=false&sprop=Optimizely&sprop=name:https%3A%2F%2Fwww.optimizely.com%2F\" target=\"_blank\" title=\"Add event to Google Calendar\">Google Calendar</a> | <a href=\"/resources/live-demo-webinar-calendar.ics?time=";
+  if (helper = helpers.calDate) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.calDate); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "1800\" title=\"Add event to iCal\">iCal</a> | <a href=\"/resources/live-demo-webinar-calendar.ics?time=";
+  if (helper = helpers.calDate) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.calDate); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "1800\" title=\"Add to Outlook calendar\">Outlook</a></p>\n";
+  return buffer;
+  });
+
 this["optly"]["mrkt"]["templates"]["webinarEventDisplay"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
@@ -8723,17 +8757,9 @@ function program1(depth0,data) {
   if (helper = helpers.day) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.day); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</p>\n    <a href=\"\" class=\"primary-button small register-btn\" data-date-string=\"";
-  if (helper = helpers.month) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.month); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + " ";
-  if (helper = helpers.day) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.day); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + "\" data-date-long=\"";
-  if (helper = helpers.dateLong) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.dateLong); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+    + "</p>\n    <a href=\"\" class=\"primary-button small register-btn\" data-index=\"";
+  if (helper = helpers.index) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.index); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
     + "\">Register</a>\n</div>\n";
   return buffer;
@@ -9009,13 +9035,7 @@ window.optly.mrkt.modal.open = function(modalType) {
   $('html, body').addClass('modal-open');
 
   // Fade out the modal and attach the close modal handler
-  /*
-  $elm.fadeToggle(function() {
-    $elm.bind('click', closeModalHandler);
-  });
-  */
-
-  $elm.addClass('visible').bind('click', closeModalHandler);
+  $elm.toggleClass('visible').bind('click', closeModalHandler);
 
 };
 
@@ -9036,13 +9056,7 @@ window.optly.mrkt.modal.close = function(modalType) {
   $elm.children()[0].scrollTop = 0;
 
   // Fade out the modal and remove the close modal handler
-  /*
-  $elm.fadeToggle(function() {
-    $elm.unbind('click', closeModalHandler);
-  });
-  */
-
-  $elm.removeClass('visible').unbind('click', closeModalHandler);
+  $elm.toggleClass('visible').unbind('click', closeModalHandler);
 
 };
 
