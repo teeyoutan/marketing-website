@@ -9,7 +9,7 @@ window.optly.mrkt.index.testItOut = function(editURL){
 
 $('input[type="text"]').focus();
 
-$('form').submit(function(e){
+$('#test-it-out-form').submit(function(e){
 
   var inputVal = $('input[type="text"]').val();
 

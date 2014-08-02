@@ -9,9 +9,21 @@ body {
 }
 
 .modal-dialog-container {
+  opacity: 0;
+  visibility: hidden;
+  transition: visibility 0.5s, opacity 0.5s;
+  /*transition: opacity 0.5s;*/
+}
+
+.modal-dialog-container.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-dialog-container {
   width: 100%;
   height: 100%;
-  display: none;
+  /*display: none;*/
   cursor: pointer;
   background: #fff;
   @include z-index-nested(modal-dialog-container, $children, 100, 100);
@@ -48,6 +60,12 @@ body {
   }
   .modal-footer {
     border-top: 1px solid #eee;
+    input {
+      width: 100%;
+    }
+    .primary-button {
+      margin-bottom: 25px;
+    }
   }
   .modal-body {
     background: transparent;
@@ -103,10 +121,9 @@ body {
     .webinar-detail-info {
       background: image-url('live-demo-webinar/calendar-icon.png') no-repeat top left;
       padding-left: 40px;
-      width: 350px;
       padding-bottom: 10px;
     }
-    h4 {margin: 0;}
+    h4 {margin: 0; text-align: left;}
     p {
       margin: 0;
     }
@@ -143,8 +160,12 @@ body {
     }
     .modal-footer {
       @extend .clearfix;
+      input {
+        width: auto;
+      }
       .primary-button {
         float: right;
+        margin: 0;
       }
       .secondary-button {
         float: left;
@@ -155,5 +176,8 @@ body {
         float: right;
       }
     }
+  }
+  .webinar-detail-info {
+    width: 350px;
   }
 }

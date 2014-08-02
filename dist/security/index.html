@@ -2,7 +2,7 @@
 <html class="no-js">
     <head>
         <meta charset="utf-8">
-        <script src="//cdn.optimizely.com/js/1205230573.js"></script>
+        
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>Optimizely: Security</title>
         
@@ -19,11 +19,7 @@
         <link rel="stylesheet" href="/dist/assets/css/styles.css">
         <script src="/dist/assets/js/libraries/modernizr.2.8.3.min.js"></script>
         
-        <script type="text/javascript">
-          window.analytics=window.analytics||[],window.analytics.methods=["identify","group","track","page","pageview","alias","ready","on","once","off","trackLink","trackForm","trackClick","trackSubmit"],window.analytics.factory=function(t){return function(){var a=Array.prototype.slice.call(arguments);return a.unshift(t),window.analytics.push(a),window.analytics}};for(var i=0;i<window.analytics.methods.length;i++){var key=window.analytics.methods[i];window.analytics[key]=window.analytics.factory(key)}window.analytics.load=function(t){if(!document.getElementById("analytics-js")){var a=document.createElement("script");a.type="text/javascript",a.id="analytics-js",a.async=!0,a.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.io/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n)}},window.analytics.SNIPPET_VERSION="2.0.9",
-          window.analytics.load('l4usxygsxg');
-          window.analytics.page();
-        </script>
+        
     </head>
     <body class="signed-out">
         <!--[if lt IE 8]>
@@ -234,6 +230,99 @@
                 </footer>
             </div><!--/#inner-wrapper-->
         </div><!--/#outer-wrapper-->
+        <div id="sign-in-dialog" class="modal-dialog-container" data-optly-modal="signin">
+    <div class="dialog narrow">
+        <form action="/account/signin" method="POST" autocomplete="off">
+            
+            <div class="modal-header">
+                <p class="normal-header header-h1">Sign in to Optimizely</p>
+                
+            </div><!--/.modal-header-->
+            
+            <div class="modal-body">
+                
+              <label>
+                  <span>Email address</span>
+                  <input type="text" name="email" />
+              </label>
+              <label>
+                  <span>Password</span>
+                  <input type="password" name="password" />
+              </label>
+              <div class="terms">
+                  <label class="spaced">
+                      <input type="checkbox" name="persist" checked="checked" />
+                      <p>Keep me signed in</p>
+                  </label>
+              </div>
+              <div class="options">
+                  <p>
+                      <a class="show-forgot-password">Forgot your password?</a><br />
+                      No account? <a class="show-create-account" data-modal-click="signup">Register here</a>
+                  </p>
+              </div>
+
+            </div><!--/.modal-body-->
+            <div class="modal-footer">
+                <input type="submit" class="primary-button submit-btn translate" value="Sign in &raquo;">
+                
+            </div><!--/.modal-footer-->
+        </form>
+    </div><!--/.dialog.narrow-->
+</div> <!-- end .modal-dialog-container -->
+
+        <div id="signup-dialog" class="modal-dialog-container" data-optly-modal="signup">
+    <div class="dialog narrow">
+        <form action="/account/create" method="POST" autocomplete="off">
+            
+            <div class="modal-header">
+                <p class="normal-header header-h1">Create a free account</p>
+                <p>You&#x27;re seconds away from running A/B tests!</p>
+            </div><!--/.modal-header-->
+            
+            <div class="modal-body">
+                
+              <label id="name-label">
+                  <span>Name</span>
+                  <input type="text" name="name" />
+              </label>
+              <label>
+                  <span>Work email address</span>
+                  <input type="text" name="email" />
+              </label>
+              <label>
+                  <span>Password</span>
+                  <h5 class="password-req">Must use at least 8 characters and a mix of upper/lowercase letters, numbers or symbols</h5>
+                  <input type="password" name="password1" class="password1" />
+              </label>
+              <label>
+                  <span>Confirm password</span>
+                  <input type="password" name="password2" />
+              </label>
+              <label id="phone-label">
+                  <span>Phone number</span>
+                  <input type="text" name="phone_number" />
+              </label>
+              <div class="terms">
+                  <input type="checkbox" name="terms-of-service" />
+                  <p>
+                      I agree to the <a href="/dist/terms" target="_blank">Terms of Service</a> and <a href="/dist/privacy" target="_blank">Privacy Policy</a>.
+                  </p>
+              </div>
+              <!-- <input id="hidden" type="hidden" name="hidden" value="" /> -->
+              <div class="options">
+                  <p>Already have an Optimizely account? <a class="show-sign-in" data-modal-click="signin">Sign in here</a></p>
+              </div>
+
+            </div><!--/.modal-body-->
+            <div class="modal-footer">
+                <input type="submit" class="primary-button submit-btn translate" value="Create account &raquo;">
+                <input type="button" data-modal-btn="close" class="secondary-button close-btn translate" value="Cancel">
+            </div><!--/.modal-footer-->
+        </form>
+    </div><!--/.dialog.narrow-->
+</div> <!-- end .modal-dialog-container -->
+
         <div id="vh-test"></div>
         <script>
           var optly = optly || {};

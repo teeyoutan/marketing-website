@@ -11,13 +11,9 @@
                 {{> body }}
             </div><!--/.modal-body-->
             <div class="modal-footer{{#unless page.primary_button_text}} no-primary-button{{/unless}}">
-                <button>test</button>
                 {{#if page.primary_button_text}}<input type="submit" class="primary-button submit-btn translate" value="{{page.primary_button_text}} &raquo;">{{/if}}
                 {{#if page.negative_button_text}}<input type="button" data-modal-btn="close" class="secondary-button close-btn translate" value="{{page.negative_button_text}}">{{/if}}
             </div><!--/.modal-footer-->
         {{#if page.form_action}}</form>{{/if}}
     </div><!--/.dialog.narrow-->
-    <form method="POST" action="/test">
-    <input type="submit" value="test">
-    </form>
 </div> <!-- end .modal-dialog-container -->

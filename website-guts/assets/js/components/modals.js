@@ -129,9 +129,14 @@ window.optly.mrkt.modal.open = function(modalType) {
   $('html, body').addClass('modal-open');
 
   // Fade out the modal and attach the close modal handler
+  /*
   $elm.fadeToggle(function() {
     $elm.bind('click', closeModalHandler);
   });
+  */
+
+  $elm.addClass('visible').bind('click', closeModalHandler);
+
 };
 
 window.optly.mrkt.modal.close = function(modalType) {
@@ -151,9 +156,14 @@ window.optly.mrkt.modal.close = function(modalType) {
   $elm.children()[0].scrollTop = 0;
 
   // Fade out the modal and remove the close modal handler
+  /*
   $elm.fadeToggle(function() {
     $elm.unbind('click', closeModalHandler);
   });
+  */
+
+  $elm.removeClass('visible').unbind('click', closeModalHandler);
+
 };
 
 // Only use if History/Session Storage in Enabled
