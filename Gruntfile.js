@@ -36,6 +36,7 @@ module.exports = function(grunt) {
             link_path: '',
             sassImagePath: '/dist/assets/img',
             compress_js: true,
+            drop_console: true,
             concat_banner: '(function($){ \n\n' +
                            '  window.optly = window.optly || {}; \n\n' +
                            '  window.optly.mrkt = window.optly.mrkt || {}; \n\n' +
@@ -58,6 +59,7 @@ module.exports = function(grunt) {
             link_path: '',
             sassImagePath: '/assets/img',
             compress_js: true,
+            drop_console: false,
             concat_banner: '(function($){ \n\n' +
                            '  window.optly = window.optly || {}; \n\n' +
                            '  window.optly.mrkt = window.optly.mrkt || {}; \n\n' +
@@ -80,6 +82,7 @@ module.exports = function(grunt) {
             sassSourceMap: true,
             sassImagePath: '/dist/assets/img',
             compress_js: false,
+            drop_console: false,
             concat_banner: '(function($){ \n\n' +
                            '  window.optly = window.optly || {}; \n\n' +
                            '  window.optly.mrkt = window.optly.mrkt || {}; \n\n',
@@ -398,8 +401,10 @@ module.exports = function(grunt) {
     uglify: {
       options: {
         mangle: false,
-        compress: false,
-        beautify: false
+        beautify: false,
+        compress: {
+          drop_console: '<%= grunt.config.get("compress_js") %>'
+        }
       },
       globalJS: {
         files: {
