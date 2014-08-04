@@ -5,9 +5,285 @@
         <script>window.jQuery || document.write('<script src="/dist/assets/js/libraries/jquery-1.6.4.min.js"><\/script>')</script>
         <script>
             window.optly_q = [];
+            window.analytics=window.analytics||[];
         </script>
         <script>
-window.optly=window.optly||{},window.optly.mrkt=window.optly.mrkt||{},window.optly.mrkt.services=window.optly.mrkt.services||{};var optly_QFactory=function(e,t){this.acctData=e,this.expData=t,this.transformQuedArgs=function(e){$.each(e,function(t,r){void 0!==this[r]&&(e[t]=this[r])}.bind(this))},this.parseQ=function(e,t){var r;if("function"==typeof e[t])r=e.slice(1),this.transformQuedArgs(r),e[t].apply(e[t],r);else for(var n=0;n<e[t].length;n+=1)"function"==typeof e[t][n]&&(r=e[t].slice(1),this.transformQuedArgs(r),e[t][n].apply(e[t][n],r))},this.push=function(e){for(var t=0;t<e.length;t+=1)this.parseQ(e,t)},this.userData={account:this.acctData,experiments:this.expData}};window.optly.mrkt.services.xhr={makeRequest:function(){for(var e,t=[],r=[],n=0;n<arguments.length;n+=1)"object"==typeof arguments[n]&&(e=$.ajax({type:arguments[n].type,url:arguments[n].url}),arguments[n].properties&&this.handleErrors(e,arguments[n].properties),arguments[n].callback&&r.push(arguments[n].callback),arguments.length>1?t.push(e):t=e);return r.length>0&&this.resolveDeffereds(t,r),t},isPromise:function(e){if("function"!=typeof e.then)return!1;var t=String($.Deferred().then),r=String(e.then);return t===r},handleErrors:function(e,t){var r={error:!1,errorLog:[]};return e.always(function(e,n,o){this.isPromise(o)&&"success"===n?(r.promise=o,$.each(t,function(n,o){if("object"!=typeof o)typeof e[n]===o?console.log(n+" is validated"):(r.error=!0,r.errorLog.push("Validation Error: "+n+" is not a "+o));else{var i=e[n];Array.isArray(i)?$.each(i,function(e){$.each(t[n],function(t,n){typeof i[e][t]===n?console.log(t+" is validated"):(r.error=!0,r.errorLog.push("Validation Error: "+t+" is not a "+n))})}):$.each(o,function(t,o){typeof e[n][t]===o?console.log(t+" is validated"):(r.error=!0,r.errorLog.push("Validation Error: "+t+" is not a "+o))})}})):(r.promise=e,r.error=!0,r.message=e.responseText+" "+e.statusText+" "+e.status,console.log(r))}.bind(this))},resolveDeffereds:function(e,t){var r=[];return $.when.apply($,e).done(function(){var e=Array.prototype.slice.call(arguments);$.each(e,function(n,o){var i=o[0];if(this.isPromise(i)||"success"!==o[1]||(t[n](i),r.push(i)),n===e.length-1){var s=window.optly_q;window.optly_q=new optly_QFactory(r[0],r[1]),window.optly_q.push(s)}}.bind(this))}.bind(this)),!0},readCookie:function(e){e=e.replace(/([.*+?^=!:${}()|[\]\/\\])/g,"\\$1");var t=new RegExp("(?:^|;)\\s?"+e+"=(.*?)(?:;|$)","i"),r=document.cookie.match(t);return r&&window.unescape(r[1])},getLoginStatus:function(e,t){var r;return this.readCookie("optimizely_signed_in")?r=this.makeRequest.apply(this,t):console.log("no signin cookie present!!"),r}},function(){function e(e){r=e}function t(e){n=e}var r,n,o,i,s=function(e,t,r,n){this.type=e,this.url=t,this.properties=r,this.callback=n};return o=new s("GET","/account/info",{email:"string"},e),i=new s("GET","/experiment/load_recent?max_experiments=5",{experiments:{id:"number",description:"string"}},t),window.optly.mrkt.services.xhr.getLoginStatus(!0,[o,i])}();
+window.optly = window.optly || {};
+window.optly.mrkt = window.optly.mrkt || {};
+window.optly.mrkt.services = window.optly.mrkt.services || {};
+
+window.optly.mrkt.services.xhr = {
+  makeRequest: function(request, callback) {
+    var deffereds = [], defferedPromise;
+
+    // check if multiple requests are present
+    if ( Array.isArray(request) ) {
+      for (var i = 0; i < request.length; i += 1) {
+        if (typeof request[i] === 'object') {
+          defferedPromise = $.ajax({
+            type: request[i].type,
+            url: request[i].url
+          });
+          // parameters passed must be objects with a path and properties keys
+          if (request[i].properties !== undefined) {
+            this.handleErrors( defferedPromise, request[i].url, request[i].properties );
+          }
+
+          deffereds.push( defferedPromise );
+
+        }
+      }
+      this.resolveDeffereds(deffereds, callback);
+      return deffereds;
+    }
+    // If single request, then return the promise directly
+    else {
+      defferedPromise = $.ajax({
+        type: request.type,
+        url: request.url
+      });
+      if (request.properties !== undefined) {
+        this.handleErrors( defferedPromise, request.url, request.properties );
+      }
+      return defferedPromise;
+    }
+  },
+
+  logSegmentError: function(url, category, errorMessage) {
+    window.analytics.track(url, {
+      category: category,
+      label: errorMessage
+    });
+  },
+
+  validateTypes: function(resp, properties, url) {
+    var errorMessage;
+    $.each(properties, function(property, type) {
+      // if property is not nested
+      if(typeof type !== 'object') {
+        if (typeof resp[ property ] !== type) {
+          errorMessage = 'resp.' + property + ' is not a ' + type + ': ' + typeof(resp[ property ]);
+          
+          this.logSegmentError(url, 'api error', errorMessage);
+        }
+      }
+      // if property is nested
+      else {
+        
+        this.validateNestedTypes( resp[ property ], properties[ property ], property, type, url );
+
+      }
+    }.bind(this)); // end outer .each
+  },
+
+  validateNestedTypes: function(data, nestedData, parentProperty, type, url) {
+    var errorMessage,
+      propertyType;
+    // if the property maps to an array
+    if ( Array.isArray(data) ) {
+
+      $.each(data, function(index, innerProperties) {
+
+        $.each(nestedData, function(innerProp, innerType) {
+          propertyType = typeof innerProperties[ innerProp ];
+          if (propertyType !== innerType) {
+            errorMessage = 'resp.' + parentProperty + '.' + innerProp + ' is not a ' + innerType + ': ' + propertyType;
+            
+            this.logSegmentError(url, 'api error', errorMessage);
+          }
+        }.bind(this));
+
+      }.bind(this));
+    }
+    // if the property maps to an object
+    else {
+      $.each(type, function(innerProp, innerType) {
+        propertyType = typeof data[ innerProp ];
+        if (propertyType !== innerType) {
+          errorMessage = 'resp.' + parentProperty + '.' + innerProp + ' is not a ' + innerType + ': ' + propertyType;
+          
+          this.logSegmentError(url, 'api error', errorMessage);
+        }
+      }.bind(this));
+    }
+  },
+
+  handleErrors: function(deffered, url, properties) {
+    var parsedRes, errorMessage;
+
+    deffered.always(function(data, textStatus, jqXHR) {
+        // check if the last argument is a promise, if so the response was successful
+        if( this.isPromise(jqXHR) && jqXHR.status === 200 ) {
+
+          //parse JSON and catch any errors -- if error return immediately
+          try {
+            parsedRes = $.parseJSON(jqXHR.responseText);
+          } catch (error) {
+
+            this.logSegmentError(url, 'api error', 'response contains invalid json ' + error);
+
+            // do not check validations if parse error
+            return undefined;
+          }
+
+          // validate each property type
+          this.validateTypes(parsedRes, properties, url);
+       
+        }
+        // if the http request fails the jqXHR object will not be promise
+        else {
+          // in this case the data object is a promise so we parse it's response text
+          if ( this.isPromise(data) && data.status === 200) {
+            try {
+              parsedRes = $.parseJSON(data.responseText);
+            } catch (error) {
+              errorMessage = error + ', Response Text: ' + data.responseText + ', Status Text: ' + data.statusText + ', Status: ' + data.status;
+            }
+          }
+          if (errorMessage === undefined) {
+            errorMessage = 'Response Text: ' + data.responseText + ', Status Text: ' + data.statusText + ', Status: ' + data.status;
+          }
+
+          this.logSegmentError(url, 'api error', errorMessage);
+
+          console.log(errorMessage);
+        }
+
+    }.bind(this));
+
+  },
+
+  isPromise: function(value) {
+
+    if (typeof value.then !== 'function') {
+        return false;
+    }
+    var promiseThenSrc = String($.Deferred().then);
+    var valueThenSrc = String(value.then);
+    return promiseThenSrc === valueThenSrc;
+  },
+
+  resolveDeffereds: function(deffereds, callback) {
+    var responses = [], oldQue;
+    $.when.apply($, deffereds).done(function() {
+      // get all arguments returned from done
+      var tranformedArgs = Array.prototype.slice.call(arguments);
+      $.each(tranformedArgs, function(index, resp) {
+        var respData = resp[0];
+        if( !this.isPromise( respData ) && resp[1] === 'success' ) {
+          responses.push(respData);
+        }
+        if (index === tranformedArgs.length - 1) {
+          oldQue = window.optly_q;
+          window.optly_q = new callback(responses[0], responses[1]);
+          window.optly_q.push(oldQue);
+        }
+      }.bind(this) );
+    }.bind(this) );
+
+    return true;
+  },
+
+  readCookie: function (name) {
+    // Escape regexp special characters (thanks kangax!)
+    name = name.replace(/([.*+?^=!:${}()|[\]\/\\])/g, '\\$1');
+
+    var regex = new RegExp('(?:^|;)\\s?' + name + '=(.*?)(?:;|$)','i'),
+        match = document.cookie.match(regex);
+
+    return match && window.unescape(match[1]);
+  }, 
+
+  getLoginStatus: function(requestParams, callback) {
+    var deffereds;
+
+    if ( !!this.readCookie('optimizely_signed_in') ) {
+      deffereds = this.makeRequest(requestParams, callback);
+    } else {
+      console.log('no signin cookie present!!');
+    }
+    return deffereds;
+  }
+  
+};
+
+(function() {
+  var acctParams,
+    expParams,
+    optly_QFactory = function(acctData, expData) {
+      this.acctData = acctData;
+      this.expData = expData;
+
+      this.transformQuedArgs = function(quedArgs) {
+        $.each(quedArgs, function(index, arg) {
+          if (this[ arg ] !== undefined) {
+            quedArgs[ index ] = this[ arg ];
+          }
+        }.bind(this));
+      };
+
+      this.parseQ = function(fnQ, i) {
+        var quedArgs;
+        if (typeof fnQ[i] === 'function') {
+          quedArgs = fnQ.slice(1);
+
+          this.transformQuedArgs(quedArgs);
+
+          fnQ[i].apply( fnQ[i], quedArgs );
+        }
+        else {
+          for(var nestedI = 0; nestedI < fnQ[i].length; nestedI += 1) {
+
+            if (typeof fnQ[i][nestedI] === 'function') {
+              quedArgs = fnQ[i].slice(1);
+
+              this.transformQuedArgs(quedArgs);
+
+              fnQ[i][nestedI].apply( fnQ[i][nestedI], quedArgs );
+            }
+          }
+        }
+      };
+
+      this.push = function(fnQ) {
+        for (var i = 0; i < fnQ.length; i += 1) {
+          this.parseQ(fnQ, i);
+        } 
+      };
+
+      this.userData = {
+        account: this.acctData,
+        experiments: this.expData
+      };
+
+    };
+
+  acctParams = {
+    type: 'GET',
+    url: '/account/info',
+    properties: { 
+      email: 'string',
+      account_id: 'number' 
+    }
+  };
+
+  expParams = {
+    type: 'GET',
+    url: '/experiment/load_recent?max_experiments=5',
+    properties: {
+      experiments: {
+        id: 'number',
+        description: 'string',
+        has_started: 'boolean',
+        can_edit: 'boolean'
+      }
+    }
+  };
+
+  return window.optly.mrkt.services.xhr.getLoginStatus([acctParams, expParams], optly_QFactory);
+}());
+
+
 </script>
         <script src="//cdn.optimizely.com/js/1205230573.js"></script>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -27,9 +303,9 @@ window.optly=window.optly||{},window.optly.mrkt=window.optly.mrkt||{},window.opt
         <script src="/dist/assets/js/libraries/modernizr.2.8.3.min.js"></script>
         
         <script type="text/javascript">
-          window.analytics=window.analytics||[],window.analytics.methods=["identify","group","track","page","pageview","alias","ready","on","once","off","trackLink","trackForm","trackClick","trackSubmit"],window.analytics.factory=function(t){return function(){var a=Array.prototype.slice.call(arguments);return a.unshift(t),window.analytics.push(a),window.analytics}};for(var i=0;i<window.analytics.methods.length;i++){var key=window.analytics.methods[i];window.analytics[key]=window.analytics.factory(key)}window.analytics.load=function(t){if(!document.getElementById("analytics-js")){var a=document.createElement("script");a.type="text/javascript",a.id="analytics-js",a.async=!0,a.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.io/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n)}},window.analytics.SNIPPET_VERSION="2.0.9",
-          window.analytics.load('l4usxygsxg');
-          window.analytics.page();
+        window.analytics=window.analytics||[];window.analytics.methods=["identify","group","track","page","pageview","alias","ready","on","once","off","trackLink","trackForm","trackClick","trackSubmit"],window.analytics.factory=function(t){return function(){var a=Array.prototype.slice.call(arguments);return a.unshift(t),window.analytics.push(a),window.analytics}};for(var i=0;i<window.analytics.methods.length;i++){var key=window.analytics.methods[i];window.analytics[key]=window.analytics.factory(key)}window.analytics.load=function(t){if(!document.getElementById("analytics-js")){var a=document.createElement("script");a.type="text/javascript",a.id="analytics-js",a.async=!0,a.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.io/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n)}},window.analytics.SNIPPET_VERSION="2.0.9",
+            window.analytics.load('l4usxygsxg');
+            window.analytics.page();
         </script>
     </head>
      <body class="signed-out benefits-layout benefits-layout benefits-page">

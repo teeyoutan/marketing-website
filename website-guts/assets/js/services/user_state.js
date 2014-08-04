@@ -2,86 +2,149 @@ window.optly = window.optly || {};
 window.optly.mrkt = window.optly.mrkt || {};
 window.optly.mrkt.services = window.optly.mrkt.services || {};
 
-var optly_QFactory = function(acctData, expData) {
-  this.acctData = acctData;
-  this.expData = expData;
-
-  this.transformQuedArgs = function(quedArgs) {
-    $.each(quedArgs, function(index, arg) {
-      if (this[ arg ] !== undefined) {
-        quedArgs[ index ] = this[ arg ];
-      }
-    }.bind(this));
-  };
-
-  this.parseQ = function(fnQ, i) {
-    var quedArgs;
-    if (typeof fnQ[i] === 'function') {
-      quedArgs = fnQ.slice(1);
-
-      this.transformQuedArgs(quedArgs);
-
-      fnQ[i].apply( fnQ[i], quedArgs );
-    }
-    else {
-      for(var nestedI = 0; nestedI < fnQ[i].length; nestedI += 1) {
-
-        if (typeof fnQ[i][nestedI] === 'function') {
-          quedArgs = fnQ[i].slice(1);
-
-          this.transformQuedArgs(quedArgs);
-
-          fnQ[i][nestedI].apply( fnQ[i][nestedI], quedArgs );
-        }
-      }
-    }
-  };
-
-  this.push = function(fnQ) {
-    for (var i = 0; i < fnQ.length; i += 1) {
-      this.parseQ(fnQ, i);
-    } 
-  };
-
-  this.userData = {
-    account: this.acctData,
-    experiments: this.expData
-  };
-
-};
-
 window.optly.mrkt.services.xhr = {
-  makeRequest: function() {
-    var deffereds = [], callbacks = [], defferedPromise;
-    for (var i = 0; i < arguments.length; i += 1) {
-      if (typeof arguments[i] === 'object') {
-        defferedPromise = $.ajax({
-          type: arguments[i].type,
-          url: arguments[i].url
-        });
-        // parameters passed must be objects with a path and properties keys
-        if (arguments[i].properties) {
-          this.handleErrors( defferedPromise, arguments[i].properties );
-        }
-        if ( arguments[i].callback ) {
-          callbacks.push( arguments[i].callback );
-        }
-        if (arguments.length > 1) {
+  makeRequest: function(request, callback) {
+    var deffereds = [], defferedPromise;
+
+    // check if multiple requests are present
+    if ( Array.isArray(request) ) {
+      for (var i = 0; i < request.length; i += 1) {
+        if (typeof request[i] === 'object') {
+          defferedPromise = $.ajax({
+            type: request[i].type,
+            url: request[i].url
+          });
+          // parameters passed must be objects with a path and properties keys
+          if (request[i].properties !== undefined) {
+            this.handleErrors( defferedPromise, request[i].url, request[i].properties );
+          }
+
           deffereds.push( defferedPromise );
-        }
-        else {
-          deffereds = defferedPromise;
+
         }
       }
+      this.resolveDeffereds(deffereds, callback);
+      return deffereds;
     }
-    if ( callbacks.length > 0 ) {
-      this.resolveDeffereds(deffereds, callbacks);
+    // If single request, then return the promise directly
+    else {
+      defferedPromise = $.ajax({
+        type: request.type,
+        url: request.url
+      });
+      if (request.properties !== undefined) {
+        this.handleErrors( defferedPromise, request.url, request.properties );
+      }
+      return defferedPromise;
     }
-    
-    return deffereds;
+  },
+
+  logSegmentError: function(url, category, errorMessage) {
+    window.analytics.track(url, {
+      category: category,
+      label: errorMessage
+    });
+  },
+
+  validateTypes: function(resp, properties, url) {
+    var errorMessage;
+    $.each(properties, function(property, type) {
+      // if property is not nested
+      if(typeof type !== 'object') {
+        if (typeof resp[ property ] !== type) {
+          errorMessage = 'resp.' + property + ' is not a ' + type + ': ' + typeof(resp[ property ]);
+          
+          this.logSegmentError(url, 'api error', errorMessage);
+        }
+      }
+      // if property is nested
+      else {
+        
+        this.validateNestedTypes( resp[ property ], properties[ property ], property, type, url );
+
+      }
+    }.bind(this)); // end outer .each
+  },
+
+  validateNestedTypes: function(data, nestedData, parentProperty, type, url) {
+    var errorMessage,
+      propertyType;
+    // if the property maps to an array
+    if ( Array.isArray(data) ) {
+
+      $.each(data, function(index, innerProperties) {
+
+        $.each(nestedData, function(innerProp, innerType) {
+          propertyType = typeof innerProperties[ innerProp ];
+          if (propertyType !== innerType) {
+            errorMessage = 'resp.' + parentProperty + '.' + innerProp + ' is not a ' + innerType + ': ' + propertyType;
+            
+            this.logSegmentError(url, 'api error', errorMessage);
+          }
+        }.bind(this));
+
+      }.bind(this));
+    }
+    // if the property maps to an object
+    else {
+      $.each(type, function(innerProp, innerType) {
+        propertyType = typeof data[ innerProp ];
+        if (propertyType !== innerType) {
+          errorMessage = 'resp.' + parentProperty + '.' + innerProp + ' is not a ' + innerType + ': ' + propertyType;
+          
+          this.logSegmentError(url, 'api error', errorMessage);
+        }
+      }.bind(this));
+    }
+  },
+
+  handleErrors: function(deffered, url, properties) {
+    var parsedRes, errorMessage;
+
+    deffered.always(function(data, textStatus, jqXHR) {
+        // check if the last argument is a promise, if so the response was successful
+        if( this.isPromise(jqXHR) && jqXHR.status === 200 ) {
+
+          //parse JSON and catch any errors -- if error return immediately
+          try {
+            parsedRes = $.parseJSON(jqXHR.responseText);
+          } catch (error) {
+
+            this.logSegmentError(url, 'api error', 'response contains invalid json ' + error);
+
+            // do not check validations if parse error
+            return undefined;
+          }
+
+          // validate each property type
+          this.validateTypes(parsedRes, properties, url);
+       
+        }
+        // if the http request fails the jqXHR object will not be promise
+        else {
+          // in this case the data object is a promise so we parse it's response text
+          if ( this.isPromise(data) && data.status === 200) {
+            try {
+              parsedRes = $.parseJSON(data.responseText);
+            } catch (error) {
+              errorMessage = error + ', Response Text: ' + data.responseText + ', Status Text: ' + data.statusText + ', Status: ' + data.status;
+            }
+          }
+          if (errorMessage === undefined) {
+            errorMessage = 'Response Text: ' + data.responseText + ', Status Text: ' + data.statusText + ', Status: ' + data.status;
+          }
+
+          this.logSegmentError(url, 'api error', errorMessage);
+
+          console.log(errorMessage);
+        }
+
+    }.bind(this));
+
   },
 
   isPromise: function(value) {
+
     if (typeof value.then !== 'function') {
         return false;
     }
@@ -90,90 +153,19 @@ window.optly.mrkt.services.xhr = {
     return promiseThenSrc === valueThenSrc;
   },
 
-  handleErrors: function(deffered, properties) {
-    var defferedStatus = {
-      error: false,
-      errorLog: []
-    };
-
-    return deffered.always(function(data, textStatus, jqXHR) {
-
-        // check if the last argument is a promise, if so the response was successful
-        if( this.isPromise(jqXHR) && textStatus === 'success'){
-          defferedStatus.promise = jqXHR;
-          $.each(properties, function(key, prop) {
-            // if property is not nested
-            if(typeof prop !== 'object') {
-              if (typeof data[ key ] === prop) {
-                console.log(key + ' is validated');
-              }
-              else {
-                defferedStatus.error = true;
-                defferedStatus.errorLog.push('Validation Error: ' + key + ' is not a ' + prop);
-              }
-            }
-            // if property is nested
-            else {
-              var nestedData = data[ key ];
-              // if the property maps to an array
-              if ( Array.isArray(nestedData) ) {
-
-                  $.each(nestedData, function(index) {
-
-                    $.each(properties[ key ], function(innerKey, innerProp) {
-                      if (typeof nestedData[ index ][ innerKey ] === innerProp) {
-                        console.log(innerKey + ' is validated');
-                      }
-                      else {
-                        defferedStatus.error = true;
-                        defferedStatus.errorLog.push('Validation Error: ' + innerKey + ' is not a ' + innerProp);
-                      }
-                    });
-
-                });
-              }
-              // if the property maps to an object
-              else {
-                $.each(prop, function(innerKey, innerProp) {
-                  if (typeof data[ key ][ innerKey ] === innerProp) {
-                    console.log(innerKey + ' is validated');
-                  }
-                  else {
-                    defferedStatus.error = true;
-                    defferedStatus.errorLog.push('Validation Error: ' + innerKey + ' is not a ' + innerProp);
-                  }
-                });
-              }
-
-            }
-          }); // end outer .each
-       
-        } else {
-          defferedStatus.promise = data;
-          defferedStatus.error = true;
-          defferedStatus.message = data.responseText + ' ' + data.statusText + ' ' + data.status;
-          console.log(defferedStatus);
-        }
-
-    }.bind(this));
-
-  },
-
-  resolveDeffereds: function(deffereds, callbacks) {
-    var responses = [];
+  resolveDeffereds: function(deffereds, callback) {
+    var responses = [], oldQue;
     $.when.apply($, deffereds).done(function() {
+      // get all arguments returned from done
       var tranformedArgs = Array.prototype.slice.call(arguments);
-      $.each(tranformedArgs, function(index, val) {
-        var response = val[0];
-        if( !this.isPromise( response ) && val[1] === 'success' ) {
-          callbacks[index](response);
-          responses.push(response);
+      $.each(tranformedArgs, function(index, resp) {
+        var respData = resp[0];
+        if( !this.isPromise( respData ) && resp[1] === 'success' ) {
+          responses.push(respData);
         }
         if (index === tranformedArgs.length - 1) {
-          //window.optly.mrkt.userInfo = window.optly.mrkt.userInfo || {};
-          var oldQue = window.optly_q;
-
-          window.optly_q = new optly_QFactory(responses[0], responses[1]);
+          oldQue = window.optly_q;
+          window.optly_q = new callback(responses[0], responses[1]);
           window.optly_q.push(oldQue);
         }
       }.bind(this) );
@@ -192,14 +184,11 @@ window.optly.mrkt.services.xhr = {
     return match && window.unescape(match[1]);
   }, 
 
-  getLoginStatus: function(setCookie, requestParams) {
+  getLoginStatus: function(requestParams, callback) {
     var deffereds;
-    // for testing
-    // if (setCookie) {
-    //   document.cookie = 'optimizely_signed_in=1';
-    // }
+
     if ( !!this.readCookie('optimizely_signed_in') ) {
-      deffereds = this.makeRequest.apply(this, requestParams);
+      deffereds = this.makeRequest(requestParams, callback);
     } else {
       console.log('no signin cookie present!!');
     }
@@ -209,46 +198,78 @@ window.optly.mrkt.services.xhr = {
 };
 
 (function() {
-  var accountData,
-    experimentData,
-    acctParams,
+  var acctParams,
     expParams,
-    RequestParams = function(requestType, url, properties, callback) {
-      this.type = requestType;
-      this.url = url;
-      this.properties = properties;
-      this.callback = callback;
+    optly_QFactory = function(acctData, expData) {
+      this.acctData = acctData;
+      this.expData = expData;
+
+      this.transformQuedArgs = function(quedArgs) {
+        $.each(quedArgs, function(index, arg) {
+          if (this[ arg ] !== undefined) {
+            quedArgs[ index ] = this[ arg ];
+          }
+        }.bind(this));
+      };
+
+      this.parseQ = function(fnQ, i) {
+        var quedArgs;
+        if (typeof fnQ[i] === 'function') {
+          quedArgs = fnQ.slice(1);
+
+          this.transformQuedArgs(quedArgs);
+
+          fnQ[i].apply( fnQ[i], quedArgs );
+        }
+        else {
+          for(var nestedI = 0; nestedI < fnQ[i].length; nestedI += 1) {
+
+            if (typeof fnQ[i][nestedI] === 'function') {
+              quedArgs = fnQ[i].slice(1);
+
+              this.transformQuedArgs(quedArgs);
+
+              fnQ[i][nestedI].apply( fnQ[i][nestedI], quedArgs );
+            }
+          }
+        }
+      };
+
+      this.push = function(fnQ) {
+        for (var i = 0; i < fnQ.length; i += 1) {
+          this.parseQ(fnQ, i);
+        } 
+      };
+
+      this.userData = {
+        account: this.acctData,
+        experiments: this.expData
+      };
+
     };
 
-  function accountDataCallback(data) {
-    accountData = data;
-  }
+  acctParams = {
+    type: 'GET',
+    url: '/account/info',
+    properties: { 
+      email: 'string',
+      account_id: 'number' 
+    }
+  };
 
-  function experimentDataCallback(data) {
-    experimentData = data;
-  }
-
-  acctParams = new RequestParams(
-    'GET',
-    '/account/info',
-    { 
-      email: 'string' 
-    },
-    accountDataCallback
-  );
-
-  expParams = new RequestParams(
-    'GET',
-    '/experiment/load_recent?max_experiments=5',
-    {
+  expParams = {
+    type: 'GET',
+    url: '/experiment/load_recent?max_experiments=5',
+    properties: {
       experiments: {
         id: 'number',
-        description: 'string'
+        description: 'string',
+        has_started: 'boolean',
+        can_edit: 'boolean'
       }
-    },
-    experimentDataCallback
-  );
+    }
+  };
 
-  return window.optly.mrkt.services.xhr.getLoginStatus(true, [acctParams, expParams]);
+  return window.optly.mrkt.services.xhr.getLoginStatus([acctParams, expParams], optly_QFactory);
 }());
 

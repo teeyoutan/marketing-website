@@ -485,7 +485,7 @@ module.exports = function(grunt) {
     inline: {
         dist: {
             options:{
-                uglify: true,
+                //uglify: true,
                 exts: 'hbs'
             },
             src: ['<%= config.guts %>/templates/layouts/wrapper.hbs'],
