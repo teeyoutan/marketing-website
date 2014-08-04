@@ -199,6 +199,9 @@
         {{~#if page.modals~}}
         {{~includeModals page.modals~}}
         {{~/if}}
+        {{~#if layoutModals~}}
+        {{~includeModals layoutModals~}}
+        {{~/if}}
         <div id="vh-test"></div>
         <script>
           var optly = optly || {};
