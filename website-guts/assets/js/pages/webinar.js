@@ -99,7 +99,31 @@ $(function(){
 
       afterLocal: function(resp){
 
-        console.log('YAY');
+        if(typeof resp === 'object'){
+
+          if(typeof resp.responseJSON === 'object'){
+
+            if(resp.responseJSON.succeeded){
+
+              window.optly.mrkt.modal.open('webinar-confirmation');
+
+            } else {
+
+              console.log('failed');
+
+              if(resp.responseJSON.message){
+
+                $('body').addClass('error-state');
+
+                $('.error-message').text(resp.responseJSON.message).addClass('error-show').removeClass('error-hide');
+
+              }
+
+            }
+
+          }
+
+        }
 
       }
 

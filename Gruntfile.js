@@ -147,6 +147,11 @@ module.exports = function(grunt) {
                 res.writeHead(200, {'Content-Type': 'application/json'});
                 res.end( grunt.file.read('website-guts/endpoint-mocks/webinarSuccess.json') );
 
+              } else if(req.url === '/webinar/register-fail'){
+
+                res.writeHead(200, {'Content-Type': 'application/json'});
+                res.end( grunt.file.read('website-guts/endpoint-mocks/webinarFail.json') );
+
               } else if(req.url === '/account/free_trial_landing'){
 
                 res.writeHead(200, {'Content-Type': 'application/json'});
@@ -381,9 +386,9 @@ module.exports = function(grunt) {
       }
     },
     concat: {
-      modernizrYep: {
+      modernizr: {
         files: {
-          '<%= config.dist %>/assets/js/libraries/modernizr-yepnope.js': ['<%= config.guts %>/assets/js/libraries/modernizr-2.8.2.min.js','<%= config.bowerDir %>/yepnope/yepnope.1.5.4-min.js']
+          '<%= config.dist %>/assets/js/libraries/modernizr.2.8.3.min.js': ['<%= config.guts %>/assets/js/libraries/modernizr.2.8.3.min.js']
         }
       },
       namespacePages: {

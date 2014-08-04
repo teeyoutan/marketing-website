@@ -1,6 +1,6 @@
 <div id="webinar-signup-modal" class="modal-dialog-container webinar-modal" data-optly-modal="webinar-signup">
     <div class="dialog narrow">
-        <form action="/webinar/register" method="POST" autocomplete="off" id="webinar-registration-form">
+        <form action="/webinar/register-fail" method="POST" autocomplete="off" id="webinar-registration-form" novalidate>
             
             <div class="modal-header">
                 <p class="normal-header header-h1">Webinar Signup</p>
@@ -9,7 +9,7 @@
             
             <div class="modal-body">
                 
-          <div class="webinar-info-cont" class="clearfix">
+          <div class="webinar-info-cont">
             <div class="left">
               <p>Selected date:</p>
             </div>
@@ -17,15 +17,24 @@
               <div class="webinar-detail-info"></div>
             </div>
           </div>
-          <label for="name" style="clear: both;">Name: </label>
-          <input type="text" id="name" name="name"></input>
-          <label>Email: </label>
-          <input type="email" id="email" name="email"></input>
-          <input type="hidden" name="WebinarRegistrationDate" id="date-long" value="">
-          <input type="hidden" name="lpId" value="-1">
-          <input type="hidden" name="subId" value="56">
-          <input type="hidden" name="FirstName" value="">
-          <input type="hidden" name="LastName" value="">
+          <p class="error-message error-hide">Please correct the error(s) below.</p>
+          <div class="clearfix" style="clear: both;">
+            <div class="form-label">
+              <p class="name-related validation-error-message error-hide">Name is required</p>
+              <label for="name">Name: </label>
+            </div>
+            <input type="text" id="name" name="name" required></input>
+            <div class="form-label">
+              <label>Email: </label>
+              <p class="email-related validation-error-message error-hide">Email is required</p>
+            </div>
+            <input type="email" id="email" name="email" required></input>
+            <input type="hidden" name="WebinarRegistrationDate" id="date-long" value="">
+            <input type="hidden" name="lpId" value="-1">
+            <input type="hidden" name="subId" value="56">
+            <input type="hidden" name="FirstName" value="">
+            <input type="hidden" name="LastName" value="">
+          </div>
 
             </div><!--/.modal-body-->
             <div class="modal-footer">

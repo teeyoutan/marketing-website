@@ -19,7 +19,11 @@
         <link rel="stylesheet" href="/dist/assets/css/styles.css">
         <script src="/dist/assets/js/libraries/modernizr.2.8.3.min.js"></script>
         
-        
+        <script type="text/javascript">
+          window.analytics=window.analytics||[],window.analytics.methods=["identify","group","track","page","pageview","alias","ready","on","once","off","trackLink","trackForm","trackClick","trackSubmit"],window.analytics.factory=function(t){return function(){var a=Array.prototype.slice.call(arguments);return a.unshift(t),window.analytics.push(a),window.analytics}};for(var i=0;i<window.analytics.methods.length;i++){var key=window.analytics.methods[i];window.analytics[key]=window.analytics.factory(key)}window.analytics.load=function(t){if(!document.getElementById("analytics-js")){var a=document.createElement("script");a.type="text/javascript",a.id="analytics-js",a.async=!0,a.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.io/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n)}},window.analytics.SNIPPET_VERSION="2.0.9",
+          window.analytics.load('l4usxygsxg');
+          window.analytics.page();
+        </script>
     </head>
     <body class="signed-out compact-header live-demo-page">
         <!--[if lt IE 8]>
@@ -175,7 +179,7 @@
         </div><!--/#outer-wrapper-->
         <div id="sign-in-dialog" class="modal-dialog-container" data-optly-modal="signin">
     <div class="dialog narrow">
-        <form action="/account/signin" method="POST" autocomplete="off">
+        <form action="/account/signin" method="POST" autocomplete="off" novalidate>
             
             <div class="modal-header">
                 <p class="normal-header header-h1">Sign in to Optimizely</p>
@@ -216,7 +220,7 @@
 
         <div id="signup-dialog" class="modal-dialog-container" data-optly-modal="signup">
     <div class="dialog narrow">
-        <form action="/account/create" method="POST" autocomplete="off">
+        <form action="/account/create" method="POST" autocomplete="off" novalidate>
             
             <div class="modal-header">
                 <p class="normal-header header-h1">Create a free account</p>
@@ -267,7 +271,7 @@
 </div> <!-- end .modal-dialog-container -->
 <div id="webinar-signup-modal" class="modal-dialog-container webinar-modal" data-optly-modal="webinar-signup">
     <div class="dialog narrow">
-        <form action="/webinar/register" method="POST" autocomplete="off" id="webinar-registration-form">
+        <form action="/webinar/register-fail" method="POST" autocomplete="off" id="webinar-registration-form" novalidate>
             
             <div class="modal-header">
                 <p class="normal-header header-h1">Webinar Signup</p>
@@ -276,7 +280,7 @@
             
             <div class="modal-body">
                 
-          <div class="webinar-info-cont" class="clearfix">
+          <div class="webinar-info-cont">
             <div class="left">
               <p>Selected date:</p>
             </div>
@@ -284,15 +288,24 @@
               <div class="webinar-detail-info"></div>
             </div>
           </div>
-          <label for="name" style="clear: both;">Name: </label>
-          <input type="text" id="name" name="name"></input>
-          <label>Email: </label>
-          <input type="email" id="email" name="email"></input>
-          <input type="hidden" name="WebinarRegistrationDate" id="date-long" value="">
-          <input type="hidden" name="lpId" value="-1">
-          <input type="hidden" name="subId" value="56">
-          <input type="hidden" name="FirstName" value="">
-          <input type="hidden" name="LastName" value="">
+          <p class="error-message error-hide">Please correct the error(s) below.</p>
+          <div class="clearfix" style="clear: both;">
+            <div class="form-label">
+              <p class="name-related validation-error-message error-hide">Name is required</p>
+              <label for="name">Name: </label>
+            </div>
+            <input type="text" id="name" name="name" required></input>
+            <div class="form-label">
+              <label>Email: </label>
+              <p class="email-related validation-error-message error-hide">Email is required</p>
+            </div>
+            <input type="email" id="email" name="email" required></input>
+            <input type="hidden" name="WebinarRegistrationDate" id="date-long" value="">
+            <input type="hidden" name="lpId" value="-1">
+            <input type="hidden" name="subId" value="56">
+            <input type="hidden" name="FirstName" value="">
+            <input type="hidden" name="LastName" value="">
+          </div>
 
             </div><!--/.modal-body-->
             <div class="modal-footer">
@@ -300,6 +313,35 @@
                 <input type="button" data-modal-btn="close" class="secondary-button close-btn translate" value="Cancel">
             </div><!--/.modal-footer-->
         </form>
+    </div><!--/.dialog.narrow-->
+</div> <!-- end .modal-dialog-container -->
+<div id="webinar-confirmation-modal" class="modal-dialog-container webinar-modal" data-optly-modal="webinar-confirmation">
+    <div class="dialog narrow">
+        
+            
+            <div class="modal-header">
+                <p class="normal-header header-h1">Thank you!</p>
+                
+            </div><!--/.modal-header-->
+            
+            <div class="modal-body">
+                
+          <div class="webinar-info-cont">
+            <div class="left">
+              <p>Confirmed date:</p>
+            </div>
+            <div class="right webinar-info">
+              <div class="webinar-detail-info"></div>
+            </div>
+          </div>
+          <p style="clear: both;">You will receive an email with all the information you'll need to join the meeting. We are excited to walk you through the features of our website testing solution.</p>
+
+            </div><!--/.modal-body-->
+            <div class="modal-footer no-primary-button">
+                
+                <input type="button" data-modal-btn="close" class="secondary-button close-btn translate" value="Close">
+            </div><!--/.modal-footer-->
+        
     </div><!--/.dialog.narrow-->
 </div> <!-- end .modal-dialog-container -->
 

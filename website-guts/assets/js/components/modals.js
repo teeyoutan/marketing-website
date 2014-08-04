@@ -51,7 +51,7 @@ function openModalHandler(e) {
     stateData,
     modalType = $(this).data('modal-click');
 
-  e.preventDefault();
+  //e.preventDefault();
   // Check for History/SessionStorage support and how many items are on the history stack
   if (isHistorySupported && historyIcrementor === 0) {
     stateData = setHistoryId(History.getState().data);
@@ -71,7 +71,7 @@ function openModalHandler(e) {
 }
 
 function closeModalHandler(e) {
-  e.preventDefault();
+  //e.preventDefault();
   var $modalCont = $(this);
   var $clickedElm = $(e.target);
   if ($modalCont.find(e.target).length === 0 || $clickedElm.data('modal-btn') === 'close') {

@@ -892,7 +892,11 @@ form.standard .submit-cont {
 @media only screen and (min-width: 960px) {
   form.standard .submit-cont {
     float: right;
-    padding-top: 0; } }
+    padding-top: 0; }
+  form .form-label label {
+    float: left; }
+  form .form-label p {
+    float: right; } }
 
 /*! HTML5 Boilerplate v4.3.0 | MIT License | http://h5bp.com/ */
 /*
@@ -1226,10 +1230,10 @@ body {
   h2, h3 {
     page-break-after: avoid; } }
 
-.clearfix:before, .sheet > div:before, body.events-page .event-cont:before, body.press-page .press-feed-item:before, .modal-dialog-container .modal-footer:before, .clearfix:after, .sheet > div:after, body.events-page .event-cont:after, body.press-page .press-feed-item:after, .modal-dialog-container .modal-footer:after {
+.clearfix:before, form .form-label:before, .sheet > div:before, body.events-page .event-cont:before, body.press-page .press-feed-item:before, .modal-dialog-container.webinar-modal .webinar-info-cont:before, .modal-dialog-container .modal-footer:before, .clearfix:after, form .form-label:after, .sheet > div:after, body.events-page .event-cont:after, body.press-page .press-feed-item:after, .modal-dialog-container.webinar-modal .webinar-info-cont:after, .modal-dialog-container .modal-footer:after {
   content: " ";
   display: table; }
-.clearfix:after, .sheet > div:after, body.events-page .event-cont:after, body.press-page .press-feed-item:after, .modal-dialog-container .modal-footer:after {
+.clearfix:after, form .form-label:after, .sheet > div:after, body.events-page .event-cont:after, body.press-page .press-feed-item:after, .modal-dialog-container.webinar-modal .webinar-info-cont:after, .modal-dialog-container .modal-footer:after {
   clear: both; }
 
 #vh-test {
@@ -1350,7 +1354,7 @@ body {
   .attention h3 {
     text-align: center; }
 
-.error {
+p.error-show {
   color: #911d16;
   font-weight: 400; }
 
@@ -1524,14 +1528,11 @@ input[type="text"].error-show, input[type="url"].error-show, input[type="email"]
   font-variant: small-caps;
   text-transform: lowercase; }
 
-.processing-show, .error-show {
-  display: none; }
+.processing-hide, .error-hide {
+  opacity: 0; }
 
 body.processing-state .processing-show, body.error-state .error-show {
-  display: inherit; }
-
-body.processing-state .processing-hide, body.error-state .error-hide {
-  display: none; }
+  opacity: 1; }
 
 /* pages */
 body.home-page {
@@ -1957,7 +1958,9 @@ body.live-demo-page .signup-blurb h4, body.live-demo-page .signup-blurb h5 {
   .signup-blurb {
     margin-top: 75px; }
   .bg-white {
-    border-bottom: 1px solid #d5d5d5; } }
+    border-bottom: 1px solid #d5d5d5; }
+  .validation-error-message {
+    text-align: right; } }
 
 body.faq-page .button-controls {
   text-align: right; }
@@ -2354,16 +2357,15 @@ html.modal-open, body.modal-open {
   height: 100%; }
 
 .modal-dialog-container {
+  display: none;
   opacity: 0;
-  visibility: hidden;
-  -webkit-transition: visibility 0.5s, opacity 0.5s;
-          transition: visibility 0.5s, opacity 0.5s;
+  -webkit-transition: opacity 0.5s;
+          transition: opacity 0.5s;
   overflow: scroll; }
 
-body.modal-open .modal-dialog-container.visible {
-  opacity: 1;
-  visibility: visible;
-  display: block; }
+.modal-dialog-container.visible {
+  display: block;
+  opacity: 1; }
 
 .modal-dialog-container {
   width: 100%;
