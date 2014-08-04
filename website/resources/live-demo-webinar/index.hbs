@@ -1,0 +1,71 @@
+---
+layout: custom.hbs
+visible_title: Live Optimizely Walkthrough
+body_class:
+- live-demo-page
+compact_header: true
+page_script: webinar.js
+modals:
+- webinar_signup_compiled
+- webinar_confirmation_compiled
+---
+
+<div id="page-header">
+        <div class="container">
+            <h1>{{page.visible_title}}</h1>
+        </div><!--/.container-->
+    </div><!--/#page-header-->
+<div id="page-header-gradient"></div>
+
+<div class="container reasons">
+    <div class="row">
+        <div class="columns six">
+            <img src="../../assets/img/live-demo-webinar/calendar-large.png">
+        </div>
+
+        <div class="columns six">
+            <h3 class="blue">Top three reasons to attend this live demo:</h3>
+            <ol class="ordered-rounded-numbers">
+                <li>It's a <strong>personalized demo</strong> that covers building the test to interpreting the results and all the mind-blowing features in between.</li>
+                <li>Have your <strong>personal inquiries answered</strong> by a real Optimizely expert at the end of the demo.</li>
+                <li>You will <strong>accelerate your website optimization efforts</strong> and get excited about the immediate impacts testing with Optimizely can have on your website.</li>
+            </ol>
+        </div>
+    </div>
+</div>
+
+<div class="full-width bg-white">
+    <div class="container">
+        <div class="row">
+            <div class="columns five offset-one signup-blurb">
+                <h4 class="a-center">Sign Up Now for Free</h4>
+                <h5 class="a-center">Confirm your spot at a 45-minute walkthrough of Optimizely's website testing platform.</h5>
+            </div>
+            <div class="columns six">
+                <h4 class="a-center">Every Thursday at 11 <span class="small-caps">AM</span> PST / 2 <span class="small-caps">PM</span> EST</h4>
+                <div class="row" id="events">
+                    {{!--
+                    <div class="columns one-third date-container">
+                        <img src="../../assets/img/live-demo-webinar/calendar-icon.png">
+                        <p class="signup-month">July</p>
+                        <p class="signup-day">7</p>
+                        <a href="#" class="primary-button small">Register</a>
+                    </div>
+                    <div class="columns one-third date-container">
+                        <img src="../../assets/img/live-demo-webinar/calendar-icon.png">
+                        <p class="signup-month">July</p>
+                        <p class="signup-day">7</p>
+                        <a href="#" class="primary-button small">Register</a>
+                    </div>
+                    <div class="columns one-third date-container">
+                        <img src="../../assets/img/live-demo-webinar/calendar-icon.png">
+                        <p class="signup-month">July</p>
+                        <p class="signup-day">7</p>
+                        <a href="#" class="primary-button small">Register</a>
+                    </div>
+                    --}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

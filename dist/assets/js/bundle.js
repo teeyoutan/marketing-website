@@ -8645,15 +8645,142 @@ var __module0__ = (function(__dependency1__, __dependency2__, __dependency3__, _
     }
 }).call(this);
 
+this["optly"] = this["optly"] || {};
+this["optly"]["mrkt"] = this["optly"]["mrkt"] || {};
+this["optly"]["mrkt"]["templates"] = this["optly"]["mrkt"]["templates"] || {};
+
+this["optly"]["mrkt"]["templates"]["eventDisplay"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression, self=this;
+
+function program1(depth0,data) {
+  
+  var buffer = "", stack1, helper;
+  buffer += "\n<div class=\"event-cont\">\n  <div class=\"left\">\n    <time>";
+  if (helper = helpers.startMonth) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.startMonth); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + " ";
+  if (helper = helpers.startDay) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.startDay); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + " - ";
+  if (helper = helpers.endMonth) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.endMonth); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + " ";
+  if (helper = helpers.endDay) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.endDay); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + ", ";
+  if (helper = helpers.endYear) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.endYear); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</time>\n    <p class=\"venue\">";
+  if (helper = helpers.venue) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.venue); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</p>\n    <p>";
+  if (helper = helpers.cityState) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.cityState); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</p>\n  </div>\n  <div class=\"right\">\n    <h4><a href=\"";
+  if (helper = helpers.link) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.link); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + " target=\"_blank\">";
+  if (helper = helpers.title) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.title); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</a></h4>\n    <p>";
+  if (helper = helpers.description) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.description); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</p>\n  </div>\n</div><!--/.event-cont-->\n";
+  return buffer;
+  }
+
+  stack1 = helpers.each.call(depth0, (depth0 && depth0.events), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n";
+  return buffer;
+  });
+
+this["optly"]["mrkt"]["templates"]["webinarEventDetail"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
+
+
+  buffer += "<h4>Live Optimizely Walkthrough</h4>\n<p class=\"webinar-date\">Thursday, <span id=\"date-string\">";
+  if (helper = helpers.month) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.month); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + " ";
+  if (helper = helpers.day) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.day); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</span></p>\n<p class=\"webinar-time\">11 <span class=\"small-caps\">AM</span> PST / 2 <span class=\"small-caps\">PM</span> EST</p>\n<p class=\"webinar-cal-links\"><a href=\"http://www.google.com/calendar/event?action=TEMPLATE&text=Live%20Optimizely%20Walkthrough&dates=";
+  if (helper = helpers.calDate) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.calDate); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "T180000Z/";
+  if (helper = helpers.calDate) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.calDate); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "T184500Z&details=45-minute%20walkthrough%20of%20Optimizely's%20website%20testing%20platform.&location=&trp=false&sprop=Optimizely&sprop=name:https%3A%2F%2Fwww.optimizely.com%2F\" target=\"_blank\" title=\"Add event to Google Calendar\">Google Calendar</a> | <a href=\"/resources/live-demo-webinar-calendar.ics?time=";
+  if (helper = helpers.calDate) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.calDate); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "1800\" title=\"Add event to iCal\">iCal</a> | <a href=\"/resources/live-demo-webinar-calendar.ics?time=";
+  if (helper = helpers.calDate) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.calDate); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "1800\" title=\"Add to Outlook calendar\">Outlook</a></p>\n";
+  return buffer;
+  });
+
+this["optly"]["mrkt"]["templates"]["webinarEventDisplay"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression, self=this;
+
+function program1(depth0,data) {
+  
+  var buffer = "", stack1, helper;
+  buffer += "\n<div class=\"columns one-third date-container\">\n    <img src=\"../../assets/img/live-demo-webinar/calendar-icon.png\">\n    <p class=\"signup-month\">";
+  if (helper = helpers.month) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.month); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</p>\n    <p class=\"signup-day\">";
+  if (helper = helpers.day) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.day); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</p>\n    <a href=\"\" class=\"primary-button small register-btn\" data-index=\"";
+  if (helper = helpers.index) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.index); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\" data-date-long=\"";
+  if (helper = helpers.dateLong) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.dateLong); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\">Register</a>\n</div>\n";
+  return buffer;
+  }
+
+  stack1 = helpers.each.call(depth0, (depth0 && depth0.thursdays), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n";
+  return buffer;
+  });
 /* oForm - Author: Kyle Rush - MIT license - https://github.com/kylerush/oform */ 
-$.fn.extend({oForm:function(options){var defaultOptions,settings,formSelector;formSelector=$(this),defaultOptions={},defaultOptions.validation={},defaultOptions.validation.validators={},defaultOptions.emailIsValid=function(email){if("string"==typeof email){var emailRegEx=/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;return emailRegEx.test(email)}return!1},defaultOptions.phoneIsValid=function(phone){if("string"==typeof phone){var phoneOnlyDigits=phone.replace(/\D/g,"");return phoneOnlyDigits.length>=10?!0:!1}return!1},defaultOptions.checkboxIsValid=function(checkbox){return $(checkbox).prop("checked")?!0:!1},defaultOptions.stringHasValue=function(value){return"string"==typeof value&&value?!0:!1},defaultOptions.alertValidationError=function(element,isValid){"function"!=typeof settings.reportValidationError||isValid||settings.reportValidationError(element)},defaultOptions.adjustClasses=function(element,isValid){var relatedClass="."+element.attr("name")+"-related";return isValid?(element.removeClass("error-show"),$(relatedClass).each(function(index,value){$(value).removeClass("error-show")})):(element.addClass("error-show"),$(relatedClass).each(function(index,value){$(value).addClass("error-show")}),settings.alertValidationError(element,isValid)),"checkbox"===element.attr("type")&&element.focus(),isValid},defaultOptions.validateFields=function(args){var invalidFields=0;return $.each(args.selector.find('input:not([type="hidden"]):not([type="submit"])'),function(index,value){var element,dataValidation,elementValue,type,validate;if(element=$(value),dataValidation=$(element).attr("data-validation"),elementValue=element.val(),validate=function(valid){valid||invalidFields++},dataValidation&&settings.validation[dataValidation])settings.adjustClasses(element,settings.validation[dataValidation](elementValue));else if(element.attr("required"))switch(type=element.attr("type")){case"url":case"text":validate(settings.adjustClasses(element,settings.stringHasValue(elementValue)));break;case"email":validate(settings.adjustClasses(element,settings.emailIsValid(elementValue)));break;case"tel":validate(settings.adjustClasses(element,settings.phoneIsValid(elementValue)));break;case"checkbox":validate(settings.adjustClasses(element,settings.checkboxIsValid(element)))}}),0===invalidFields?($("body").removeClass("error-state"),!0):($("body").addClass("error-state"),!1)},defaultOptions.submitData=function(callback){var requestSettings,response;requestSettings={type:"POST",url:formSelector.attr("action")||settings.url,data:formSelector.serialize()},response=$.ajax(requestSettings),response.always(function(){try{response.responseJSON=$.parseJSON(response.responseText),response.requestInfo=requestSettings}catch(error){}defaultOptions.executeAfterCallbacks(response,callback)})},defaultOptions.executeAfterCallbacks=function(response,callback){"function"==typeof settings.afterLocal?settings.afterLocal(response,settings.afterGlobal?settings.afterGlobal:void 0):"function"==typeof settings.afterGlobal&&settings.afterGlobal(response),"function"==typeof callback&&callback()},defaultOptions.overrideTestFunction=function(){return!1},"object"==typeof jQuery.oFormGlobalOverrides&&(defaultOptions=$.extend(!0,defaultOptions,jQuery.oFormGlobalOverrides)),settings=$.extend(!0,defaultOptions,options),formSelector.submit(function(event){if(event.preventDefault(),"function"==typeof settings.beforeLocal&&settings.beforeLocal({selector:formSelector})===!1)return!1;if("function"==typeof settings.beforeGlobal&&settings.beforeGlobal({selector:formSelector})===!1)return!1;if("function"==typeof settings.validateFields){var validFields=settings.validateFields({selector:formSelector});if(validFields===!1)return void defaultOptions.executeAfterCallbacks(void 0)}settings.submitData(),event.preventDefault()})}});
+$.fn.extend({oForm:function(options){var defaultOptions,settings,formSelector;formSelector=$(this),defaultOptions={},defaultOptions.validation={},defaultOptions.validation.validators={},defaultOptions.emailIsValid=function(email){if("string"==typeof email){var emailRegEx=/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;return emailRegEx.test(email)}return!1},defaultOptions.phoneIsValid=function(phone){if("string"==typeof phone){var phoneOnlyDigits=phone.replace(/\D/g,"");return phoneOnlyDigits.length>=10?!0:!1}return!1},defaultOptions.checkboxIsValid=function(checkbox){return $(checkbox).prop("checked")?!0:!1},defaultOptions.stringHasValue=function(value){return"string"==typeof value&&value?!0:!1},defaultOptions.alertValidationError=function(element,isValid){"function"!=typeof settings.reportValidationError||isValid||settings.reportValidationError(element)},defaultOptions.adjustClasses=function(element,isValid){var relatedClass="."+element.attr("name")+"-related";return isValid?(element.removeClass("error-show"),$(relatedClass).each(function(index,value){$(value).removeClass("error-show")})):(element.addClass("error-show"),$(relatedClass).each(function(index,value){$(value).addClass("error-show")}),settings.alertValidationError(element,isValid)),"checkbox"===element.attr("type")&&element.focus(),isValid},defaultOptions.validateFields=function(args){var invalidFields=0;return $.each(args.selector.find('input:not([type="hidden"]):not([type="submit"])'),function(index,value){var element,dataValidation,elementValue,type,validate;if(element=$(value),dataValidation=$(element).attr("data-validation"),elementValue=element.val(),validate=function(valid){valid||invalidFields++},dataValidation&&settings.validation[dataValidation])settings.adjustClasses(element,settings.validation[dataValidation](elementValue));else if(element.attr("required"))switch(type=element.attr("type")){case"url":case"text":validate(settings.adjustClasses(element,settings.stringHasValue(elementValue)));break;case"email":validate(settings.adjustClasses(element,settings.emailIsValid(elementValue)));break;case"tel":validate(settings.adjustClasses(element,settings.phoneIsValid(elementValue)));break;case"checkbox":validate(settings.adjustClasses(element,settings.checkboxIsValid(element)))}}),0===invalidFields?($("body").removeClass("error-state"),settings.adjustClasses(formSelector.find(".error-message"),!0),!0):($("body").addClass("error-state"),settings.adjustClasses(formSelector.find(".error-message"),!1),!1)},defaultOptions.submitData=function(callback){var requestSettings,response;requestSettings={type:"POST",url:formSelector.attr("action")||settings.url,data:formSelector.serialize()},response=$.ajax(requestSettings),response.always(function(){try{response.responseJSON=$.parseJSON(response.responseText),response.requestInfo=requestSettings}catch(error){}defaultOptions.executeAfterCallbacks(response,callback)})},defaultOptions.executeAfterCallbacks=function(response,callback){"function"==typeof settings.afterLocal?settings.afterLocal(response,settings.afterGlobal?settings.afterGlobal:void 0):"function"==typeof settings.afterGlobal&&settings.afterGlobal(response),"function"==typeof callback&&callback()},defaultOptions.overrideTestFunction=function(){return!1},"object"==typeof jQuery.oFormGlobalOverrides&&(defaultOptions=$.extend(!0,defaultOptions,jQuery.oFormGlobalOverrides)),settings=$.extend(!0,defaultOptions,options),formSelector.submit(function(event){if(event.preventDefault(),"function"==typeof settings.beforeLocal&&settings.beforeLocal({selector:formSelector})===!1)return!1;if("function"==typeof settings.beforeGlobal&&settings.beforeGlobal({selector:formSelector})===!1)return!1;if("function"==typeof settings.validateFields){var validFields=settings.validateFields({selector:formSelector});if(validFields===!1)return void defaultOptions.executeAfterCallbacks(void 0)}settings.submitData(),event.preventDefault()})}});
 (function($){ 
 
   window.optly = window.optly || {}; 
 
   window.optly.mrkt = window.optly.mrkt || {}; 
-
-/* global FastClick: false */
 
 window.optly.mrkt.isMobile = function(){
 
@@ -8669,25 +8796,17 @@ window.optly.mrkt.isMobile = function(){
 
 };
 
-window.optly.mrkt.loadScript = function(uri){
-
-	var script = document.createElement('script');
-
-	script.type = 'text/javascript';
-
-	script.async = true;
-
-	script.src = uri;
-
-	document.getElementsByTagName('head')[0].appendChild(script);
-
-};
-
 window.optly.mrkt.mobileJS = function(){
 
 	if( window.optly.mrkt.isMobile() ){
 
-		FastClick.attach(document.body);
+		$('body').addClass('mobile');
+
+		$.getScript(window.optly.mrkt.assetsDir + '/js/libraries/fastclick.js', function(){
+
+			window.FastClick.attach(document.body);
+
+		});
 
 		$('body').delegate('.mobile-nav-toggle', 'click', function(e){
 
@@ -8791,13 +8910,6 @@ window.optly.mrkt.formDataStringToObject = function getJsonFromUrl(string) {
 
 };
 
-//load fastclick on mobile devices
-if(window.optly.mrkt.isMobile){
-
-	window.optly.mrkt.loadScript(window.optly.mrkt.assetsDir + '/js/libraries/jquery-1.6.4.min.js');
-
-}
-
 window.optly = window.optly || {};
 window.optly.mrkt = window.optly.mrkt || {};
 window.optly.mrkt.modal = {};
@@ -8813,7 +8925,8 @@ var History = window.History || {},
   isSafari = /Safari/.test(navigator.userAgent) && /Apple Computer/.test(navigator.vendor),
   isIosSafari = /(iPhone|iPod|iPad).*AppleWebKit(?!.*Safari)/i.test(navigator.userAgent) || /(iPhone|iPod|iPad).*AppleWebKit/i.test(navigator.userAgent),
   isIosChrome = !!navigator.userAgent.match('CriOS'),
-  isHistorySupported = Modernizr.history && !!window.sessionStorage && ( !(isIosSafari || isSafari) ) || isIosChrome,
+  //isHistorySupported = Modernizr.history && !!window.sessionStorage && ( !(isIosSafari || isSafari) ) || isIosChrome,
+  isHistorySupported = false,
   historyIcrementor = 0,
   modalState = {},
   historyTimestamp,
@@ -8846,13 +8959,13 @@ function setHistoryId(historyData) {
   return stateData;
 }
 
-function openModalHandler(e) {
+window.optly.mrkt.modal.openModalHandler = function(modalType) {
   var title,
-    stateData,
-    modalType = $(this).data('modal-click');
+    stateData;
 
-  e.preventDefault();
+  //e.preventDefault();
   // Check for History/SessionStorage support and how many items are on the history stack
+  console.log(isHistorySupported && historyIcrementor === 0);
   if (isHistorySupported && historyIcrementor === 0) {
     stateData = setHistoryId(History.getState().data);
     stateData.modalType = modalType;
@@ -8871,7 +8984,7 @@ function openModalHandler(e) {
 }
 
 function closeModalHandler(e) {
-  e.preventDefault();
+  //e.preventDefault();
   var $modalCont = $(this);
   var $clickedElm = $(e.target);
   if ($modalCont.find(e.target).length === 0 || $clickedElm.data('modal-btn') === 'close') {
@@ -8926,14 +9039,13 @@ window.optly.mrkt.modal.open = function(modalType) {
     storeModalState(modalType, true);
   }
 
-  if ( !$('html, body').hasClass('no-scroll') && window.innerWidth <= 768) {
-    $('html, body').addClass('no-scroll');
-  }
+  $('html, body').addClass('modal-open');
+
+  console.log('TEST');
 
   // Fade out the modal and attach the close modal handler
-  $elm.fadeToggle(function() {
-    $elm.bind('click', closeModalHandler);
-  });
+  $elm.toggleClass('visible').bind('click', closeModalHandler);
+
 };
 
 window.optly.mrkt.modal.close = function(modalType) {
@@ -8947,17 +9059,14 @@ window.optly.mrkt.modal.close = function(modalType) {
     storeModalState(modalType, false);
   }
 
-  if ( $('html, body').hasClass('no-scroll') ) {
-    $('html, body').removeClass('no-scroll');
-  }
+  $('html, body').removeClass('modal-open');
 
   window.scrollTo(0,0);
   $elm.children()[0].scrollTop = 0;
 
   // Fade out the modal and remove the close modal handler
-  $elm.fadeToggle(function() {
-    $elm.unbind('click', closeModalHandler);
-  });
+  $elm.toggleClass('visible').unbind('click', closeModalHandler);
+
 };
 
 // Only use if History/Session Storage in Enabled
@@ -8988,12 +9097,6 @@ function handlePopstate(e) {
 }
 
 function setMobileProperties() {
-  if (!$('html, body').hasClass('no-scroll') && window.innerWidth <= 768) {
-    $('html, body').addClass('no-scroll');
-  }
-  else if ( $('html, body').hasClass('no-scroll') && window.innerWidth > 768) {
-    $('html, body').removeClass('no-scroll');
-  }
   if (!vhSupported) {
     if (window.innerWidth <= 768) {
       $.each($elms, function(key, $elm) {
@@ -9022,7 +9125,9 @@ if (isHistorySupported) {
 }
 
 // Bind modal open to nav click events
-$('body').delegate('[data-modal-click]', 'click', openModalHandler);
+$('body').delegate('[data-modal-click]', 'click', function(){
+  window.optly.mrkt.modal.openModalHandler($(this).data('modal-click'));
+});
 
 // Test for vh CSS property to make modal full height at mobile screen size
 testEl.css({

@@ -1,0 +1,37 @@
+---
+layout: modal_wrapper.hbs
+wrapper_id: webinar-signup-modal
+wrapper_class: webinar-modal
+data_attr_value: webinar-signup
+form_action: /webinar/register
+form_id: webinar-registration-form
+modal_title: Webinar Signup
+primary_button_text: Register
+negative_button_text: Cancel
+---
+          <div class="webinar-info-cont">
+            <div class="left">
+              <p>Selected date:</p>
+            </div>
+            <div class="right webinar-info">
+              <div class="webinar-detail-info"></div>
+            </div>
+          </div>
+          <p class="error-message error-hide">Please correct the error(s) below.</p>
+          <div class="clearfix" style="clear: both;">
+            <div class="form-label">
+              <p class="name-related validation-error-message error-hide">Name is required</p>
+              <label for="name">Name: </label>
+            </div>
+            <input type="text" id="name" name="name" required></input>
+            <div class="form-label">
+              <label>Email: </label>
+              <p class="email-related validation-error-message error-hide">Email is required</p>
+            </div>
+            <input type="email" id="email" name="email" required></input>
+            <input type="hidden" name="WebinarRegistrationDate" id="date-long" value="">
+            <input type="hidden" name="lpId" value="-1">
+            <input type="hidden" name="subId" value="56">
+            <input type="hidden" name="FirstName" value="">
+            <input type="hidden" name="LastName" value="">
+          </div>

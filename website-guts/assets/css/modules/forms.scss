@@ -3,9 +3,10 @@ input[type=text], input[type=url], input[type=tel], input[type=email], input[typ
   font-weight: 400;
   padding: 4px;
   color: #242424;
-  font-size: .93em;
+  font-size: 16px;
   min-height: 38px;
   width: 100%;
+  margin-bottom: 5px;
 }
 
 select {
@@ -77,6 +78,15 @@ form {
       .submit-cont {
         float: right;
         padding-top: 0;
+      }
+    }
+    .form-label {
+      @extend .clearfix;
+      label {
+        float: left;
+      }
+      p {
+        float: right;
       }
     }
   }

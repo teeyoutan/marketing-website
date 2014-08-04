@@ -8,6 +8,19 @@ window.optly.mrkt.events = {};
 
 window.optly.mrkt.events.showEvents = function(url, div){
 
+  var templateContext, htmlDecode;
+
+  templateContext = {};
+
+  templateContext.events = [];
+
+  htmlDecode = function(text) {
+    var urlRegex = /(https?:\/\/[^\s]+)/g;
+    return text.replace(urlRegex, function(url) {
+        return '<a href="' + url + '">' + url + '</a>';
+    });
+  };
+
   $.get(url).always(function(data, textStatus, jqXHR){
 
     if(jqXHR.status === 200){
@@ -16,27 +29,13 @@ window.optly.mrkt.events.showEvents = function(url, div){
 
         if( data.feed.entry instanceof Array ){
 
-          var i, events, eventHTML, eventTemplate;
+          var i, container;
 
-          events = '';
-
-          eventHTML = '<div class="event-cont">' +
-                        '<div class="left">' +
-                            '<time>{{startMonth}} {{startDay}} - {{endMonth}} {{endDay}}, {{endYear}}</time>' +
-                            '<p class="venue">{{venue}}</p>' +
-                            '<p>{{cityState}}</p>' +
-                          '</div>' +
-                          '<div class="right">' +
-                            '<h4><a href="{{link}} target="_blank">{{title}}</a></h4>' +
-                            '<p>{{description}}</p>' +
-                          '</div>' +
-                      '</div><!--/.event-cont-->';
-
-          eventTemplate = Handlebars.compile(eventHTML);
+          container = {};
 
           for(i = 0; i <= data.feed.entry.length - 1; i++){
 
-            var entry, eventData, venue, startDate, endDate, zeroRegEx;
+            var entry, eventData, venue, startDate, endDate, zeroRegEx, description;
 
             entry = data.feed.entry[i];
 
@@ -51,6 +50,8 @@ window.optly.mrkt.events.showEvents = function(url, div){
               venue = entry.gd$where[0].valueString.split(' /')[0];
 
             }
+
+            description = entry.content.$t.split('-- ')['1'].trim().replace(/\r?\n|\r/g, '');
 
             eventData = {
 
@@ -70,17 +71,19 @@ window.optly.mrkt.events.showEvents = function(url, div){
 
               endYear: endDate.format('YYYY'),
 
-              description: entry.content.$t.split('-- ')[1],
+              description: htmlDecode( description ),
 
               venue: venue
 
             };
 
-            events += eventTemplate(eventData);
+            templateContext.events.push(eventData);
 
           }
 
-          $(div).append(events);
+          //console.log(window.optly.mrkt.templates.eventDisplay(templateContext));
+
+          $(div).html(window.optly.mrkt.templates.eventDisplay(templateContext));
 
         } else {
 

@@ -1,5 +1,3 @@
-/* global FastClick: false */
-
 window.optly.mrkt.isMobile = function(){
 
 	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
@@ -14,25 +12,17 @@ window.optly.mrkt.isMobile = function(){
 
 };
 
-window.optly.mrkt.loadScript = function(uri){
-
-	var script = document.createElement('script');
-
-	script.type = 'text/javascript';
-
-	script.async = true;
-
-	script.src = uri;
-
-	document.getElementsByTagName('head')[0].appendChild(script);
-
-};
-
 window.optly.mrkt.mobileJS = function(){
 
 	if( window.optly.mrkt.isMobile() ){
 
-		FastClick.attach(document.body);
+		$('body').addClass('mobile');
+
+		$.getScript(window.optly.mrkt.assetsDir + '/js/libraries/fastclick.js', function(){
+
+			window.FastClick.attach(document.body);
+
+		});
 
 		$('body').delegate('.mobile-nav-toggle', 'click', function(e){
 
@@ -135,10 +125,3 @@ window.optly.mrkt.formDataStringToObject = function getJsonFromUrl(string) {
   return result;
 
 };
-
-//load fastclick on mobile devices
-if(window.optly.mrkt.isMobile){
-
-	window.optly.mrkt.loadScript(window.optly.mrkt.assetsDir + '/js/libraries/jquery-1.6.4.min.js');
-
-}
