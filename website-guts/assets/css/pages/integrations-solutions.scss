@@ -1,35 +1,15 @@
 body.integrations-solutions {
-  .pill {
-    border-radius: 5px;
-    font-size: 12px;
-    margin-left: auto;
-    width: 326px;
 
-    a {
-      border: 1px solid rgb(213, 213, 213);
-      border-top-left-radius: 5px;
-      border-bottom-left-radius: 5px;
-      color: $subheader-text-color;
-      background-color: #FFFFFF;
-      display: block;
-      float: left;
-      text-align: center;
-      padding: 10px 0;
-      width: 160px;
 
-      &:last-child {
-        border-top-left-radius: 0;
-        border-bottom-left-radius: 0;
-        border-top-right-radius: 5px;
-        border-bottom-right-radius: 5px;
-      }
+  .page-selector {
+    .pill {
+      width: 335px;
     }
+  }
 
-    .active {
-      border: 1px solid #0072bc;
-      background-color: #448ccb;
-      color: #FFFFFF;
-      text-shadow: 0 1px #0072bc;
+  .filter {
+    .pill {
+      width: 400px;
     }
   }
 
@@ -71,6 +51,10 @@ body.integrations-solutions {
 
     .title-container {
       border-bottom: 1px solid rgb(213, 213, 213);
+
+      h4 {
+        text-align: center;
+      }
     }
 
     .button-container {
@@ -79,15 +63,21 @@ body.integrations-solutions {
       padding-right: 10px;
     }
 
-    .customer-title {
-      display: inline-block;
+    .partner-title {
+      color: $text-color;
     }
 
-    .customer-inner-content {
+    .partner-location {
+      color: #a9a9a9;
+      text-transform: uppercase;
+      font-weight: 400;
+    }
+
+    .partner-inner-content {
       padding: 20px;
     }
 
-    .customer-logos {
+    .partner-logos {
       background-repeat: no-repeat;
       background-size: contain;
       background-position: center center;
@@ -101,6 +91,15 @@ body.integrations-solutions {
       width: 100%;
     }
 
+    .level {
+      .level-heading {
+        color: #a9a9a9;
+        font-size: 12px;
+        font-weight: 400;
+        text-transform: uppercase;
+      }
+    }
+
     /*.button {
       padding: 6px 12px;
       font-size: 12px;
@@ -108,5 +107,20 @@ body.integrations-solutions {
       bottom: 15px;
       opacity: 0;
     }*/
+  }
+
+  .single-partner-container {
+    background-color: #FFFFFF;
+    border: 1px solid rgb(213, 213, 213);
+    border-radius: 5px;
+    padding: 20px 40px;
+
+    .partners-misc {
+      color: #a9a9a9;
+    }
+  }
+
+  a.button { // TODO: this should apply automatically
+    color: #FFFFFF;
   }
 }

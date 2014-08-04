@@ -11,10 +11,10 @@ body_class:
     <div class="columns six">
       <h2>Integrations</h2>
     </div>
-    <div class="columns six">
-      <div class="pill clearfix">
-        <a href="{{linkPath}}/partners/integrations">Integrations (??)</a>
-        <a href="{{linkPath}}/partners/solutions" class="active">Solutions Partners (??)</a>
+    <div class="columns six page-selector">
+      <div class="pill clearfix big">
+        <span><a href="{{linkPath}}/partners/integrations">Integrations (??)</a></span>
+        <span class="active"><a href="{{linkPath}}/partners/solutions">Solutions Partners (??)</a></span>
       </div>
     </div>
   </div>
@@ -29,5 +29,52 @@ body_class:
       If you would like to learn more
       <a class="big" href="#">Apply to Become a <br /> Solutions Partner Today! &gt;</a>
     </div>
+  </div>
+
+  <div class="row">
+    <div class="columns filter">
+      <div class="pill clearfix">
+        <span class="heading">Filter By:</span>
+        <span>Region &#9662;</span>
+        <span>Star Rating &#9662;</span>
+        <span>Industry &#9662;</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="integrations-container container">
+      {{!-- {{#each customer_info.customerList}}
+        {{#classgridstart @index}}
+          <div class="row">
+        {{/classgridstart}}--}}
+          <div class="row">
+            <div class="columns one-third partner-grid-elm">
+              <div class="title-container">
+                <h4 class="partner-title">Analytics Pros</h4>
+                <div class="partner-location">Seattle, WA</div>
+              </div> <!-- .title-container -->
+              <div class="partner-inner-content">
+                <div class="partner-logos" style="background-image: url(../../assets/img/customer-logos/{{logoUrl}}); width: {{logoW}}px; height: {{logoH}}px"></div>
+
+                <div class="level">
+                  <div class="level-heading">Certification Level:</div>
+                  <div class="stars">
+                    <div class="star"></div>
+                    <div class="star"></div>
+                    <div class="star"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="button-container">
+                <a href="{{downloadUrl}}" class="button">Learn More &gt;</a>
+              </div>
+            </div> <!-- .partner-grid-elm -->
+          </div>
+        {{!--{{#classgridfinish @index @last}}
+          </div>
+        {{/classgridfinish}}
+      {{/each}}--}}
+    </div> <!-- .case-studies-container -->
   </div>
 </div>
