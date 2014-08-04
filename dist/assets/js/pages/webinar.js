@@ -83,6 +83,42 @@ $(function(){
 
   $('#events').html(eventDisplayHTML);
 
+  $('#webinar-registration-form').oForm({
+
+    afterLocal: function(resp){
+
+      if(typeof resp === 'object'){
+
+        if(typeof resp.responseJSON === 'object'){
+
+          if(resp.responseJSON.succeeded){
+
+            //window.optly.mrkt.modal.open('webinar-confirmation');
+
+            window.optly.mrkt.modal.openModalHandler('webinar-confirmation');
+
+          } else {
+
+            console.log('failed');
+
+            if(resp.responseJSON.message){
+
+              $('body').addClass('error-state');
+
+              $('.error-message').text(resp.responseJSON.message).addClass('error-show').removeClass('error-hide');
+
+            }
+
+          }
+
+        }
+
+      }
+
+    }
+
+  });
+
   $('body').delegate('.register-btn', 'click', function(e){
 
     e.preventDefault();
@@ -93,51 +129,15 @@ $(function(){
 
     index = parseInt( elem.attr('data-index') );
 
+    $('[name="WebinarRegistrationDate"]').val( $(this).attr('data-date-long') );
+
     $('.webinar-detail-info').each(function(){
 
       $(this).html( window.optly.mrkt.templates.webinarEventDetail(templateContext.thursdays[index]) );
 
     });
 
-    //window.optly.mrkt.modal.open('webinar-signup');
-
     window.optly.mrkt.modal.openModalHandler('webinar-signup');
-
-    $('#webinar-registration-form').oForm({
-
-      afterLocal: function(resp){
-
-        if(typeof resp === 'object'){
-
-          if(typeof resp.responseJSON === 'object'){
-
-            if(resp.responseJSON.succeeded){
-
-              //window.optly.mrkt.modal.open('webinar-confirmation');
-
-              window.optly.mrkt.modal.openModalHandler('webinar-confirmation');
-
-            } else {
-
-              console.log('failed');
-
-              if(resp.responseJSON.message){
-
-                $('body').addClass('error-state');
-
-                $('.error-message').text(resp.responseJSON.message).addClass('error-show').removeClass('error-hide');
-
-              }
-
-            }
-
-          }
-
-        }
-
-      }
-
-    });
 
   });
 
