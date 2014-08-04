@@ -109,8 +109,6 @@ $(function(){
 
           } else {
 
-            console.log('failed');
-
             if(resp.responseJSON.message){
 
               $('body').addClass('error-state');
