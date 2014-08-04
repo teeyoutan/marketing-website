@@ -164,6 +164,14 @@ module.exports = function(grunt) {
               res.end( grunt.file.read('website-guts/endpoint-mocks/lastFiveExperiments.json') );
 
             }
+
+            else if(req.url === '/account/signin') {
+
+              res.cookie('optimizely_signed_in', '1', {httpOnly: false});
+              res.writeHead(200, {'Content-Type': 'application/json'});
+              res.end('{"success": "true"}');
+
+            }
             else{
 
               return next();
@@ -477,7 +485,7 @@ module.exports = function(grunt) {
     inline: {
         dist: {
             options:{
-                //uglify: true,
+                uglify: true,
                 exts: 'hbs'
             },
             src: ['<%= config.guts %>/templates/layouts/wrapper.hbs'],

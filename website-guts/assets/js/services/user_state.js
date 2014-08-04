@@ -1,11 +1,10 @@
 window.optly = window.optly || {};
 window.optly.mrkt = window.optly.mrkt || {};
-window.optly.mrkt.userInfo = window.optly.mrkt.userInfo || {};
 window.optly.mrkt.services = window.optly.mrkt.services || {};
 
-console.log('first def: ', 'some new message', window.optly.mrkt.userInfo);
-
-var optly_QFactory = function() {
+var optly_QFactory = function(acctData, expData) {
+  this.acctData = acctData;
+  this.expData = expData;
 
   this.transformQuedArgs = function(quedArgs) {
     $.each(quedArgs, function(index, arg) {
@@ -20,12 +19,17 @@ var optly_QFactory = function() {
     if (typeof fnQ[i] === 'function') {
       quedArgs = fnQ.slice(1);
 
+      this.transformQuedArgs(quedArgs);
+
       fnQ[i].apply( fnQ[i], quedArgs );
     }
     else {
       for(var nestedI = 0; nestedI < fnQ[i].length; nestedI += 1) {
+
         if (typeof fnQ[i][nestedI] === 'function') {
           quedArgs = fnQ[i].slice(1);
+
+          this.transformQuedArgs(quedArgs);
 
           fnQ[i][nestedI].apply( fnQ[i][nestedI], quedArgs );
         }
@@ -37,6 +41,11 @@ var optly_QFactory = function() {
     for (var i = 0; i < fnQ.length; i += 1) {
       this.parseQ(fnQ, i);
     } 
+  };
+
+  this.userData = {
+    account: this.acctData,
+    experiments: this.expData
   };
 
 };
@@ -57,7 +66,12 @@ window.optly.mrkt.services.xhr = {
         if ( arguments[i].callback ) {
           callbacks.push( arguments[i].callback );
         }
-        deffereds.push( defferedPromise );
+        if (arguments.length > 1) {
+          deffereds.push( defferedPromise );
+        }
+        else {
+          deffereds = defferedPromise;
+        }
       }
     }
     if ( callbacks.length > 0 ) {
@@ -156,12 +170,10 @@ window.optly.mrkt.services.xhr = {
           responses.push(response);
         }
         if (index === tranformedArgs.length - 1) {
-          window.optly.mrkt.userInfo = window.optly.mrkt.userInfo || {};
+          //window.optly.mrkt.userInfo = window.optly.mrkt.userInfo || {};
           var oldQue = window.optly_q;
-          window.optly.mrkt.userInfo.account = responses[0];
-          window.optly.mrkt.userInfo.experiments = responses[1];
-          console.log(responses);
-          window.optly_q = new optly_QFactory();
+
+          window.optly_q = new optly_QFactory(responses[0], responses[1]);
           window.optly_q.push(oldQue);
         }
       }.bind(this) );
@@ -183,11 +195,13 @@ window.optly.mrkt.services.xhr = {
   getLoginStatus: function(setCookie, requestParams) {
     var deffereds;
     // for testing
-    if (setCookie) {
-      document.cookie = 'optimizely_signed_in=1';
-    }
+    // if (setCookie) {
+    //   document.cookie = 'optimizely_signed_in=1';
+    // }
     if ( !!this.readCookie('optimizely_signed_in') ) {
       deffereds = this.makeRequest.apply(this, requestParams);
+    } else {
+      console.log('no signin cookie present!!');
     }
     return deffereds;
   }

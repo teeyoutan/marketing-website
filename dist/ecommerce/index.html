@@ -7,247 +7,7 @@
             window.optly_q = [];
         </script>
         <script>
-window.optly = window.optly || {};
-window.optly.mrkt = window.optly.mrkt || {};
-window.optly.mrkt.userInfo = window.optly.mrkt.userInfo || {};
-window.optly.mrkt.services = window.optly.mrkt.services || {};
-
-console.log('first def: ', 'some new message', window.optly.mrkt.userInfo);
-
-var optly_QFactory = function() {
-
-  this.transformQuedArgs = function(quedArgs) {
-    $.each(quedArgs, function(index, arg) {
-      if (this[ arg ] !== undefined) {
-        quedArgs[ index ] = this[ arg ];
-      }
-    }.bind(this));
-  };
-
-  this.parseQ = function(fnQ, i) {
-    var quedArgs;
-    if (typeof fnQ[i] === 'function') {
-      quedArgs = fnQ.slice(1);
-
-      fnQ[i].apply( fnQ[i], quedArgs );
-    }
-    else {
-      for(var nestedI = 0; nestedI < fnQ[i].length; nestedI += 1) {
-        if (typeof fnQ[i][nestedI] === 'function') {
-          quedArgs = fnQ[i].slice(1);
-
-          fnQ[i][nestedI].apply( fnQ[i][nestedI], quedArgs );
-        }
-      }
-    }
-  };
-
-  this.push = function(fnQ) {
-    for (var i = 0; i < fnQ.length; i += 1) {
-      this.parseQ(fnQ, i);
-    } 
-  };
-
-};
-
-window.optly.mrkt.services.xhr = {
-  makeRequest: function() {
-    var deffereds = [], callbacks = [], defferedPromise;
-    for (var i = 0; i < arguments.length; i += 1) {
-      if (typeof arguments[i] === 'object') {
-        defferedPromise = $.ajax({
-          type: arguments[i].type,
-          url: arguments[i].url
-        });
-        // parameters passed must be objects with a path and properties keys
-        if (arguments[i].properties) {
-          this.handleErrors( defferedPromise, arguments[i].properties );
-        }
-        if ( arguments[i].callback ) {
-          callbacks.push( arguments[i].callback );
-        }
-        deffereds.push( defferedPromise );
-      }
-    }
-    if ( callbacks.length > 0 ) {
-      this.resolveDeffereds(deffereds, callbacks);
-    }
-    
-    return deffereds;
-  },
-
-  isPromise: function(value) {
-    if (typeof value.then !== 'function') {
-        return false;
-    }
-    var promiseThenSrc = String($.Deferred().then);
-    var valueThenSrc = String(value.then);
-    return promiseThenSrc === valueThenSrc;
-  },
-
-  handleErrors: function(deffered, properties) {
-    var defferedStatus = {
-      error: false,
-      errorLog: []
-    };
-
-    return deffered.always(function(data, textStatus, jqXHR) {
-
-        // check if the last argument is a promise, if so the response was successful
-        if( this.isPromise(jqXHR) && textStatus === 'success'){
-          defferedStatus.promise = jqXHR;
-          $.each(properties, function(key, prop) {
-            // if property is not nested
-            if(typeof prop !== 'object') {
-              if (typeof data[ key ] === prop) {
-                console.log(key + ' is validated');
-              }
-              else {
-                defferedStatus.error = true;
-                defferedStatus.errorLog.push('Validation Error: ' + key + ' is not a ' + prop);
-              }
-            }
-            // if property is nested
-            else {
-              var nestedData = data[ key ];
-              // if the property maps to an array
-              if ( Array.isArray(nestedData) ) {
-
-                  $.each(nestedData, function(index) {
-
-                    $.each(properties[ key ], function(innerKey, innerProp) {
-                      if (typeof nestedData[ index ][ innerKey ] === innerProp) {
-                        console.log(innerKey + ' is validated');
-                      }
-                      else {
-                        defferedStatus.error = true;
-                        defferedStatus.errorLog.push('Validation Error: ' + innerKey + ' is not a ' + innerProp);
-                      }
-                    });
-
-                });
-              }
-              // if the property maps to an object
-              else {
-                $.each(prop, function(innerKey, innerProp) {
-                  if (typeof data[ key ][ innerKey ] === innerProp) {
-                    console.log(innerKey + ' is validated');
-                  }
-                  else {
-                    defferedStatus.error = true;
-                    defferedStatus.errorLog.push('Validation Error: ' + innerKey + ' is not a ' + innerProp);
-                  }
-                });
-              }
-
-            }
-          }); // end outer .each
-       
-        } else {
-          defferedStatus.promise = data;
-          defferedStatus.error = true;
-          defferedStatus.message = data.responseText + ' ' + data.statusText + ' ' + data.status;
-          console.log(defferedStatus);
-        }
-
-    }.bind(this));
-
-  },
-
-  resolveDeffereds: function(deffereds, callbacks) {
-    var responses = [];
-    $.when.apply($, deffereds).done(function() {
-      var tranformedArgs = Array.prototype.slice.call(arguments);
-      $.each(tranformedArgs, function(index, val) {
-        var response = val[0];
-        if( !this.isPromise( response ) && val[1] === 'success' ) {
-          callbacks[index](response);
-          responses.push(response);
-        }
-        if (index === tranformedArgs.length - 1) {
-          window.optly.mrkt.userInfo = window.optly.mrkt.userInfo || {};
-          var oldQue = window.optly_q;
-          window.optly.mrkt.userInfo.account = responses[0];
-          window.optly.mrkt.userInfo.experiments = responses[1];
-          console.log(responses);
-          window.optly_q = new optly_QFactory();
-          window.optly_q.push(oldQue);
-        }
-      }.bind(this) );
-    }.bind(this) );
-
-    return true;
-  },
-
-  readCookie: function (name) {
-    // Escape regexp special characters (thanks kangax!)
-    name = name.replace(/([.*+?^=!:${}()|[\]\/\\])/g, '\\$1');
-
-    var regex = new RegExp('(?:^|;)\\s?' + name + '=(.*?)(?:;|$)','i'),
-        match = document.cookie.match(regex);
-
-    return match && window.unescape(match[1]);
-  }, 
-
-  getLoginStatus: function(setCookie, requestParams) {
-    var deffereds;
-    // for testing
-    if (setCookie) {
-      document.cookie = 'optimizely_signed_in=1';
-    }
-    if ( !!this.readCookie('optimizely_signed_in') ) {
-      deffereds = this.makeRequest.apply(this, requestParams);
-    }
-    return deffereds;
-  }
-  
-};
-
-(function() {
-  var accountData,
-    experimentData,
-    acctParams,
-    expParams,
-    RequestParams = function(requestType, url, properties, callback) {
-      this.type = requestType;
-      this.url = url;
-      this.properties = properties;
-      this.callback = callback;
-    };
-
-  function accountDataCallback(data) {
-    accountData = data;
-  }
-
-  function experimentDataCallback(data) {
-    experimentData = data;
-  }
-
-  acctParams = new RequestParams(
-    'GET',
-    '/account/info',
-    { 
-      email: 'string' 
-    },
-    accountDataCallback
-  );
-
-  expParams = new RequestParams(
-    'GET',
-    '/experiment/load_recent?max_experiments=5',
-    {
-      experiments: {
-        id: 'number',
-        description: 'string'
-      }
-    },
-    experimentDataCallback
-  );
-
-  return window.optly.mrkt.services.xhr.getLoginStatus(true, [acctParams, expParams]);
-}());
-
-
+window.optly=window.optly||{},window.optly.mrkt=window.optly.mrkt||{},window.optly.mrkt.services=window.optly.mrkt.services||{};var optly_QFactory=function(e,t){this.acctData=e,this.expData=t,this.transformQuedArgs=function(e){$.each(e,function(t,r){void 0!==this[r]&&(e[t]=this[r])}.bind(this))},this.parseQ=function(e,t){var r;if("function"==typeof e[t])r=e.slice(1),this.transformQuedArgs(r),e[t].apply(e[t],r);else for(var n=0;n<e[t].length;n+=1)"function"==typeof e[t][n]&&(r=e[t].slice(1),this.transformQuedArgs(r),e[t][n].apply(e[t][n],r))},this.push=function(e){for(var t=0;t<e.length;t+=1)this.parseQ(e,t)},this.userData={account:this.acctData,experiments:this.expData}};window.optly.mrkt.services.xhr={makeRequest:function(){for(var e,t=[],r=[],n=0;n<arguments.length;n+=1)"object"==typeof arguments[n]&&(e=$.ajax({type:arguments[n].type,url:arguments[n].url}),arguments[n].properties&&this.handleErrors(e,arguments[n].properties),arguments[n].callback&&r.push(arguments[n].callback),arguments.length>1?t.push(e):t=e);return r.length>0&&this.resolveDeffereds(t,r),t},isPromise:function(e){if("function"!=typeof e.then)return!1;var t=String($.Deferred().then),r=String(e.then);return t===r},handleErrors:function(e,t){var r={error:!1,errorLog:[]};return e.always(function(e,n,o){this.isPromise(o)&&"success"===n?(r.promise=o,$.each(t,function(n,o){if("object"!=typeof o)typeof e[n]===o?console.log(n+" is validated"):(r.error=!0,r.errorLog.push("Validation Error: "+n+" is not a "+o));else{var i=e[n];Array.isArray(i)?$.each(i,function(e){$.each(t[n],function(t,n){typeof i[e][t]===n?console.log(t+" is validated"):(r.error=!0,r.errorLog.push("Validation Error: "+t+" is not a "+n))})}):$.each(o,function(t,o){typeof e[n][t]===o?console.log(t+" is validated"):(r.error=!0,r.errorLog.push("Validation Error: "+t+" is not a "+o))})}})):(r.promise=e,r.error=!0,r.message=e.responseText+" "+e.statusText+" "+e.status,console.log(r))}.bind(this))},resolveDeffereds:function(e,t){var r=[];return $.when.apply($,e).done(function(){var e=Array.prototype.slice.call(arguments);$.each(e,function(n,o){var i=o[0];if(this.isPromise(i)||"success"!==o[1]||(t[n](i),r.push(i)),n===e.length-1){var s=window.optly_q;window.optly_q=new optly_QFactory(r[0],r[1]),window.optly_q.push(s)}}.bind(this))}.bind(this)),!0},readCookie:function(e){e=e.replace(/([.*+?^=!:${}()|[\]\/\\])/g,"\\$1");var t=new RegExp("(?:^|;)\\s?"+e+"=(.*?)(?:;|$)","i"),r=document.cookie.match(t);return r&&window.unescape(r[1])},getLoginStatus:function(e,t){var r;return this.readCookie("optimizely_signed_in")?r=this.makeRequest.apply(this,t):console.log("no signin cookie present!!"),r}},function(){function e(e){r=e}function t(e){n=e}var r,n,o,i,s=function(e,t,r,n){this.type=e,this.url=t,this.properties=r,this.callback=n};return o=new s("GET","/account/info",{email:"string"},e),i=new s("GET","/experiment/load_recent?max_experiments=5",{experiments:{id:"number",description:"string"}},t),window.optly.mrkt.services.xhr.getLoginStatus(!0,[o,i])}();
 </script>
         <script src="//cdn.optimizely.com/js/1205230573.js"></script>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -293,11 +53,11 @@ window.optly.mrkt.services.xhr = {
                                     <li class="first"><a data-modal-click="signup">Sign Up</a></li>
                                     <li class="last"><a data-modal-click="signin">Log In</a></li>
                                 </ul><!--/.signed-in-content-->
-                                <ul class="signed-in-content utility-nav nav" data-show-user-state="logged-in">
+                                <ul class="signed-in-content utility-nav nav">
                                     <li class="first"><a href="">Dashboard</a></li>
-                                    <li id="experiment-nav-item">
-                                        <a href="">Experiments</a>
-                                        <ul class="dropdown-menu-top">
+                                    <li id="experiment-nav-item" data-show-user-state="logged-in">
+                                        <a href="" class="dropdown-arrow" data-dropdown="experiments">Experiments</a>
+                                        <ul class="dropdown-menu-top" data-show-dropdown="experiments">
                                           <div class="message"></div>
                                           <span class="experiment-container">
                                             <li>
@@ -313,13 +73,19 @@ window.optly.mrkt.services.xhr = {
                                             </a>
                                           </li>
                                           <li class="show-create-experiment" data-modal-click="create-exp">
-                                            + <a href="javascript:void(0)">Create New Experiment</a>
+                                            <span>+ </span><a href="javascript:void(0)">Create New Experiment</a>
                                           </li>
                                         </ul>
                                     </li>
                                     <li><a href="">Implementation</a></li>
                                     <li><a href="">Learning center</a></li>
-                                    <li class="last"><a class="customer-email" href="">kyle@optimizely.com</a></li>
+                                    <li id="my-account-menu">
+                                        <a class="customer-email dropdown-arrow" href="" data-dropdown="account">kyle@optimizely.com</a>
+                                        <ul class="dropdown-menu-top" data-show-dropdown="account">
+                                            <li><a href="/account">Account Setting</a></li>
+                                            <li><a >Log Out</a></li>
+                                        </ul>
+                                    </li>
                                 </ul><!--/.signed-out-content-->
                             </div><!--/#utility-nav-cont-->
                         </div><!--/.container-->

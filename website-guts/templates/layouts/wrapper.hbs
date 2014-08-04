@@ -51,11 +51,11 @@
                                     <li class="first"><a data-modal-click="signup">Sign Up</a></li>
                                     <li class="last"><a data-modal-click="signin">Log In</a></li>
                                 </ul><!--/.signed-in-content-->
-                                <ul class="signed-in-content utility-nav nav" data-show-user-state="logged-in">
+                                <ul class="signed-in-content utility-nav nav">
                                     <li class="first"><a href="">Dashboard</a></li>
-                                    <li id="experiment-nav-item">
-                                        <a href="">Experiments</a>
-                                        <ul class="dropdown-menu-top">
+                                    <li id="experiment-nav-item" data-show-user-state="logged-in">
+                                        <a href="" class="dropdown-arrow" data-dropdown="experiments">Experiments</a>
+                                        <ul class="dropdown-menu-top" data-show-dropdown="experiments">
                                           <div class="message"></div>
                                           <span class="experiment-container">
                                             <li>
@@ -71,13 +71,19 @@
                                             </a>
                                           </li>
                                           <li class="show-create-experiment" data-modal-click="create-exp">
-                                            + <a href="javascript:void(0)">Create New Experiment</a>
+                                            <span>+ </span><a href="javascript:void(0)">Create New Experiment</a>
                                           </li>
                                         </ul>
                                     </li>
                                     <li><a href="">Implementation</a></li>
                                     <li><a href="">Learning center</a></li>
-                                    <li class="last"><a class="customer-email" href="">kyle@optimizely.com</a></li>
+                                    <li id="my-account-menu">
+                                        <a class="customer-email dropdown-arrow" href="" data-dropdown="account">kyle@optimizely.com</a>
+                                        <ul class="dropdown-menu-top" data-show-dropdown="account">
+                                            <li><a href="/account">Account Setting</a></li>
+                                            <li><a >Log Out</a></li>
+                                        </ul>
+                                    </li>
                                 </ul><!--/.signed-out-content-->
                             </div><!--/#utility-nav-cont-->
                         </div><!--/.container-->
