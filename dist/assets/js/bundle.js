@@ -8796,6 +8796,8 @@ window.optly.mrkt.mobileJS = function(){
 
 	if( window.optly.mrkt.isMobile() ){
 
+		$('body').addClass('mobile');
+
 		$.getScript(window.optly.mrkt.assetsDir + '/js/libraries/fastclick.js', function(){
 
 			window.FastClick.attach(document.body);
@@ -8919,7 +8921,8 @@ var History = window.History || {},
   isSafari = /Safari/.test(navigator.userAgent) && /Apple Computer/.test(navigator.vendor),
   isIosSafari = /(iPhone|iPod|iPad).*AppleWebKit(?!.*Safari)/i.test(navigator.userAgent) || /(iPhone|iPod|iPad).*AppleWebKit/i.test(navigator.userAgent),
   isIosChrome = !!navigator.userAgent.match('CriOS'),
-  isHistorySupported = Modernizr.history && !!window.sessionStorage && ( !(isIosSafari || isSafari) ) || isIosChrome,
+  //isHistorySupported = Modernizr.history && !!window.sessionStorage && ( !(isIosSafari || isSafari) ) || isIosChrome,
+  isHistorySupported = false,
   historyIcrementor = 0,
   modalState = {},
   historyTimestamp,
@@ -8952,13 +8955,13 @@ function setHistoryId(historyData) {
   return stateData;
 }
 
-function openModalHandler(e) {
+window.optly.mrkt.modal.openModalHandler = function(modalType) {
   var title,
-    stateData,
-    modalType = $(this).data('modal-click');
+    stateData;
 
   //e.preventDefault();
   // Check for History/SessionStorage support and how many items are on the history stack
+  console.log(isHistorySupported && historyIcrementor === 0);
   if (isHistorySupported && historyIcrementor === 0) {
     stateData = setHistoryId(History.getState().data);
     stateData.modalType = modalType;
@@ -9033,6 +9036,8 @@ window.optly.mrkt.modal.open = function(modalType) {
   }
 
   $('html, body').addClass('modal-open');
+
+  console.log('TEST');
 
   // Fade out the modal and attach the close modal handler
   $elm.toggleClass('visible').bind('click', closeModalHandler);
@@ -9116,7 +9121,9 @@ if (isHistorySupported) {
 }
 
 // Bind modal open to nav click events
-$('body').delegate('[data-modal-click]', 'click', openModalHandler);
+$('body').delegate('[data-modal-click]', 'click', function(){
+  window.optly.mrkt.modal.openModalHandler($(this).data('modal-click'));
+});
 
 // Test for vh CSS property to make modal full height at mobile screen size
 testEl.css({

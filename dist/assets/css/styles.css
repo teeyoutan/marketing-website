@@ -2358,14 +2358,10 @@ html.modal-open, body.modal-open {
 
 .modal-dialog-container {
   display: none;
-  opacity: 0;
-  -webkit-transition: opacity 0.5s;
-          transition: opacity 0.5s;
   overflow: scroll; }
 
 .modal-dialog-container.visible {
-  display: block;
-  opacity: 1; }
+  display: block; }
 
 .modal-dialog-container {
   width: 100%;
@@ -2462,12 +2458,21 @@ html.modal-open, body.modal-open {
 
 @media only screen and (min-width: 768px) {
   .modal-dialog-container {
+    display: block;
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transition: visibility 0.5s, opacity 0.5s;
+            transition: visibility 0.5s, opacity 0.5s;
     position: absolute;
     top: 0;
     left: 0;
     background: transparent;
     background-image: -webkit-radial-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) 35%, rgba(0, 0, 0, 0.498039));
     background-image: radial-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) 35%, rgba(0, 0, 0, 0.498039)); }
+    .modal-dialog-container.visible {
+      display: block;
+      opacity: 1;
+      visibility: visible; }
     .modal-dialog-container .dialog {
       position: relative;
       width: 600px;

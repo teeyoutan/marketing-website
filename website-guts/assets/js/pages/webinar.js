@@ -93,7 +93,9 @@ $(function(){
 
     });
 
-    window.optly.mrkt.modal.open('webinar-signup');
+    //window.optly.mrkt.modal.open('webinar-signup');
+
+    window.optly.mrkt.modal.openModalHandler('webinar-signup');
 
     $('#webinar-registration-form').oForm({
 
@@ -105,7 +107,9 @@ $(function(){
 
             if(resp.responseJSON.succeeded){
 
-              window.optly.mrkt.modal.open('webinar-confirmation');
+              //window.optly.mrkt.modal.open('webinar-confirmation');
+
+              window.optly.mrkt.modal.openModalHandler('webinar-confirmation');
 
             } else {
 
