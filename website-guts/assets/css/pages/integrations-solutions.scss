@@ -1,4 +1,38 @@
 body.integrations-solutions {
+  .pill {
+    border-radius: 5px;
+    font-size: 12px;
+    margin-left: auto;
+    width: 326px;
+
+    a {
+      border: 1px solid rgb(213, 213, 213);
+      border-top-left-radius: 5px;
+      border-bottom-left-radius: 5px;
+      color: $subheader-text-color;
+      background-color: #FFFFFF;
+      display: block;
+      float: left;
+      text-align: center;
+      padding: 10px 0;
+      width: 160px;
+
+      &:last-child {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+      }
+    }
+
+    .active {
+      border: 1px solid #0072bc;
+      background-color: #448ccb;
+      color: #FFFFFF;
+      text-shadow: 0 1px #0072bc;
+    }
+  }
+
   .learn-more {
     color: rgb(129, 129, 129);
     font-size: 14px;
