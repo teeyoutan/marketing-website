@@ -1,0 +1,57 @@
+---
+layout: page.hbs
+seo_title: Optimizely Partners
+visible_title: Optimizely Partners
+sub_head: World-class service providers. Empowered customers. Lasting results.
+body_class:
+- integrations-solutions
+---
+<div class="columns twelve">
+  <div class="row">
+    <div class="columns six">
+      <h2>Integrations</h2>
+    </div>
+    <div class="columsn six">
+      Integrations / Solutions Partners Links
+    </div>
+  </div>
+
+  <hr />
+
+  <div class="row">
+    <div class="columns seven">
+      <p>As the global leader in website optimization, Optimizely is focused on developing the most robust and intuituve testing platform on the planet. Enabling our customers when needed, we partner with the best service providers around the world so that our clients never have to compromise.
+    </div>
+    <div class="columns five learn-more">
+      To learn more about our integrations
+      <a class="big" href="#">Visit the Developer's Portal &gt;</a>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="integrations-container container">
+      {{!-- {{#each customer_info.customerList}}
+        {{#classgridstart @index}}
+          <div class="row">
+        {{/classgridstart}}--}}
+          <div class="row">
+            <div class="columns one-third partner-grid-elm">
+              <div class="title-container">
+                <h4 class="customer-title">Mailchimp</h1>
+              </div> <!-- .title-container -->
+              <div class="customer-inner-content">
+                <div class="customer-logos" style="background-image: url(../../assets/img/customer-logos/{{logoUrl}}); width: {{logoW}}px; height: {{logoH}}px"></div>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ac erat orci.</p>
+              </div>
+              <div class="button-container">
+                <a href="{{downloadUrl}}" class="button">Learn More &gt;</a>
+              </div>
+            </div> <!-- .customer-grid-elm -->
+          </div>
+        {{!--{{#classgridfinish @index @last}}
+          </div>
+        {{/classgridfinish}}
+      {{/each}}--}}
+    </div> <!-- .case-studies-container -->
+  </div>
+</div>

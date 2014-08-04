@@ -165,8 +165,7 @@ figure {
  */
 hr {
   -moz-box-sizing: content-box;
-  -webkit-box-sizing: content-box;
-          box-sizing: content-box;
+  box-sizing: content-box;
   height: 0; }
 
 /**
@@ -258,9 +257,8 @@ input {
  * 2. Remove excess padding in IE 8/9/10.
  */
 input[type="checkbox"], input[type="radio"] {
-  -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-          box-sizing: border-box;
+  -moz-box-sizing: border-box;
+       box-sizing: border-box;
   /* 1 */
   padding: 0;
   /* 2 */ }
@@ -282,7 +280,6 @@ input[type="search"] {
   -webkit-appearance: textfield;
   /* 1 */
   -moz-box-sizing: content-box;
-  -webkit-box-sizing: content-box;
   /* 2 */
   box-sizing: content-box; }
 
@@ -380,8 +377,7 @@ a {
 
 .link-download, body.press-page #press-kit a {
   background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjEiIHg9IjBweCIgeT0iMHB4IiB3aWR0aD0iMTZweCIgaGVpZ2h0PSIxNnB4IiB2aWV3Qm94PSIwIDAgMTYgMTYiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDE2IDE2IiB4bWw6c3BhY2U9InByZXNlcnZlIj48c3R5bGU+LnN0eWxlMHtmaWxsOgkjQUZCQUMzO308L3N0eWxlPjxwYXRoIGQ9Ik03Ljk3OSAwQzMuNTcyIDAgMCAzLjYgMCA3Ljk3OWMwIDQuNCAzLjYgOCA4IDcuOTc5YzQuNDA3IDAgNy45NzktMy41NzIgNy45NzktNy45NzkgQzE1Ljk1OCAzLjYgMTIuNCAwIDggMHogTTggMTNMMyA5aDRWNGgydjVoNEw4IDEzeiIgY2xhc3M9InN0eWxlMCIvPjwvc3ZnPg==');
-  -webkit-background-size: 16px, 16px;
-          background-size: 16px, 16px;
+  background-size: 16px, 16px;
   background-position: 0 4px;
   background-repeat: no-repeat;
   display: inline-block;
@@ -531,14 +527,12 @@ header {
       right: 0;
       height: 100%;
       width: 34px;
-      background: -webkit-gradient(linear, left top, right top, from(rgba(0, 0, 0, 0)), to(rgba(0, 0, 0, 0.4)));
       background: -webkit-linear-gradient(left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4));
       background: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4)); }
     header .logo-cont {
       margin: -36px auto; }
       header .logo-cont .logo {
-        -webkit-background-size: 130px 28px;
-                background-size: 130px 28px;
+        background-size: 130px 28px;
         width: 130px;
         height: 28px; }
   #outer-wrapper {
@@ -565,8 +559,7 @@ header {
     margin: 20px 0 0 5px;
     padding: 9px 5px 7px 5px;
     /*width: 35px;*/
-    -webkit-background-size: 35px 35px;
-            background-size: 35px 35px;
+    background-size: 35px 35px;
     /*background: image-url('menu.svg') center center no-repeat;*/
     text-align: center;
     border: 1px solid #fff;
@@ -633,7 +626,6 @@ header {
     left: 0;
     height: 100%;
     width: 34px;
-    background: -webkit-gradient(linear, right top, left top, from(rgba(0, 0, 0, 0)), to(rgba(0, 0, 0, 0.4)));
     background: -webkit-linear-gradient(right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4));
     background: linear-gradient(to left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4)); }
   #utility-nav-cont {
@@ -644,9 +636,8 @@ header {
     position: absolute;
     text-align: left;
     padding: 0 0 0 34px;
-    -webkit-box-sizing: border-box;
-       -moz-box-sizing: border-box;
-            box-sizing: border-box; }
+    -moz-box-sizing: border-box;
+         box-sizing: border-box; }
   body.nav-open #inner-wrapper {
     -webkit-transform: translate(80%);
         -ms-transform: translate(80%);
@@ -680,7 +671,6 @@ header {
       display: inline-block; }
     header ul ul {
       display: none;
-      background: -webkit-gradient(linear, left top, left bottom, from(#00558d), color-stop(15%, #006eb6), to(#006eb6));
       background: -webkit-linear-gradient(top, #00558d 0%, #006eb6 15%, #006eb6 100%);
       background: linear-gradient(to bottom, #00558d 0%, #006eb6 15%, #006eb6 100%); }
   #top-nav-cont {
@@ -725,9 +715,8 @@ header {
         padding: 0.4em 1.5em;
         width: 100%;
         display: block;
-        -webkit-box-sizing: border-box;
-           -moz-box-sizing: border-box;
-                box-sizing: border-box;
+        -moz-box-sizing: border-box;
+             box-sizing: border-box;
         font-size: 0.8em;
         font-weight: 300; }
       #main-nav > li ul a:hover {
@@ -765,8 +754,7 @@ footer {
   footer .social-links li {
     display: inline-block; }
   footer .social-links a {
-    -webkit-background-size: 25px, 25px;
-            background-size: 25px, 25px;
+    background-size: 25px, 25px;
     filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
     opacity: 0.8;
     background-repeat: no-repeat;
@@ -792,8 +780,7 @@ footer {
       font-size: 1em;
       font-weight: 100; }
     footer .logo {
-      -webkit-background-size: 108px 23.112px;
-              background-size: 108px 23.112px;
+      background-size: 108px 23.112px;
       height: 23.112px;
       width: 108px;
       margin: 0; }
@@ -903,7 +890,6 @@ form.standard .submit-cont {
    ========================================================================== */
 *, *:before, *:after {
   -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
   box-sizing: border-box; }
 
 html {
@@ -1196,8 +1182,7 @@ body {
     background: transparent !important;
     color: #000 !important;
     /* Black prints faster: h5bp.com/s */
-    -webkit-box-shadow: none !important;
-            box-shadow: none !important;
+    box-shadow: none !important;
     text-shadow: none !important; }
   a, a:visited {
     text-decoration: underline; }
@@ -1240,14 +1225,12 @@ html.no-scroll, body.no-scroll {
   z-index: 1; }
 
 .callout {
-  -webkit-box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.07);
-          box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.07);
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.07);
   background-color: white;
   border: 1px solid #ddd;
   padding: 25px; }
 
 .button {
-  background: -webkit-gradient(linear, left top, left bottom, from(#147ec7), to(#126fb0));
   background: -webkit-linear-gradient(top, #147ec7 0%, #126fb0 100%);
   background: linear-gradient(top, #147ec7 0%, #126fb0 100%);
   color: #fff;
@@ -1265,7 +1248,6 @@ html.no-scroll, body.no-scroll {
     padding: 0.5em 1em; }
 
 .primary-button, body.home-page #cta input[type=submit] {
-  background: -webkit-gradient(linear, left top, left bottom, from(#90b71c), to(#7fa119));
   background: -webkit-linear-gradient(top, #90b71c 0%, #7fa119 100%);
   background: linear-gradient(to bottom, #90b71c 0%, #7fa119 100%);
   border: 1px solid #7e9339;
@@ -1281,14 +1263,12 @@ html.no-scroll, body.no-scroll {
   vertical-align: middle;
   text-shadow: 0 -1px 0px rgba(0, 0, 0, 0.23); }
   .primary-button:hover, body.home-page #cta input[type=submit]:hover {
-    -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.18);
-            box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.18);
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.18);
     background: #90b71c;
     border-color: #68792f;
     text-decoration: none; }
 
 .secondary-button {
-  background: -webkit-gradient(linear, left top, left bottom, from(#eeeeee), to(#e1e1e1));
   background: -webkit-linear-gradient(top, #eeeeee 0%, #e1e1e1 100%);
   background: linear-gradient(to bottom, #eeeeee 0%, #e1e1e1 100%);
   border: 1px solid #cacaca;
@@ -1308,14 +1288,12 @@ html.no-scroll, body.no-scroll {
     font-size: 12px;
     padding: 0.5em 1em; }
   .secondary-button:hover {
-    -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.18);
-            box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.18);
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.18);
     background: #eee;
     border-color: #b8b8b8;
     text-decoration: none; }
 
 .box-shadow {
-  -webkit-box-shadow: 0 0 3px 3px #EEE;
   box-shadow: 0 0 3px 3px #EEE; }
 
 .box {
@@ -1363,8 +1341,7 @@ html.no-scroll, body.no-scroll {
   display: block;
   height: 35.31px;
   width: 165px;
-  -webkit-background-size: 165px 35.31px;
-          background-size: 165px 35.31px;
+  background-size: 165px 35.31px;
   text-indent: -900em;
   margin: 0 auto; }
 
@@ -1380,14 +1357,12 @@ html.no-scroll, body.no-scroll {
 .framed {
   background: #fff;
   border: 1px solid #dadada;
-  -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
-          box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
   padding: 3px; }
 
 .cta form .url-input {
   border: solid 1px #e3e3e3;
-  -webkit-box-shadow: inset 0 0px 10px 0 rgba(0, 0, 0, 0.2);
-          box-shadow: inset 0 0px 10px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0 0px 10px 0 rgba(0, 0, 0, 0.2);
   color: #7f7f7f;
   font-size: 16px;
   height: 22px;
@@ -1412,14 +1387,12 @@ body .small-note, body p.small-note {
   .super {
     text-align: left; }
   .box {
-    -webkit-box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.07);
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.07);
     border: 1px solid #ddd; } }
 
 @media only screen and (min-width: 960px) {
   .half {
     -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
     box-sizing: border-box;
     width: 50%; }
     .half.right {
@@ -1459,8 +1432,7 @@ body .small-note, body p.small-note {
   .lede-image {
     background: #fff;
     border: 1px solid #dadada;
-    -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
-            box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
     padding: 3px; }
   .divider-heading {
     overflow: hidden; }
@@ -1489,7 +1461,6 @@ body .small-note, body p.small-note {
       .divider-heading h2:after {
         right: -9999%; }
   .attention:before, .attention:after {
-    -webkit-background-size: 100%, 100%;
     background-size: 100%, 100%;
     background: url("/dist/assets/img/sepshadow.png") no-repeat center top;
     content: " ";
@@ -1568,31 +1539,26 @@ body.home-page {
                   transform: translateY(-75%); }
         body.home-page #cta form {
           display: block;
-          background: -webkit-gradient(linear, left top, left bottom, from(#003366), to(#023f78));
           background: -webkit-linear-gradient(top, #003366 0%, #023f78 100%);
           background: linear-gradient(top, #003366 0%, #023f78 100%);
-          -webkit-box-shadow: 0px -2px 55px rgba(44, 89, 148, 0.82);
-                  box-shadow: 0px -2px 55px rgba(44, 89, 148, 0.82);
+          box-shadow: 0px -2px 55px rgba(44, 89, 148, 0.82);
           border: 1px solid #214e82;
           padding: 16px;
           width: 671px;
           margin: 0 auto;
           overflow: hidden;
-          -webkit-box-sizing: border-box;
-             -moz-box-sizing: border-box;
-                  box-sizing: border-box; }
+          -moz-box-sizing: border-box;
+               box-sizing: border-box; }
         body.home-page #cta input[type=text] {
           border: solid 1px #e3e3e3;
-          -webkit-box-shadow: inset 0 0px 10px 0 rgba(0, 0, 0, 0.2);
-                  box-shadow: inset 0 0px 10px 0 rgba(0, 0, 0, 0.2);
+          box-shadow: inset 0 0px 10px 0 rgba(0, 0, 0, 0.2);
           color: #006eb6;
           width: 446px;
           font-size: 16px;
           line-height: 22px;
           padding: 5px 8px;
-          -webkit-box-sizing: border-box;
-             -moz-box-sizing: border-box;
-                  box-sizing: border-box;
+          -moz-box-sizing: border-box;
+               box-sizing: border-box;
           height: 36px;
           margin-right: 15px;
           display: inline-block; }
@@ -1890,10 +1856,8 @@ body.faq-page .button-controls {
 body.faq-page .accordion {
   margin-top: 16px; }
 body.faq-page .question {
-  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
-          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
   background: #fff;
-  background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#f5f5f5));
   background: -webkit-linear-gradient(top, #ffffff 0%, #f5f5f5 100%);
   background: linear-gradient(to bottom, #ffffff 0%, #f5f5f5 100%);
   width: 100%;
@@ -1907,8 +1871,7 @@ body.faq-page .question {
   font-weight: 400;
   position: relative; }
   body.faq-page .question:hover {
-    -webkit-box-shadow: 0 0 4px rgba(64, 152, 226, 0.25);
-            box-shadow: 0 0 4px rgba(64, 152, 226, 0.25);
+    box-shadow: 0 0 4px rgba(64, 152, 226, 0.25);
     text-decoration: none; }
   body.faq-page .question:after {
     background-image: url("/dist/assets/img/icon-sprite.png");
@@ -2012,6 +1975,60 @@ body.getting-started .controls {
     body.getting-started .slider li {
       max-width: 912px;
       float: left; } }
+
+body.integrations-solutions .learn-more {
+  color: #818181;
+  font-size: 14px;
+  padding-top: 40px;
+  text-align: center; }
+  body.integrations-solutions .learn-more a.big {
+    display: block;
+    font-size: 20px; }
+body.integrations-solutions .partner-grid-elm {
+  position: relative;
+  text-align: center;
+  border: 1px solid #d5d5d5;
+  border-radius: 3px;
+  background: white;
+  color: #818181;
+  font-weight: 600;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  /*.button {
+      padding: 6px 12px;
+      font-size: 12px;
+      position: absolute;
+      bottom: 15px;
+      opacity: 0;
+    }*/ }
+  body.integrations-solutions .partner-grid-elm .title-container, body.integrations-solutions .partner-grid-elm .button-container {
+    background: #f8f8f8;
+    padding: 0.8em 0;
+    font-size: 14px;
+    font-weight: 300;
+    letter-spacing: -1.2px; }
+    body.integrations-solutions .partner-grid-elm .title-container span, body.integrations-solutions .partner-grid-elm .button-container span {
+      font-weight: bold; }
+  body.integrations-solutions .partner-grid-elm .title-container {
+    border-bottom: 1px solid #d5d5d5; }
+  body.integrations-solutions .partner-grid-elm .button-container {
+    border-top: 1px solid #d5d5d5;
+    padding-left: 10px;
+    padding-right: 10px; }
+  body.integrations-solutions .partner-grid-elm .customer-title {
+    display: inline-block; }
+  body.integrations-solutions .partner-grid-elm .customer-inner-content {
+    padding: 20px; }
+  body.integrations-solutions .partner-grid-elm .customer-logos {
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center center;
+    margin: 0 auto; }
+  body.integrations-solutions .partner-grid-elm .button {
+    color: white;
+    font-size: 18px;
+    text-shadow: 0 2px 0 #19529e;
+    width: 100%; }
 
 /* layouts */
 body.benefits-layout .for-menu {
@@ -2158,8 +2175,7 @@ body.customer-stories-page .customer-grid-elm {
     padding: 20px; }
   body.customer-stories-page .customer-grid-elm .customer-logos {
     background-repeat: no-repeat;
-    -webkit-background-size: contain contain;
-            background-size: contain;
+    background-size: contain;
     background-position: center center;
     margin: 0 auto; }
   body.customer-stories-page .customer-grid-elm .button {
@@ -2291,8 +2307,7 @@ body.benefits-page {
     width: 100%;
     height: 100vh;
     background: #fff;
-    -webkit-box-shadow: 0 2px 10px #333;
-            box-shadow: 0 2px 10px #333;
+    box-shadow: 0 2px 10px #333;
     text-align: left;
     width: 100%;
     cursor: auto;
