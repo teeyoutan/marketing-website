@@ -21,9 +21,6 @@ $('#test-it-out-form').submit(function(e){
 
     $('input[type="text"]').focus();
 
-    //report to ga that the form was submitted without a value
-    console.log('');
-
   }
 
   e.preventDefault();
