@@ -101,8 +101,6 @@ $(function(){
 
     window.optly.mrkt.modal.open('webinar-signup');
 
-    /*
-
     $('#webinar-registration-form').oForm({
 
       afterLocal: function(resp){
@@ -112,9 +110,6 @@ $(function(){
       }
 
     });
-
-    */
-
 
   });
 
