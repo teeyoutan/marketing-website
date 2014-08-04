@@ -16,6 +16,8 @@ window.optly.mrkt.mobileJS = function(){
 
 	if( window.optly.mrkt.isMobile() ){
 
+		$('body').addClass('mobile');
+
 		$.getScript(window.optly.mrkt.assetsDir + '/js/libraries/fastclick.js', function(){
 
 			window.FastClick.attach(document.body);
