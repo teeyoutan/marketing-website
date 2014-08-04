@@ -79,6 +79,16 @@ $(function(){
 
   $('#webinar-registration-form').oForm({
 
+    beforeLocal: function(){
+
+      var name = $('#name').val().split(' ');
+
+      $('[name="FirstName"]').val( name[0] );
+
+      $('[name="LastName"]').val( name[1] );
+
+    },
+
     afterLocal: function(resp){
 
       if(typeof resp === 'object'){
