@@ -1,0 +1,52 @@
+{
+  "departments":[
+    {
+      "id":33333,
+      "name":"Engineering",
+      "jobs":[
+        {
+          "id":44444,
+          "title":"Product Engineer",
+          "location":{
+            "name":"San Francisco, CA"
+          },
+          "updated_at":"2013-07-02T19:39:23Z",
+          "absolute_url":"http://your.co/careers?gh_jid=444444"
+        },
+        {
+          "id":55555,
+          "title":"Mobile Engineer - iOS",
+          "location":{
+            "name":"San Francisco, CA"
+          },
+          "updated_at":"2013-07-02T19:39:23Z",
+          "absolute_url":"http://your.co/careers?gh_jid=55555"
+        }
+      ]
+    },
+    {
+      "id":33333,
+      "name":"Marketing",
+      "jobs":[
+        {
+          "id":44444,
+          "title":"Product Engineer",
+          "location":{
+            "name":"San Francisco, CA"
+          },
+          "updated_at":"2013-07-02T19:39:23Z",
+          "absolute_url":"http://your.co/careers?gh_jid=444444"
+        },
+        {
+          "id":55555,
+          "title":"Mobile Engineer - iOS",
+          "location":{
+            "name":"San Francisco, CA"
+          },
+          "updated_at":"2013-07-02T19:39:23Z",
+          "absolute_url":"http://your.co/careers?gh_jid=55555"
+        }
+      ]
+    }
+  ]
+}

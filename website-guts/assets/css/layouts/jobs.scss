@@ -73,7 +73,7 @@ body.jobs-layout {
         font-family: "Gotham SSm A","Gotham SSm B",sans-serif;
         font-size: 1em;
         font-weight: 500;
-        margin: 0.5em 23px;
+        margin: 1.5em 23px .5em 23px;
         text-transform: uppercase;
 
         &:first-child {
@@ -176,7 +176,7 @@ body.jobs-layout {
 
 @media only screen and(min-width: $tablet-min-width) {
     body.jobs-layout {
-        
+
         header {
             background: transparent;
         }

@@ -8,7 +8,6 @@
         
         <meta name="description" content="Improve conversions through A/B Testing, Split Testing and Multivariate Testing with Optimizely!">
         <meta name="keywords" content="AB test, split test, multivariate testing, conversion rate">
-
         <meta name="viewport" content="width=device-width, initial-scale=1">
         
         <meta property="og:title" content="Optimizely: A/B testing software you'll actually use">
@@ -18,11 +17,11 @@
 
         <link rel="stylesheet" href="/dist/assets/css/fonts.css">
         <link rel="stylesheet" href="/dist/assets/css/styles.css">
-        <script src="/dist/assets/js/libraries/modernizr-yepnope.js"></script>
+        <script src="/dist/assets/js/libraries/modernizr.2.8.3.min.js"></script>
         
         <script type="text/javascript">
           window.analytics=window.analytics||[],window.analytics.methods=["identify","group","track","page","pageview","alias","ready","on","once","off","trackLink","trackForm","trackClick","trackSubmit"],window.analytics.factory=function(t){return function(){var a=Array.prototype.slice.call(arguments);return a.unshift(t),window.analytics.push(a),window.analytics}};for(var i=0;i<window.analytics.methods.length;i++){var key=window.analytics.methods[i];window.analytics[key]=window.analytics.factory(key)}window.analytics.load=function(t){if(!document.getElementById("analytics-js")){var a=document.createElement("script");a.type="text/javascript",a.id="analytics-js",a.async=!0,a.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.io/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n)}},window.analytics.SNIPPET_VERSION="2.0.9",
-          window.analytics.load("l4usxygsxg");
+          window.analytics.load('l4usxygsxg');
           window.analytics.page();
         </script>
     </head>
@@ -44,8 +43,8 @@
                             </a>
                             <div id="utility-nav-cont">
                                 <ul class="signed-out-content utility-nav nav">
-                                    <li class="first"><a href="#">Sign Up</a></li>
-                                    <li class="last"><a href="#">Log In</a></li>
+                                    <li class="first"><a data-modal-click="signup">Sign Up</a></li>
+                                    <li class="last"><a data-modal-click="signin">Log In</a></li>
                                 </ul><!--/.signed-in-content-->
                                 <ul class="signed-in-content utility-nav nav">
                                     <li class="first"><a href="">Dashboard</a></li>
@@ -169,7 +168,7 @@
             <q>We are given the opportunity to take ownership of projects, making us all architects of the fast growing company.</q>
             
             <q>I really love working for a company that allows and encourages me to learn and grow. Plus, the free food isn’t too bad either.</q>
-              
+            
         </h4>
 
         <ul class="employee-icons">
@@ -213,42 +212,14 @@
 <div class="jobs-list" id="jobs-list">
     <div class="container">
         <div class="row">
-            <div class="columns ten offset-one">
+            <div class="columns ten offset-one" id="job-list-cont">
                 <h2 class="a-center blue">All Job Openings</h2>
-                <h4 class="department-title">Customer Success</h4>
-                <ul>
-                    <li>
-                        <a href="" target="_blank">
-                            <span class="job-title">Business Analyst</span>
-                            <span class="job-location">Amsterdam, Netherlands</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="" target="_blank">
-                            <span class="job-title">Business Analyst</span>
-                            <span class="job-location">Amsterdam, Netherlands</span>
-                        </a>
-                    </li>
-                </ul>
-                <h4 class="department-title">Customer Success</h4>
-                <ul>
-                    <li>
-                        <a href="" target="_blank">
-                            <span class="job-title">Business Analyst</span>
-                            <span class="job-location">Amsterdam, Netherlands</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="" target="_blank">
-                            <span class="job-title">Business Analyst</span>
-                            <span class="job-location">Amsterdam, Netherlands</span>
-                        </a>
-                    </li>
-                </ul>
+                
             </div>
         </div>
     </div>
 </div>
+
     </div><!--/#content-->
 </div><!--/#main-->
 
@@ -342,15 +313,111 @@
                 </footer>
             </div><!--/#inner-wrapper-->
         </div><!--/#outer-wrapper-->
-        <script>window.jQuery || document.write('<script src="/dist/assets/js/libraries/jquery-1.6.4.min.js"><\/script>')</script>
+        <div id="sign-in-dialog" class="modal-dialog-container" data-optly-modal="signin">
+    <div class="dialog narrow">
+        <form action="/account/signin" method="POST" autocomplete="off" novalidate>
+            
+            <div class="modal-header">
+                <p class="normal-header header-h1">Sign in to Optimizely</p>
+                
+            </div><!--/.modal-header-->
+            
+            <div class="modal-body">
+                
+              <label>
+                  <span>Email address</span>
+                  <input type="text" name="email" />
+              </label>
+              <label>
+                  <span>Password</span>
+                  <input type="password" name="password" />
+              </label>
+              <div class="terms">
+                  <label class="spaced">
+                      <input type="checkbox" name="persist" checked="checked" />
+                      <p>Keep me signed in</p>
+                  </label>
+              </div>
+              <div class="options">
+                  <p>
+                      <a class="show-forgot-password">Forgot your password?</a><br />
+                      No account? <a class="show-create-account" data-modal-click="signup">Register here</a>
+                  </p>
+              </div>
+
+            </div><!--/.modal-body-->
+            <div class="modal-footer">
+                <input type="submit" class="primary-button submit-btn translate" value="Sign in &raquo;">
+                
+            </div><!--/.modal-footer-->
+        </form>
+    </div><!--/.dialog.narrow-->
+</div> <!-- end .modal-dialog-container -->
+
+        <div id="signup-dialog" class="modal-dialog-container" data-optly-modal="signup">
+    <div class="dialog narrow">
+        <form action="/account/create" method="POST" autocomplete="off" novalidate>
+            
+            <div class="modal-header">
+                <p class="normal-header header-h1">Create a free account</p>
+                <p>You&#x27;re seconds away from running A/B tests!</p>
+            </div><!--/.modal-header-->
+            
+            <div class="modal-body">
+                
+              <label id="name-label">
+                  <span>Name</span>
+                  <input type="text" name="name" />
+              </label>
+              <label>
+                  <span>Work email address</span>
+                  <input type="text" name="email" />
+              </label>
+              <label>
+                  <span>Password</span>
+                  <h5 class="password-req">Must use at least 8 characters and a mix of upper/lowercase letters, numbers or symbols</h5>
+                  <input type="password" name="password1" class="password1" />
+              </label>
+              <label>
+                  <span>Confirm password</span>
+                  <input type="password" name="password2" />
+              </label>
+              <label id="phone-label">
+                  <span>Phone number</span>
+                  <input type="text" name="phone_number" />
+              </label>
+              <div class="terms">
+                  <input type="checkbox" name="terms-of-service" />
+                  <p>
+                      I agree to the <a href="/dist/terms" target="_blank">Terms of Service</a> and <a href="/dist/privacy" target="_blank">Privacy Policy</a>.
+                  </p>
+              </div>
+              <!-- <input id="hidden" type="hidden" name="hidden" value="" /> -->
+              <div class="options">
+                  <p>Already have an Optimizely account? <a class="show-sign-in" data-modal-click="signin">Sign in here</a></p>
+              </div>
+
+            </div><!--/.modal-body-->
+            <div class="modal-footer">
+                <input type="submit" class="primary-button submit-btn translate" value="Create account &raquo;">
+                <input type="button" data-modal-btn="close" class="secondary-button close-btn translate" value="Cancel">
+            </div><!--/.modal-footer-->
+        </form>
+    </div><!--/.dialog.narrow-->
+</div> <!-- end .modal-dialog-container -->
+
+        <div id="vh-test"></div>
         <script>
-            yepnope([
-                {
-                    load: ['/dist/assets/js/libraries/fastclick.js', '/dist/assets/js/bundle.js']
-                },{
-                    load: ['/dist/assets/js/pages/jobs.js']
-                }
-            ]);
+          var optly = optly || {};
+          optly.mrkt = {} || {};
+          optly.mrkt.assetsDir = '/dist/assets';
         </script>
+        <script>window.jQuery || document.write('<script src="/dist/assets/js/libraries/jquery-1.6.4.min.js"><\/script>')</script>
+        <script src="/dist/assets/js/bundle.js" defer></script>
+        
+        
+        
+        <script src="/dist/assets/js/pages/jobs.js" defer></script>
+        
     </body>
 </html>

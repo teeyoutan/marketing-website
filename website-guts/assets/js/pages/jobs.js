@@ -19,3 +19,23 @@ $('#view-all-jobs').click(function() {
 });
 
 window.optly.mrkt.jobsPage.testimonials();
+
+$.getJSON('/job-list').always(function(data, textStatus, jqXHR){
+
+  if(typeof jqXHR === 'object'){
+
+    try{
+
+      var jobs = $.parseJSON(jqXHR.responseText);
+
+      $('#job-list-cont').append( window.optly.mrkt.templates.jobList(jobs) );
+
+    } catch(error){
+
+      console.log('error: ', error);
+
+    }
+
+  }
+
+});

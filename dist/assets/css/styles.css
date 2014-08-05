@@ -2250,7 +2250,7 @@ body.jobs-layout .department-title {
   font-family: "Gotham SSm A", "Gotham SSm B", sans-serif;
   font-size: 1em;
   font-weight: 500;
-  margin: 0.5em 23px;
+  margin: 1.5em 23px 0.5em 23px;
   text-transform: uppercase; }
   body.jobs-layout .department-title:first-child:after {
     color: black;
