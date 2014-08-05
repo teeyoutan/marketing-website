@@ -13,6 +13,16 @@
 	Type
 
 */
+/*
+
+  Colors
+
+*/
+/*
+
+  pills
+
+ */
 /*! normalize.css v3.0.1 | MIT License | git.io/normalize */
 /**
  * 1. Set default font family to sans-serif.
@@ -1976,6 +1986,13 @@ body.getting-started .controls {
       max-width: 912px;
       float: left; } }
 
+body.integrations-solutions .page-selector .pill {
+  width: 335px; }
+body.integrations-solutions .filter .pill {
+  width: 400px; }
+body.integrations-solutions .filter .star-cont {
+  background-position: 0;
+  height: 15px; }
 body.integrations-solutions .learn-more {
   color: #818181;
   font-size: 14px;
@@ -2011,15 +2028,21 @@ body.integrations-solutions .partner-grid-elm {
       font-weight: bold; }
   body.integrations-solutions .partner-grid-elm .title-container {
     border-bottom: 1px solid #d5d5d5; }
+    body.integrations-solutions .partner-grid-elm .title-container h4 {
+      text-align: center; }
   body.integrations-solutions .partner-grid-elm .button-container {
     border-top: 1px solid #d5d5d5;
     padding-left: 10px;
     padding-right: 10px; }
-  body.integrations-solutions .partner-grid-elm .customer-title {
-    display: inline-block; }
-  body.integrations-solutions .partner-grid-elm .customer-inner-content {
+  body.integrations-solutions .partner-grid-elm .partner-title {
+    color: #242424; }
+  body.integrations-solutions .partner-grid-elm .partner-location {
+    color: #a9a9a9;
+    text-transform: uppercase;
+    font-weight: 400; }
+  body.integrations-solutions .partner-grid-elm .partner-inner-content {
     padding: 20px; }
-  body.integrations-solutions .partner-grid-elm .customer-logos {
+  body.integrations-solutions .partner-grid-elm .partner-logos {
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center center;
@@ -2029,6 +2052,20 @@ body.integrations-solutions .partner-grid-elm {
     font-size: 18px;
     text-shadow: 0 2px 0 #19529e;
     width: 100%; }
+  body.integrations-solutions .partner-grid-elm .level .level-heading {
+    color: #a9a9a9;
+    font-size: 12px;
+    font-weight: 400;
+    text-transform: uppercase; }
+body.integrations-solutions .single-partner-container {
+  background-color: #FFFFFF;
+  border: 1px solid #d5d5d5;
+  border-radius: 5px;
+  padding: 20px 40px; }
+  body.integrations-solutions .single-partner-container .partners-misc {
+    color: #a9a9a9; }
+body.integrations-solutions a.button {
+  color: #FFFFFF; }
 
 /* layouts */
 body.benefits-layout .for-menu {
@@ -2397,4 +2434,92 @@ body.benefits-page {
           margin-right: 10px;
           width: 78px;
           float: left; } }
+
+.pill {
+  border-radius: 5px;
+  display: table;
+  font-size: 12px; }
+  .pill > * {
+    border: 1px solid #d5d5d5;
+    border-right: 0;
+    background-color: #FFFFFF;
+    display: block;
+    float: left;
+    padding: 5px 15px;
+    text-align: center; }
+    .pill > *:first-child {
+      border-radius: 5px 0 0 5px; }
+    .pill > *:last-child {
+      border-right: 1px solid #d5d5d5;
+      border-radius: 0 5px 5px 0; }
+    .pill > *.active {
+      background-color: #448ccb;
+      border: 1px solid #0072bc;
+      color: #fff;
+      text-shadow: 0 1px #0072bc; }
+      .pill > *.active a {
+        color: #FFFFFF; }
+    .pill > *.heading {
+      color: #888888;
+      text-transform: uppercase; }
+  .pill.big {
+    margin-left: auto; }
+    .pill.big span {
+      padding: 10px 20px; }
+
+.dropdown-cont {
+  position: relative; }
+  .dropdown-cont:hover {
+    cursor: pointer; }
+  .dropdown-cont ul {
+    background-color: #FFFFFF;
+    border: 1px solid #d5d5d5;
+    left: -1px;
+    top: 100%;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    text-align: left;
+    width: 120%;
+    z-index: 20; }
+    .dropdown-cont ul.active {
+      display: block; }
+    .dropdown-cont ul li {
+      list-style-type: none;
+      margin: 0;
+      padding: 5px 10px 5px 20px;
+      position: relative; }
+      .dropdown-cont ul li:before {
+        content: '';
+        border: 1px solid #242424;
+        border-radius: 100%;
+        height: 7px;
+        left: 5px;
+        position: absolute;
+        top: 8px;
+        width: 7px; }
+      .dropdown-cont ul li.active {
+        font-weight: bold; }
+        .dropdown-cont ul li.active:before {
+          background: #006eb6;
+          border: 1px solid #006eb6; }
+      .dropdown-cont ul li:hover {
+        background: #006eb6;
+        color: #fff;
+        cursor: pointer; }
+        .dropdown-cont ul li:hover:before {
+          background: #fff;
+          border: 1px solid #fff; }
+
+.star-cont {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  display: block; }
+  .star-cont.star-cont--1 {
+    background-image: url("/dist/assets/img/stars-1.png"); }
+  .star-cont.star-cont--2 {
+    background-image: url("/dist/assets/img/stars-2.png"); }
+  .star-cont.star-cont--3 {
+    background-image: url("/dist/assets/img/stars-3.png"); }
 /*# sourceMappingURL=styles.css.map */

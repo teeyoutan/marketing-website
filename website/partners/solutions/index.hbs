@@ -13,8 +13,8 @@ body_class:
     </div>
     <div class="columns six page-selector">
       <div class="pill clearfix big">
-        <span><a href="{{linkPath}}/partners/integrations">Integrations (??)</a></span>
-        <span class="active"><a href="{{linkPath}}/partners/solutions">Solutions Partners (??)</a></span>
+        <a href="{{linkPath}}/partners/integrations">Integrations (??)</a>
+        <a class="active" href="{{linkPath}}/partners/solutions">Solutions Partners (??)</a>
       </div>
     </div>
   </div>
@@ -34,10 +34,28 @@ body_class:
   <div class="row">
     <div class="columns filter">
       <div class="pill clearfix">
-        <span class="heading">Filter By:</span>
-        <span>Region &#9662;</span>
-        <span>Star Rating &#9662;</span>
-        <span>Industry &#9662;</span>
+        <div class="heading">Filter By:</div>
+        <div class="dropdown-cont">Region &#9662;
+          <ul>
+            <li class="active filter-item">Northeast</li>
+            <li class="filter-item">Southeast</li>
+            <li class="filter-item">Northwest</li>
+          </ul>
+        </div>
+        <div class="dropdown-cont">Star Rating &#9662;
+          <ul>
+            <li class="filter-item"><span class="star-cont star-cont--1"></span></li>
+            <li class="filter-item active"><span class="star-cont star-cont--2"></span></li>
+            <li class="filter-item"><span class="star-cont star-cont--3"></span></li>
+          </ul>
+        </div>
+        <div class="dropdown-cont">Industry &#9662;
+          <ul>
+            <li class="filter-item">Technology</li>
+            <li class="filter-item">Metalurgy</li>
+            <li class="filter-item">Alchemy</li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
@@ -59,11 +77,7 @@ body_class:
 
                 <div class="level">
                   <div class="level-heading">Certification Level:</div>
-                  <div class="stars">
-                    <div class="star"></div>
-                    <div class="star"></div>
-                    <div class="star"></div>
-                  </div>
+                  <div class="star-cont star-cont--3"></div>
                 </div>
               </div>
               <div class="button-container">
