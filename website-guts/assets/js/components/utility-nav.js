@@ -45,7 +45,9 @@ function closeDropdown(e) {
   if (!$(e.target).closest('[data-show-dropdown]').length && !$(e.target).is('[data-dropdown]')) {
     $('[data-show-dropdown]').removeClass('show-dropdown');
     $(document).unbind('click', closeDropdown);
-  } else if ($(e.target).data('logout')) {
+  } 
+  // If the target is the lgout button then logout
+  else if ($(e.target).data('logout')) {
     signOut();
     $('[data-show-dropdown]').removeClass('show-dropdown');
     $(document).unbind('click', closeDropdown);
@@ -53,12 +55,20 @@ function closeDropdown(e) {
 }
 
 function signOut() {
-  debugger;
-  window.optly.mrkt.services.xhr.makeRequest({
+
+  var deferred = window.optly.mrkt.services.xhr.makeRequest({
     type: 'GET',
     url: '/account/signout'
+  });
+
+  deferred.then(function(data){
+    if(data.success === 'true') {
+      window.location.reload();
+    }
+  }, function(err) {
+    console.log('signout error: ', err);
   });
 }
 
 // Make call to optly Q
-window.optly_q.push([showUtilityNav, $utilityNavElm, 'acctData', 'expData']);
+window.optly_q.push([showUtilityNav, $utilityNavElm, window.optly.mrkt.user.account, window.optly.mrkt.user.experiments]);

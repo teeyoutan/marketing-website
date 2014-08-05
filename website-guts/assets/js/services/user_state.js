@@ -1,6 +1,7 @@
-window.optly = window.optly || {};
-window.optly.mrkt = window.optly.mrkt || {};
-window.optly.mrkt.services = window.optly.mrkt.services || {};
+window.optly                = window.optly || {};
+window.optly.mrkt           = window.optly.mrkt || {};
+window.optly.mrkt.services  = window.optly.mrkt.services || {};
+window.optly.mrkt.user      = window.optly.mrkt.user || {};
 
 window.optly.mrkt.services.xhr = {
   makeRequest: function(request, callback) {
@@ -166,6 +167,12 @@ window.optly.mrkt.services.xhr = {
         }
         if (index === tranformedArgs.length - 1) {
           oldQue = window.optly_q;
+          // create the global user object properties
+          window.optly.mrkt.user = {
+            account: responses[0],
+            experiments: responses[1]
+          };
+          // consume qued data
           window.optly_q = new callback(responses[0], responses[1]);
           window.optly_q.push(oldQue);
         }
@@ -186,30 +193,26 @@ window.optly.mrkt.services.xhr = {
   }, 
 
   getLoginStatus: function(requestParams, callback) {
-    var deffereds;
+    var deferreds;
 
     if ( !!this.readCookie('optimizely_signed_in') ) {
-      deffereds = this.makeRequest(requestParams, callback);
-      return deffereds;
+      deferreds = this.makeRequest(requestParams, callback);
+      return deferreds;
     } else {
-      console.log('no signin cookie present!!');
+      console.log('no account cookie present!!');
     }
   }
   
 };
 
 (function() {
+  'use strict';
+
   var acctParams,
     expParams,
     optly_QFactory = function(acctData, expData) {
       this.acctData = acctData;
       this.expData = expData;
-
-      // Tie user date to window
-      window.optly.mrkt.user = {
-        account: this.acctData,
-        experiments: this.expData
-      };
 
       this.transformQuedArgs = function(quedArgs) {
         $.each(quedArgs, function(index, arg) {
