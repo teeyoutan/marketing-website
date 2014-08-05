@@ -1,5 +1,6 @@
 var $utilityNavElm = $('.utility-nav.signed-in-content');
 var $dropdownMenus = $('[data-show-dropdown]');
+var lastDropdown;
 
 function templateExpData($elm, expData) {
   var $expLink = $( $elm.find('.edit') );
@@ -41,16 +42,22 @@ function showUtilityNav($elm, acctData, expData) {
 function bindDropdownClick($dropdownMenus) {
   $('.utility-nav.signed-in-content').delegate('[data-dropdown]', 'click', function(e) {
     e.preventDefault();
+    // Get the type of dropdown anchor that was clicked
     var clickedData = $(this).data('dropdown');
+
+    // Iterate through cached dropdown containers looking for the clicked type
     $.each($dropdownMenus, function(index, elm) {
       var $elm = $(elm);
+      //var $dropdownMenu = $elm.data('show-dropdown');
+
+      // Logic to close the dropdown if it is open and another is clicked
+      if (clickedData !== lastDropdown && lastDropdown !== undefined) {
+        $('[data-show-dropdown="' + lastDropdown + '"]').removeClass('show-dropdown');
+      }
+      // Logic to open the dropdown and cache the last opened dropdown
       if ( $elm.data('show-dropdown') ===  clickedData ) {
-        $elm.css({display: 'block'});
-        $elm.mouseleave( function() {
-          $(this).css({display: 'none'});
-        });
-      } else {
-        $elm.css({display: 'none'});
+        $elm.toggleClass('show-dropdown');
+        lastDropdown = clickedData;
       }
     });
   });

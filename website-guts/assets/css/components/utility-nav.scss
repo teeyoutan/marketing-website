@@ -20,6 +20,9 @@ $navs-to-index: main-nav dropdown-menu-top;
     position: absolute;
     border: 1px solid #d5d5d5;
     background: #fff;
+    &.show-dropdown {
+      display: block;
+    }
     li {
       width: 100%;
       display: block;

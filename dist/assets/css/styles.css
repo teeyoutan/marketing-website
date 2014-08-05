@@ -2362,6 +2362,8 @@ body.benefits-page {
   position: absolute;
   border: 1px solid #d5d5d5;
   background: #fff; }
+  .utility-nav .dropdown-menu-top.show-dropdown {
+    display: block; }
   .utility-nav .dropdown-menu-top li {
     width: 100%;
     display: block;
