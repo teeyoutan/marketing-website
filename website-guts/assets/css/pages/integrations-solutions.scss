@@ -28,6 +28,12 @@ body.integrations-solutions {
     }
   }
 
+  .partner-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+
   .partner-grid-elm {
     position: relative;
     text-align: center;
@@ -36,8 +42,8 @@ body.integrations-solutions {
     background: rgb(255, 255, 255);
     color: rgb(129, 129, 129);
     font-weight: 600;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin: 20px 5px;
+    width: 32%;
 
     .title-container,
     .button-container {

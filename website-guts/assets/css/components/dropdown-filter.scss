@@ -3,10 +3,17 @@
   &:hover {
     cursor: pointer;
   }
+  &.active {
+    ul {
+      color: $text-color;
+      display: block;
+      text-shadow: none;
+    }
+  }
   ul {
     background-color: #FFFFFF;
     border: 1px solid rgb(213, 213, 213);
-    // display: none;
+    display: none;
     left: -1px;
     top: 100%;
     margin: 0;
@@ -41,7 +48,7 @@
         }
       }
       &:hover {
-        background: $new-blue;
+        background: $text-color;
         color: #fff;
         cursor: pointer;
         &:before {
