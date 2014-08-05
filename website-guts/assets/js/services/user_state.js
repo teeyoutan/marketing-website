@@ -41,8 +41,6 @@ window.optly.mrkt.services.xhr = {
   },
 
   logSegmentError: function(url, category, errorMessage) {
-    //TEST: logging to see errors
-    console.log('Segment error message: ', errorMessage);
     window.analytics.track(url, {
       category: category,
       label: errorMessage
@@ -140,7 +138,6 @@ window.optly.mrkt.services.xhr = {
 
           this.logSegmentError(url, 'api error', errorMessage);
 
-          console.log(errorMessage);
         }
 
     }.bind(this));
@@ -209,7 +206,7 @@ window.optly.mrkt.services.xhr = {
 
 (function() {
   'use strict';
-
+  console.log(this);
   var acctParams,
     expParams,
     optly_QFactory = function(acctData, expData) {
@@ -259,7 +256,7 @@ window.optly.mrkt.services.xhr = {
       };
 
     };
-  //TEST: Change parameters here to break it and see error logging
+
   acctParams = {
     type: 'GET',
     url: '/account/info',
