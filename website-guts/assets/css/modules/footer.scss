@@ -1,4 +1,7 @@
 footer {
+    #footer-nav {
+      display: none;
+    }
     text-align: center;
     padding: 20px 0;
     background: #006eb6;
@@ -62,6 +65,10 @@ footer {
             width: 108px;
             margin: 0;
         }
+        #footer-nav {
+          margin: 0;
+          display: block;
+        }
     }
     #legalese {
         li {
@@ -87,7 +94,6 @@ footer {
             width: 640px;
         }
     }
-    #footer-nav {margin: 0;}
     .footer-nav-column {
         float: left;
         padding: 0 10px;

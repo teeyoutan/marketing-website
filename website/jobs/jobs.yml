@@ -1,0 +1,63 @@
+---
+page_header: Let’s personalize the web.
+page_intro: Join us as we enable everyone to make data-driven decisions and improve the way they show information to the world.
+view_jobs_button_text: View All Jobs
+benefits_header: Why you'll love it here
+benefits:
+-
+  header: Compensation & Rewards
+  body: Competitive pay, equity, referral/peer bonuses, and monthly recruiting raffle prizes
+  id: piggybank
+-
+  header: Rest & Relaxation
+  body: Paid holidays, unlimited time off, and six weeks of paid parental leave
+  id: calendar
+-
+  header: Healthcare Coverage
+  body: Premiums covered for you, your dependents, and your spouse or domestic partner
+  id: health
+-
+  header: Meals on Us
+  body: Catered in-office lunch and dinner on weekdays and a fully stocked kitchen
+  id: burger
+-
+  header: Easy to get to
+  body: Convenient office location, free transit card, and secure bike storage
+  id: bart
+-
+  header: Brand New Gear
+  body: A shiny MacBook Pro or Air, a Thunderbolt Display, and any other gear you need
+  id: apple
+-
+  header: Gym Membership
+  body: Free Crunch Fitness membership or a health and wellness subsidy
+  id: heart
+
+-
+  header: We have fun
+  body: Frequent team outings, game nights, pool, video games, and a ping pong robot
+  id: pingpong
+
+employee_testimonials:
+-
+    name: Bradley
+    title: Sales
+    image: '../assets/img/jobs/bradley.jpg'
+    quote: "I love Optimizely because I get to work with brilliant people changing the Internet. I feel challenged and supported here."
+-
+    name: Amelia
+    title: Marketing
+    image: '../assets/img/jobs/amelia.jpg'
+    quote: "I get to work with people who are not only talented and accomplished, they’re also wonderful human beings. I like that we care about that."
+-
+    name: Sophie
+    title: Sales
+    image: '../assets/img/jobs/sophie.jpg'
+    quote: "We are given the opportunity to take ownership of projects, making us all architects of the fast growing company."
+-
+    name: Brett
+    title: Success
+    image: '../assets/img/jobs/brett.jpg'
+    quote: "I really love working for a company that allows and encourages me to learn and grow. Plus, the free food isn’t too bad either."
+
+job_openings_header: All Job Openings
