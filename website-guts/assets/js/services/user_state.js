@@ -41,6 +41,8 @@ window.optly.mrkt.services.xhr = {
   },
 
   logSegmentError: function(url, category, errorMessage) {
+    //TEST: logging to see errors
+    console.log('Segment error message: ', errorMessage);
     window.analytics.track(url, {
       category: category,
       label: errorMessage
@@ -257,7 +259,7 @@ window.optly.mrkt.services.xhr = {
       };
 
     };
-
+  //TEST: Change parameters here to break it and see error logging
   acctParams = {
     type: 'GET',
     url: '/account/info',
