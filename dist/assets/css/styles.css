@@ -2530,7 +2530,7 @@ html.modal-open, body.modal-open {
     top: 2px;
     left: 8px; }
   .utility-nav #experiment-nav-item #view-all-experiments-link {
-    background: url("/dist/assets/img/common.png") no-repeat 44px -70px; }
+    background: url("/dist/assets/img/common.png") no-repeat 33px -70px; }
 .utility-nav .experiment-container li {
   border: none;
   white-space: nowrap; }

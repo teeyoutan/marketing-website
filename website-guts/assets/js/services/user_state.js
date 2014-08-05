@@ -102,6 +102,7 @@ window.optly.mrkt.services.xhr = {
     var parsedRes, errorMessage;
 
     deffered.always(function(data, textStatus, jqXHR) {
+
         // check if the last argument is a promise, if so the response was successful
         if( this.isPromise(jqXHR) && jqXHR.status === 200 ) {
 
@@ -189,10 +190,10 @@ window.optly.mrkt.services.xhr = {
 
     if ( !!this.readCookie('optimizely_signed_in') ) {
       deffereds = this.makeRequest(requestParams, callback);
+      return deffereds;
     } else {
       console.log('no signin cookie present!!');
     }
-    return deffereds;
   }
   
 };
@@ -204,6 +205,7 @@ window.optly.mrkt.services.xhr = {
       this.acctData = acctData;
       this.expData = expData;
 
+      // Tie user date to window
       window.optly.mrkt.user = {
         account: this.acctData,
         experiments: this.expData

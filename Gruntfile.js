@@ -317,7 +317,7 @@ module.exports = function(grunt) {
       jquery: {
         files: [
           {
-            '<%= config.dist %>/assets/js/libraries/jquery-1.6.4.min.js': ['<%= config.guts %>/assets/js/libraries/jquery-1.6.4.min.js']
+            '<%= config.dist %>/assets/js/libraries/jquery-2.1.1.min.js': ['<%= config.guts %>/assets/js/libraries/jquery-2.1.1.min.js']
           }
         ]
       },

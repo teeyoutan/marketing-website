@@ -8777,7 +8777,7 @@ function program8(depth0,data) {
   if (helper = helpers.email) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.email); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</a>\n    <ul class=\"dropdown-menu-top\" data-show-dropdown=\"account\">\n        <li><a href=\"/account\">Account Setting</a></li>\n        <li><a >Log Out</a></li>\n    </ul>\n</li>";
+    + "</a>\n    <ul class=\"dropdown-menu-top\" data-show-dropdown=\"account\">\n        <li><a href=\"/account\">Account Setting</a></li>\n        <li><a data-logout >Log Out</a></li>\n    </ul>\n</li>";
   return buffer;
   });
 
@@ -8849,7 +8849,7 @@ function program1(depth0,data) {
   return buffer;
   });
 /* oForm - Author: Kyle Rush - MIT license - https://github.com/kylerush/oform */ 
-$.fn.extend({oForm:function(options){var defaultOptions,settings,formSelector;formSelector=$(this),defaultOptions={},defaultOptions.validation={},defaultOptions.validation.validators={},defaultOptions.emailIsValid=function(email){if("string"==typeof email){var emailRegEx=/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;return emailRegEx.test(email)}return!1},defaultOptions.phoneIsValid=function(phone){if("string"==typeof phone){var phoneOnlyDigits=phone.replace(/\D/g,"");return phoneOnlyDigits.length>=10?!0:!1}return!1},defaultOptions.checkboxIsValid=function(checkbox){return $(checkbox).prop("checked")?!0:!1},defaultOptions.stringHasValue=function(value){return"string"==typeof value&&value?!0:!1},defaultOptions.alertValidationError=function(element,isValid){"function"!=typeof settings.reportValidationError||isValid||settings.reportValidationError(element)},defaultOptions.adjustClasses=function(element,isValid){var relatedClass="."+element.attr("name")+"-related";return isValid?(element.removeClass("error-show"),$(relatedClass).each(function(index,value){$(value).removeClass("error-show")})):(element.addClass("error-show"),$(relatedClass).each(function(index,value){$(value).addClass("error-show")}),settings.alertValidationError(element,isValid)),"checkbox"===element.attr("type")&&element.focus(),isValid},defaultOptions.validateFields=function(args){var invalidFields=0;return $.each(args.selector.find('input:not([type="hidden"]):not([type="submit"])'),function(index,value){var element,dataValidation,elementValue,type,validate;if(element=$(value),dataValidation=$(element).attr("data-validation"),elementValue=element.val(),validate=function(valid){valid||invalidFields++},dataValidation&&settings.validation[dataValidation])settings.adjustClasses(element,settings.validation[dataValidation](elementValue));else if(element.attr("required"))switch(type=element.attr("type")){case"url":case"text":validate(settings.adjustClasses(element,settings.stringHasValue(elementValue)));break;case"email":validate(settings.adjustClasses(element,settings.emailIsValid(elementValue)));break;case"tel":validate(settings.adjustClasses(element,settings.phoneIsValid(elementValue)));break;case"checkbox":validate(settings.adjustClasses(element,settings.checkboxIsValid(element)))}}),0===invalidFields?($("body").removeClass("error-state"),!0):($("body").addClass("error-state"),!1)},defaultOptions.submitData=function(callback){var requestSettings,response;requestSettings={type:"POST",url:formSelector.attr("action")||settings.url,data:formSelector.serialize()},response=$.ajax(requestSettings),response.always(function(){try{response.responseJSON=$.parseJSON(response.responseText),response.requestInfo=requestSettings}catch(error){}defaultOptions.executeAfterCallbacks(response,callback)})},defaultOptions.executeAfterCallbacks=function(response,callback){"function"==typeof settings.afterLocal?settings.afterLocal(response,settings.afterGlobal?settings.afterGlobal:void 0):"function"==typeof settings.afterGlobal&&settings.afterGlobal(response),"function"==typeof callback&&callback()},defaultOptions.overrideTestFunction=function(){return!1},"object"==typeof jQuery.oFormGlobalOverrides&&(defaultOptions=$.extend(!0,defaultOptions,jQuery.oFormGlobalOverrides)),settings=$.extend(!0,defaultOptions,options),formSelector.submit(function(event){if(event.preventDefault(),"function"==typeof settings.beforeLocal&&settings.beforeLocal({selector:formSelector})===!1)return!1;if("function"==typeof settings.beforeGlobal&&settings.beforeGlobal({selector:formSelector})===!1)return!1;if("function"==typeof settings.validateFields){var validFields=settings.validateFields({selector:formSelector});if(validFields===!1)return void defaultOptions.executeAfterCallbacks(void 0)}settings.submitData(),event.preventDefault()})}});
+$.fn.extend({oForm:function(options){var defaultOptions,settings,formSelector;formSelector=$(this),defaultOptions={},defaultOptions.validation={},defaultOptions.validation.validators={},defaultOptions.emailIsValid=function(email){if("string"==typeof email){var emailRegEx=/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;return emailRegEx.test(email)}return!1},defaultOptions.phoneIsValid=function(phone){if("string"==typeof phone){var phoneOnlyDigits=phone.replace(/\D/g,"");return phoneOnlyDigits.length>=10?!0:!1}return!1},defaultOptions.checkboxIsValid=function(checkbox){return $(checkbox).prop("checked")?!0:!1},defaultOptions.stringHasValue=function(value){return"string"==typeof value&&value?!0:!1},defaultOptions.alertValidationError=function(element,isValid){"function"!=typeof settings.reportValidationError||isValid||settings.reportValidationError(element)},defaultOptions.adjustClasses=function(element,isValid){var relatedClass="."+element.attr("name")+"-related";return isValid?(element.removeClass("error-show"),$(relatedClass).each(function(index,value){$(value).removeClass("error-show")})):(element.addClass("error-show"),$(relatedClass).each(function(index,value){$(value).addClass("error-show")}),settings.alertValidationError(element,isValid)),"checkbox"===element.attr("type")&&element.focus(),isValid},defaultOptions.validateFields=function(args){var invalidFields=0;return $.each(args.selector.find('input:not([type="hidden"]):not([type="submit"])'),function(index,value){var element,dataValidation,elementValue,type,validate;if(element=$(value),dataValidation=$(element).attr("data-validation"),elementValue=element.val(),validate=function(valid){valid||invalidFields++},dataValidation&&settings.validation[dataValidation])settings.adjustClasses(element,settings.validation[dataValidation](elementValue));else if(element.attr("required"))switch(type=element.attr("type")){case"url":case"text":validate(settings.adjustClasses(element,settings.stringHasValue(elementValue)));break;case"email":validate(settings.adjustClasses(element,settings.emailIsValid(elementValue)));break;case"tel":validate(settings.adjustClasses(element,settings.phoneIsValid(elementValue)));break;case"checkbox":validate(settings.adjustClasses(element,settings.checkboxIsValid(element)))}}),0===invalidFields?($("body").removeClass("error-state"),settings.adjustClasses(formSelector.find(".error-message"),!0),!0):($("body").addClass("error-state"),settings.adjustClasses(formSelector.find(".error-message"),!1),!1)},defaultOptions.submitData=function(callback){var requestSettings,response;requestSettings={type:"POST",url:formSelector.attr("action")||settings.url,data:formSelector.serialize()},response=$.ajax(requestSettings),response.always(function(){try{response.responseJSON=$.parseJSON(response.responseText),response.requestInfo=requestSettings}catch(error){}defaultOptions.executeAfterCallbacks(response,callback)})},defaultOptions.executeAfterCallbacks=function(response,callback){"function"==typeof settings.afterLocal?settings.afterLocal(response,settings.afterGlobal?settings.afterGlobal:void 0):"function"==typeof settings.afterGlobal&&settings.afterGlobal(response),"function"==typeof callback&&callback()},defaultOptions.overrideTestFunction=function(){return!1},"object"==typeof jQuery.oFormGlobalOverrides&&(defaultOptions=$.extend(!0,defaultOptions,jQuery.oFormGlobalOverrides)),settings=$.extend(!0,defaultOptions,options),formSelector.submit(function(event){if(event.preventDefault(),"function"==typeof settings.beforeLocal&&settings.beforeLocal({selector:formSelector})===!1)return!1;if("function"==typeof settings.beforeGlobal&&settings.beforeGlobal({selector:formSelector})===!1)return!1;if("function"==typeof settings.validateFields){var validFields=settings.validateFields({selector:formSelector});if(validFields===!1)return void defaultOptions.executeAfterCallbacks(void 0)}settings.submitData(),event.preventDefault()})}});
 (function($){ 
 
   window.optly = window.optly || {}; 
@@ -9385,21 +9385,6 @@ jQuery.oFormGlobalOverrides = {
 var $utilityNavElm = $('.utility-nav.signed-in-content');
 var lastDropdown;
 
-// function templateExpData($elm, expData) {
-//   var $expLink = $( $elm.find('.edit') );
-//   $expLink.attr('href', 'https://www.optimizely.com/edit?experiment_id=' + expData.id);
-//   if (!expData.can_edit) {
-//     $expLink.addClass('disabled');
-//     $expLink.bind('click', function(e) {
-//       e.preventDefault();
-//     });
-//   }
-//   $elm.find('.experiment-description').text(expData.description);
-//   if (expData.has_started) {
-//     $elm.find('.experiment-results').css({display: 'block'});
-//   }
-// }
-
 function showUtilityNav($elm, acctData, expData) {
   var handlebarsData = {
     account_data: acctData.account_id, 
@@ -9407,15 +9392,13 @@ function showUtilityNav($elm, acctData, expData) {
     experiments: expData.experiments
   };
 
-  handlebarsData.experiments[4].has_started = false;
-  handlebarsData.experiments[4].description = 'aasdfasd asd fasd fasdf asd fasdf asd fasd fasd f';
-
   $('body').addClass('signed-in').removeClass('signed-out');
 
   $('#signed-in-utility').html( window.optly.mrkt.templates.experimentsNav(handlebarsData) );
   var $dropdownMenus = $('[data-show-dropdown]');
 
   bindDropdownClick($dropdownMenus);
+  $('[data-logout]').on('click', signOut);
 }
 
 function bindDropdownClick($dropdownMenus) {
@@ -9428,8 +9411,6 @@ function bindDropdownClick($dropdownMenus) {
     // Iterate through cached dropdown containers looking for the clicked type
     $.each($dropdownMenus, function(index, elm) {
       var $elm = $(elm);
-      //var $dropdownMenu = $elm.data('show-dropdown');
-
       // Logic to close the dropdown if it is open and another is clicked
       if (clickedData !== lastDropdown && lastDropdown !== undefined) {
         $('[data-show-dropdown="' + lastDropdown + '"]').removeClass('show-dropdown');
@@ -9445,20 +9426,26 @@ function bindDropdownClick($dropdownMenus) {
 }
 
 function closeDropdown(e) {
-  // $dropdownMenus.bind('click', function(e) {
-  //   debugger;
-  //   if ( !$(this).find(e.target) && e.target !== this) {
-  //     $(this).removeClass('show-dropdown');
-  //   } 
-  // });
-debugger;
   if (!$(e.target).closest('[data-show-dropdown]').length && !$(e.target).is('[data-dropdown]')) {
+    $('[data-show-dropdown]').removeClass('show-dropdown');
+    $(document).unbind('click', closeDropdown);
+  } else if ($(e.target).data('logout')) {
+    signOut();
     $('[data-show-dropdown]').removeClass('show-dropdown');
     $(document).unbind('click', closeDropdown);
   }
 }
 
-window.optly_q.push([showUtilityNav, $utilityNavElm, 'acctData', 'expData']);})(jQuery);
+function signOut() {
+  debugger;
+  window.optly.mrkt.services.xhr.makeRequest({
+    type: 'GET',
+    url: '/account/signout'
+  });
+}
+
+// Make call to optly Q
+window.optly_q.push([showUtilityNav, $utilityNavElm, window.optly.mrkt.user.account, window.optly.mrkt.user.experiments]);})(jQuery);
 window.optly = window.optly || {};
 
 window.optly.mrkt = window.optly.mrkt || {};
