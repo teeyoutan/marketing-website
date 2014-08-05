@@ -748,6 +748,8 @@ footer {
   padding: 20px 0;
   background: #006eb6;
   color: #fff; }
+  footer #footer-nav {
+    display: none; }
   footer h4 {
     font-size: 1.3em; }
   footer ul {
@@ -798,6 +800,9 @@ footer {
       height: 23.112px;
       width: 108px;
       margin: 0; }
+    footer #footer-nav {
+      margin: 0;
+      display: block; }
   #legalese li {
     float: left;
     padding: 0 3px;
@@ -812,8 +817,6 @@ footer {
       margin-bottom: 5px; }
   #footer-nav-cont .right {
     width: 640px; }
-  #footer-nav {
-    margin: 0; }
   .footer-nav-column {
     float: left;
     padding: 0 10px; }
