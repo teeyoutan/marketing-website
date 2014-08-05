@@ -2538,6 +2538,7 @@ html.modal-open, body.modal-open {
     overflow: hidden;
     padding: 16px 12px; }
   .utility-nav .experiment-container li a:first-child {
+    max-width: 300px;
     float: left;
     width: 75%;
     text-align: left;
@@ -2546,7 +2547,6 @@ html.modal-open, body.modal-open {
     float: right;
     width: 25%;
     text-align: right;
-    display: none;
     color: #aaa; }
   .utility-nav .experiment-container li a:last-child:hover {
     color: #444; }

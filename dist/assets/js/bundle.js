@@ -8707,6 +8707,80 @@ function program1(depth0,data) {
   return buffer;
   });
 
+this["optly"]["mrkt"]["templates"]["experimentsNav"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression, self=this;
+
+function program1(depth0,data) {
+  
+  var buffer = "", stack1, helper;
+  buffer += "\n        <span class=\"experiment-container\">\n          <li>\n            <a class=\"edit\" \n              ";
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.can_edit), {hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n              ";
+  stack1 = helpers.unless.call(depth0, (depth0 && depth0.has_started), {hash:{},inverse:self.noop,fn:self.program(4, program4, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n              >\n              <span class=\"experiment-description\">";
+  if (helper = helpers.description) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.description); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</span>\n            </a>\n            \n            <a class=\"experiment-results\" \n              ";
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.can_edit), {hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n              ";
+  stack1 = helpers.unless.call(depth0, (depth0 && depth0.has_started), {hash:{},inverse:self.noop,fn:self.program(6, program6, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n              >\n              ";
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.has_started), {hash:{},inverse:self.noop,fn:self.program(8, program8, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n            </a>\n          </li>\n        </span>\n      ";
+  return buffer;
+  }
+function program2(depth0,data) {
+  
+  var buffer = "", stack1, helper;
+  buffer += "href=\"https://www.optimizely.com/edit?experiment_id=";
+  if (helper = helpers.id) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.id); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\"";
+  return buffer;
+  }
+
+function program4(depth0,data) {
+  
+  
+  return "style=\"width: auto;\"";
+  }
+
+function program6(depth0,data) {
+  
+  
+  return "style=\"display: none;\"";
+  }
+
+function program8(depth0,data) {
+  
+  
+  return "\n              Results\n              ";
+  }
+
+  buffer += "<li class=\"first\"><a href=\"\">Dashboard</a></li>\n<li id=\"experiment-nav-item\" data-show-user-state=\"logged-in\">\n    <a href=\"\" class=\"dropdown-arrow\" data-dropdown=\"experiments\">Experiments</a>\n    <ul class=\"dropdown-menu-top\" data-show-dropdown=\"experiments\">\n      <div class=\"message\"></div>\n      ";
+  stack1 = helpers.each.call(depth0, (depth0 && depth0.experiments), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n      <li class=\"view-all-experiments\" data-show=\"dashboard-link\">\n        <a id=\"view-all-experiments-link\" href=\"https://www.optimizely.com/dashboard?project_id=";
+  if (helper = helpers.account_id) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.account_id); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\">\n          <span>View All Experiments</span>\n        </a>\n      </li>\n      <li class=\"show-create-experiment\" data-modal-click=\"create-exp\">\n        <span>+ </span><a href=\"javascript:void(0)\">Create New Experiment</a>\n      </li>\n    </ul>\n</li>\n<li><a href=\"\">Implementation</a></li>\n<li><a href=\"\">Learning center</a></li>\n<li id=\"my-account-menu\">\n    <a class=\"customer-email dropdown-arrow\" href=\"\" data-dropdown=\"account\">";
+  if (helper = helpers.email) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.email); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</a>\n    <ul class=\"dropdown-menu-top\" data-show-dropdown=\"account\">\n        <li><a href=\"/account\">Account Setting</a></li>\n        <li><a >Log Out</a></li>\n    </ul>\n</li>";
+  return buffer;
+  });
+
 this["optly"]["mrkt"]["templates"]["webinarEventDetail"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
@@ -9309,49 +9383,45 @@ jQuery.oFormGlobalOverrides = {
 };
 
 var $utilityNavElm = $('.utility-nav.signed-in-content');
-var $dropdownMenus = $('[data-show-dropdown]');
 var lastDropdown;
 
-function templateExpData($elm, expData) {
-  var $expLink = $( $elm.find('.edit') );
-  $expLink.attr('href', 'https://www.optimizely.com/edit?experiment_id=' + expData.id);
-  if (!expData.can_edit) {
-    $expLink.addClass('disabled');
-    $expLink.bind('click', function(e) {
-      e.preventDefault();
-    });
-  }
-  $elm.find('.experiment-description').text(expData.description);
-  if (expData.has_started) {
-    $elm.find('.experiment-results').css({display: 'block'});
-  }
-}
+// function templateExpData($elm, expData) {
+//   var $expLink = $( $elm.find('.edit') );
+//   $expLink.attr('href', 'https://www.optimizely.com/edit?experiment_id=' + expData.id);
+//   if (!expData.can_edit) {
+//     $expLink.addClass('disabled');
+//     $expLink.bind('click', function(e) {
+//       e.preventDefault();
+//     });
+//   }
+//   $elm.find('.experiment-description').text(expData.description);
+//   if (expData.has_started) {
+//     $elm.find('.experiment-results').css({display: 'block'});
+//   }
+// }
 
 function showUtilityNav($elm, acctData, expData) {
+  var handlebarsData = {
+    account_data: acctData.account_id, 
+    email: acctData.email,
+    experiments: expData.experiments
+  };
+
+  handlebarsData.experiments[4].has_started = false;
+  handlebarsData.experiments[4].description = 'aasdfasd asd fasd fasdf asd fasdf asd fasd fasd f';
+
   $('body').addClass('signed-in').removeClass('signed-out');
-  $elm.find('.customer-email').text(acctData.email);
 
-  var $expContainer = $elm.find('span.experiment-container');
+  $('#signed-in-utility').html( window.optly.mrkt.templates.experimentsNav(handlebarsData) );
+  var $dropdownMenus = $('[data-show-dropdown]');
 
-  $.each(expData.experiments, function(index, data) {
-    if (index === 0) {
-      templateExpData($expContainer, data);
-      $expContainer.attr('id', 'exp-cont-' + (index + 1) );
-    }
-    // cloning logic, will be replaced with client side handlebars templating
-    else {
-      var $cloned = $expContainer.clone();
-      $cloned.attr('id', 'exp-cont-' + (index + 1) );
-      templateExpData($cloned, data);
-      $cloned.insertAfter( $('#exp-cont-' + index) );
-    }
-  });
-  $elm.find('#view-all-experiments-link').attr('href', 'https://www.optimizely.com/dashboard?project_id=' + acctData.account_id);
+  bindDropdownClick($dropdownMenus);
 }
 
 function bindDropdownClick($dropdownMenus) {
-  $('.utility-nav.signed-in-content').delegate('[data-dropdown]', 'click', function(e) {
+  $('#signed-in-utility').delegate('[data-dropdown]', 'click', function(e) {
     e.preventDefault();
+
     // Get the type of dropdown anchor that was clicked
     var clickedData = $(this).data('dropdown');
 
@@ -9368,12 +9438,26 @@ function bindDropdownClick($dropdownMenus) {
       if ( $elm.data('show-dropdown') ===  clickedData ) {
         $elm.toggleClass('show-dropdown');
         lastDropdown = clickedData;
+        $(document).bind('click', closeDropdown);
       }
     });
   });
 }
 
-bindDropdownClick($dropdownMenus);
+function closeDropdown(e) {
+  // $dropdownMenus.bind('click', function(e) {
+  //   debugger;
+  //   if ( !$(this).find(e.target) && e.target !== this) {
+  //     $(this).removeClass('show-dropdown');
+  //   } 
+  // });
+debugger;
+  if (!$(e.target).closest('[data-show-dropdown]').length && !$(e.target).is('[data-dropdown]')) {
+    $('[data-show-dropdown]').removeClass('show-dropdown');
+    $(document).unbind('click', closeDropdown);
+  }
+}
+
 window.optly_q.push([showUtilityNav, $utilityNavElm, 'acctData', 'expData']);})(jQuery);
 window.optly = window.optly || {};
 

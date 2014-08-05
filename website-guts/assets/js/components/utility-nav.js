@@ -1,47 +1,43 @@
 var $utilityNavElm = $('.utility-nav.signed-in-content');
-var $dropdownMenus = $('[data-show-dropdown]');
 var lastDropdown;
 
-function templateExpData($elm, expData) {
-  var $expLink = $( $elm.find('.edit') );
-  $expLink.attr('href', 'https://www.optimizely.com/edit?experiment_id=' + expData.id);
-  if (!expData.can_edit) {
-    $expLink.addClass('disabled');
-    $expLink.bind('click', function(e) {
-      e.preventDefault();
-    });
-  }
-  $elm.find('.experiment-description').text(expData.description);
-  if (expData.has_started) {
-    $elm.find('.experiment-results').css({display: 'block'});
-  }
-}
+// function templateExpData($elm, expData) {
+//   var $expLink = $( $elm.find('.edit') );
+//   $expLink.attr('href', 'https://www.optimizely.com/edit?experiment_id=' + expData.id);
+//   if (!expData.can_edit) {
+//     $expLink.addClass('disabled');
+//     $expLink.bind('click', function(e) {
+//       e.preventDefault();
+//     });
+//   }
+//   $elm.find('.experiment-description').text(expData.description);
+//   if (expData.has_started) {
+//     $elm.find('.experiment-results').css({display: 'block'});
+//   }
+// }
 
 function showUtilityNav($elm, acctData, expData) {
+  var handlebarsData = {
+    account_data: acctData.account_id, 
+    email: acctData.email,
+    experiments: expData.experiments
+  };
+
+  handlebarsData.experiments[4].has_started = false;
+  handlebarsData.experiments[4].description = 'aasdfasd asd fasd fasdf asd fasdf asd fasd fasd f';
+
   $('body').addClass('signed-in').removeClass('signed-out');
-  $elm.find('.customer-email').text(acctData.email);
 
-  var $expContainer = $elm.find('span.experiment-container');
+  $('#signed-in-utility').html( window.optly.mrkt.templates.experimentsNav(handlebarsData) );
+  var $dropdownMenus = $('[data-show-dropdown]');
 
-  $.each(expData.experiments, function(index, data) {
-    if (index === 0) {
-      templateExpData($expContainer, data);
-      $expContainer.attr('id', 'exp-cont-' + (index + 1) );
-    }
-    // cloning logic, will be replaced with client side handlebars templating
-    else {
-      var $cloned = $expContainer.clone();
-      $cloned.attr('id', 'exp-cont-' + (index + 1) );
-      templateExpData($cloned, data);
-      $cloned.insertAfter( $('#exp-cont-' + index) );
-    }
-  });
-  $elm.find('#view-all-experiments-link').attr('href', 'https://www.optimizely.com/dashboard?project_id=' + acctData.account_id);
+  bindDropdownClick($dropdownMenus);
 }
 
 function bindDropdownClick($dropdownMenus) {
-  $('.utility-nav.signed-in-content').delegate('[data-dropdown]', 'click', function(e) {
+  $('#signed-in-utility').delegate('[data-dropdown]', 'click', function(e) {
     e.preventDefault();
+
     // Get the type of dropdown anchor that was clicked
     var clickedData = $(this).data('dropdown');
 
@@ -58,10 +54,24 @@ function bindDropdownClick($dropdownMenus) {
       if ( $elm.data('show-dropdown') ===  clickedData ) {
         $elm.toggleClass('show-dropdown');
         lastDropdown = clickedData;
+        $(document).bind('click', closeDropdown);
       }
     });
   });
 }
 
-bindDropdownClick($dropdownMenus);
+function closeDropdown(e) {
+  // $dropdownMenus.bind('click', function(e) {
+  //   debugger;
+  //   if ( !$(this).find(e.target) && e.target !== this) {
+  //     $(this).removeClass('show-dropdown');
+  //   } 
+  // });
+debugger;
+  if (!$(e.target).closest('[data-show-dropdown]').length && !$(e.target).is('[data-dropdown]')) {
+    $('[data-show-dropdown]').removeClass('show-dropdown');
+    $(document).unbind('click', closeDropdown);
+  }
+}
+
 window.optly_q.push([showUtilityNav, $utilityNavElm, 'acctData', 'expData']);
