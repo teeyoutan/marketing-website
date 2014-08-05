@@ -2293,6 +2293,8 @@ body.jobs-layout #pingpong {
       list-style: none; }
     body.jobs-layout .testimonials .employee-icons {
       margin-top: 60px; }
+      body.jobs-layout .testimonials .employee-icons a {
+        text-decoration: none; }
   body.jobs-layout .benefits {
     padding-top: 40px; }
     body.jobs-layout .benefits li {
