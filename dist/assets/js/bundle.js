@@ -8773,7 +8773,7 @@ function program8(depth0,data) {
   if (helper = helpers.account_id) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.account_id); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "\">\n          <span>View All Experiments</span>\n        </a>\n      </li>\n      <li class=\"show-create-experiment\" data-modal-click=\"create-exp\">\n        <span>+ </span><a href=\"javascript:void(0)\">Create New Experiment</a>\n      </li>\n    </ul>\n</li>\n<li><a href=\"\">Implementation</a></li>\n<li><a href=\"\">Learning center</a></li>\n<li id=\"my-account-menu\">\n    <a class=\"customer-email dropdown-arrow\" href=\"\" data-dropdown=\"account\">";
+    + "\">\n          <span>View All Experiments</span>\n        </a>\n      </li>\n      <li class=\"show-create-experiment\" data-modal-click=\"create-exp\">\n        <span>+ </span><a href=\"javascript:void(0)\">Create New Experiment</a>\n      </li>\n    </ul>\n</li>\n<li><a href=\"\">Support</a></li>\n<li id=\"my-account-menu\">\n    <a class=\"customer-email dropdown-arrow\" href=\"\" data-dropdown=\"account\">";
   if (helper = helpers.email) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.email); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
