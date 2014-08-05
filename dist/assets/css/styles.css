@@ -2521,11 +2521,6 @@ body.benefits-page {
         position: absolute;
         top: 8px;
         width: 7px; }
-      .dropdown-cont ul li.active {
-        font-weight: bold; }
-        .dropdown-cont ul li.active:before {
-          background: #006eb6;
-          border: 1px solid #006eb6; }
       .dropdown-cont ul li:hover {
         background: #242424;
         color: #fff;
@@ -2533,6 +2528,11 @@ body.benefits-page {
         .dropdown-cont ul li:hover:before {
           background: #fff;
           border: 1px solid #fff; }
+      .dropdown-cont ul li.active {
+        font-weight: bold; }
+        .dropdown-cont ul li.active:before {
+          background: #006eb6;
+          border: 1px solid #006eb6; }
 
 .star-cont {
   background-repeat: no-repeat;

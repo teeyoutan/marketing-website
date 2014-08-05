@@ -40,23 +40,29 @@ script_dependencies:
         <div class="heading">Filter By:</div>
         <div class="dropdown-cont">Region &#9662;
           <ul>
-            <li class="active filter-item">Northeast</li>
-            <li class="filter-item">Southeast</li>
-            <li class="filter-item">Northwest</li>
+            <li class="filter-item" data-filter="northeast">Northeast</li>
+            <li class="filter-item" data-filter="southeast">Southeast</li>
+            <li class="filter-item" data-filter="northwest">Northwest</li>
           </ul>
         </div>
         <div class="dropdown-cont">Star Rating &#9662;
           <ul>
-            <li class="filter-item"><span class="star-cont star-cont--1"></span></li>
-            <li class="filter-item active"><span class="star-cont star-cont--2"></span></li>
-            <li class="filter-item"><span class="star-cont star-cont--3"></span></li>
+            <li class="filter-item" data-filter="1-star">
+              <span class="star-cont star-cont--1"></span>
+            </li>
+            <li class="filter-item" data-filter="2-star">
+              <span class="star-cont star-cont--2"></span>
+            </li>
+            <li class="filter-item" data-filter="3-star">
+              <span class="star-cont star-cont--3"></span>
+            </li>
           </ul>
         </div>
         <div class="dropdown-cont">Industry &#9662;
           <ul>
-            <li class="filter-item">Technology</li>
-            <li class="filter-item">Metalurgy</li>
-            <li class="filter-item">Alchemy</li>
+            <li class="filter-item" data-filter="technology">Technology</li>
+            <li class="filter-item" data-filter="metalurgy">Metalurgy</li>
+            <li class="filter-item" data-filter="alchemy">Alchemy</li>
           </ul>
         </div>
       </div>
@@ -64,15 +70,20 @@ script_dependencies:
   </div>
 
   <div class="row">
+
+    {{!-- eventually can remove this, just for testing --}}
+    <div id="output"></div>
+
     <div class="integrations-container container">
       {{!-- {{#each customer_info.customerList}}
         {{#classgridstart @index}}
           <div class="row">
         {{/classgridstart}}--}}
 
+        {{!-- every item needs a location, specialization and star rating --}}
 
           <div class="row partner-grid">
-            <div class="partner-grid-elm">
+            <div class="partner-grid-elm 1-star northeast metalurgy">
               <div class="title-container">
                 <h4 class="partner-title">Analytics Pros</h4>
                 <div class="partner-location">Seattle, WA</div>
@@ -89,7 +100,7 @@ script_dependencies:
                 <a href="{{downloadUrl}}" class="button">Learn More &gt;</a>
               </div>
             </div>
-            <div class="partner-grid-elm">
+            <div class="partner-grid-elm 3-star technology northwest">
               <div class="title-container">
                 <h4 class="partner-title">Analytics Pros</h4>
                 <div class="partner-location">Seattle, WA</div>
@@ -106,7 +117,7 @@ script_dependencies:
                 <a href="{{downloadUrl}}" class="button">Learn More &gt;</a>
               </div>
             </div>
-            <div class="partner-grid-elm">
+            <div class="partner-grid-elm 2-star southwest">
               <div class="title-container">
                 <h4 class="partner-title">Analytics Pros</h4>
                 <div class="partner-location">Seattle, WA</div>
@@ -123,7 +134,7 @@ script_dependencies:
                 <a href="{{downloadUrl}}" class="button">Learn More &gt;</a>
               </div>
             </div>
-            <div class="partner-grid-elm">
+            <div class="partner-grid-elm 3-star technology">
               <div class="title-container">
                 <h4 class="partner-title">Analytics Pros</h4>
                 <div class="partner-location">Seattle, WA</div>
@@ -140,7 +151,7 @@ script_dependencies:
                 <a href="{{downloadUrl}}" class="button">Learn More &gt;</a>
               </div>
             </div>
-            <div class="partner-grid-elm">
+            <div class="partner-grid-elm 1-star alchemy">
               <div class="title-container">
                 <h4 class="partner-title">Analytics Pros</h4>
                 <div class="partner-location">Seattle, WA</div>
@@ -157,7 +168,7 @@ script_dependencies:
                 <a href="{{downloadUrl}}" class="button">Learn More &gt;</a>
               </div>
             </div>
-            <div class="partner-grid-elm">
+            <div class="partner-grid-elm 3-star technology">
               <div class="title-container">
                 <h4 class="partner-title">Analytics Pros</h4>
                 <div class="partner-location">Seattle, WA</div>
@@ -174,7 +185,7 @@ script_dependencies:
                 <a href="{{downloadUrl}}" class="button">Learn More &gt;</a>
               </div>
             </div>
-            <div class="partner-grid-elm">
+            <div class="partner-grid-elm 3-star alchemy">
               <div class="title-container">
                 <h4 class="partner-title">Analytics Pros</h4>
                 <div class="partner-location">Seattle, WA</div>
@@ -191,7 +202,7 @@ script_dependencies:
                 <a href="{{downloadUrl}}" class="button">Learn More &gt;</a>
               </div>
             </div>
-            <div class="partner-grid-elm">
+            <div class="partner-grid-elm 3-star technology">
               <div class="title-container">
                 <h4 class="partner-title">Analytics Pros</h4>
                 <div class="partner-location">Seattle, WA</div>
@@ -208,7 +219,7 @@ script_dependencies:
                 <a href="{{downloadUrl}}" class="button">Learn More &gt;</a>
               </div>
             </div>
-            <div class="partner-grid-elm">
+            <div class="partner-grid-elm 1-star technology">
               <div class="title-container">
                 <h4 class="partner-title">Analytics Pros</h4>
                 <div class="partner-location">Seattle, WA</div>

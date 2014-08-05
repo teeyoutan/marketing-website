@@ -40,13 +40,6 @@
         top: 8px;
         width: 7px;
       }
-      &.active {
-        font-weight: bold;
-        &:before {
-          background: $new-blue;
-          border: 1px solid $new-blue;
-        }
-      }
       &:hover {
         background: $text-color;
         color: #fff;
@@ -54,6 +47,13 @@
         &:before {
           background: #fff;
           border: 1px solid #fff;
+        }
+      }
+      &.active {
+        font-weight: bold;
+        &:before {
+          background: $new-blue;
+          border: 1px solid $new-blue;
         }
       }
     }
