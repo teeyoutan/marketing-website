@@ -540,6 +540,50 @@ window.optly=window.optly||{},window.optly.mrkt=window.optly.mrkt||{},window.opt
         </form>
     </div><!--/.dialog.narrow-->
 </div> <!-- end .modal-dialog-container -->
+<div id="create-exp-dialog" class="modal-dialog-container" data-optly-modal="create-exp">
+    <div class="dialog narrow">
+        <form action="/account/signin" method="POST" autocomplete="off" id="create-exp-form" novalidate>
+            
+            <div class="modal-header">
+                <p class="normal-header header-h1">Create Experiment</p>
+                <p>Enter a URL below to get started on a new experiment!</p>
+            </div><!--/.modal-header-->
+            
+            <div class="modal-body">
+                
+              <label>
+                  <span>Email address</span>
+                  <input type="text" name="email" />
+              </label>
+              <label>
+                  <span>Password</span>
+                  <input type="password" name="password" />
+              </label>
+              <div class="terms">
+                  <label class="spaced">
+                      <input type="checkbox" name="persist" checked="checked" />
+                      <p>Keep me signed in</p>
+                  </label>
+              </div>
+              <div class="options">
+                  <p>
+                      <a class="show-forgot-password">Forgot your password?</a><br />
+                      No account? <a class="show-create-account" data-modal-click="signup">Register here</a>
+                  </p>
+              </div>
+
+            </div><!--/.modal-body-->
+            <div class="modal-footer">
+                
+                <input type="submit" class="primary-button submit-btn translate" data-modal-btn="signin" value="Create Experiment &raquo;">
+                
+                
+                <input type="button" data-modal-btn="close" class="secondary-button close-btn translate" value="Cancel">
+                
+            </div><!--/.modal-footer-->
+        </form>
+    </div><!--/.dialog.narrow-->
+</div> <!-- end .modal-dialog-container -->
 
         <div id="vh-test"></div>
         <script>

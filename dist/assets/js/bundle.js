@@ -8715,7 +8715,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 function program1(depth0,data) {
   
   var buffer = "", stack1, helper;
-  buffer += "\n        <span class=\"experiment-container\">\n          <li>\n            <a class=\"edit\" \n              ";
+  buffer += "\n        <span class=\"experiment-container hide-in-mobile\">\n          <li>\n            <a class=\"edit\" \n              ";
   stack1 = helpers['if'].call(depth0, (depth0 && depth0.can_edit), {hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n              ";
@@ -8766,18 +8766,18 @@ function program8(depth0,data) {
   return "\n              Results\n              ";
   }
 
-  buffer += "<li class=\"first\"><a href=\"\">Dashboard</a></li>\n<li id=\"experiment-nav-item\" data-show-user-state=\"logged-in\">\n    <a href=\"\" class=\"dropdown-arrow\" data-dropdown=\"experiments\">Experiments</a>\n    <ul class=\"dropdown-menu-top\" data-show-dropdown=\"experiments\">\n      <div class=\"message\"></div>\n      ";
+  buffer += "<li class=\"first hide-in-mobile\"><a href=\"\">Dashboard</a></li>\n<li id=\"experiment-nav-item\" class=\"hide-in-mobile\" data-show-user-state=\"logged-in\">\n    <a href=\"\" class=\"dropdown-arrow\" data-dropdown=\"experiments\">Experiments</a>\n    <ul class=\"dropdown-menu-top\" data-show-dropdown=\"experiments\">\n      <div class=\"message\"></div>\n      ";
   stack1 = helpers.each.call(depth0, (depth0 && depth0.experiments), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n      <li class=\"view-all-experiments\" data-show=\"dashboard-link\">\n        <a id=\"view-all-experiments-link\" href=\"https://www.optimizely.com/dashboard?project_id=";
+  buffer += "\n      <li class=\"view-all-experiments hide-in-mobile\" data-show=\"dashboard-link\">\n        <a id=\"view-all-experiments-link\" href=\"https://www.optimizely.com/dashboard?project_id=";
   if (helper = helpers.account_id) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.account_id); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "\">\n          <span>View All Experiments</span>\n        </a>\n      </li>\n      <li class=\"show-create-experiment\" data-modal-click=\"create-exp\">\n        <span>+ </span><a href=\"javascript:void(0)\">Create New Experiment</a>\n      </li>\n    </ul>\n</li>\n<li><a href=\"\">Support</a></li>\n<li id=\"my-account-menu\">\n    <a class=\"customer-email dropdown-arrow\" href=\"\" data-dropdown=\"account\">";
+    + "\">\n          <span>View All Experiments</span>\n        </a>\n      </li>\n      <li class=\"show-create-experiment hide-in-mobile\" data-modal-click=\"create-exp\">\n        <span>+ </span><a >Create New Experiment</a>\n      </li>\n    </ul>\n</li>\n<li><a href=\"\">Support</a></li>\n<li id=\"my-account-menu\">\n    <span id=\"email-wrapper\">\n      <a class=\"customer-email dropdown-arrow\" href=\"\" data-dropdown=\"account\">";
   if (helper = helpers.email) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.email); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</a>\n    <ul class=\"dropdown-menu-top\" data-show-dropdown=\"account\">\n        <li><a href=\"/account\">Account Setting</a></li>\n        <li><a data-logout >Log Out</a></li>\n    </ul>\n</li>";
+    + "</a>\n    </span>\n    <ul class=\"dropdown-menu-top\" data-show-dropdown=\"account\">\n        <li><a href=\"/account\">Account Setting</a></li>\n        <li><a data-logout >Log Out</a></li>\n    </ul>\n</li>";
   return buffer;
   });
 
@@ -9025,6 +9025,12 @@ window.optly.mrkt.formDataStringToObject = function getJsonFromUrl(string) {
 
 };
 
+$('#create-exp-form').oForm({
+  beforeSubmit: function() {
+
+
+  }
+});
 var $signinModal = $('[data-optly-modal="signin"]');
 
 function requestSignin(e) {
@@ -9467,7 +9473,8 @@ function bindDropdownClick($dropdownMenus) {
 }
 
 function closeDropdown(e) {
-  if (!$(e.target).closest('[data-show-dropdown]').length && !$(e.target).is('[data-dropdown]')) {
+
+  if ( ( !$(e.target).closest('[data-show-dropdown]').length && !$(e.target).is('[data-dropdown]') ) || $(e.target).closest('[data-modal-click]').length > 0 ) {
     $('[data-show-dropdown]').removeClass('show-dropdown');
     $(document).unbind('click', closeDropdown);
   } 

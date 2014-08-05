@@ -42,7 +42,8 @@ function bindDropdownClick($dropdownMenus) {
 }
 
 function closeDropdown(e) {
-  if (!$(e.target).closest('[data-show-dropdown]').length && !$(e.target).is('[data-dropdown]')) {
+
+  if ( ( !$(e.target).closest('[data-show-dropdown]').length && !$(e.target).is('[data-dropdown]') ) || $(e.target).closest('[data-modal-click]').length > 0 ) {
     $('[data-show-dropdown]').removeClass('show-dropdown');
     $(document).unbind('click', closeDropdown);
   } 

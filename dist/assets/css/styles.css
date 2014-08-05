@@ -2637,70 +2637,96 @@ html.modal-open, body.modal-open {
 .dropdown-menu-top {
   z-index: 2; }
 
-.utility-nav li {
-  position: relative; }
-.utility-nav #my-account-menu .dropdown-menu-top {
-  width: 100%; }
-.utility-nav #my-account-menu li {
-  text-align: left; }
-.utility-nav #my-account-menu a {
-  padding: 8px 12px; }
-.utility-nav .dropdown-menu-top {
-  position: absolute;
-  border: 1px solid #d5d5d5;
-  background: #fff; }
-  .utility-nav .dropdown-menu-top.show-dropdown {
-    display: block; }
-  .utility-nav .dropdown-menu-top li {
+.utility-nav {
+  width: 90%; }
+  .utility-nav .hide-in-mobile {
+    display: none; }
+  .utility-nav li {
+    position: relative; }
+  .utility-nav #my-account-menu .dropdown-menu-top {
+    width: 100%; }
+  .utility-nav #my-account-menu #email-wrapper {
     width: 100%;
-    display: block;
-    text-align: center; }
-  .utility-nav .dropdown-menu-top a {
-    color: #000;
-    font-size: 0.8em; }
-  .utility-nav .dropdown-menu-top a:hover {
-    background: transparent;
-    text-decoration: underline;
-    cursor: pointer; }
-.utility-nav .dropdown-arrow:after {
-  content: '\25be';
-  position: relative;
-  top: 1px;
-  color: #fff;
-  padding-left: 2px; }
-.utility-nav .last .dropdown-arrow:after {
-  left: 10px; }
-.utility-nav #experiment-nav-item {
-  position: relative; }
-  .utility-nav #experiment-nav-item li {
-    border-top: 1px solid #d5d5d5; }
-  .utility-nav #experiment-nav-item .show-create-experiment a, .utility-nav #experiment-nav-item .show-create-experiment span {
     display: inline-block;
-    color: #006eb6; }
-  .utility-nav #experiment-nav-item .show-create-experiment span {
-    font-size: 1.2em;
-    position: relative;
-    top: 2px;
-    left: 8px; }
-  .utility-nav #experiment-nav-item #view-all-experiments-link {
-    background: url("/dist/assets/img/common.png") no-repeat 33px -70px; }
-.utility-nav .experiment-container li {
-  border: none;
-  white-space: nowrap; }
-  .utility-nav .experiment-container li a {
-    overflow: hidden;
-    padding: 16px 12px; }
-  .utility-nav .experiment-container li a:first-child {
-    max-width: 300px;
-    float: left;
-    width: 75%;
+    overflow: hidden; }
+  .utility-nav #my-account-menu .customer-email {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden; }
+  .utility-nav #my-account-menu li {
+    text-align: left; }
+    .utility-nav #my-account-menu li a {
+      padding: 8px 12px; }
+  .utility-nav .dropdown-menu-top {
+    position: absolute;
+    border: 1px solid #d5d5d5;
+    background: #fff;
     text-align: left;
-    text-overflow: ellipsis; }
-  .utility-nav .experiment-container li a:last-child {
-    float: right;
-    width: 25%;
-    text-align: right;
-    color: #aaa; }
-  .utility-nav .experiment-container li a:last-child:hover {
-    color: #444; }
+    display: none; }
+    .utility-nav .dropdown-menu-top.show-dropdown {
+      display: block; }
+    .utility-nav .dropdown-menu-top li {
+      width: 100%;
+      display: block;
+      text-align: center; }
+    .utility-nav .dropdown-menu-top a {
+      color: #000;
+      font-size: 0.8em; }
+    .utility-nav .dropdown-menu-top a:hover {
+      background: transparent;
+      text-decoration: underline;
+      cursor: pointer; }
+  .utility-nav .dropdown-arrow:after {
+    content: '\25be';
+    position: relative;
+    top: 1px;
+    color: #fff;
+    padding-left: 2px; }
+  .utility-nav .last .dropdown-arrow:after {
+    left: 10px; }
+  .utility-nav #experiment-nav-item {
+    position: relative; }
+    .utility-nav #experiment-nav-item li {
+      border-top: 1px solid #d5d5d5; }
+    .utility-nav #experiment-nav-item .show-create-experiment a, .utility-nav #experiment-nav-item .show-create-experiment span {
+      display: inline-block;
+      color: #006eb6; }
+    .utility-nav #experiment-nav-item .show-create-experiment span {
+      font-size: 1.2em;
+      position: relative;
+      top: 2px;
+      left: 8px; }
+    .utility-nav #experiment-nav-item #view-all-experiments-link {
+      background: url("/dist/assets/img/common.png") no-repeat 33px -70px; }
+  .utility-nav .experiment-container {
+    width: 100%; }
+    .utility-nav .experiment-container li {
+      border: none;
+      white-space: nowrap; }
+      .utility-nav .experiment-container li a {
+        overflow: hidden;
+        padding: 16px 12px; }
+      .utility-nav .experiment-container li a:first-child {
+        max-width: 300px;
+        float: left;
+        width: 75%;
+        text-align: left;
+        text-overflow: ellipsis; }
+      .utility-nav .experiment-container li a:last-child {
+        float: right;
+        width: 25%;
+        text-align: right;
+        color: #aaa; }
+      .utility-nav .experiment-container li a:last-child:hover {
+        color: #444; }
+
+@media only screen and (min-width: 768px) {
+  .utility-nav {
+    width: 100%; }
+    .utility-nav .hide-in-mobile {
+      display: inline-block; }
+    .utility-nav #my-account-menu .customer-email {
+      padding: 12px; }
+    .utility-nav #my-account-menu #email-wrapper {
+      overflow: visible; } }
 /*# sourceMappingURL=styles.css.map */
