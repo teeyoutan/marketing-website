@@ -2090,6 +2090,33 @@ body.getting-started .controls {
       max-width: 912px;
       float: left; } }
 
+body.opt-out-page #opt-out-generator {
+  background: #eee;
+  border: 1px solid #d5d5d5;
+  margin-top: 15px;
+  padding: 10px;
+  text-align: center; }
+  body.opt-out-page #opt-out-generator h5 {
+    color: #242424;
+    font-size: 16px;
+    font-weight: 300;
+    text-align: center; }
+  body.opt-out-page #opt-out-generator input {
+    border: 1px solid #d5d5d5;
+    font-size: 13px;
+    padding: 5px;
+    text-align: center;
+    width: 94%; }
+  body.opt-out-page #opt-out-generator a {
+    font-size: 14px;
+    font-weight: 500; }
+
+@media only screen and (min-width: 768px) {
+  body.opt-out-page .generator-container {
+    /* allowing for nested columns */ }
+    body.opt-out-page .generator-container .columns:first-child {
+      margin-left: 0; } }
+
 /* layouts */
 body.benefits-layout .for-menu {
   list-style: none;
