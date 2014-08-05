@@ -20,21 +20,23 @@ $('#view-all-jobs').click(function() {
 
 window.optly.mrkt.jobsPage.testimonials();
 
-$.getJSON('/job-list').always(function(data, textStatus, jqXHR){
+$.getJSON('https://api.greenhouse.io/v1/boards/optimizely7/embed/departments?callback=?').always(function(data, textStatus, jqXHR){
 
-  if(typeof jqXHR === 'object'){
+  if(typeof data === 'object'){
 
-    try{
+    var i;
 
-      var jobs = $.parseJSON(jqXHR.responseText);
+    for(i = 0; i < data.departments.length; i++){
 
-      $('#job-list-cont').append( window.optly.mrkt.templates.jobList(jobs) );
+      if(data.departments[i].jobs.length === 0){
 
-    } catch(error){
+        delete data.departments[i];
 
-      console.log('error: ', error);
+      }
 
     }
+
+    $('#job-list-cont').append( window.optly.mrkt.templates.jobList(data) );
 
   }
 
