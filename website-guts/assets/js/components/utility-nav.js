@@ -17,8 +17,7 @@ function templateExpData($elm, expData) {
 }
 
 function showUtilityNav($elm, acctData, expData) {
-  $('body').addClass('signed-in');
-  $('body').removeClass('signed-out');
+  $('body').addClass('signed-in').removeClass('signed-out');
   $elm.find('.customer-email').text(acctData.email);
 
   var $expContainer = $elm.find('span.experiment-container');
@@ -28,10 +27,10 @@ function showUtilityNav($elm, acctData, expData) {
       templateExpData($expContainer, data);
       $expContainer.attr('id', 'exp-cont-' + (index + 1) );
     }
+    // cloning logic, will be replaced with client side handlebars templating
     else {
       var $cloned = $expContainer.clone();
       $cloned.attr('id', 'exp-cont-' + (index + 1) );
-      //var $allExpElms = $('span.experiment-container');
       templateExpData($cloned, data);
       $cloned.insertAfter( $('#exp-cont-' + index) );
     }

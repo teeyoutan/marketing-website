@@ -8802,16 +8802,24 @@ var $signinModal = $('[data-optly-modal="signin"]');
 
 function requestSignin(e) {
   e.preventDefault();
-  var deffered = window.optly.mrkt.services.xhr.makeRequest({
-    type: 'GET',
+  var deffered = $.ajax({
+    type: 'POST',
     url: '/account/signin'
   });
-  console.log(deffered);
-  debugger;
+  
+
+  deffered.then(function(data) {
+    if (data.success === 'true') {
+      sessionStorage.modalType = '';
+      window.location.reload();
+    }
+  }, function(err) {  
+    console.log('singin error: ', err);
+  });
 
 }
 
-$signinModal.delegate('data-modal-btn="close"', 'click', requestSignin);
+$signinModal.delegate('[data-modal-btn="signin"]', 'click', requestSignin);
 window.optly = window.optly || {};
 window.optly.mrkt = window.optly.mrkt || {};
 window.optly.mrkt.modal = {};
@@ -9215,8 +9223,7 @@ function templateExpData($elm, expData) {
 }
 
 function showUtilityNav($elm, acctData, expData) {
-  $('body').addClass('signed-in');
-  $('body').removeClass('signed-out');
+  $('body').addClass('signed-in').removeClass('signed-out');
   $elm.find('.customer-email').text(acctData.email);
 
   var $expContainer = $elm.find('span.experiment-container');
@@ -9226,10 +9233,10 @@ function showUtilityNav($elm, acctData, expData) {
       templateExpData($expContainer, data);
       $expContainer.attr('id', 'exp-cont-' + (index + 1) );
     }
+    // cloning logic, will be replaced with client side handlebars templating
     else {
       var $cloned = $expContainer.clone();
       $cloned.attr('id', 'exp-cont-' + (index + 1) );
-      //var $allExpElms = $('span.experiment-container');
       templateExpData($cloned, data);
       $cloned.insertAfter( $('#exp-cont-' + index) );
     }

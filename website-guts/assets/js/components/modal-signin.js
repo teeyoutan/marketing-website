@@ -2,13 +2,21 @@ var $signinModal = $('[data-optly-modal="signin"]');
 
 function requestSignin(e) {
   e.preventDefault();
-  var deffered = window.optly.mrkt.services.xhr.makeRequest({
-    type: 'GET',
+  var deffered = $.ajax({
+    type: 'POST',
     url: '/account/signin'
   });
-  console.log(deffered);
-  debugger;
+  
+
+  deffered.then(function(data) {
+    if (data.success === 'true') {
+      sessionStorage.modalType = '';
+      window.location.reload();
+    }
+  }, function(err) {  
+    console.log('singin error: ', err);
+  });
 
 }
 
-$signinModal.delegate('data-modal-btn="close"', 'click', requestSignin);
+$signinModal.delegate('[data-modal-btn="signin"]', 'click', requestSignin);

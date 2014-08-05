@@ -204,6 +204,11 @@ window.optly.mrkt.services.xhr = {
       this.acctData = acctData;
       this.expData = expData;
 
+      window.optly.mrkt.user = {
+        account: this.acctData,
+        experiments: this.expData
+      };
+
       this.transformQuedArgs = function(quedArgs) {
         $.each(quedArgs, function(index, arg) {
           if (this[ arg ] !== undefined) {

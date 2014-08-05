@@ -146,7 +146,15 @@ module.exports = function(grunt) {
                 res.writeHead(400, {'Content-Type': 'application/json'});
                 res.end( grunt.file.read('website-guts/endpoint-mocks/accountExists.json') );
 
-              } else {
+              } 
+              else if(req.url === '/account/signin') {
+
+                res.cookie('optimizely_signed_in', '1', {httpOnly: false});
+                res.writeHead(200, {'Content-Type': 'application/json'});
+                res.end('{"success": "true"}');
+
+              }
+              else {
 
                 return next();
 
@@ -162,14 +170,6 @@ module.exports = function(grunt) {
 
               res.writeHead(200, {'Content-Type': 'application/json'});
               res.end( grunt.file.read('website-guts/endpoint-mocks/lastFiveExperiments.json') );
-
-            }
-
-            else if(req.url === '/account/signin') {
-
-              res.cookie('optimizely_signed_in', '1', {httpOnly: false});
-              res.writeHead(200, {'Content-Type': 'application/json'});
-              res.end('{"success": "true"}');
 
             }
             else{
