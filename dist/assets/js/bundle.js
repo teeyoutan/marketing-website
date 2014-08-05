@@ -9445,7 +9445,7 @@ function signOut() {
 }
 
 // Make call to optly Q
-window.optly_q.push([showUtilityNav, $utilityNavElm, window.optly.mrkt.user.account, window.optly.mrkt.user.experiments]);})(jQuery);
+window.optly_q.push([showUtilityNav, $utilityNavElm, 'acctData', 'expData']);})(jQuery);
 window.optly = window.optly || {};
 
 window.optly.mrkt = window.optly.mrkt || {};

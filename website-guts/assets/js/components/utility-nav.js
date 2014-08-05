@@ -61,4 +61,4 @@ function signOut() {
 }
 
 // Make call to optly Q
-window.optly_q.push([showUtilityNav, $utilityNavElm, window.optly.mrkt.user.account, window.optly.mrkt.user.experiments]);
+window.optly_q.push([showUtilityNav, $utilityNavElm, 'acctData', 'expData']);

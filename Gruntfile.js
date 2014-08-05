@@ -191,6 +191,13 @@ module.exports = function(grunt) {
               res.writeHead(200, {'Content-Type': 'application/json'});
               res.end( grunt.file.read('website-guts/endpoint-mocks/lastFiveExperiments.json') );
 
+            } else if(req.url === '/account/signout') {
+
+                res.cookie('optimizely_signed_in', '', {maxAge: 0, expires: new Date(Date.now() - 9000000), httpOnly: false});
+                res.cookie('optimizely_signed_in', '', {maxAge: 0, expires: new Date(Date.now() - 9000000), httpOnly: false});
+                res.writeHead(200, {'Content-Type': 'application/json'});
+                res.end('{"success": "true"}');
+
             }
             else{
 
