@@ -8,14 +8,6 @@
 	}
 }
 
-html,
-body {
-  &.no-scroll {
-    overflow: hidden;
-    height: 100%;
-  }
-}
-
 // Tests is vh CSS property is supported
 #vh-test {
 	position: fixed;
@@ -64,6 +56,11 @@ body {
 	text-align: center;
 	vertical-align: middle;
 	text-shadow: 0 -1px 0px rgba(0,0,0,0.23);
+
+	&.small {
+		font-size: 12px;
+		padding: 0.5em 1em;
+	}
 
 	&:hover {
 		box-shadow: 0px 1px 3px rgba(0,0,0,0.18);
@@ -146,7 +143,7 @@ body {
 	}
 }
 
-.error {
+p.error-show {
 	color: #911d16;
 	font-weight: 400;
 }
@@ -216,6 +213,10 @@ body .small-note, body p.small-note {
 		list-style-type: none;
 		margin-bottom: 10px;
 	}
+}
+
+.blue {
+	color: #006eb6;
 }
 
 @media screen and (min-width: $tablet-min-width) {
@@ -371,10 +372,13 @@ input[type="text"], input[type="url"], input[type="email"], input[type="tel"] {
 	}
 }
 
+.small-caps {
+	font-variant: small-caps;
+	text-transform: lowercase;
+}
+
 //classes for processing and error states on forms
 
-.processing-show, .error-show {display: none;}
+.processing-hide, .error-hide {opacity: 0;}
 
-body.processing-state .processing-show, body.error-state .error-show {display: inherit;}
-
-body.processing-state .processing-hide, body.error-state .error-hide {display: none;}
+body.processing-state .processing-show, body.error-state .error-show {opacity: 1;}

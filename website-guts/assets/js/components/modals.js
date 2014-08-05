@@ -13,7 +13,8 @@ var History = window.History || {},
   isSafari = /Safari/.test(navigator.userAgent) && /Apple Computer/.test(navigator.vendor),
   isIosSafari = /(iPhone|iPod|iPad).*AppleWebKit(?!.*Safari)/i.test(navigator.userAgent) || /(iPhone|iPod|iPad).*AppleWebKit/i.test(navigator.userAgent),
   isIosChrome = !!navigator.userAgent.match('CriOS'),
-  isHistorySupported = Modernizr.history && !!window.sessionStorage && ( !(isIosSafari || isSafari) ) || isIosChrome,
+  //isHistorySupported = Modernizr.history && !!window.sessionStorage && ( !(isIosSafari || isSafari) ) || isIosChrome,
+  isHistorySupported = false,
   historyIcrementor = 0,
   modalState = {},
   historyTimestamp,
@@ -46,12 +47,13 @@ function setHistoryId(historyData) {
   return stateData;
 }
 
-window.optly.mrkt.modal.openModalHandler = function (modalType) {
+window.optly.mrkt.modal.openModalHandler = function(modalType) {
   var title,
     stateData;
 
   //e.preventDefault();
   // Check for History/SessionStorage support and how many items are on the history stack
+  console.log(isHistorySupported && historyIcrementor === 0);
   if (isHistorySupported && historyIcrementor === 0) {
     stateData = setHistoryId(History.getState().data);
     stateData.modalType = modalType;
@@ -125,14 +127,13 @@ window.optly.mrkt.modal.open = function(modalType) {
     storeModalState(modalType, true);
   }
 
-  if ( !$('html, body').hasClass('no-scroll') && window.innerWidth <= 768) {
-    $('html, body').addClass('no-scroll');
-  }
+  $('html, body').addClass('modal-open');
+
+  console.log('TEST');
 
   // Fade out the modal and attach the close modal handler
-  $elm.fadeToggle(function() {
-    $elm.bind('click', closeModalHandler);
-  });
+  $elm.toggleClass('visible').bind('click', closeModalHandler);
+
 };
 
 window.optly.mrkt.modal.close = function(modalType) {
@@ -146,17 +147,14 @@ window.optly.mrkt.modal.close = function(modalType) {
     storeModalState(modalType, false);
   }
 
-  if ( $('html, body').hasClass('no-scroll') ) {
-    $('html, body').removeClass('no-scroll');
-  }
+  $('html, body').removeClass('modal-open');
 
   window.scrollTo(0,0);
   $elm.children()[0].scrollTop = 0;
 
   // Fade out the modal and remove the close modal handler
-  $elm.fadeToggle(function() {
-    $elm.unbind('click', closeModalHandler);
-  });
+  $elm.toggleClass('visible').unbind('click', closeModalHandler);
+
 };
 
 // Only use if History/Session Storage in Enabled
@@ -187,12 +185,6 @@ function handlePopstate(e) {
 }
 
 function setMobileProperties() {
-  if (!$('html, body').hasClass('no-scroll') && window.innerWidth <= 768) {
-    $('html, body').addClass('no-scroll');
-  }
-  else if ( $('html, body').hasClass('no-scroll') && window.innerWidth > 768) {
-    $('html, body').removeClass('no-scroll');
-  }
   if (!vhSupported) {
     if (window.innerWidth <= 768) {
       $.each($elms, function(key, $elm) {
@@ -221,8 +213,8 @@ if (isHistorySupported) {
 }
 
 // Bind modal open to nav click events
-$('body').delegate('[data-modal-click]', 'click', function() {
-  window.optly.mrkt.modal.openModalHandler( $(this).data('modal-click') );
+$('body').delegate('[data-modal-click]', 'click', function(){
+  window.optly.mrkt.modal.openModalHandler($(this).data('modal-click'));
 });
 
 // Test for vh CSS property to make modal full height at mobile screen size

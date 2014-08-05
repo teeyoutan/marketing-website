@@ -357,20 +357,58 @@ window.optly=window.optly||{},window.optly.mrkt=window.optly.mrkt||{},window.opt
                 </footer>
             </div><!--/#inner-wrapper-->
         </div><!--/#outer-wrapper-->
+        <div id="sign-in-dialog" class="modal-dialog-container" data-optly-modal="signin">
+    <div class="dialog narrow">
+        <form action="/account/signin" method="POST" autocomplete="off" novalidate>
+            
+            <div class="modal-header">
+                <p class="normal-header header-h1">Sign in to Optimizely</p>
+                
+            </div><!--/.modal-header-->
+            
+            <div class="modal-body">
+                
+              <label>
+                  <span>Email address</span>
+                  <input type="text" name="email" />
+              </label>
+              <label>
+                  <span>Password</span>
+                  <input type="password" name="password" />
+              </label>
+              <div class="terms">
+                  <label class="spaced">
+                      <input type="checkbox" name="persist" checked="checked" />
+                      <p>Keep me signed in</p>
+                  </label>
+              </div>
+              <div class="options">
+                  <p>
+                      <a class="show-forgot-password">Forgot your password?</a><br />
+                      No account? <a class="show-create-account" data-modal-click="signup">Register here</a>
+                  </p>
+              </div>
+
+            </div><!--/.modal-body-->
+            <div class="modal-footer">
+                <input type="submit" class="primary-button submit-btn translate" value="Sign in &raquo;">
+                
+            </div><!--/.modal-footer-->
+        </form>
+    </div><!--/.dialog.narrow-->
+</div> <!-- end .modal-dialog-container -->
+
         <div id="signup-dialog" class="modal-dialog-container" data-optly-modal="signup">
     <div class="dialog narrow">
-         <div class="modal-header">
-            <p class="normal-header header-h1">Create a free account</p>
+        <form action="/account/create" method="POST" autocomplete="off" novalidate>
             
-                <p>
-                    <span class="dynamic-content">You&#x27;re seconds away from running A/B tests!</span>
-                    <!-- <span class="optiverse-dynamic-content">By creating an account you can post in Optiverse and test drive Optimizely</span> -->
-                </p>
+            <div class="modal-header">
+                <p class="normal-header header-h1">Create a free account</p>
+                <p>You&#x27;re seconds away from running A/B tests!</p>
+            </div><!--/.modal-header-->
             
-        </div>
-        <form action="/account/create" method="POST" autocomplete="off">
-            <div class="modal-form-content">
-            
+            <div class="modal-body">
+                
               <label id="name-label">
                   <span>Name</span>
                   <input type="text" name="name" />
@@ -403,56 +441,13 @@ window.optly=window.optly||{},window.optly.mrkt=window.optly.mrkt||{},window.opt
                   <p>Already have an Optimizely account? <a class="show-sign-in" data-modal-click="signin">Sign in here</a></p>
               </div>
 
-            </div><!--/.modal-form-content-->
+            </div><!--/.modal-body-->
             <div class="modal-footer">
-                <div class="buttons">
-                    <input type="submit" data-modal-btn="signup" class="primary-button submit-btn translate" value="Create account &raquo;">
-                    <input type="button" data-modal-btn="close" class="secondary-button close-btn translate" value="Cancel">
-                </div>
-            </div>
+                <input type="submit" class="primary-button submit-btn translate" value="Create account &raquo;">
+                <input type="button" data-modal-btn="close" class="secondary-button close-btn translate" value="Cancel">
+            </div><!--/.modal-footer-->
         </form>
-    </div>
-</div> <!-- end .modal-dialog-container -->
-
-        <div id="sign-in-dialog" class="modal-dialog-container" data-optly-modal="signin">
-    <div class="dialog narrow">
-         <div class="modal-header">
-            <p class="normal-header header-h1">Sign in to Optimizely</p>
-            
-        </div>
-        <form action="/account/signin" method="POST" autocomplete="off">
-            <div class="modal-form-content">
-            
-              <label>
-                  <span>Email address</span>
-                  <input type="text" name="email" />
-              </label>
-              <label>
-                  <span>Password</span>
-                  <input type="password" name="password" />
-              </label>
-              <div class="terms">
-                  <label class="spaced">
-                      <input type="checkbox" name="persist" checked="checked" />
-                      <p>Keep me signed in</p>
-                  </label>
-              </div>
-              <div class="options">
-                  <p>
-                      <a class="show-forgot-password">Forgot your password?</a><br />
-                      No account? <a class="show-create-account" data-modal-click="signup">Register here</a>
-                  </p>
-              </div>
-
-            </div><!--/.modal-form-content-->
-            <div class="modal-footer">
-                <div class="buttons">
-                    <input type="submit" data-modal-btn="signin" class="primary-button submit-btn translate" value="Sign in &raquo;">
-                    <input type="button" data-modal-btn="close" class="secondary-button close-btn translate" value="Cancel">
-                </div>
-            </div>
-        </form>
-    </div>
+    </div><!--/.dialog.narrow-->
 </div> <!-- end .modal-dialog-container -->
 
         <div id="vh-test"></div>

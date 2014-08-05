@@ -15,7 +15,7 @@ window.optly.mrkt.index.testItOut = function(editURL){
 
 $('input[type="text"]').focus();
 
-$('form').submit(function(e){
+$('#test-it-out-form').submit(function(e){
 
   var inputVal = $('input[type="text"]').val();
 
@@ -26,9 +26,6 @@ $('form').submit(function(e){
   } else {
 
     $('input[type="text"]').focus();
-
-    //report to ga that the form was submitted without a value
-    console.log('');
 
   }
 

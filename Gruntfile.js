@@ -21,7 +21,8 @@ module.exports = function(grunt) {
   //jit-grunt loads only the npm tasks required for the grunt task.
   //makes livereload much faster.
   require('jit-grunt')(grunt, {
-    replace: 'grunt-text-replace'
+    replace: 'grunt-text-replace',
+    handlebars: 'grunt-contrib-handlebars'
   });
 
   // Project configuration.
@@ -99,7 +100,8 @@ module.exports = function(grunt) {
         files: [
           '<%= config.content %>/{,*/}*.{md,hbs,yml,json}',
           '<%= config.guts %>/templates/**/*.hbs',
-          '<%= config.content %>/**/*.hbs'
+          '<%= config.content %>/**/*.hbs',
+          '!<%= config.guts %>/templates/client/**/*.hbs'
         ],
         tasks: ['config:dev', 'inline', 'assemble']
       },
@@ -111,9 +113,17 @@ module.exports = function(grunt) {
         files: ['<%= config.guts %>/assets/img/*.{png,jpg,svg}'],
         tasks: ['copy:img']
       },
+      inline: {
+        files: ['<%= config.guts %>/assets/js/services/user_state.js'],
+        tasks: ['config:dev', 'jshint', 'inline', 'assemble' ,'concat', 'clean:postBuild']
+      },
       js: {
         files: ['<%= config.guts %>/assets/js/**/*.js', '<%= config.temp %>/assets/js/**/*.js'],
-        tasks: ['config:dev', 'jshint', 'inline', 'assemble' ,'concat', 'clean:postBuild']
+        tasks: ['config:dev', 'jshint', 'handlebars', 'concat', 'clean:postBuild']
+      },
+      clientHandlebarsTemplates: {
+        files: ['<%= config.guts %>/templates/client/**/*.hbs'],
+        tasks: ['config:dev', 'jshint', 'handlebars', 'concat', 'clean:postBuild']
       },
       livereload: {
         options: {
@@ -136,7 +146,17 @@ module.exports = function(grunt) {
           middlewares.unshift(function(req, res, next){
             if(req.method === 'POST'){
 
-              if(req.url === '/account/free_trial_landing'){
+              if(req.url === '/webinar/register'){
+
+                res.writeHead(200, {'Content-Type': 'application/json'});
+                res.end( grunt.file.read('website-guts/endpoint-mocks/webinarSuccess.json') );
+
+              } else if(req.url === '/webinar/register-fail'){
+
+                res.writeHead(200, {'Content-Type': 'application/json'});
+                res.end( grunt.file.read('website-guts/endpoint-mocks/webinarFail.json') );
+
+              } else if(req.url === '/account/free_trial_landing'){
 
                 res.writeHead(200, {'Content-Type': 'application/json'});
                 res.end( grunt.file.read('website-guts/endpoint-mocks/formSuccess.json') );
@@ -201,7 +221,7 @@ module.exports = function(grunt) {
         environmentIsDev: '<%= grunt.config.get("environmentIsDev") %>',
         data: ['<%= config.content %>/**/*.json', '<%= config.content %>/**/*.yml', '<%= grunt.config.get("environmentData") %>'],
         partials: ['<%= config.guts %>/templates/partials/*.hbs'],
-        helpers: ['<%= config.helpers %>/helper-*.js']
+        helpers: ['<%= config.helpers %>/**/*.js']
       },
       modals: {
         options: {
@@ -342,37 +362,50 @@ module.exports = function(grunt) {
     },
     jshint: {
       options: {
-        trailing: true,
-        curly: true,
-        eqeqeq: true,
-        indent: 4,
-        latedef: true,
-        noempty: true,
-        nonbsp: true,
-        undef: true,
-        unused: true,
-        quotmark: 'single',
-        browser: true,
-        globals: {
-          jQuery: true,
-          $: true,
-          console: false,
-          Handlebars: false,
-          moment: false,
-          _gaq: false
+        options: {
+          trailing: true,
+          curly: true,
+          eqeqeq: true,
+          indent: 4,
+          latedef: true,
+          noempty: true,
+          nonbsp: true,
+          undef: true,
+          unused: true,
+          quotmark: 'single',
+          browser: true,
+          '-W087': (function() {
+            if(grunt.config.get("environment") == "dev") {
+              return true;
+            } else {
+              return false;
+            }
+          }())
         },
-        '-W087': (function() {
-          if(grunt.config.get("environment") == "dev") {
-            return true;
-          } else {
-            return false;
-          }
-        }())
-      },
-      files: ['<%= config.guts %>/assets/js/**/*.js', '!<%= config.guts %>/assets/js/libraries/**/*.js']
+        clientSide: {
+          with_overrides: {
+            globals: {
+              jQuery: true,
+              $: true,
+              console: false,
+              moment: false,
+              _gaq: false
+            }
+          },
+          files: ['<%= config.guts %>/assets/js/**/*.js', '!<%= config.guts %>/assets/js/libraries/**/*.js']
+        },
+        serverSide: {
+          with_overrides: {
+            globals: {
+              module: false
+            }
+          },
+          files: ['<%= config.guts %>/helpers/*.js']
+        }
+      }
     },
     concat: {
-      modernizrYep: {
+      modernizr: {
         files: {
           '<%= config.dist %>/assets/js/libraries/modernizr.2.8.3.min.js': ['<%= config.guts %>/assets/js/libraries/modernizr.2.8.3.min.js']
         }
@@ -403,6 +436,7 @@ module.exports = function(grunt) {
             '<%= config.bowerDir %>/history.js/scripts/bundled-uncompressed/html4+html5/jquery.history.js',
             '<%= config.guts %>/assets/js/libraries/handlebars-v1.3.0.js',
             '<%= config.bowerDir %>/momentjs/moment.js',
+            '<%= config.temp %>/assets/js/handlebarsTemplates.js',
             '<%= config.bowerDir %>/oform/dist/oForm.min.js',
             '<%= config.temp %>/assets/js/global.js',
             '<%= config.guts %>/assets/js/components/oForm-globals.js'
@@ -483,14 +517,27 @@ module.exports = function(grunt) {
       }
     },
     inline: {
-        dist: {
-            options:{
-                uglify: true,
-                exts: 'hbs'
-            },
-            src: ['<%= config.guts %>/templates/layouts/wrapper.hbs'],
-            dest: ['<%= config.guts %>/templates/layouts/wrapper_compiled.hbs']
+      dist: {
+          options:{
+              uglify: true,
+              exts: 'hbs'
+          },
+          src: ['<%= config.guts %>/templates/layouts/wrapper.hbs'],
+          dest: ['<%= config.guts %>/templates/layouts/wrapper_compiled.hbs']
+      }
+    },
+    handlebars: {
+      compile: {
+        options: {
+          namespace: 'optly.mrkt.templates',
+          processName: function(filePath){
+            return filePath.replace(/^.*[\\\/]/, '').replace('.hbs', '');
+          }
+        },
+        files: {
+          '<%= config.temp %>/assets/js/handlebarsTemplates.js': ['<%= config.guts %>/templates/client/**/*.hbs']
         }
+      }
     }
   });
 
@@ -500,6 +547,7 @@ module.exports = function(grunt) {
     'clean:preBuild',
     'inline',
     'assemble',
+    'handlebars',
     'concat',
     'sass:dev',
     'replace',

@@ -227,8 +227,14 @@
                 </footer>
             </div><!--/#inner-wrapper-->
         </div><!--/#outer-wrapper-->
-        {{> signup_modal_compiled }}
-        {{> signin_modal_compiled }}
+        {{> signin_modal_compiled}}
+        {{> signup_modal_compiled}}
+        {{~#if page.modals~}}
+        {{~includeModals page.modals~}}
+        {{~/if}}
+        {{~#if layoutModals~}}
+        {{~includeModals layoutModals~}}
+        {{~/if}}
         <div id="vh-test"></div>
         <script>
           var optly = optly || {};
