@@ -1,3 +1,8 @@
+---
+layout_modals:
+- signin_modal_compiled
+- signup_modal_compiled
+---
 <!DOCTYPE html>
 <html class="no-js">
     <head>
@@ -194,13 +199,11 @@
                 </footer>
             </div><!--/#inner-wrapper-->
         </div><!--/#outer-wrapper-->
-        {{> signin_modal_compiled}}
-        {{> signup_modal_compiled}}
+        {{~#if layout_modals~}}
+        {{~includeModals layout_modals~}}
+        {{~/if}}
         {{~#if page.modals~}}
         {{~includeModals page.modals~}}
-        {{~/if}}
-        {{~#if layoutModals~}}
-        {{~includeModals layoutModals~}}
         {{~/if}}
         <div id="vh-test"></div>
         <script>
