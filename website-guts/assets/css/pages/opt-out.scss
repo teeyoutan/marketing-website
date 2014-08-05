@@ -1,0 +1,44 @@
+body.opt-out-page {
+    #opt-out-generator {
+        background: #eee;
+        border: 1px solid #d5d5d5;
+        margin-top: 15px;
+        padding: 10px;
+        text-align: center;
+
+        h5 {
+            color: #242424;
+            font-size: 16px;
+            font-weight: 300;
+            text-align: center;
+        }
+
+        input {
+            border: 1px solid #d5d5d5;
+            font-size: 13px;
+            padding: 5px;
+            text-align: center;
+            width: 94%;
+        }
+
+        a {
+            font-size: 14px;
+            font-weight: 500;
+        }
+    }
+}
+
+@media only screen and (min-width: $tablet-min-width) {
+    body.opt-out-page {
+
+        .generator-container {
+
+            /* allowing for nested columns */
+            .columns {
+                &:first-child {
+                    margin-left: 0;
+                }
+            }
+        }
+    }
+}

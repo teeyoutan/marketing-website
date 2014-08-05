@@ -1,0 +1,49 @@
+---
+layout: jobs.hbs
+page_script: jobs.js
+
+
+---
+
+<div class="container benefits">
+    <div class="row">
+        <h2 class="heading center a-center blue">{{jobs.benefits_header}}</h2>
+        <ul class="list-unstyled">
+          {{#each jobs.benefits}}
+          <li id="{{id}}">
+            <h6>{{header}}</h6>
+            <p>{{body}}</p>
+          </li>
+          {{/each}}
+        </ul>
+    </div>
+</div>
+<div class="testimonials">
+    <div class="container">
+        <h4 class="a-center quotes">
+            {{#each jobs.employee_testimonials}}
+            <q>{{quote}}</q>
+            {{/each}}
+        </h4>
+        <ul class="employee-icons">
+            {{#each jobs.employee_testimonials}}
+            <li>
+                <a href="#">
+                    <img src="{{image}}">
+                    <h5 class="name">{{name}}</h5>
+                    <h6 class="employee-title">{{title}}</h6>
+                </a>
+            </li>
+            {{/each}}
+        </ul>
+    </div>
+</div>
+<div class="jobs-list" id="jobs-list">
+    <div class="container">
+        <div class="row">
+            <div class="columns ten offset-one" id="job-list-cont">
+                <h2 class="a-center blue">{{jobs.job_openings_header}}</h2>
+            </div>
+        </div>
+    </div>
+</div>
