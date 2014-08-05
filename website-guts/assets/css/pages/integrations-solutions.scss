@@ -80,11 +80,6 @@ body.integrations-solutions {
       padding: 20px;
     }
 
-    .star-cont {
-      height: 30px;
-      margin: 10px 0;
-    }
-
     .partner-logos {
       background-repeat: no-repeat;
       background-size: contain;
@@ -97,15 +92,6 @@ body.integrations-solutions {
       font-size: 18px;
       text-shadow: 0 2px 0 rgb(25, 82, 158);
       width: 100%;
-    }
-
-    .level {
-      .level-heading {
-        color: #a9a9a9;
-        font-size: 12px;
-        font-weight: 400;
-        text-transform: uppercase;
-      }
     }
 
     /*.button {
@@ -125,7 +111,8 @@ body.integrations-solutions {
 
     .partners-back,
     .partners-logo,
-    .partners-contact {
+    .partners-contact,
+    .partners-tags {
       margin-bottom: 1em;
     }
 
@@ -134,9 +121,27 @@ body.integrations-solutions {
     .partners-languages {
       color: #a9a9a9;
     }
+
+    .partners-tags {
+      color: #a9a9a9;
+    }
   }
 
   a.button { // TODO: this should apply automatically
     color: #FFFFFF;
+  }
+
+  .level {
+    .level-heading {
+      color: #a9a9a9;
+      font-size: 12px;
+      font-weight: 400;
+      text-transform: uppercase;
+    }
+
+    .star-cont {
+      height: 30px;
+      margin: 10px 0;
+    }
   }
 }

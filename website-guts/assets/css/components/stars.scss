@@ -3,13 +3,24 @@
   background-position: center;
   background-size: contain;
   display: block;
+
   &.star-cont--1 {
     background-image: image-url('stars-1.png');
   }
+
   &.star-cont--2 {
     background-image: image-url('stars-2.png');
   }
+
   &.star-cont--3 {
     background-image: image-url('stars-3.png');
+  }
+
+  &.star-left {
+    background-position: left center;
+  }
+
+  &.star-right {
+    background-position: right center;
   }
 }
