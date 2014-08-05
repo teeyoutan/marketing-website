@@ -173,12 +173,7 @@ module.exports = function(grunt) {
               res.writeHead(200, {'Content-Type': 'application/json'});
               res.end( grunt.file.read('website-guts/endpoint-mocks/accountInfo.json') );
 
-            } else if(req.url === '/job-list'){
-
-              res.writeHead(200, {'Content-Type': 'application/json'});
-              res.end( grunt.file.read('website-guts/endpoint-mocks/jobList.json') );
-
-            } else{
+            } else {
 
               return next();
 
