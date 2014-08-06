@@ -11,7 +11,5 @@ module.exports.register = function (Handlebars, options, params)  {
     }
     console.log(typeof(compiled));
     return compiled.replace(trailingIdentifier, '');
-    //console.log(compiled);
-    //return compiled;
   });
 };
