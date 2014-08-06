@@ -22,7 +22,7 @@ module.exports = function(grunt) {
   //makes livereload much faster.
   require('jit-grunt')(grunt, {
     replace: 'grunt-text-replace',
-    handlebars: 'grunt-contrib-handlebars' 
+    handlebars: 'grunt-contrib-handlebars'
   });
 
   // Project configuration.
