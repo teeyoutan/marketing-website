@@ -2508,7 +2508,6 @@ html.modal-open, body.modal-open {
   height: 100%;
   cursor: pointer;
   background: #fff;
-  overflow: scroll;
   opacity: 0;
   position: absolute;
   top: 0;
@@ -2610,6 +2609,7 @@ html.modal-open, body.modal-open {
 
 @media only screen and (min-width: 768px) {
   .modal-dialog-container {
+    overflow: scroll;
     background: transparent;
     background-image: -webkit-radial-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) 35%, rgba(0, 0, 0, 0.498039));
     background-image: radial-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) 35%, rgba(0, 0, 0, 0.498039)); }
@@ -2617,7 +2617,8 @@ html.modal-open, body.modal-open {
       position: relative;
       width: 600px;
       height: auto;
-      margin: 100px auto 0 auto; }
+      margin: 100px auto 0 auto;
+      overflow: hidden; }
     .modal-dialog-container .modal-footer input {
       width: auto; }
     .modal-dialog-container .modal-footer .primary-button, .modal-dialog-container .modal-footer body.home-page #cta input[type=submit], body.home-page #cta .modal-dialog-container .modal-footer input[type=submit] {
