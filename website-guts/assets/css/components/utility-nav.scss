@@ -1,27 +1,27 @@
 $navs-to-index: main-nav dropdown-menu-top;
 @include z-index-list($navs-to-index);
 
-.utility-nav {
-  .hide-in-mobile {
-    display: none;
+#signed-in-utility {
+    > li:last-child {
+    border-bottom: none;
   }
+}
+
+.utility-nav {
+  margin: 0;
+  .hide-in-mobile { display: none; }
   li {
     position: relative;
     border-bottom: 1px solid #042142;
     border-top: 1px solid #08448a;
   }
-  > li:last-child {
-    border-bottom: none;
-  }
   a {
-    display: inline-block;
-    padding: 15px 22px;
-    width: 90%;
+    display: block;
+    padding: 12px 30px;
+    text-align: right;
   }
   #my-account-menu {
-    .dropdown-menu-top {
-      width: 100%;
-    }
+    .dropdown-menu-top { width: 100%; }
     li {
       border-bottom: 1px solid #042142;
       border-top: 1px solid #08448a;
@@ -30,15 +30,7 @@ $navs-to-index: main-nav dropdown-menu-top;
       width: 100%;
       border-bottom: 1px solid #042142;
     }
-    li:first-child {
-      border-top: 1px solid #08448a;
-    }
-    // li {
-    //   text-align: left;
-    //   a {
-    //     padding: 8px 12px;
-    //   }
-    // }
+    li:first-child { border-top: 1px solid #08448a; }
   }
   .customer-email {
     white-space: nowrap;
@@ -48,17 +40,11 @@ $navs-to-index: main-nav dropdown-menu-top;
     display: inline-block;
   }
   .dropdown-menu-top {
-    //position: absolute;
-    //border: 1px solid #d5d5d5;
-    //background: #fff;
     text-align: left;
-    &.show-dropdown {
-      display: block;
-    }
+    &.show-dropdown { display: block; }
     li {
       width: 100%;
       display: block;
-      //text-align: center;
       border-bottom: 1px solid #042142;
       border-top: 1px solid #08448a;
     }
@@ -66,27 +52,68 @@ $navs-to-index: main-nav dropdown-menu-top;
       width: 100%;
       border-bottom: 1px solid #042142;
     }
-    li:first-child {
-      border-top: 1px solid #08448a;
-    }
-    a {
-      color: #fff;
-      //font-size: 0.8em;
-      text-align: left;
-    }
-    a:hover,
-    li:hover {
+    li:first-child { border-top: 1px solid #08448a; }
+    a { color: #fff; }
+    a:hover {
       background: transparent;
-      text-decoration: underline;
       cursor: pointer;
     }
   }
-  #experiment-nav-item {
-    position: relative;
-    .view-all-experiments,
-    .show-create-experiment {
-      border-top: 1px solid rgb(213, 213, 213);
+}
+
+@media only screen and (min-width: $desktop-min-width) {
+  .utility-nav {
+    .hide-in-mobile { display: inline-block; }
+    li { 
+      border: none; 
+      text-align: left;
     }
+    a {
+      padding: 12px;
+      text-align: left;
+    }
+    #my-account-menu {
+      .dropdown-menu-top { width: 100%; }
+      a { padding: 8px 12px; }
+    }
+    .dropdown-menu-top {
+      display: none;
+      position: absolute;
+      border: 1px solid #d5d5d5;
+      background: #fff;
+      li {
+        width: 100%;
+        display: block;
+        border: none;
+      }
+      > li {
+        border-top: 1px solid rgb(213, 213, 213);
+        text-align: center;
+      }
+      a {
+        color: #000;
+        font-size: 0.8em;
+        text-align: center;
+      }
+      a:hover { text-decoration: underline; }
+      li:first-child { border-top: none; }
+    }
+    #mobile-top-border {
+      display: none;
+      border: none;
+    }
+    .dropdown-arrow:after {
+      content: '\25be';
+      position: relative;
+      top: 1px;
+      color: #fff;
+      padding-left: 2px;
+    }
+    .last {
+      .dropdown-arrow:after { left: 10px; }
+    }
+    .customer-email { overflow: visible; }
+    #experiment-nav-item { position: relative; }
     .show-create-experiment {
       a,
       span {
@@ -103,13 +130,12 @@ $navs-to-index: main-nav dropdown-menu-top;
     #view-all-experiments-link {
       background: image-url("common.png") no-repeat 33px -70px;
     }
-  }
-  .experiment-container {
-    width: 100%;
-    li {
-      border: none;
-      white-space: nowrap;
-      @extend .clearfix;
+    .experiment-container {
+      width: 100%;
+      li {
+        white-space: nowrap;
+        @extend .clearfix;
+      }
       a {
         overflow: hidden;
         padding: 16px 12px;
@@ -127,95 +153,19 @@ $navs-to-index: main-nav dropdown-menu-top;
         text-align: right;
         color: #aaa;
       }
-      a:last-child:hover {
-        color: #444;
-      }
-    }
-  }
-}
-
-@media only screen and (min-width: $tablet-min-width) {
-  .utility-nav {
-    width: 100%;
-    li {
-      border: none;
+      a:last-child:hover { color: #444; }
     }
     #my-account-menu {
-      .dropdown-menu-top {
-        width: 100%;
-      }
       li {
-        text-align: left;
-        a {
-          padding: 8px 12px;
-        }
+        border-bottom: none;
+        border-top: none;
       }
-    }
-    .dropdown-menu-top {
-      display: none;
-      position: absolute;
-      border: 1px solid #d5d5d5;
-      background: #fff;
-      li {
-        width: 100%;
-        display: block;
-        border: none;
-      }
+      #mobile-top-border { border-bottom: none; }
+      li { text-align: left; }
+      li:first-child { border-top: none; }
       a {
-        color: #000;
-        font-size: 0.8em;
-        text-align: center;
-      }
-      li:first-child {
-        border-top: none;
-      }
-    }
-    li {
-      text-align: center;
-    }
-    #mobile-top-border {
-      border: none;
-    }
-    .dropdown-arrow:after {
-      content: '\25be';
-      position: relative;
-      top: 1px;
-      color: #fff;
-      padding-left: 2px;
-    }
-    .last {
-      .dropdown-arrow:after {
-        left: 10px;
-      }
-    }
-    .hide-in-mobile {
-      display: inline-block;
-    }
-    .customer-email {
-      //padding: 12px;
-      overflow: visible;
-    }
-    #my-account-menu {
-      .dropdown-menu-top {
-        //width: 100%;
-      }
-      li {
-        border-bottom: none;
-        border-top: none;
-      }
-      #mobile-top-border {
-        //width: 100%;
-        border-bottom: none;
-      }
-      li:first-child {
-        border-top: none;
-      }
-      li {
+        padding: 8px 12px;
         text-align: left;
-        a {
-          padding: 8px 12px;
-          text-align: left;
-        }
       }
     }
   }

@@ -3,7 +3,7 @@ var lastDropdown;
 
 function showUtilityNav($elm, acctData, expData) {
   var handlebarsData = {
-    account_data: acctData.account_id, 
+    account_id: acctData.account_id, 
     email: acctData.email,
     experiments: expData.experiments
   };

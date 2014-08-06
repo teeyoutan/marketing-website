@@ -53,7 +53,6 @@ window.optly.mrkt.modal.openModalHandler = function(modalType) {
 
   //e.preventDefault();
   // Check for History/SessionStorage support and how many items are on the history stack
-  console.log(isHistorySupported && historyIcrementor === 0);
   if (isHistorySupported && historyIcrementor === 0) {
     stateData = setHistoryId(History.getState().data);
     stateData.modalType = modalType;

@@ -206,7 +206,7 @@ window.optly.mrkt.services.xhr = {
 
 (function() {
   'use strict';
-  console.log(this);
+
   var acctParams,
     expParams,
     optly_QFactory = function(acctData, expData) {
