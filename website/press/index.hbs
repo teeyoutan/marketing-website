@@ -7,10 +7,10 @@ body_class:
 - press-page
 ---
 <div class="sheet">
-	<h4 class="sheet-headline" id="press-intro">Keep up to date with how Optimizely is enabling businesses to build better web experiences. You can also get the latest from us via <a href="http://www.twitter.com/optimizely" title="Optimizely on Twitter">Twitter</a>, <a href="http://www.facebook.com/optimizely" title="Optimizely on Facebook">Facebook</a>, and <a href="https://plus.google.com/113842166556345533815/posts" title="Optimizely on Google Plus">Google+</a>. Please contact us for <a href="mailto:press@optimizely.com">press inquiries</a> or <a href="/partners">partnership inquiries</a>.</h4>
+	<h4 class="sheet-headline" id="press-intro">{{{press.page_intro}}}</h4>
 	<div>
 		<article id="press-mentions">
-			<h3>News</h3>
+			<h3>{{press.left_column_header}}</h3>
 			{{#each press_mentions.items}}
 			<div class="press-feed-item">
 				<img src="{{logoUrl}}">
@@ -20,13 +20,17 @@ body_class:
 		    {{/each}}
 		</article><!--/#press-mentions-->
 		<aside id="press-info">
+			{{#if press.press_kit_header}}
 			<div id="press-kit">
-				<h3 class="heading-underline">Press Kit</h3>
-				<p><a href="https://s3.amazonaws.com/optimizely-marketing/OptimizelyPressKit.zip" title="Download our press kit">Download Optimizely Logos</a></p>
-				<p><a href="http://www.scribd.com/doc/197409519/Fact-Sheet" title="Download our fact sheet">Download Fact Sheet</a></p>
+				<h3 class="heading-underline">{{press.press_kit_header}}</h3>
+				{{#each press.press_kit_items}}
+				<p>{{{.}}}</p>
+				{{/each}}
 			</div><!--/#press-kit-->
+			{{/if}}
+			{{#if press.press_releases_header}}
 			<div id="press-releases">
-				<h3>Press Releases</h3>
+				<h3>{{press.press_releases_header}}</h3>
 				<ul>
 					{{#each press_releases.items}}
 					<li>
@@ -36,34 +40,40 @@ body_class:
 					{{/each}}
 				</ul>
 			</div>
+			{{/if}}
+			{{#if press.press_inquiries_header}}
 			<div id="press-inquiries">
-				<h3>Press Inquiries</h3>
-				<p>If you’d like to write a story about Optimizely, please email <a href="mailto:press@optimizely.com">press@optimizely.com</a></p>
+				<h3>{{press.press_inquiries_header}}</h3>
+				<p>{{{press.press_inquiries_body}}}</p>
 			</div>
+			{{/if}}
+			{{#if press.company_information_header}}
 			<div id="company-information">
-				<h3>Company Information</h3>
-				<p><strong>Location:</strong><br>San Francisco, CA<br>Amsterdam, The Netherlands</p>
-				<p><strong>Founded:</strong> 2010</p>
-				<p><strong>Size:</strong> {{website_info.employee_count}}+</p>
+				<h3>{{press.company_information_header}}</h3>
+				<p><strong>Location:</strong>{{#each company_info.locations}}<br>{{.}}{{/each}}</p>
+				<p><strong>Founded:</strong> {{company_info.founded}}</p>
+				<p><strong>Size:</strong> {{company_info.employee_count}}</p>
 				<h3>Investors</h3>
-				<p><strong>Venture:</strong> Benchmark, Bain Capital Ventures, Battery Ventures, Google Ventures, InterWest Partners</p>
-				<p><strong>Angels:</strong> Ariel Poler, Ashton Kutcher, Avichal Garg, Aydin Senkut, Brian Sugar, Chris Dixon, Chris Sacca, Deep Nishar, Elad Gil, Jonathan Heiliger, Joshua Schachter, Keval Desai, Mitch Kapor, Naval Ravikant, Nils Johnson, Paul Buchheit, Ram Shriram, Ron Conway, Sam Altman, Steve Chen, Steve Huffman</p>
+				<p><strong>Venture:</strong> {{#each company_info.venture}}{{.}}, {{/each}}</p>
+				<p><strong>Angels:</strong> {{#each company_info.angels}}{{.}}, {{/each}}</p>
 			</div>
+			{{/if}}
+			{{#if press.blog_header}}
 			<div id="optimizely-blog">
-				<h3>Optimizely Blog</h3>
-				<p><a href="http://blog.optimizely.com/">Click here</a> to read the latest articles on our blog.</p>
+				<h3>{{press.blog_header}}</h3>
+				<p>{{{press.blog_body}}}</p>
 			</div>
+			{{/if}}
 		</aside><!--/#press-info-->
 	</div><!--/#press-content-->
+	{{#if press.follow_the_latest}}
 	<div id="follow-latest">
-		<p>Follow the latest from Optimizely:</p>
+		<p>{{press.follow_the_latest}}</p>
 		<ul>
-			<li><a href="http://blog.optimizely.com" title="Optimizely Blog: Conversion Rate Optimism">Optimizely Blog</a></li>
-			<li><a href="http://pages.optimizely.com/newsletter_subscribe.html" title="Optimizely Newsletter">Newsletter</a></li>
-			<li><a href="http://www.facebook.com/optimizely" title="Optimizely on Facebook">Facebook</a></li>
-			<li><a href="http://www.twitter.com/optimizely" title="Optimizely on Twitter">Twitter</a></li>
-			<li><a href="http://www.youtube.com/optimizely" title="Optimizely on Youtube">YouTube</a></li>
-			<li class="last"><a href="https://plus.google.com/113842166556345533815/posts" title="Optimizely on Google Plus">Google+</a></li>
+			{{#each press.follow_the_latest_items}}
+			<li>{{{.}}}</li>
+			{{/each}}
 		</ul>
 	</div>
+	{{/if}}
 </div><!--/.sheet-->
