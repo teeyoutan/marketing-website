@@ -56,9 +56,9 @@ module.exports = function(grunt) {
             aws: grunt.file.readJSON('configs/s3Config.json'),
             environment: 'preview',
             environmentData: 'website-guts/data/environments/production/environmentVariables.json',
-            assets_dir: '/assets',
+            assets_dir: '/<%= gitinfo.local.branch.current.name %>/assets',
             link_path: '',
-            sassImagePath: '/assets/img',
+            sassImagePath: '/<%= gitinfo.local.branch.current.name %>/assets/img',
             compress_js: true,
             drop_console: false,
             concat_banner: '(function($){ \n\n' +
@@ -521,8 +521,8 @@ module.exports = function(grunt) {
   });
 
   grunt.registerTask('staging-deploy', [
-    'config:staging',
     'gitinfo',
+    'config:staging',
     'jshint',
     'clean:preBuild',
     'assemble',
@@ -567,21 +567,6 @@ module.exports = function(grunt) {
     'autoprefixer',
     'clean:postBuild'
   ]);
-/*
-  grunt.registerTask('preview', [
-    'config:preview',
-    'jshint',
-    'clean:preBuild',
-    'assemble',
-    'concat',
-    'uglify',
-    'sass',
-    'autoprefixer',
-    'copy',
-    's3',
-    'clean:postBuild'
-  ]);
-  */
 
   grunt.registerTask('default', [
     'build'
