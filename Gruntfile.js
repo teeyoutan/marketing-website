@@ -50,15 +50,15 @@ module.exports = function(grunt) {
           }
         }
       },
-      preview: {
+      staging: {
         options: {
           variables: {
             aws: grunt.file.readJSON('configs/s3Config.json'),
             environment: 'preview',
             environmentData: 'website-guts/data/environments/production/environmentVariables.json',
-            assets_dir: '/assets',
+            assets_dir: '/<%= gitinfo.local.branch.current.name %>/assets',
             link_path: '',
-            sassImagePath: '/assets/img',
+            sassImagePath: '/<%= gitinfo.local.branch.current.name %>/assets/img',
             compress_js: true,
             drop_console: false,
             concat_banner: '(function($){ \n\n' +
@@ -96,7 +96,7 @@ module.exports = function(grunt) {
       dist: 'dist',
       temp: 'temp',
       helpers: 'website-guts/helpers',
-      bowerDir: 'bower_components'
+      bowerDir: 'bower_components',
     },
     watch: {
       assemble: {
@@ -333,17 +333,17 @@ module.exports = function(grunt) {
       options: {
         key: '<%= grunt.config.get("aws.key") %>',
         secret: '<%= grunt.config.get("aws.secret") %>',
-        bucket: '<%= grunt.config.get("aws.bucket") %>',
-        access: 'public-read',
+        bucket: '<%= grunt.config.get("aws.staging_bucket") %>',
+        access: 'public-read'
       },
-      dev: {
-        upload: [
-          {
-            src: '<%= config.dist %>/**/*',
-            dest: '/',
-            rel: '<%= config.dist %>'
-          }
-        ]
+      staging: {
+          upload: [
+            {
+              src: '<%= config.dist %>/**/*',
+              dest: '<%= gitinfo.local.branch.current.name %>',
+              rel: '<%= config.dist %>'
+            }
+          ]
       }
     },
     jshint: {
@@ -516,8 +516,25 @@ module.exports = function(grunt) {
           '<%= config.temp %>/assets/js/handlebarsTemplates.js': ['<%= config.guts %>/templates/client/**/*.hbs']
         }
       }
-    }
+    },
+    gitinfo: {}
   });
+
+  grunt.registerTask('staging-deploy', [
+    'gitinfo',
+    'config:staging',
+    'jshint',
+    'clean:preBuild',
+    'assemble',
+    'concat',
+    'uglify',
+    'sass',
+    'autoprefixer',
+    'copy',
+    's3:staging',
+    'clean:postBuild'
+
+  ]);
 
   grunt.registerTask('server', [
     'config:dev',
@@ -548,20 +565,6 @@ module.exports = function(grunt) {
     'sass:prod',
     'replace',
     'autoprefixer',
-    'clean:postBuild'
-  ]);
-
-  grunt.registerTask('preview', [
-    'config:preview',
-    'jshint',
-    'clean:preBuild',
-    'assemble',
-    'concat',
-    'uglify',
-    'sass',
-    'autoprefixer',
-    'copy',
-    's3',
     'clean:postBuild'
   ]);
 
