@@ -9,7 +9,6 @@ module.exports.register = function (Handlebars, options, params)  {
     for(var i=0, j=context.length; i<j; i++) {
       compiled = compiled + options.fn(context[i]);
     }
-    console.log(typeof(compiled));
     return compiled.replace(trailingIdentifier, '');
   });
 };
