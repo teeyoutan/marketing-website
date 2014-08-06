@@ -104,6 +104,7 @@ module.exports = function(grunt) {
           '<%= config.content %>/{,*/}*.{md,hbs,yml,json}',
           '<%= config.guts %>/templates/**/*.hbs',
           '<%= config.content %>/**/*.hbs',
+          '<%= config.guts %>/helpers/**/*.js',
           '!<%= config.guts %>/templates/client/**/*.hbs'
         ],
         tasks: ['config:dev', 'assemble']
