@@ -1,0 +1,73 @@
+---
+layout: wrapper.hbs
+layout_script: false
+layout_body_class:
+- integrations-solutions
+visible_title: Optimizely Partners
+sub_head: World-class service providers. Empowered customers. Lasting results.
+---
+<div id="main">
+  <div id="page-header">
+    <div class="container">
+      <h1>{{visible_title}}</h1>
+      {{#if sub_head}}<p>{{sub_head}}</p>{{/if}}
+    </div><!--/.container-->
+  </div><!--/#page-header-->
+  <div id="page-header-gradient"></div>
+  <div id="page-content">
+    <div class="container ugc">
+
+      {{! todo(ccorda): make this all dynamic }}
+      <div class="columns twelve">
+        <div class="row single-partner-container">
+          <div class="columns four">
+            <div class="partners-back">
+              <a href="{{linkPath}}/partners/integrations">&lt; See all Solutions Partners</a>
+            </div>
+
+            <div class="partners-logo">
+              LOGO
+            </div>
+
+            <div class="partners-link">
+              <a href="#">www.mailchimp.com</a>
+            </div>
+
+            <div class="partners-contact">
+              (555) 555-5555 <br />
+              info@example.com <br />
+              <br />
+              123 Real St <br />
+              Seattle, WA 12345 <br />
+            </div>
+
+            <div class="partners-languages">
+              <strong>LANGUAGES</strong> <br />
+              English, Spanish
+            </div>
+          </div>
+          <div class="columns eight">
+            <h4>Mailchimp</h4>
+
+            <div class="level">
+              <div class="level-heading">Certification Level:</div>
+              <div class="star-cont star-cont--3 star-left"></div>
+            </div>
+
+            {{#markdown }}
+              {{> body }}
+            {{/markdown }}
+
+            <div class="partners-tags">
+              <span>tag</span>, <span>tag</span>
+            </div>
+
+            <a class="button" href="#">
+              Read Knowlege Base Article
+            </a>
+          </div>
+        </div>
+      </div>
+    </div><!--/.container-->
+  </div><!--/#content-->
+</div><!--/#main-->

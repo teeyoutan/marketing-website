@@ -13,6 +13,7 @@ body_class:
     </div>
     <div class="columns six">
       <div class="pill clearfix big">
+        {{!-- todo(ccorda): need to get count of collections --}}
         <a class="active" href="{{linkPath}}/partners/integrations">Integrations (??)</a>
         <a href="{{linkPath}}/partners/solutions">Solutions Partners (??)</a>
       </div>
@@ -21,6 +22,7 @@ body_class:
 
   <hr />
 
+  {{!-- todo(ccorda): extract all text to YAML --}}
   <div class="row">
     <div class="columns seven">
       <p>As the global leader in website optimization, Optimizely is focused on developing the most robust and intuituve testing platform on the planet. Enabling our customers when needed, we partner with the best service providers around the world so that our clients never have to compromise.
@@ -31,30 +33,35 @@ body_class:
     </div>
   </div>
 
+  {{!-- todo(ccorda): gridstart isn't actually doing anything yet --}}
+  {{!-- todo(ccorda): linkPath isn't working --}}
+  {{!-- todo(ccorda): need to grab different sized images if they exist --}}
   <div class="row">
     <div class="integrations-container container">
-      {{!-- {{#each customer_info.customerList}}
-        {{#classgridstart @index}}
-          <div class="row">
-        {{/classgridstart}}--}}
-          <div class="row">
-            <div class="columns one-third partner-grid-elm">
-              <div class="title-container">
-                <h4 class="partner-title">Mailchimp</h1>
-              </div> <!-- .title-container -->
-              <div class="partner-inner-content">
-                <div class="partner-logos" style="background-image: url(../../assets/img/customer-logos/{{logoUrl}}); width: {{logoW}}px; height: {{logoH}}px"></div>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ac erat orci.</p>
-              </div>
-              <div class="button-container">
-                <a href="{{downloadUrl}}" class="button">Learn More &gt;</a>
-              </div>
-            </div> <!-- .partner-grid-elm -->
-          </div>
-        {{!--{{#classgridfinish @index @last}}
-          </div>
-        {{/classgridfinish}}
-      {{/each}}--}}
+      {{#integrations}}
+        {{#each pages}}
+          {{#classgridstart @index}}
+            <div class="row">
+          {{/classgridstart}}
+            <div class="row">
+              <div class="columns one-third partner-grid-elm" data-priority="{{ data.priority }}">
+                <div class="title-container">
+                  <h4 class="partner-title">{{ data.title }}</h1>
+                </div> <!-- .title-container -->
+                <div class="partner-inner-content">
+                  <div class="partner-logos" style="background-image: url({{linkPath}}/assets/img/customer-logos/{{ data.partner_logo }});"></div>
+                  <p>{{ data.partner_summary }}</p>
+                </div>
+                <div class="button-container">
+                  <a href="{{linkPath}}/{{ this.dest }}" class="button">Learn More &gt;</a>
+                </div>
+              </div> <!-- .partner-grid-elm -->
+            </div>
+          {{#classgridfinish @index @last}}
+            </div>
+          {{/classgridfinish}}
+        {{/each}}
+      {{/integrations}}
     </div> <!-- .case-studies-container -->
   </div>
 </div>

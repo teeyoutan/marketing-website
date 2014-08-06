@@ -205,7 +205,15 @@ module.exports = function(grunt) {
         environmentIsDev: '<%= grunt.config.get("environmentIsDev") %>',
         data: ['<%= config.content %>/**/*.json', '<%= config.content %>/**/*.yml', '<%= grunt.config.get("environmentData") %>'],
         partials: ['<%= config.guts %>/templates/partials/*.hbs'],
-        helpers: ['<%= config.helpers %>/**/*.js']
+        helpers: ['<%= config.helpers %>/**/*.js'],
+        collections: [
+          {
+            name: 'integrations',
+            inflection: 'integration',
+            sortby: 'priority',
+            sortorder: 'descending'
+          }
+        ]
       },
       modals: {
         options: {
