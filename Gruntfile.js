@@ -54,7 +54,7 @@ module.exports = function(grunt) {
         options: {
           variables: {
             aws: grunt.file.readJSON('configs/s3Config.json'),
-            environment: 'preview',
+            environment: 'staging',
             environmentData: 'website-guts/data/environments/production/environmentVariables.json',
             assets_dir: '/<%= gitinfo.local.branch.current.name %>/assets',
             link_path: '',
