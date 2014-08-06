@@ -158,7 +158,8 @@ header {
         width: 0;
         position: absolute;
         text-align: left;
-        padding: 0 0 0 34px;
+        //Removed DFP
+        //padding: 0 0 0 34px;
         box-sizing: border-box;
     }
     body.nav-open {
@@ -227,7 +228,8 @@ header {
           padding: 12px;
           display: block;
       }
-      a:hover {
+      //a:hover,
+      li:hover {
           background: $nav-hover-color;
       }
   }
