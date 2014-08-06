@@ -1,0 +1,28 @@
+page_intro: "Keep up to date with how Optimizely is enabling businesses to build better web experiences. You can also get the latest from us via <a href='http://www.twitter.com/optimizely' title='Optimizely on Twitter'>Twitter</a>, <a href='http://www.facebook.com/optimizely' title='Optimizely on Facebook'>Facebook</a>, and <a href='https://plus.google.com/113842166556345533815/posts' title='Optimizely on Google Plus'>Google+</a>. Please contact us for <a href='mailto:press@optimizely.com'>press inquiries</a> or <a href='/partners'>partnership inquiries</a>."
+left_column_header: "News"
+press_kit:
+  header: "Press Kit"
+  items:
+  - "<a href='https://s3.amazonaws.com/optimizely-marketing/OptimizelyPressKit.zip' title='Download our press kit'>Download Optimizely Logos</a>"
+  - "<a href='http://www.scribd.com/doc/197409519/Fact-Sheet' title='Download our fact sheet'>Download Fact Sheet</a>"
+press_releases:
+    header: "Press Releases"
+press_inquiries:
+  header: "Press Inquiries"
+  body: "If you’d like to write a story about Optimizely, please email <a href='mailto:press@optimizely.com'>press@optimizely.com</a>"
+company_information:
+  header: "Company Information"
+investors:
+  header: "Investors"
+blog:
+  header: "Optimizely Blog"
+  body: "<a href='http://blog.optimizely.com/'>Click here</a> to read the latest articles on our blog."
+follow_the_latest:
+  header: "Follow the latest from Optimizely:"
+  items:
+  - "<a href='://blog.optimizely.com' title='Optimizely Blog: Conversion Rate Optimism'>Optimizely Blog</a>"
+  - "<a href='http://pages.optimizely.com/newsletter_subscribe.html' title='Optimizely Newsletter'>Newsletter</a>"
+  - "<a href='http://www.facebook.com/optimizely' title='Optimizely on Facebook'>Facebook</a>"
+  - "<a href='http://www.twitter.com/optimizely' title='Optimizely on Twitter'>Twitter</a>"
+  - "<a href='http://www.youtube.com/optimizely' title='Optimizely on Youtube'>YouTube</a>"
+  - "<a href='https://plus.google.com/113842166556345533815/posts' title='Optimizely on Google Plus'>Google+</a>"
