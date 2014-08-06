@@ -22,49 +22,60 @@ sub_head: World-class service providers. Empowered customers. Lasting results.
         <div class="row single-partner-container">
           <div class="columns four">
             <div class="partners-back">
-              <a href="{{linkPath}}/partners/integrations">&lt; See all Solutions Partners</a>
+              {{#if solutions }}
+                <a href="{{linkPath}}/partners/solutions">&lt; See all Solutions Partners</a>
+              {{else}}
+                <a href="{{linkPath}}/partners/integrations">&lt; See all Integrations Partners</a>
+              {{/if}}
             </div>
 
-            <div class="partners-logo">
-              LOGO
-            </div>
+            <div class="partners-logos" style="background-image: url({{linkPath}}/assets/img/partner-logos/{{logo}});"></div>
 
             <div class="partners-link">
-              <a href="#">www.mailchimp.com</a>
+              <a href="{{website_link}}">{{website_display}}</a>
             </div>
 
             <div class="partners-contact">
-              (555) 555-5555 <br />
-              info@example.com <br />
+              {{#if phone}}{{phone}} <br />{{/if}}
+              {{#if email}}{{email}} <br />{{/if}}
               <br />
-              123 Real St <br />
-              Seattle, WA 12345 <br />
+              {{#if address1}}{{address1}} <br />{{/if}}
+              {{#if address2}}{{address2}} <br />{{/if}}
+              {{#if city}}{{city}}, {{/if}}{{#if state}}{{state}} {{/if}}{{zip}}<br />
             </div>
 
-            <div class="partners-languages">
-              <strong>LANGUAGES</strong> <br />
-              English, Spanish
-            </div>
+            {{#if languages}}
+              <div class="partners-languages">
+                <strong>LANGUAGES</strong> <br />
+                {{#each languages}}{{.}}, {{/each}}
+                {{!-- todo(ccorda): need something like this for trailing comma {{^last}}, {{/last}} --}}
+              </div>
+            {{/if}}
           </div>
           <div class="columns eight">
-            <h4>Mailchimp</h4>
+            <h4>{{title}}</h4>
 
             <div class="level">
               <div class="level-heading">Certification Level:</div>
-              <div class="star-cont star-cont--3 star-left"></div>
+              <div class="star-cont {{#if stars}}star-cont--{{stars}}{{/if}} star-left"></div>
             </div>
 
-            {{#markdown }}
-              {{> body }}
-            {{/markdown }}
+            {{#markdown}}
+              {{> body}}
+            {{/markdown}}
 
+            {{#if tags}}
             <div class="partners-tags">
-              <span>tag</span>, <span>tag</span>
+              {{#each tags}}<span>{{tag}}, </span>{{/each}}
             </div>
+            {{!-- todo(ccorda): trim trailing comma --}}
+            {{/if}}
 
-            <a class="button" href="#">
+            {{#if kb_article}}
+            <a class="button" href="{{kb_article}}">
               Read Knowlege Base Article
             </a>
+            {{/if}}
           </div>
         </div>
       </div>

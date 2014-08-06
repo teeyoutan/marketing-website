@@ -212,6 +212,12 @@ module.exports = function(grunt) {
             inflection: 'integration',
             sortby: 'priority',
             sortorder: 'descending'
+          },
+          {
+            name: 'solutions',
+            inflection: 'solution',
+            sortby: 'priority',
+            sortorder: 'descending'
           }
         ]
       },

@@ -12,12 +12,12 @@ script_dependencies:
 <div class="columns twelve">
   <div class="row">
     <div class="columns six">
-      <h2>Integrations</h2>
+      <h2>Solutions</h2>
     </div>
     <div class="columns six page-selector">
       <div class="pill clearfix big">
-        <a href="{{linkPath}}/partners/integrations">Integrations (??)</a>
-        <a class="active" href="{{linkPath}}/partners/solutions">Solutions Partners (??)</a>
+        <a href="{{linkPath}}/partners/integrations">Integrations ({{length integrations}})</a>
+        <a class="active" href="{{linkPath}}/partners/solutions">Solutions Partners ({{length solutions}})</a>
       </div>
     </div>
   </div>
@@ -71,178 +71,189 @@ script_dependencies:
 
   <div class="row">
 
-    {{!-- eventually can remove this, just for testing --}}
+
     <div id="output"></div>
 
     <div class="integrations-container container">
-      {{!-- {{#each customer_info.customerList}}
-        {{#classgridstart @index}}
-          <div class="row">
-        {{/classgridstart}}--}}
-
-        {{!-- every item needs a location, specialization and star rating --}}
-
-          <div class="row partner-grid">
-            <div class="partner-grid-elm 1-star northeast metalurgy">
+      <div class="row partner-grid">
+        {{#solutions}}
+          {{#each pages}}
+            <div class="partner-grid-elm {{#if data.stars}}{{data.stars}}-star{{/if}} {{data.region}} {{data.industry}}" data-priority="{{data.priority}}">
               <div class="title-container">
-                <h4 class="partner-title">Analytics Pros</h4>
-                <div class="partner-location">Seattle, WA</div>
+                <h4 class="partner-title">{{data.title}}</h4>
+                <div class="partner-location">{{data.city}}{{#if data.city}}{{#if data.state}}, {{/if}}{{/if}}{{data.state}}</div>
               </div> <!-- .title-container -->
               <div class="partner-inner-content">
-                <div class="partner-logos" style="background-image: url(../../assets/img/customer-logos/{{logoUrl}}); width: {{logoW}}px; height: {{logoH}}px"></div>
-
+                <div class="partner-logos" style="background-image: url({{linkPath}}/assets/img/partner-logos/{{data.logo}});"></div>
                 <div class="level">
                   <div class="level-heading">Certification Level:</div>
-                  <div class="star-cont star-cont--3"></div>
+                  {{!-- todo(ccorda): add question mark.  what's the behavior for that? --}}
+                  <div class="star-cont {{#if data.stars}}star-cont--{{data.stars}}{{/if}}"></div>
                 </div>
               </div>
               <div class="button-container">
-                <a href="{{downloadUrl}}" class="button">Learn More &gt;</a>
+                <a href="{{linkPath}}/{{this.dest}}" class="button">Learn More &gt;</a>
               </div>
             </div>
-            <div class="partner-grid-elm 3-star technology northwest">
-              <div class="title-container">
-                <h4 class="partner-title">Analytics Pros</h4>
-                <div class="partner-location">Seattle, WA</div>
-              </div> <!-- .title-container -->
-              <div class="partner-inner-content">
-                <div class="partner-logos" style="background-image: url(../../assets/img/customer-logos/{{logoUrl}}); width: {{logoW}}px; height: {{logoH}}px"></div>
+          {{/each}}
+        {{/solutions}}
 
-                <div class="level">
-                  <div class="level-heading">Certification Level:</div>
-                  <div class="star-cont star-cont--3"></div>
-                </div>
-              </div>
-              <div class="button-container">
-                <a href="{{downloadUrl}}" class="button">Learn More &gt;</a>
-              </div>
-            </div>
-            <div class="partner-grid-elm 2-star southwest">
-              <div class="title-container">
-                <h4 class="partner-title">Analytics Pros</h4>
-                <div class="partner-location">Seattle, WA</div>
-              </div> <!-- .title-container -->
-              <div class="partner-inner-content">
-                <div class="partner-logos" style="background-image: url(../../assets/img/customer-logos/{{logoUrl}}); width: {{logoW}}px; height: {{logoH}}px"></div>
+        {{!-- todo(imjared): eventually can remove this, just for testing --}}
+        <div class="partner-grid-elm 1-star northeast metalurgy">
+          <div class="title-container">
+            <h4 class="partner-title">Analytics Pros</h4>
+            <div class="partner-location">Seattle, WA</div>
+          </div> <!-- .title-container -->
+          <div class="partner-inner-content">
+            <div class="partner-logos" style="background-image: url(../../assets/img/customer-logos/{{logoUrl}}); width: {{logoW}}px; height: {{logoH}}px"></div>
 
-                <div class="level">
-                  <div class="level-heading">Certification Level:</div>
-                  <div class="star-cont star-cont--3"></div>
-                </div>
-              </div>
-              <div class="button-container">
-                <a href="{{downloadUrl}}" class="button">Learn More &gt;</a>
-              </div>
-            </div>
-            <div class="partner-grid-elm 3-star technology">
-              <div class="title-container">
-                <h4 class="partner-title">Analytics Pros</h4>
-                <div class="partner-location">Seattle, WA</div>
-              </div> <!-- .title-container -->
-              <div class="partner-inner-content">
-                <div class="partner-logos" style="background-image: url(../../assets/img/customer-logos/{{logoUrl}}); width: {{logoW}}px; height: {{logoH}}px"></div>
-
-                <div class="level">
-                  <div class="level-heading">Certification Level:</div>
-                  <div class="star-cont star-cont--3"></div>
-                </div>
-              </div>
-              <div class="button-container">
-                <a href="{{downloadUrl}}" class="button">Learn More &gt;</a>
-              </div>
-            </div>
-            <div class="partner-grid-elm 1-star alchemy">
-              <div class="title-container">
-                <h4 class="partner-title">Analytics Pros</h4>
-                <div class="partner-location">Seattle, WA</div>
-              </div> <!-- .title-container -->
-              <div class="partner-inner-content">
-                <div class="partner-logos" style="background-image: url(../../assets/img/customer-logos/{{logoUrl}}); width: {{logoW}}px; height: {{logoH}}px"></div>
-
-                <div class="level">
-                  <div class="level-heading">Certification Level:</div>
-                  <div class="star-cont star-cont--3"></div>
-                </div>
-              </div>
-              <div class="button-container">
-                <a href="{{downloadUrl}}" class="button">Learn More &gt;</a>
-              </div>
-            </div>
-            <div class="partner-grid-elm 3-star technology">
-              <div class="title-container">
-                <h4 class="partner-title">Analytics Pros</h4>
-                <div class="partner-location">Seattle, WA</div>
-              </div> <!-- .title-container -->
-              <div class="partner-inner-content">
-                <div class="partner-logos" style="background-image: url(../../assets/img/customer-logos/{{logoUrl}}); width: {{logoW}}px; height: {{logoH}}px"></div>
-
-                <div class="level">
-                  <div class="level-heading">Certification Level:</div>
-                  <div class="star-cont star-cont--3"></div>
-                </div>
-              </div>
-              <div class="button-container">
-                <a href="{{downloadUrl}}" class="button">Learn More &gt;</a>
-              </div>
-            </div>
-            <div class="partner-grid-elm 3-star alchemy">
-              <div class="title-container">
-                <h4 class="partner-title">Analytics Pros</h4>
-                <div class="partner-location">Seattle, WA</div>
-              </div> <!-- .title-container -->
-              <div class="partner-inner-content">
-                <div class="partner-logos" style="background-image: url(../../assets/img/customer-logos/{{logoUrl}}); width: {{logoW}}px; height: {{logoH}}px"></div>
-
-                <div class="level">
-                  <div class="level-heading">Certification Level:</div>
-                  <div class="star-cont star-cont--3"></div>
-                </div>
-              </div>
-              <div class="button-container">
-                <a href="{{downloadUrl}}" class="button">Learn More &gt;</a>
-              </div>
-            </div>
-            <div class="partner-grid-elm 3-star technology">
-              <div class="title-container">
-                <h4 class="partner-title">Analytics Pros</h4>
-                <div class="partner-location">Seattle, WA</div>
-              </div> <!-- .title-container -->
-              <div class="partner-inner-content">
-                <div class="partner-logos" style="background-image: url(../../assets/img/customer-logos/{{logoUrl}}); width: {{logoW}}px; height: {{logoH}}px"></div>
-
-                <div class="level">
-                  <div class="level-heading">Certification Level:</div>
-                  <div class="star-cont star-cont--3"></div>
-                </div>
-              </div>
-              <div class="button-container">
-                <a href="{{downloadUrl}}" class="button">Learn More &gt;</a>
-              </div>
-            </div>
-            <div class="partner-grid-elm 1-star technology">
-              <div class="title-container">
-                <h4 class="partner-title">Analytics Pros</h4>
-                <div class="partner-location">Seattle, WA</div>
-              </div> <!-- .title-container -->
-              <div class="partner-inner-content">
-                <div class="partner-logos" style="background-image: url(../../assets/img/customer-logos/{{logoUrl}}); width: {{logoW}}px; height: {{logoH}}px"></div>
-
-                <div class="level">
-                  <div class="level-heading">Certification Level:</div>
-                  <div class="star-cont star-cont--3"></div>
-                </div>
-              </div>
-              <div class="button-container">
-                <a href="{{downloadUrl}}" class="button">Learn More &gt;</a>
-              </div>
+            <div class="level">
+              <div class="level-heading">Certification Level:</div>
+              <div class="star-cont star-cont--3"></div>
             </div>
           </div>
-
-
-        {{!--{{#classgridfinish @index @last}}
+          <div class="button-container">
+            <a href="{{downloadUrl}}" class="button">Learn More &gt;</a>
           </div>
-        {{/classgridfinish}}
-      {{/each}}--}}
-    </div> <!-- .case-studies-container -->
-  </div>
-</div>
+        </div>
+        <div class="partner-grid-elm 3-star technology northwest">
+          <div class="title-container">
+            <h4 class="partner-title">Analytics Pros</h4>
+            <div class="partner-location">Seattle, WA</div>
+          </div> <!-- .title-container -->
+          <div class="partner-inner-content">
+            <div class="partner-logos" style="background-image: url(../../assets/img/customer-logos/{{logoUrl}}); width: {{logoW}}px; height: {{logoH}}px"></div>
+
+            <div class="level">
+              <div class="level-heading">Certification Level:</div>
+              <div class="star-cont star-cont--3"></div>
+            </div>
+          </div>
+          <div class="button-container">
+            <a href="{{downloadUrl}}" class="button">Learn More &gt;</a>
+          </div>
+        </div>
+        <div class="partner-grid-elm 2-star southwest">
+          <div class="title-container">
+            <h4 class="partner-title">Analytics Pros</h4>
+            <div class="partner-location">Seattle, WA</div>
+          </div> <!-- .title-container -->
+          <div class="partner-inner-content">
+            <div class="partner-logos" style="background-image: url(../../assets/img/customer-logos/{{logoUrl}}); width: {{logoW}}px; height: {{logoH}}px"></div>
+
+            <div class="level">
+              <div class="level-heading">Certification Level:</div>
+              <div class="star-cont star-cont--2"></div>
+            </div>
+          </div>
+          <div class="button-container">
+            <a href="{{downloadUrl}}" class="button">Learn More &gt;</a>
+          </div>
+        </div>
+        <div class="partner-grid-elm 3-star technology">
+          <div class="title-container">
+            <h4 class="partner-title">Analytics Pros</h4>
+            <div class="partner-location">Seattle, WA</div>
+          </div> <!-- .title-container -->
+          <div class="partner-inner-content">
+            <div class="partner-logos" style="background-image: url(../../assets/img/customer-logos/{{logoUrl}}); width: {{logoW}}px; height: {{logoH}}px"></div>
+
+            <div class="level">
+              <div class="level-heading">Certification Level:</div>
+              <div class="star-cont star-cont--3"></div>
+            </div>
+          </div>
+          <div class="button-container">
+            <a href="{{downloadUrl}}" class="button">Learn More &gt;</a>
+          </div>
+        </div>
+        <div class="partner-grid-elm 1-star alchemy">
+          <div class="title-container">
+            <h4 class="partner-title">Analytics Pros</h4>
+            <div class="partner-location">Seattle, WA</div>
+          </div> <!-- .title-container -->
+          <div class="partner-inner-content">
+            <div class="partner-logos" style="background-image: url(../../assets/img/customer-logos/{{logoUrl}}); width: {{logoW}}px; height: {{logoH}}px"></div>
+
+            <div class="level">
+              <div class="level-heading">Certification Level:</div>
+              <div class="star-cont star-cont--3"></div>
+            </div>
+          </div>
+          <div class="button-container">
+            <a href="{{downloadUrl}}" class="button">Learn More &gt;</a>
+          </div>
+        </div>
+        <div class="partner-grid-elm 3-star technology">
+          <div class="title-container">
+            <h4 class="partner-title">Analytics Pros</h4>
+            <div class="partner-location">Seattle, WA</div>
+          </div> <!-- .title-container -->
+          <div class="partner-inner-content">
+            <div class="partner-logos" style="background-image: url(../../assets/img/customer-logos/{{logoUrl}}); width: {{logoW}}px; height: {{logoH}}px"></div>
+
+            <div class="level">
+              <div class="level-heading">Certification Level:</div>
+              <div class="star-cont star-cont--3"></div>
+            </div>
+          </div>
+          <div class="button-container">
+            <a href="{{downloadUrl}}" class="button">Learn More &gt;</a>
+          </div>
+        </div>
+        <div class="partner-grid-elm 3-star alchemy">
+          <div class="title-container">
+            <h4 class="partner-title">Analytics Pros</h4>
+            <div class="partner-location">Seattle, WA</div>
+          </div> <!-- .title-container -->
+          <div class="partner-inner-content">
+            <div class="partner-logos" style="background-image: url(../../assets/img/customer-logos/{{logoUrl}}); width: {{logoW}}px; height: {{logoH}}px"></div>
+
+            <div class="level">
+              <div class="level-heading">Certification Level:</div>
+              <div class="star-cont star-cont--3"></div>
+            </div>
+          </div>
+          <div class="button-container">
+            <a href="{{downloadUrl}}" class="button">Learn More &gt;</a>
+          </div>
+        </div>
+        <div class="partner-grid-elm 3-star technology">
+          <div class="title-container">
+            <h4 class="partner-title">Analytics Pros</h4>
+            <div class="partner-location">Seattle, WA</div>
+          </div> <!-- .title-container -->
+          <div class="partner-inner-content">
+            <div class="partner-logos" style="background-image: url(../../assets/img/customer-logos/{{logoUrl}}); width: {{logoW}}px; height: {{logoH}}px"></div>
+
+            <div class="level">
+              <div class="level-heading">Certification Level:</div>
+              <div class="star-cont star-cont--3"></div>
+            </div>
+          </div>
+          <div class="button-container">
+            <a href="{{downloadUrl}}" class="button">Learn More &gt;</a>
+          </div>
+        </div>
+        <div class="partner-grid-elm 1-star technology">
+          <div class="title-container">
+            <h4 class="partner-title">Analytics Pros</h4>
+            <div class="partner-location">Seattle, WA</div>
+          </div> <!-- .title-container -->
+          <div class="partner-inner-content">
+            <div class="partner-logos" style="background-image: url(../../assets/img/customer-logos/{{logoUrl}}); width: {{logoW}}px; height: {{logoH}}px"></div>
+
+            <div class="level">
+              <div class="level-heading">Certification Level:</div>
+              <div class="star-cont star-cont--1"></div>
+            </div>
+          </div>
+          <div class="button-container">
+            <a href="{{downloadUrl}}" class="button">Learn More &gt;</a>
+          </div>
+        </div>
+
+      </div><!-- /.partner-grid -->
+    </div><!-- /.integrations-container-->
+  </div><!-- /.row -->
+</div><!-- /.columns -->
