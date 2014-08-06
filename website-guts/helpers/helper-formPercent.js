@@ -1,4 +1,3 @@
-var fs = require('fs');
 module.exports.register = function (Handlebars, options, params)  {
   Handlebars.registerHelper('formatPercentHeader', function (value, percentClass)  {
     var startsWithPercent,

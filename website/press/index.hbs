@@ -13,9 +13,9 @@ body_class:
 			<h3>{{press.left_column_header}}</h3>
 			{{#each press_mentions.items}}
 			<div class="press-feed-item">
-				<img src="{{logoUrl}}">
-				<time datetime="{{formatDate storyDate "%Y-%m-%d"}}">{{formatDate storyDate "%b. %Y"}}</time>
-				<h4 class="press-article-headline"><a href="{{linkToStory}}">{{storyTitle}}</a></h4>
+				<img src="{{logo_url}}">
+				<time datetime="{{formatDate story_date "%Y-%m-%d"}}">{{formatDate story_date "%b. %Y"}}</time>
+				<h4 class="press-article-headline"><a href="{{link_to_story}}">{{story_title}}</a></h4>
 		    </div><!--/.press-feed-item-->
 		    {{/each}}
 		</article><!--/#press-mentions-->
@@ -34,8 +34,8 @@ body_class:
 				<ul>
 					{{#each press_releases.items}}
 					<li>
-						<time datetime="{{formatDate releaseDate "%Y-%m-%d"}}">{{formatDate releaseDate "%b %Y"}}</time>
-						<p><a href="{{linkToRelease}}" target="_blank">{{releaseTitle}}</a></p>
+						<time datetime="{{formatDate release_date "%Y-%m-%d"}}">{{formatDate release_date "%b %Y"}}</time>
+						<p><a href="{{link_to_release}}" target="_blank">{{release_title}}</a></p>
 					</li>
 					{{/each}}
 				</ul>
@@ -54,8 +54,8 @@ body_class:
 				<p><strong>Founded:</strong> {{company_info.founded}}</p>
 				<p><strong>Size:</strong> {{company_info.employee_count}}</p>
 				<h3>Investors</h3>
-				<p><strong>Venture:</strong> {{#each company_info.venture}}{{.}}, {{/each}}</p>
-				<p><strong>Angels:</strong> {{#each company_info.angels}}{{.}}, {{/each}}</p>
+				<p><strong>Venture:</strong> {{#eachNoTrailing company_info.venture ", "}}{{.}}, {{/eachNoTrailing}}</p>
+				<p><strong>Angels:</strong> {{#eachNoTrailing company_info.angels ", "}}{{.}}, {{/eachNoTrailing}}</p>
 			</div>
 			{{/if}}
 			{{#if press.blog}}

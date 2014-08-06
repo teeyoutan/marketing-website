@@ -1,4 +1,3 @@
----
 featured_video:
   youtube_id: "C7WTDPksvAE"
   header: "12 Million More Sign-ups"
@@ -7,27 +6,27 @@ featured_video:
 customer_stories:
 -
   header: "10% Lift in social shares"
-  logo_url: "upworth-logo.png"
+  logo_url: "https://optimizely-marketer-assets.s3.amazonaws.com/customer-stories/images/upworth-logo.png"
   body: "Upworthy tested adding a recommended content module to its website to drive more social shares and engagement."
   download_url: "https://s3.amazonaws.com/optimizely-marketing/customer-stories/upworthy-casestudy.pdf"
 -
   header: "80% More student sign-ups"
-  logo_url: "code-dot-org-logo.png"
+  logo_url: "https://optimizely-marketer-assets.s3.amazonaws.com/customer-stories/images/code-dot-org-logo.png"
   body: "Code.org optimized its headlines and CTA messaging to significantly increase sign-ups for its Hour of Code campaign."
   download_url: "https://s3.amazonaws.com/optimizely-marketing/customer-stories/codeorg-casestudy.pdf"
 -
   header: "140% Increase in lead quality"
-  logo_url: "ironmountain-logo.png"
+  logo_url: "https://optimizely-marketer-assets.s3.amazonaws.com/customer-stories/images/ironmountain-logo.png"
   body: "Iron Mountain optimized its lead generation process to improve the quality of leads generated from its online sign-up form."
   download_url: "https://s3.amazonaws.com/optimizely-marketing/customer-stories/ironmountain-casestudy.pdf"
 -
   header: "Improved checkout funnel"
-  logo_url: "sony-logo.png"
+  logo_url: "https://optimizely-marketer-assets.s3.amazonaws.com/customer-stories/images/ironmountain-logo.png"
   body: "Sony optimized banners ads and product pages to drive more customers through the checkout funnel to makea final purchase on its website."
   download_url: "https://s3.amazonaws.com/optimizely-marketing/customer-stories/sony-casestudy.pdf"
 -
   header: "49% Lift in 'adds-to-cart'"
-  logo_url: "fab-logo.png"
+  logo_url: "https://optimizely-marketer-assets.s3.amazonaws.com/customer-stories/images/fab-logo.png"
   body: "Fab tested different designs and messaging on its primary call to action button to see which would drive the more purchases."
   download_url: "https://s3.amazonaws.com/optimizely-marketing/customer-stories/fab-casestudy.pdf"
 
