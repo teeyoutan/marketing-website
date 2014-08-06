@@ -2662,6 +2662,9 @@ html.modal-open, body.modal-open {
   .utility-nav #my-account-menu li:first-child {
     border-top: 1px solid #08448a; }
   .utility-nav .customer-email {
+    width: 100%;
+    display: inline-block; }
+  .utility-nav #email-wrapper {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;

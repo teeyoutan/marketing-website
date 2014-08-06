@@ -33,6 +33,10 @@ $navs-to-index: main-nav dropdown-menu-top;
     li:first-child { border-top: 1px solid #08448a; }
   }
   .customer-email {
+    width: 100%;
+    display: inline-block;
+  }
+  #email-wrapper {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
