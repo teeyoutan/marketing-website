@@ -24,7 +24,9 @@ window.optly.mrkt.services.xhr = {
 
         }
       }
-      this.resolveDeffereds(deffereds, callback);
+      if (callback !== undefined) {
+        this.resolveDeffereds(deffereds, callback);
+      }
       return deffereds;
     }
     // If single request, then return the promise directly
