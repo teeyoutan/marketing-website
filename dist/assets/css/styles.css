@@ -2375,6 +2375,10 @@ body.customer-stories-page .customer-grid-elm {
     display: inline-block; }
   body.customer-stories-page .customer-grid-elm .customer-inner-content {
     padding: 20px; }
+    body.customer-stories-page .customer-grid-elm .customer-inner-content img {
+      display: block;
+      max-height: 40px;
+      margin: 0 auto; }
   body.customer-stories-page .customer-grid-elm .customer-logos {
     background-repeat: no-repeat;
     background-size: contain;
