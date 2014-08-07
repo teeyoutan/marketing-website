@@ -2,7 +2,7 @@ window.optly = window.optly || {};
 window.optly.mrkt = window.optly.mrkt || {};
 window.optly.mrkt.modal = {};
 var History = window.History || {},
-  Modernizr = window.Modernizr || {},
+  //Modernizr = window.Modernizr || {},
   $modalElms = $('[data-optly-modal]'),
   $elms = {},
   baseUrl = document.URL,
@@ -10,9 +10,9 @@ var History = window.History || {},
   lastPop,
   testEl = $('#vh-test'),
   vhSupported,
-  isSafari = /Safari/.test(navigator.userAgent) && /Apple Computer/.test(navigator.vendor),
-  isIosSafari = /(iPhone|iPod|iPad).*AppleWebKit(?!.*Safari)/i.test(navigator.userAgent) || /(iPhone|iPod|iPad).*AppleWebKit/i.test(navigator.userAgent),
-  isIosChrome = !!navigator.userAgent.match('CriOS'),
+  //isSafari = /Safari/.test(navigator.userAgent) && /Apple Computer/.test(navigator.vendor),
+  //isIosSafari = /(iPhone|iPod|iPad).*AppleWebKit(?!.*Safari)/i.test(navigator.userAgent) || /(iPhone|iPod|iPad).*AppleWebKit/i.test(navigator.userAgent),
+  //isIosChrome = !!navigator.userAgent.match('CriOS'),
   //isHistorySupported = Modernizr.history && !!window.sessionStorage && ( !(isIosSafari || isSafari) ) || isIosChrome,
   isHistorySupported = false,
   historyIcrementor = 0,
@@ -53,7 +53,6 @@ window.optly.mrkt.modal.openModalHandler = function(modalType) {
 
   //e.preventDefault();
   // Check for History/SessionStorage support and how many items are on the history stack
-  console.log(isHistorySupported && historyIcrementor === 0);
   if (isHistorySupported && historyIcrementor === 0) {
     stateData = setHistoryId(History.getState().data);
     stateData.modalType = modalType;
@@ -69,7 +68,7 @@ window.optly.mrkt.modal.openModalHandler = function(modalType) {
     //window.location.hash = modalType;
   //}
   window.optly.mrkt.modal.open(modalType);
-}
+};
 
 function closeModalHandler(e) {
   //e.preventDefault();
@@ -113,7 +112,6 @@ function storeModalState(modalType, modalOpen) {
 
 window.optly.mrkt.modal.open = function(modalType) {
   var $elm = $elms[modalType];
-  console.log('open modal');
   // if modalState exists then close modal of the currently open modal state
   if(modalState.type !== undefined) {
     window.optly.mrkt.modal.close(modalState.type);
@@ -128,8 +126,6 @@ window.optly.mrkt.modal.open = function(modalType) {
   }
 
   $('html, body').addClass('modal-open');
-
-  console.log('TEST');
 
   // Fade out the modal and attach the close modal handler
   $elm.toggleClass('visible').bind('click', closeModalHandler);

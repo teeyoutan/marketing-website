@@ -4,20 +4,23 @@ page_script: jobs.js
 
 
 ---
-
+{{#if jobs.benefits}}
 <div class="container benefits">
     <div class="row">
-        <h2 class="heading center a-center blue">{{jobs.benefits_header}}</h2>
+        {{#if jobs.benefits.header}}<h2 class="heading center a-center blue">{{jobs.benefits.header}}</h2>{{/if}}
+        {{#if jobs.benefits.list}}
         <ul class="list-unstyled">
-          {{#each jobs.benefits}}
+          {{#each jobs.benefits.list}}
           <li id="{{id}}">
             <h6>{{header}}</h6>
             <p>{{body}}</p>
           </li>
           {{/each}}
         </ul>
+        {{/if}}
     </div>
 </div>
+{{/if}}
 <div class="testimonials">
     <div class="container">
         <h4 class="a-center quotes">

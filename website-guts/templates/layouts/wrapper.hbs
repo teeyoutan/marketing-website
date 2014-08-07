@@ -1,9 +1,15 @@
+---
+layout_modals:
+- signin_modal_compiled
+- signup_modal_compiled
+---
 <!DOCTYPE html>
 <html class="no-js">
     <head>
         <meta charset="utf-8">
         <script src="//cdn.optimizely.com/js/{{environmentVariables.optimizelyProjectID}}.js"></script>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        {{~#if environmentVariables.staging~}}<meta name="robots" content="noindex">{{/if}}
         <title>Optimizely:{{#if page.seo_title}} {{page.seo_title}}{{else}} A/B testing software you'll actually use{{/if}}</title>
         {{!-- Standard meta tags --}}
         <meta name="description" content="{{#if page.description}}{{page.description}}{{else}}Improve conversions through A/B Testing, Split Testing and Multivariate Testing with Optimizely!{{/if}}">
@@ -194,13 +200,11 @@
                 </footer>
             </div><!--/#inner-wrapper-->
         </div><!--/#outer-wrapper-->
-        {{> signin_modal_compiled}}
-        {{> signup_modal_compiled}}
+        {{~#if layout_modals~}}
+        {{~includeModals layout_modals~}}
+        {{~/if}}
         {{~#if page.modals~}}
         {{~includeModals page.modals~}}
-        {{~/if}}
-        {{~#if layoutModals~}}
-        {{~includeModals layoutModals~}}
         {{~/if}}
         <div id="vh-test"></div>
         <script>

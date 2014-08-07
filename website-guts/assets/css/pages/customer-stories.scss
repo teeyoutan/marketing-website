@@ -26,7 +26,7 @@ body.customer-stories-page {
     }
   }
   .video-container {
-    @include responsive-vid-container(560, 325); 
+    @include responsive-vid-container(560, 325);
     iframe {
       @include responsive-vid;
     }
@@ -65,6 +65,11 @@ body.customer-stories-page {
     }
     .customer-inner-content {
       padding: 20px;
+      img {
+        display: block;
+        max-height: 40px;
+        margin: 0 auto;
+      }
     }
     .customer-logos {
       background-repeat: no-repeat;
