@@ -221,6 +221,7 @@ header {
   }
   .utility-nav {
       margin: 0;
+      li {cursor: pointer;}
       a {
           font-size: .8em;
           font-weight: normal;
