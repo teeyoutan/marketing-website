@@ -348,45 +348,43 @@ module.exports = function(grunt) {
     },
     jshint: {
       options: {
+        trailing: true,
+        curly: true,
+        eqeqeq: true,
+        indent: 4,
+        latedef: true,
+        noempty: true,
+        nonbsp: true,
+        undef: true,
+        unused: true,
+        quotmark: 'single',
+        globals: {
+          module: false,
+          require: false,
+          __dirname: false
+        },
+        '-W087': (function() {
+          if(grunt.config.get("environment") == "dev") {
+            return true;
+          } else {
+            return false;
+          }
+        }())
+      },
+      uses_defaults: ['<%= config.guts %>/helpers/*.js'],
+      with_overrides: {
         options: {
-          trailing: true,
-          curly: true,
-          eqeqeq: true,
-          indent: 4,
-          latedef: true,
-          noempty: true,
-          nonbsp: true,
-          undef: true,
-          unused: true,
-          quotmark: 'single',
           browser: true,
-          '-W087': (function() {
-            if(grunt.config.get("environment") == "dev") {
-              return true;
-            } else {
-              return false;
-            }
-          }())
+          globals: {
+            jQuery: true,
+            $: true,
+            console: false,
+            moment: false,
+            _gaq: false
+          }
         },
-        clientSide: {
-          with_overrides: {
-            globals: {
-              jQuery: true,
-              $: true,
-              console: false,
-              moment: false,
-              _gaq: false
-            }
-          },
-          files: ['<%= config.guts %>/assets/js/**/*.js', '!<%= config.guts %>/assets/js/libraries/**/*.js']
-        },
-        serverSide: {
-          with_overrides: {
-            globals: {
-              module: false
-            }
-          },
-          files: ['<%= config.guts %>/helpers/*.js']
+        files: {
+          src: ['<%= config.guts %>/assets/js/**/*.js', '!<%= config.guts %>/assets/js/libraries/**/*.js']
         }
       }
     },
