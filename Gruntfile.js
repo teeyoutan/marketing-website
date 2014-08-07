@@ -371,45 +371,58 @@ module.exports = function(grunt) {
     },
     jshint: {
       options: {
+        trailing: true,
+        curly: true,
+        eqeqeq: true,
+        indent: 4,
+        latedef: true,
+        noempty: true,
+        nonbsp: true,
+        undef: true,
+        unused: true,
+        quotmark: 'single',
+        '-W087': (function() {
+          if(grunt.config.get("environment") == "dev") {
+            return true;
+          } else {
+            return false;
+          }
+        }())
+      },
+      clientProd: {
         options: {
-          trailing: true,
-          curly: true,
-          eqeqeq: true,
-          indent: 4,
-          latedef: true,
-          noempty: true,
-          nonbsp: true,
-          undef: true,
-          unused: true,
-          quotmark: 'single',
           browser: true,
-          '-W087': (function() {
-            if(grunt.config.get("environment") == "dev") {
-              return true;
-            } else {
-              return false;
-            }
-          }())
+          globals: {
+            jQuery: false,
+            moment: false,
+            $: false
+          }
         },
-        clientSide: {
-          with_overrides: {
-            globals: {
-              jQuery: true,
-              $: true,
-              console: false,
-              moment: false,
-              _gaq: false
-            }
-          },
-          files: ['<%= config.guts %>/assets/js/**/*.js', '!<%= config.guts %>/assets/js/libraries/**/*.js']
+        files: {
+          src: ['<%= config.guts %>/assets/js/**/*.js', '!<%= config.guts %>/assets/js/libraries/**/*.js']
+        }
+      },
+      clientDev: {
+        options: {
+          browser: true,
+          globals: {
+            jQuery: false,
+            console: false,
+            moment: false,
+            _gaq: false,
+            $: false
+          }
         },
-        serverSide: {
-          with_overrides: {
-            globals: {
-              module: false
-            }
-          },
-          files: ['<%= config.guts %>/helpers/*.js']
+        files: {
+          src: ['<%= config.guts %>/assets/js/**/*.js', '!<%= config.guts %>/assets/js/libraries/**/*.js']
+        }
+      },
+      server: {
+        options: {
+          node: true
+        },
+        files: {
+          src: ['<%= config.guts %>/helpers/*.js']
         }
       }
     },
@@ -556,7 +569,8 @@ module.exports = function(grunt) {
   grunt.registerTask('staging-deploy', [
     'gitinfo',
     'config:staging',
-    'jshint',
+    'jshint:clientDev',
+    'jshint:server',
     'clean:preBuild',
     'assemble',
     'concat',
@@ -571,7 +585,8 @@ module.exports = function(grunt) {
 
   grunt.registerTask('server', [
     'config:dev',
-    'jshint',
+    'jshint:clientDev',
+    'jshint:server',
     'clean:preBuild',
     'inline',
     'assemble',
@@ -588,7 +603,8 @@ module.exports = function(grunt) {
 
   grunt.registerTask('build', [
     'config:production',
-    'jshint',
+    'jshint:clientProd',
+    'jshint:server',
     'clean:preBuild',
     'assemble',
     'concat',

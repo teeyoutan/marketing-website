@@ -26,7 +26,7 @@ $('#view-all-jobs').click(function() {
 
 window.optly.mrkt.jobsPage.testimonials();
 
-$.getJSON('https://api.greenhouse.io/v1/boards/optimizely7/embed/departments?callback=?').always(function(data, textStatus, jqXHR){
+$.getJSON('https://api.greenhouse.io/v1/boards/optimizely7/embed/departments?callback=?').always(function(data){
 
   if(typeof data === 'object'){
 
