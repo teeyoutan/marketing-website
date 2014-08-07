@@ -117,7 +117,7 @@ var transitionend = (function(transition) {
   };
 
   return transEndEventNames[transition];
-})(Modernizr.prefixed('transition'));
+})(window.Modernizr.prefixed('transition'));
 
 function bindTranEnd() {
   var classList = Array.prototype.slice.call( this.classList );

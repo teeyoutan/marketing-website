@@ -2,7 +2,7 @@ var $signinModal = $('[data-optly-modal="signin"]');
 
 function requestSignin(e) {
   e.preventDefault();
-  alert('singin fired');
+  window.alert('singin fired');
   var deferred = window.optly.mrkt.services.xhr.makeRequest({
     type: 'POST',
     url: '/account/signin'
@@ -11,14 +11,14 @@ function requestSignin(e) {
 
   deferred.then(function(data) {
     if (data.success === 'true') {
-      alert('response data: ' + data.success);
+      window.alert('response data: ' + data.success);
       if(sessionStorage !== undefined) {
         sessionStorage.modalType = '';
       }
       window.location = 'https://www.optimizely.com/dashboard';
     }
   }, function(err) {
-    alert('response error: ', err)  
+    window.alert('response error: ', err);  
     console.log('singin error: ' + err);
   });
 

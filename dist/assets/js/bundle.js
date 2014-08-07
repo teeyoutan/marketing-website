@@ -9039,7 +9039,7 @@ var $signinModal = $('[data-optly-modal="signin"]');
 
 function requestSignin(e) {
   e.preventDefault();
-  alert('singin fired');
+  window.alert('singin fired');
   var deferred = window.optly.mrkt.services.xhr.makeRequest({
     type: 'POST',
     url: '/account/signin'
@@ -9048,14 +9048,14 @@ function requestSignin(e) {
 
   deferred.then(function(data) {
     if (data.success === 'true') {
-      alert('response data: ' + data.success);
+      window.alert('response data: ' + data.success);
       if(sessionStorage !== undefined) {
         sessionStorage.modalType = '';
       }
       window.location = 'https://www.optimizely.com/dashboard';
     }
   }, function(err) {
-    alert('response error: ', err)  
+    window.alert('response error: ', err);  
     console.log('singin error: ' + err);
   });
 
@@ -9181,7 +9181,7 @@ var transitionend = (function(transition) {
   };
 
   return transEndEventNames[transition];
-})(Modernizr.prefixed('transition'));
+})(window.Modernizr.prefixed('transition'));
 
 function bindTranEnd() {
   var classList = Array.prototype.slice.call( this.classList );
@@ -9485,22 +9485,6 @@ jQuery.oFormGlobalOverrides = {
 var $utilityNavElm = $('.utility-nav.signed-in-content');
 var lastDropdown;
 
-function showUtilityNav($elm, acctData, expData) {
-  var handlebarsData = {
-    account_id: acctData.account_id, 
-    email: acctData.email,
-    experiments: expData.experiments
-  };
-
-  $('body').addClass('signed-in').removeClass('signed-out');
-
-  $('#signed-in-utility').html( window.optly.mrkt.templates.experimentsNav(handlebarsData) );
-  var $dropdownMenus = $('[data-show-dropdown]');
-
-  bindDropdownClick($dropdownMenus);
-  $('[data-logout]').on('click', window.optly.mrkt.signOut);
-}
-
 function bindDropdownClick($dropdownMenus) {
   
   $('#signed-in-utility').delegate('[data-dropdown]', 'click', function(e) {
@@ -9523,12 +9507,28 @@ function bindDropdownClick($dropdownMenus) {
         // force synchornous behavior so dropdown doesn't cloase as soon as it opens
         $elm.toggleClass('show-dropdown').delay(0).queue(function(next) {
           $(document).bind('click', window.optly.mrkt.closeDropdown);
-          next()
+          next();
         });
         lastDropdown = clickedData;
       }
     });
   });
+}
+
+function showUtilityNav($elm, acctData, expData) {
+  var handlebarsData = {
+    account_id: acctData.account_id, 
+    email: acctData.email,
+    experiments: expData.experiments
+  };
+
+  $('body').addClass('signed-in').removeClass('signed-out');
+
+  $('#signed-in-utility').html( window.optly.mrkt.templates.experimentsNav(handlebarsData) );
+  var $dropdownMenus = $('[data-show-dropdown]');
+
+  bindDropdownClick($dropdownMenus);
+  $('[data-logout]').on('click', window.optly.mrkt.signOut);
 }
 
 window.optly.mrkt.closeDropdown = function(e) {
@@ -9547,7 +9547,7 @@ window.optly.mrkt.closeDropdown = function(e) {
     $(document).unbind('click', arguments.callee);
   }
 
-}
+};
 
 window.optly.mrkt.signOut = function(redirectPath) {
 
@@ -9569,8 +9569,9 @@ window.optly.mrkt.signOut = function(redirectPath) {
     }
   }, function(err) {
     // Report error here
+    console.log('error: ', err);
   });
-}
+};
 
 // Make call to optly Q
 window.optly_q.push([showUtilityNav, $utilityNavElm, window.optly.mrkt.user.account, window.optly.mrkt.user.experiments]);})(jQuery);
