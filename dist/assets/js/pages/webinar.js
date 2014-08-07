@@ -133,7 +133,7 @@ $(function(){
 
     e.preventDefault();
 
-    var index, dateString, dateLong, elem;
+    var index, elem;
 
     elem = $(this);
 
