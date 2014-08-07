@@ -1,5 +1,10 @@
 body.integrations-solutions {
 
+  .integrations-container {
+    padding: 0;
+    // todo(ccorda): is there a collapse class?
+  }
+
   .page-selector {
     .pill {
       width: 335px;
@@ -27,6 +32,10 @@ body.integrations-solutions {
       font-size: 20px;
     }
   }
+  // todo(ccorda): just for debugging, remove before pushing
+  #output {
+    display: none;
+  }
 
   .partner-grid {
     display: flex;
@@ -35,6 +44,10 @@ body.integrations-solutions {
   }
 
   .partner-grid-elm {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
     position: relative;
     text-align: center;
     border: 1px solid rgb(213, 213, 213);
@@ -44,6 +57,15 @@ body.integrations-solutions {
     font-weight: 600;
     margin: 20px 5px;
     width: 32%;
+
+    // todo(ccorda): probably a better way of handling this
+    @media (max-width: 600px) {
+      width: 100%;
+    }
+
+    &:nth-of-type(3n+1) {
+      margin-left: 0;
+    }
 
     .title-container,
     .button-container {
