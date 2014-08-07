@@ -108,21 +108,7 @@ function storeModalState(modalType, modalOpen) {
   }
 }
 
-(function ($) {
-    var oAddClass = $.fn.addClass;
-    $.fn.addClass = function () {
-        for (var i in arguments) {
-            var arg = arguments[i];
-            if ( !! (arg && arg.constructor && arg.call && arg.apply)) {
-                arg();
-                delete arg;
-            }
-        }
-        return oAddClass.apply(this, arguments);
-    }
-
-})(jQuery);
-
+// Autoprefix CSS transition end listener
 var transitionend = (function(transition) {
    var transEndEventNames = {
        'WebkitTransition' : 'webkitTransitionEnd',// Saf 6, Android Browser
@@ -134,14 +120,20 @@ var transitionend = (function(transition) {
 })(Modernizr.prefixed('transition'));
 
 function bindTranEnd() {
-  var isHidden = Array.prototype.slice.call( this.classList ).indexOf('hidden');
+  var classList = Array.prototype.slice.call( this.classList );
 
-  if (isHidden !== -1) {
-    $(this).addClass('hide')
-        .removeClass('anim-leave hidden');
+    // If the animation is over and modal is closed display none
+   if ( classList.indexOf('leave') !== -1 ) {
+     $(this).addClass('hide-modal')
+         .removeClass('anim-leave leave');
 
-    $(this).unbind(transitionend, bindTranEnd);
-  }
+     $(this).unbind(transitionend, bindTranEnd);
+   } 
+   // If the animation is over and modal is open
+   else if ( classList.indexOf('anim-enter') !== -1 ) {
+     $(this).removeClass('anim-enter');
+   }
+
 }
 
 window.optly.mrkt.modal.open = function(modalType) {
@@ -160,27 +152,22 @@ window.optly.mrkt.modal.open = function(modalType) {
     storeModalState(modalType, true);
   }
 
-  $('html, body').addClass('modal-open');
+  $('html, body').delay(0)
+                 .queue(function(next){
+                    $(this).addClass('modal-open');
+                    next();
+                 });
 
-  console.log('TEST');
-
-  // $elm.on(transitionend, function() {
-  //   debugger;
-  // });
-
-  // Fade out the modal and attach the close modal handler
-  $elm.removeClass('hide')
+  // Fade in the modal and attach the close modal handler
+  $elm.removeClass('hide-modal')
           .addClass('anim-enter')
-          .bind('click', closeModalHandler);
-      
-  window.setTimeout(function() {
-    $elm.addClass('visible');
-  }, 100);
-  // $elm.removeClass('anim-trans-leave hide hidden').toggleClass('anim-trans-enter').bind('click', closeModalHandler);
-  // window.setTimeout(function() {
-  //   $elm.addClass(' visible');
-  // }, 100);
-  $elm.bind(transitionend, bindTranEnd);
+          .bind('click', closeModalHandler)
+          .delay(0)
+          .queue(function(next) {
+            $elm.addClass('enter');
+            next();
+          })
+          .bind(transitionend, bindTranEnd);
 };
 
 window.optly.mrkt.modal.close = function(modalType) {
@@ -196,28 +183,22 @@ window.optly.mrkt.modal.close = function(modalType) {
 
   $('html, body').removeClass('modal-open');
 
-  window.scrollTo(0,0);
-  $elm.children()[0].scrollTop = 0;
-
-  // $elm.on(transitionend, function() {
-  //   debugger;
-  // });
-
-  $elm.removeClass('anim-enter visible')
-          .addClass('anim-leave')
-          .unbind('click', closeModalHandler);
-      
+  // Set timeout smooths out the scroll top and modal opening
   window.setTimeout(function() {
-    $elm.addClass('hidden');
-  }, 100);
+    //Scroll top if have scrolled within the div
+    window.scrollTo(0,0);
+    $elm.children()[0].scrollTop = 0;
 
-  // Fade out the modal and remove the close modal handler
-  // $elm.toggleClass('anim-trans-enter anim-trans-leave').unbind('click', closeModalHandler);
-
-  // window.setTimeout(function() {
-  //   $elm.toggleClass('hidden');
-  // }, 1000);
-
+    // Fade out the modal and unbind the close modal click handler
+    $elm.removeClass('enter')
+          .addClass('anim-leave')
+          .unbind('click', closeModalHandler)
+          .delay(0)
+          .queue(function(next){
+            $elm.addClass('leave');
+            next();
+          });
+  }, 0);
 };
 
 // Only use if History/Session Storage in Enabled

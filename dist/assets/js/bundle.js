@@ -8766,7 +8766,11 @@ function program8(depth0,data) {
   return "\n              Results\n              ";
   }
 
-  buffer += "<li class=\"first\"><a href=\"\">Dashboard</a></li>\n<li id=\"experiment-nav-item\" class=\"hide-in-mobile\" data-show-user-state=\"logged-in\">\n    <a href=\"\" class=\"dropdown-arrow\" data-dropdown=\"experiments\">Experiments</a>\n    <ul class=\"dropdown-menu-top\" data-show-dropdown=\"experiments\">\n      <div class=\"message\"></div>\n      ";
+  buffer += "<li class=\"first\">\n  <a href=\"href=https://www.optimizely.com/dashboard?project_id=";
+  if (helper = helpers.account_id) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.account_id); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\">Dashboard</a>\n</li>\n<li id=\"experiment-nav-item\" class=\"hide-in-mobile\" data-show-user-state=\"logged-in\">\n    <a href=\"\" class=\"dropdown-arrow\" data-dropdown=\"experiments\">Experiments</a>\n    <ul class=\"dropdown-menu-top\" data-show-dropdown=\"experiments\">\n      <div class=\"message\"></div>\n      ";
   stack1 = helpers.each.call(depth0, (depth0 && depth0.experiments), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n      <li class=\"view-all-experiments hide-in-mobile\" data-show=\"dashboard-link\">\n        <a id=\"view-all-experiments-link\" href=\"https://www.optimizely.com/dashboard?project_id=";
@@ -8777,7 +8781,7 @@ function program8(depth0,data) {
   if (helper = helpers.email) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.email); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</span>\n      </a>\n    <ul id=\"account-dropdown\" class=\"dropdown-menu-top\" data-show-dropdown=\"account\">\n        <li class=\"hide-in-mobile\"><a href=\"/account\">Account Setting</a></li>\n        <li><a data-logout >Log Out</a></li>\n    </ul>\n</li>";
+    + "</span>\n      </a>\n    <ul id=\"account-dropdown\" class=\"dropdown-menu-top\" data-show-dropdown=\"account\">\n        <li class=\"hide-in-mobile\">\n          <a href=\"https://www.optimizely.com/account\">Account Setting</a>\n        </li>\n        <li>\n          <a data-logout >Log Out</a>\n        </li>\n    </ul>\n</li>";
   return buffer;
   });
 
@@ -9163,21 +9167,7 @@ function storeModalState(modalType, modalOpen) {
   }
 }
 
-(function ($) {
-    var oAddClass = $.fn.addClass;
-    $.fn.addClass = function () {
-        for (var i in arguments) {
-            var arg = arguments[i];
-            if ( !! (arg && arg.constructor && arg.call && arg.apply)) {
-                arg();
-                delete arg;
-            }
-        }
-        return oAddClass.apply(this, arguments);
-    }
-
-})(jQuery);
-
+// Autoprefix CSS transition end listener
 var transitionend = (function(transition) {
    var transEndEventNames = {
        'WebkitTransition' : 'webkitTransitionEnd',// Saf 6, Android Browser
@@ -9189,14 +9179,20 @@ var transitionend = (function(transition) {
 })(Modernizr.prefixed('transition'));
 
 function bindTranEnd() {
-  var isHidden = Array.prototype.slice.call( this.classList ).indexOf('hidden');
+  var classList = Array.prototype.slice.call( this.classList );
 
-  if (isHidden !== -1) {
-    $(this).addClass('hide')
-        .removeClass('anim-leave hidden');
+    // If the animation is over and modal is closed display none
+   if ( classList.indexOf('leave') !== -1 ) {
+     $(this).addClass('hide-modal')
+         .removeClass('anim-leave leave');
 
-    $(this).unbind(transitionend, bindTranEnd);
-  }
+     $(this).unbind(transitionend, bindTranEnd);
+   } 
+   // If the animation is over and modal is open
+   else if ( classList.indexOf('anim-enter') !== -1 ) {
+     $(this).removeClass('anim-enter');
+   }
+
 }
 
 window.optly.mrkt.modal.open = function(modalType) {
@@ -9215,27 +9211,22 @@ window.optly.mrkt.modal.open = function(modalType) {
     storeModalState(modalType, true);
   }
 
-  $('html, body').addClass('modal-open');
+  $('html, body').delay(0)
+                 .queue(function(next){
+                    $(this).addClass('modal-open');
+                    next();
+                 });
 
-  console.log('TEST');
-
-  // $elm.on(transitionend, function() {
-  //   debugger;
-  // });
-
-  // Fade out the modal and attach the close modal handler
-  $elm.removeClass('hide')
+  // Fade in the modal and attach the close modal handler
+  $elm.removeClass('hide-modal')
           .addClass('anim-enter')
-          .bind('click', closeModalHandler);
-      
-  window.setTimeout(function() {
-    $elm.addClass('visible');
-  }, 100);
-  // $elm.removeClass('anim-trans-leave hide hidden').toggleClass('anim-trans-enter').bind('click', closeModalHandler);
-  // window.setTimeout(function() {
-  //   $elm.addClass(' visible');
-  // }, 100);
-  $elm.bind(transitionend, bindTranEnd);
+          .bind('click', closeModalHandler)
+          .delay(0)
+          .queue(function(next) {
+            $elm.addClass('enter');
+            next();
+          })
+          .bind(transitionend, bindTranEnd);
 };
 
 window.optly.mrkt.modal.close = function(modalType) {
@@ -9251,28 +9242,22 @@ window.optly.mrkt.modal.close = function(modalType) {
 
   $('html, body').removeClass('modal-open');
 
-  window.scrollTo(0,0);
-  $elm.children()[0].scrollTop = 0;
-
-  // $elm.on(transitionend, function() {
-  //   debugger;
-  // });
-
-  $elm.removeClass('anim-enter visible')
-          .addClass('anim-leave')
-          .unbind('click', closeModalHandler);
-      
+  // Set timeout smooths out the scroll top and modal opening
   window.setTimeout(function() {
-    $elm.addClass('hidden');
-  }, 100);
+    //Scroll top if have scrolled within the div
+    window.scrollTo(0,0);
+    $elm.children()[0].scrollTop = 0;
 
-  // Fade out the modal and remove the close modal handler
-  // $elm.toggleClass('anim-trans-enter anim-trans-leave').unbind('click', closeModalHandler);
-
-  // window.setTimeout(function() {
-  //   $elm.toggleClass('hidden');
-  // }, 1000);
-
+    // Fade out the modal and unbind the close modal click handler
+    $elm.removeClass('enter')
+          .addClass('anim-leave')
+          .unbind('click', closeModalHandler)
+          .delay(0)
+          .queue(function(next){
+            $elm.addClass('leave');
+            next();
+          });
+  }, 0);
 };
 
 // Only use if History/Session Storage in Enabled
@@ -9544,12 +9529,12 @@ window.optly.mrkt.closeDropdown = function(e) {
       $('[data-show-dropdown]').removeClass('show-dropdown');
       $(document).unbind('click', arguments.callee);
     } 
-    // If the target is the logout button then logout
-    else if ($(e.target).data('logout')) {
-      window.optly.mrkt.signout();
-      $('[data-show-dropdown]').removeClass('show-dropdown');
-      $(document).unbind('click', arguments.callee);
-    }
+    // If the target is the logout button or it's parent then logout
+    // else if ( e.target === $('[data-logout]')[0] || $(e.target).children()[0] === $('[data-logout]')[0] ) {
+    //   window.optly.mrkt.signOut();
+    //   $('[data-show-dropdown]').removeClass('show-dropdown');
+    //   $(document).unbind('click', arguments.callee);
+    // }
 
   }
   // If we want to manually close the dropdown there will be no event
@@ -9567,8 +9552,11 @@ window.optly.mrkt.signOut = function(redirectPath) {
     url: '/account/signout'
   });
 
+  // Close the dropdown
+  window.optly.mrkt.closeDropdown();
+
   deferred.then(function(data){
-    if(data && redirectPath !== undefined) {
+    if(data && typeof redirectPath !== 'object') {
       window.location = redirectPath;
     } 
     // If no path is specified then reload location

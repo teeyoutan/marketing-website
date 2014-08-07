@@ -50,12 +50,12 @@ window.optly.mrkt.closeDropdown = function(e) {
       $('[data-show-dropdown]').removeClass('show-dropdown');
       $(document).unbind('click', arguments.callee);
     } 
-    // If the target is the logout button then logout
-    else if ($(e.target).data('logout')) {
-      window.optly.mrkt.signout();
-      $('[data-show-dropdown]').removeClass('show-dropdown');
-      $(document).unbind('click', arguments.callee);
-    }
+    // If the target is the logout button or it's parent then logout
+    // else if ( e.target === $('[data-logout]')[0] || $(e.target).children()[0] === $('[data-logout]')[0] ) {
+    //   window.optly.mrkt.signOut();
+    //   $('[data-show-dropdown]').removeClass('show-dropdown');
+    //   $(document).unbind('click', arguments.callee);
+    // }
 
   }
   // If we want to manually close the dropdown there will be no event
@@ -73,8 +73,11 @@ window.optly.mrkt.signOut = function(redirectPath) {
     url: '/account/signout'
   });
 
+  // Close the dropdown
+  window.optly.mrkt.closeDropdown();
+
   deferred.then(function(data){
-    if(data && redirectPath !== undefined) {
+    if(data && typeof redirectPath !== 'object') {
       window.location = redirectPath;
     } 
     // If no path is specified then reload location
