@@ -102,6 +102,10 @@ $navs-to-index: main-nav dropdown-menu-top;
       a:hover { text-decoration: underline; }
       li:first-child { border-top: none; }
     }
+    #email-wrapper {
+      overflow: visible;
+      width: auto;
+    }
     #mobile-top-border {
       display: none;
       border: none;

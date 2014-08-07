@@ -2500,29 +2500,36 @@ html.modal-open, body.modal-open {
   overflow: hidden;
   height: 100%; }
 
-#outer-wrapper {
-  z-index: 2; }
-
 .modal-dialog-container {
   width: 100%;
   height: 100%;
   cursor: pointer;
   background: #fff;
-  opacity: 0;
   position: absolute;
   top: 0;
   left: 0;
-  -webkit-transition: all 0.5s;
-          transition: all 0.5s;
-  z-index: 1; }
-  .modal-dialog-container.visible {
-    opacity: 1;
-    top: 0;
-    z-index: 100; }
-    .modal-dialog-container.visible .dialog {
-      z-index: 200; }
+  z-index: 100; }
   .modal-dialog-container .dialog {
-    z-index: 1;
+    z-index: 200; }
+  .modal-dialog-container.hide {
+    visibility: hidden; }
+  .modal-dialog-container.anim-enter {
+    -webkit-transition: all 0.5s linear;
+            transition: all 0.5s linear;
+    opacity: 0;
+    visibility: hidden; }
+    .modal-dialog-container.anim-enter.visible {
+      opacity: 1;
+      visibility: visible; }
+  .modal-dialog-container.anim-leave {
+    -webkit-transition: all 0.5s linear;
+            transition: all 0.5s linear;
+    opacity: 1;
+    visibility: visible; }
+    .modal-dialog-container.anim-leave.hidden {
+      opacity: 0;
+      visibility: hidden; }
+  .modal-dialog-container .dialog {
     position: fixed;
     top: 0;
     left: 0;
@@ -2724,6 +2731,9 @@ html.modal-open, body.modal-open {
       text-decoration: underline; }
     .utility-nav .dropdown-menu-top li:first-child {
       border-top: none; }
+  .utility-nav #email-wrapper {
+    overflow: visible;
+    width: auto; }
   .utility-nav #mobile-top-border {
     display: none;
     border: none; }

@@ -178,8 +178,7 @@ module.exports = function(grunt) {
                 res.writeHead(200, {'Content-Type': 'application/json'});
                 res.end('{"success": "true"}');
 
-              }
-              else {
+              } else {
 
                 return next();
 
@@ -202,8 +201,7 @@ module.exports = function(grunt) {
                 res.writeHead(200, {'Content-Type': 'application/json'});
                 res.end('{"success": "true"}');
 
-            }
-            else{
+            } else{
 
               return next();
 

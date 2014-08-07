@@ -51,7 +51,6 @@ window.optly.mrkt.modal.openModalHandler = function(modalType) {
   var title,
     stateData;
 
-  //e.preventDefault();
   // Check for History/SessionStorage support and how many items are on the history stack
   if (isHistorySupported && historyIcrementor === 0) {
     stateData = setHistoryId(History.getState().data);
@@ -71,7 +70,6 @@ window.optly.mrkt.modal.openModalHandler = function(modalType) {
 };
 
 function closeModalHandler(e) {
-  //e.preventDefault();
   var $modalCont = $(this);
   var $clickedElm = $(e.target);
   if ($modalCont.find(e.target).length === 0 || $clickedElm.data('modal-btn') === 'close') {
@@ -110,6 +108,42 @@ function storeModalState(modalType, modalOpen) {
   }
 }
 
+(function ($) {
+    var oAddClass = $.fn.addClass;
+    $.fn.addClass = function () {
+        for (var i in arguments) {
+            var arg = arguments[i];
+            if ( !! (arg && arg.constructor && arg.call && arg.apply)) {
+                arg();
+                delete arg;
+            }
+        }
+        return oAddClass.apply(this, arguments);
+    }
+
+})(jQuery);
+
+var transitionend = (function(transition) {
+   var transEndEventNames = {
+       'WebkitTransition' : 'webkitTransitionEnd',// Saf 6, Android Browser
+       'MozTransition'    : 'transitionend',      // only for FF < 15
+       'transition'       : 'transitionend'       // IE10, Opera, Chrome, FF 15+, Saf 7+
+  };
+
+  return transEndEventNames[transition];
+})(Modernizr.prefixed('transition'));
+
+function bindTranEnd() {
+  var isHidden = Array.prototype.slice.call( this.classList ).indexOf('hidden');
+  debugger;
+  if (isHidden !== -1) {
+    $(this).addClass('hide')
+        .removeClass('anim-leave hidden');
+
+    $(this).unbind(transitionend, bindTranEnd);
+  }
+}
+
 window.optly.mrkt.modal.open = function(modalType) {
   var $elm = $elms[modalType];
   console.log('open modal');
@@ -130,9 +164,23 @@ window.optly.mrkt.modal.open = function(modalType) {
 
   console.log('TEST');
 
-  // Fade out the modal and attach the close modal handler
-  $elm.toggleClass('visible').bind('click', closeModalHandler);
+  // $elm.on(transitionend, function() {
+  //   debugger;
+  // });
 
+  // Fade out the modal and attach the close modal handler
+  $elm.removeClass('hide')
+          .addClass('anim-enter')
+          .bind('click', closeModalHandler);
+      
+  window.setTimeout(function() {
+    $elm.addClass('visible');
+  }, 100);
+  // $elm.removeClass('anim-trans-leave hide hidden').toggleClass('anim-trans-enter').bind('click', closeModalHandler);
+  // window.setTimeout(function() {
+  //   $elm.addClass(' visible');
+  // }, 100);
+  $elm.bind(transitionend, bindTranEnd);
 };
 
 window.optly.mrkt.modal.close = function(modalType) {
@@ -151,8 +199,24 @@ window.optly.mrkt.modal.close = function(modalType) {
   window.scrollTo(0,0);
   $elm.children()[0].scrollTop = 0;
 
+  // $elm.on(transitionend, function() {
+  //   debugger;
+  // });
+
+  $elm.removeClass('anim-enter visible')
+          .addClass('anim-leave')
+          .unbind('click', closeModalHandler);
+      
+  window.setTimeout(function() {
+    $elm.addClass('hidden');
+  }, 100);
+
   // Fade out the modal and remove the close modal handler
-  $elm.toggleClass('visible').unbind('click', closeModalHandler);
+  // $elm.toggleClass('anim-trans-enter anim-trans-leave').unbind('click', closeModalHandler);
+
+  // window.setTimeout(function() {
+  //   $elm.toggleClass('hidden');
+  // }, 1000);
 
 };
 

@@ -14,11 +14,12 @@ function showUtilityNav($elm, acctData, expData) {
   var $dropdownMenus = $('[data-show-dropdown]');
 
   bindDropdownClick($dropdownMenus);
-  $('[data-logout]').on('click', signOut);
+  $('[data-logout]').on('click', window.optly.mrkt.signOut);
 }
 
 function bindDropdownClick($dropdownMenus) {
   $('#signed-in-utility').delegate('[data-dropdown]', 'click', function(e) {
+    // This is non-evil, we need it here
     e.preventDefault();
 
     // Get the type of dropdown anchor that was clicked
@@ -35,27 +36,37 @@ function bindDropdownClick($dropdownMenus) {
       if ( $elm.data('show-dropdown') ===  clickedData ) {
         $elm.toggleClass('show-dropdown');
         lastDropdown = clickedData;
-        $(document).bind('click', closeDropdown);
+        $(document).bind('click', window.optly.mrkt.closeDropdown);
       }
     });
   });
 }
 
-function closeDropdown(e) {
+window.optly.mrkt.closeDropdown = function(e) {
 
-  if ( ( !$(e.target).closest('[data-show-dropdown]').length && !$(e.target).is('[data-dropdown]') ) || $(e.target).closest('[data-modal-click]').length > 0 ) {
-    $('[data-show-dropdown]').removeClass('show-dropdown');
-    $(document).unbind('click', closeDropdown);
-  } 
-  // If the target is the lgout button then logout
-  else if ($(e.target).data('logout')) {
-    signOut();
-    $('[data-show-dropdown]').removeClass('show-dropdown');
-    $(document).unbind('click', closeDropdown);
+  if ( e !== undefined ) {
+    // Check that the target is not inside of the dropdown
+    if ( ( !$(e.target).closest('[data-show-dropdown]').length && !$(e.target).is('[data-dropdown]') ) || $(e.target).closest('[data-modal-click]').length > 0 ) {
+      $('[data-show-dropdown]').removeClass('show-dropdown');
+      $(document).unbind('click', arguments.callee);
+    } 
+    // If the target is the logout button then logout
+    else if ($(e.target).data('logout')) {
+      window.optly.mrkt.signout();
+      $('[data-show-dropdown]').removeClass('show-dropdown');
+      $(document).unbind('click', arguments.callee);
+    }
+
   }
+  // If we want to manually close the dropdown there will be no event
+  else {
+    $('[data-show-dropdown]').removeClass('show-dropdown');
+    $(document).unbind('click', arguments.callee);
+  }
+
 }
 
-function signOut() {
+window.optly.mrkt.signOut = function(redirectPath) {
 
   var deferred = window.optly.mrkt.services.xhr.makeRequest({
     type: 'GET',
@@ -63,11 +74,15 @@ function signOut() {
   });
 
   deferred.then(function(data){
-    if(data.success === 'true') {
+    if(data && redirectPath !== undefined) {
+      window.location = redirectPath;
+    } 
+    // If no path is specified then reload location
+    else if (data) {
       window.location.reload();
     }
   }, function(err) {
-    console.log('signout error: ', err);
+    // Report error here
   });
 }
 
