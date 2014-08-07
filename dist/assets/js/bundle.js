@@ -8777,7 +8777,7 @@ function program8(depth0,data) {
   if (helper = helpers.account_id) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.account_id); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "\">\n          <span>View All Experiments</span>\n        </a>\n      </li>\n      <li class=\"show-create-experiment hide-in-mobile\" data-modal-click=\"create-exp\">\n        <span>+ </span><a >Create New Experiment</a>\n      </li>\n    </ul>\n</li>\n<li>\n  <a href=\"https://help.optimizely.com/hc/en-us\">Support</a>\n</li>\n<li id=\"my-account-menu\">\n      <a class=\"customer-email dropdown-arrow\" href=\"\" data-dropdown=\"account\">\n        <span id=\"email-wrapper\">";
+    + "\">\n          <span>View All Experiments</span>\n        </a>\n      </li>\n      <li class=\"show-create-experiment hide-in-mobile\" data-modal-click=\"create-exp\">\n        <span>+ </span><a >Create New Experiment</a>\n      </li>\n    </ul>\n</li>\n<li>\n  <a href=\"https://help.optimizely.com/hc/en-us\">Support</a>\n</li>\n<li id=\"my-account-menu\">\n      <a class=\"customer-email dropdown-arrow\" data-dropdown=\"account\">\n        <span id=\"email-wrapper\">";
   if (helper = helpers.email) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.email); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
@@ -9039,6 +9039,7 @@ var $signinModal = $('[data-optly-modal="signin"]');
 
 function requestSignin(e) {
   e.preventDefault();
+  alert('singin fired');
   var deferred = window.optly.mrkt.services.xhr.makeRequest({
     type: 'POST',
     url: '/account/signin'
@@ -9047,11 +9048,15 @@ function requestSignin(e) {
 
   deferred.then(function(data) {
     if (data.success === 'true') {
-      sessionStorage.modalType = '';
+      alert('response data: ' + data.success);
+      if(sessionStorage !== undefined) {
+        sessionStorage.modalType = '';
+      }
       window.location = 'https://www.optimizely.com/dashboard';
     }
-  }, function(err) {  
-    console.log('singin error: ', err);
+  }, function(err) {
+    alert('response error: ', err)  
+    console.log('singin error: ' + err);
   });
 
 }
@@ -9497,6 +9502,7 @@ function showUtilityNav($elm, acctData, expData) {
 }
 
 function bindDropdownClick($dropdownMenus) {
+  
   $('#signed-in-utility').delegate('[data-dropdown]', 'click', function(e) {
     // This is non-evil, we need it here
     e.preventDefault();
@@ -9511,30 +9517,28 @@ function bindDropdownClick($dropdownMenus) {
       if (clickedData !== lastDropdown && lastDropdown !== undefined) {
         $('[data-show-dropdown="' + lastDropdown + '"]').removeClass('show-dropdown');
       }
+
       // Logic to open the dropdown and cache the last opened dropdown
       if ( $elm.data('show-dropdown') ===  clickedData ) {
-        $elm.toggleClass('show-dropdown');
+        // force synchornous behavior so dropdown doesn't cloase as soon as it opens
+        $elm.toggleClass('show-dropdown').delay(0).queue(function(next) {
+          $(document).bind('click', window.optly.mrkt.closeDropdown);
+          next()
+        });
         lastDropdown = clickedData;
-        $(document).bind('click', window.optly.mrkt.closeDropdown);
       }
     });
   });
 }
 
 window.optly.mrkt.closeDropdown = function(e) {
-
+  console.log('close dropdown');
   if ( e !== undefined ) {
     // Check that the target is not inside of the dropdown
     if ( ( !$(e.target).closest('[data-show-dropdown]').length && !$(e.target).is('[data-dropdown]') ) || $(e.target).closest('[data-modal-click]').length > 0 ) {
       $('[data-show-dropdown]').removeClass('show-dropdown');
       $(document).unbind('click', arguments.callee);
     } 
-    // If the target is the logout button or it's parent then logout
-    // else if ( e.target === $('[data-logout]')[0] || $(e.target).children()[0] === $('[data-logout]')[0] ) {
-    //   window.optly.mrkt.signOut();
-    //   $('[data-show-dropdown]').removeClass('show-dropdown');
-    //   $(document).unbind('click', arguments.callee);
-    // }
 
   }
   // If we want to manually close the dropdown there will be no event

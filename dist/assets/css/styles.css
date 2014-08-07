@@ -581,6 +581,7 @@ header {
     #main-nav ul {
       -webkit-transition: max-height 0.2s;
               transition: max-height 0.2s;
+      margin: 0;
       padding: 0 0 0 10px; }
       #main-nav ul a {
         font-size: 0.8em;
@@ -2684,7 +2685,7 @@ html.modal-open, body.modal-open {
     overflow: hidden;
     text-overflow: ellipsis;
     width: 100%;
-    display: inline-block; }
+    display: block; }
   .utility-nav .dropdown-menu-top {
     text-align: left; }
     .utility-nav .dropdown-menu-top .hide-in-mobile {
@@ -2740,7 +2741,8 @@ html.modal-open, body.modal-open {
       border-top: none; }
   .utility-nav #email-wrapper {
     overflow: visible;
-    width: auto; }
+    width: auto;
+    display: inline-block; }
   .utility-nav #mobile-top-border {
     display: none;
     border: none; }
