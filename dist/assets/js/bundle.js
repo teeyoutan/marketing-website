@@ -9202,7 +9202,6 @@ function bindTranEnd() {
 
 window.optly.mrkt.modal.open = function(modalType) {
   var $elm = $elms[modalType];
-  console.log('open modal');
   // if modalState exists then close modal of the currently open modal state
   if(modalState.type !== undefined) {
     window.optly.mrkt.modal.close(modalState.type);
@@ -9216,7 +9215,7 @@ window.optly.mrkt.modal.open = function(modalType) {
     storeModalState(modalType, true);
   }
 
-  $('html, body').delay(0)
+  $('html, body').addClass('modal-open').delay(0)
                  .queue(function(next){
                     $(this).addClass('modal-open');
                     next();
