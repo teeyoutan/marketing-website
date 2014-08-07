@@ -1,22 +1,6 @@
 var $utilityNavElm = $('.utility-nav.signed-in-content');
 var lastDropdown;
 
-function showUtilityNav($elm, acctData, expData) {
-  var handlebarsData = {
-    account_id: acctData.account_id, 
-    email: acctData.email,
-    experiments: expData.experiments
-  };
-
-  $('body').addClass('signed-in').removeClass('signed-out');
-
-  $('#signed-in-utility').html( window.optly.mrkt.templates.experimentsNav(handlebarsData) );
-  var $dropdownMenus = $('[data-show-dropdown]');
-
-  bindDropdownClick($dropdownMenus);
-  $('[data-logout]').on('click', window.optly.mrkt.signOut);
-}
-
 function bindDropdownClick($dropdownMenus) {
   
   $('#signed-in-utility').delegate('[data-dropdown]', 'click', function(e) {
@@ -39,12 +23,28 @@ function bindDropdownClick($dropdownMenus) {
         // force synchornous behavior so dropdown doesn't cloase as soon as it opens
         $elm.toggleClass('show-dropdown').delay(0).queue(function(next) {
           $(document).bind('click', window.optly.mrkt.closeDropdown);
-          next()
+          next();
         });
         lastDropdown = clickedData;
       }
     });
   });
+}
+
+function showUtilityNav($elm, acctData, expData) {
+  var handlebarsData = {
+    account_id: acctData.account_id, 
+    email: acctData.email,
+    experiments: expData.experiments
+  };
+
+  $('body').addClass('signed-in').removeClass('signed-out');
+
+  $('#signed-in-utility').html( window.optly.mrkt.templates.experimentsNav(handlebarsData) );
+  var $dropdownMenus = $('[data-show-dropdown]');
+
+  bindDropdownClick($dropdownMenus);
+  $('[data-logout]').on('click', window.optly.mrkt.signOut);
 }
 
 window.optly.mrkt.closeDropdown = function(e) {
@@ -63,7 +63,7 @@ window.optly.mrkt.closeDropdown = function(e) {
     $(document).unbind('click', arguments.callee);
   }
 
-}
+};
 
 window.optly.mrkt.signOut = function(redirectPath) {
 
@@ -85,8 +85,9 @@ window.optly.mrkt.signOut = function(redirectPath) {
     }
   }, function(err) {
     // Report error here
+    console.log('error: ', err);
   });
-}
+};
 
 // Make call to optly Q
 window.optly_q.push([showUtilityNav, $utilityNavElm, window.optly.mrkt.user.account, window.optly.mrkt.user.experiments]);
