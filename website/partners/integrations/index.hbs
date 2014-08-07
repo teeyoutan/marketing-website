@@ -37,32 +37,27 @@ body_class:
   {{!-- todo(ccorda): gridstart isn't actually doing anything yet --}}
   {{!-- todo(ccorda): linkPath isn't working --}}
   {{!-- todo(ccorda): need to grab different sized images if they exist --}}
+
   <div class="row">
     <div class="integrations-container container">
-      {{#integrations}}
-        {{#each pages}}
-          {{#classgridstart @index}}
-            <div class="row">
-          {{/classgridstart}}
-            <div class="row">
-              <div class="columns one-third partner-grid-elm" data-priority="{{ data.priority }}">
-                <div class="title-container">
-                  <h4 class="partner-title">{{ data.title }}</h1>
-                </div> <!-- .title-container -->
-                <div class="partner-inner-content">
-                  <div class="partner-logos" style="background-image: url({{linkPath}}/assets/img/customer-logos/{{ data.partner_logo }});"></div>
-                  <p>{{ data.partner_summary }}</p>
-                </div>
-                <div class="button-container">
-                  <a href="{{linkPath}}/{{ this.dest }}" class="button">Learn More &gt;</a>
-                </div>
-              </div> <!-- .partner-grid-elm -->
-            </div>
-          {{#classgridfinish @index @last}}
-            </div>
-          {{/classgridfinish}}
-        {{/each}}
-      {{/integrations}}
-    </div> <!-- .case-studies-container -->
+      <div class="row partner-grid">
+        {{#integrations}}
+          {{#each pages}}
+            <div class="partner-grid-elm" data-priority="{{data.priority}}">
+              <div class="title-container">
+                <h4 class="partner-title"><a href="{{linkPath}}/{{this.dest}}">{{data.title}}</a></h4>
+              </div> <!-- .title-container -->
+              <div class="partner-inner-content">
+                <a href="{{linkPath}}/{{this.dest}}" class="partner-logos" style="background-image: url({{linkPath}}/dist/assets/img/partner-logos/{{ data.logo }});"></a>
+                <p>{{ data.summary }}</p>
+              </div>
+              <div class="button-container">
+                <a href="{{linkPath}}/{{ this.dest }}" class="button">Learn More &gt;</a>
+              </div>
+            </div> <!-- .partner-grid-elm -->
+          {{/each}}
+        {{/integrations}}
+      </div><!-- .partner-grid -->
+    </div> <!-- .integrations-container -->
   </div>
 </div>

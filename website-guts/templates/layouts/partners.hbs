@@ -22,6 +22,7 @@ sub_head: World-class service providers. Empowered customers. Lasting results.
         <div class="row single-partner-container">
           <div class="columns four">
             <div class="partners-back">
+            {{!-- todo(ccorda): this conditional isn't working, solutions and integrations are being output as objects --}}
               {{#if solutions }}
                 <a href="{{linkPath}}/partners/solutions">&lt; See all Solutions Partners</a>
               {{else}}
@@ -64,6 +65,7 @@ sub_head: World-class service providers. Empowered customers. Lasting results.
               {{> body}}
             {{/markdown}}
 
+            {{!-- todo: this is outputting all tags, not just the ones on a post --}}
             {{#if tags}}
             <div class="partners-tags">
               {{#each tags}}<span>{{tag}}, </span>{{/each}}
