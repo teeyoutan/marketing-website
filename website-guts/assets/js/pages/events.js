@@ -81,23 +81,31 @@ window.optly.mrkt.events.showEvents = function(url, div){
 
         } else {
 
-          console.log('1');
+          //report error to google analytics
+          window.analytics.track(window.location.pathname, {
+            category: 'api error',
+            label: 'google cal api data.feed.entry not array: ' + typeof(data.feed.entry)
+          });
 
         }
 
       } catch (error) {
 
         //report error to google analytics
-        //_gaq.push(['_trackEvent', 'api error', 'google_cal', 'response contains invalid JSON']);
-        console.log(error);
+        window.analytics.track(window.location.pathname, {
+          category: 'api error',
+          label: 'google cal reponse contains invalid json'
+        });
 
       }
 
     } else {
 
       //report non 200 to google analytics
-      //_gaq.push(['_trackEvent', 'api error', 'api_name', 'status code: ' + jqXHR.status]);
-      console.log('2');
+      window.analytics.track(window.location.pathname, {
+        category: 'api error',
+        label: 'google cal reponse not 200: ' + jqXHR.status
+      });
 
     }
 

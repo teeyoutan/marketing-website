@@ -366,7 +366,20 @@ module.exports = function(grunt) {
           }
         }())
       },
-      client: {
+      clientProd: {
+        options: {
+          browser: true,
+          globals: {
+            jQuery: false,
+            moment: false,
+            $: false
+          }
+        },
+        files: {
+          src: ['<%= config.guts %>/assets/js/**/*.js', '!<%= config.guts %>/assets/js/libraries/**/*.js']
+        }
+      },
+      clientDev: {
         options: {
           browser: true,
           globals: {
@@ -523,7 +536,8 @@ module.exports = function(grunt) {
   grunt.registerTask('staging-deploy', [
     'gitinfo',
     'config:staging',
-    'jshint',
+    'jshint:clientDev',
+    'jshint:server',
     'clean:preBuild',
     'assemble',
     'concat',
@@ -538,7 +552,8 @@ module.exports = function(grunt) {
 
   grunt.registerTask('server', [
     'config:dev',
-    'jshint',
+    'jshint:clientDev',
+    'jshint:server',
     'clean:preBuild',
     'assemble',
     'handlebars',
@@ -554,7 +569,8 @@ module.exports = function(grunt) {
 
   grunt.registerTask('build', [
     'config:production',
-    'jshint',
+    'jshint:clientProd',
+    'jshint:server',
     'clean:preBuild',
     'assemble',
     'concat',
