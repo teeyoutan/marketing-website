@@ -135,7 +135,7 @@ var transitionend = (function(transition) {
 
 function bindTranEnd() {
   var isHidden = Array.prototype.slice.call( this.classList ).indexOf('hidden');
-  debugger;
+
   if (isHidden !== -1) {
     $(this).addClass('hide')
         .removeClass('anim-leave hidden');

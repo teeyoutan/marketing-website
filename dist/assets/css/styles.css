@@ -2667,8 +2667,18 @@ html.modal-open, body.modal-open {
   .utility-nav #my-account-menu #mobile-top-border {
     width: 100%;
     border-bottom: 1px solid #042142; }
-  .utility-nav #my-account-menu li:first-child {
-    border-top: 1px solid #08448a; }
+  .utility-nav #my-account-menu li:first-child, .utility-nav #my-account-menu li:last-child {
+    position: relative;
+    border-top: 1px solid #042142; }
+  .utility-nav #my-account-menu li:first-child:before, .utility-nav #my-account-menu li:last-child:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: block;
+    border-top: 1px solid #08448a;
+    z-index: 9999; }
   .utility-nav .customer-email {
     width: 100%;
     display: inline-block; }
@@ -2680,6 +2690,8 @@ html.modal-open, body.modal-open {
     display: inline-block; }
   .utility-nav .dropdown-menu-top {
     text-align: left; }
+    .utility-nav .dropdown-menu-top .hide-in-mobile {
+      display: none; }
     .utility-nav .dropdown-menu-top.show-dropdown {
       display: block; }
     .utility-nav .dropdown-menu-top li {
@@ -2707,15 +2719,13 @@ html.modal-open, body.modal-open {
   .utility-nav a {
     padding: 12px;
     text-align: left; }
-  .utility-nav #my-account-menu .dropdown-menu-top {
-    width: 100%; }
-  .utility-nav #my-account-menu a {
-    padding: 8px 12px; }
   .utility-nav .dropdown-menu-top {
     display: none;
     position: absolute;
     border: 1px solid #d5d5d5;
     background: #fff; }
+    .utility-nav .dropdown-menu-top .hide-in-mobile {
+      display: inline-block; }
     .utility-nav .dropdown-menu-top li {
       width: 100%;
       display: block;
@@ -2780,15 +2790,18 @@ html.modal-open, body.modal-open {
     .utility-nav .experiment-container a:last-child:hover {
       color: #444; }
   .utility-nav #my-account-menu li {
-    border-bottom: none;
-    border-top: none; }
-  .utility-nav #my-account-menu #mobile-top-border {
-    border-bottom: none; }
+    border: none; }
   .utility-nav #my-account-menu li {
     text-align: left; }
-  .utility-nav #my-account-menu li:first-child {
-    border-top: none; }
+  .utility-nav #my-account-menu li:first-child, .utility-nav #my-account-menu li:last-child {
+    border: none; }
+  .utility-nav #my-account-menu li:first-child:before, .utility-nav #my-account-menu li:last-child:before {
+    display: none !important; }
   .utility-nav #my-account-menu a {
     padding: 8px 12px;
-    text-align: left; } }
+    text-align: left; }
+  .utility-nav #my-account-menu .dropdown-menu-top {
+    width: 100%; }
+  .utility-nav #my-account-menu a {
+    padding: 8px 12px; } }
 /*# sourceMappingURL=styles.css.map */
