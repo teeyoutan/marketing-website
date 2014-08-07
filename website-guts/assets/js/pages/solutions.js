@@ -25,6 +25,16 @@ window.optly.mrkt.filter = {
   },
 
   isotope: function() {
+
+    var heights = [];
+    $('.partner-grid-elm').each( function() {
+      heights.push( $(this).outerHeight() );
+    });
+    heights = heights.sort().reverse();
+    $('.partner-grid-elm').each( function() {
+      $(this).height( heights[0] );
+    });
+
     $isoContainer = $('.partner-grid').isotope({
       itemSelector: '.partner-grid-elm',
       layoutMode: 'fitRows'
