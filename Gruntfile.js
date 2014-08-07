@@ -358,11 +358,6 @@ module.exports = function(grunt) {
         undef: true,
         unused: true,
         quotmark: 'single',
-        globals: {
-          module: false,
-          require: false,
-          __dirname: false
-        },
         '-W087': (function() {
           if(grunt.config.get("environment") == "dev") {
             return true;
@@ -371,20 +366,27 @@ module.exports = function(grunt) {
           }
         }())
       },
-      uses_defaults: ['<%= config.guts %>/helpers/*.js'],
-      with_overrides: {
+      client: {
         options: {
           browser: true,
           globals: {
-            jQuery: true,
-            $: true,
+            jQuery: false,
             console: false,
             moment: false,
-            _gaq: false
+            _gaq: false,
+            $: false
           }
         },
         files: {
           src: ['<%= config.guts %>/assets/js/**/*.js', '!<%= config.guts %>/assets/js/libraries/**/*.js']
+        }
+      },
+      server: {
+        options: {
+          node: true
+        },
+        files: {
+          src: ['<%= config.guts %>/helpers/*.js']
         }
       }
     },
