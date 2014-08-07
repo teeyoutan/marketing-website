@@ -33,7 +33,7 @@ module.exports = function(grunt) {
           variables: {
             environment: 'production',
             environmentData: 'website-guts/data/environments/production/environmentVariables.json',
-            assets_dir: '/dist/assets',
+            assetsDir: '/dist/assets',
             link_path: '',
             sassImagePath: '/dist/assets/img',
             compress_js: true,
@@ -54,9 +54,9 @@ module.exports = function(grunt) {
         options: {
           variables: {
             aws: grunt.file.readJSON('configs/s3Config.json'),
-            environment: 'preview',
-            environmentData: 'website-guts/data/environments/production/environmentVariables.json',
-            assets_dir: '/<%= gitinfo.local.branch.current.name %>/assets',
+            environment: 'staging',
+            environmentData: 'website-guts/data/environments/staging/environmentVariables.json',
+            assetsDir: '/<%= gitinfo.local.branch.current.name %>/assets',
             link_path: '',
             sassImagePath: '/<%= gitinfo.local.branch.current.name %>/assets/img',
             compress_js: true,
@@ -78,7 +78,7 @@ module.exports = function(grunt) {
           variables: {
             environment: 'dev',
             environmentData: 'website-guts/data/environments/development/environmentVariables.json',
-            assets_dir: '/dist/assets',
+            assetsDir: '/dist/assets',
             link_path: '/dist',
             sassSourceMap: true,
             sassImagePath: '/dist/assets/img',
@@ -200,7 +200,7 @@ module.exports = function(grunt) {
     assemble: {
       options: {
         layoutdir: '<%= config.guts %>/templates/layouts/',
-        assetsDir: '<%= grunt.config.get("assets_dir") %>',
+        assetsDir: '<%= grunt.config.get("assetsDir") %>',
         linkPath: '<%= grunt.config.get("link_path") %>',
         sassImagePath: '<%= grunt.config.get("sassImagePath") %>',
         environmentIsProduction: '<%= grunt.config.get("environmentIsProduction") %>',
