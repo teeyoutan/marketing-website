@@ -60,6 +60,8 @@ body.integrations-solutions {
 
     .title-container {
       border-bottom: 1px solid rgb(213, 213, 213);
+      padding-left: 10px;
+      padding-right: 10px;
 
       h4 {
         text-align: center;
@@ -72,7 +74,7 @@ body.integrations-solutions {
       padding-right: 10px;
     }
 
-    .partner-title {
+    .partner-title a {
       color: $text-color;
     }
 
@@ -91,6 +93,8 @@ body.integrations-solutions {
       background-size: contain;
       background-position: center center;
       margin: 0 auto;
+      min-height: 40px;
+      display: block;
     }
 
     .button {
@@ -114,6 +118,14 @@ body.integrations-solutions {
     border: 1px solid rgb(213, 213, 213);
     border-radius: 5px;
     padding: 20px 40px;
+
+    .partners-logo {
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center left;
+      min-height: 40px;
+      display: block;
+    }
 
     .partners-back,
     .partners-logo,
