@@ -1,0 +1,12 @@
+body.sample-size-page {
+  .callout {
+    border: 1px solid #eee;
+    box-shadow: none;
+  }
+}
+
+@media only screen and (min-width: $tablet-min-width) {
+  body.sample-size-page {
+
+  }
+}

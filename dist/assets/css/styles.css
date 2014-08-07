@@ -2089,6 +2089,12 @@ body.opt-out-page #opt-out-generator {
     body.opt-out-page .generator-container .columns:first-child {
       margin-left: 0; } }
 
+body.sample-size-page .callout {
+  border: 1px solid #eee;
+  box-shadow: none; }
+
+@media only screen and (min-width: 768px) { }
+
 /* layouts */
 body.benefits-layout .for-menu {
   list-style: none;
