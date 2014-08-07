@@ -53,7 +53,6 @@ window.optly.mrkt.modal.openModalHandler = function(modalType) {
 
   //e.preventDefault();
   // Check for History/SessionStorage support and how many items are on the history stack
-  console.log(isHistorySupported && historyIcrementor === 0);
   if (isHistorySupported && historyIcrementor === 0) {
     stateData = setHistoryId(History.getState().data);
     stateData.modalType = modalType;
@@ -113,7 +112,6 @@ function storeModalState(modalType, modalOpen) {
 
 window.optly.mrkt.modal.open = function(modalType) {
   var $elm = $elms[modalType];
-  console.log('open modal');
   // if modalState exists then close modal of the currently open modal state
   if(modalState.type !== undefined) {
     window.optly.mrkt.modal.close(modalState.type);
@@ -128,8 +126,6 @@ window.optly.mrkt.modal.open = function(modalType) {
   }
 
   $('html, body').addClass('modal-open');
-
-  console.log('TEST');
 
   // Fade out the modal and attach the close modal handler
   $elm.toggleClass('visible').bind('click', closeModalHandler);
