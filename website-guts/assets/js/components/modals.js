@@ -2,7 +2,7 @@ window.optly = window.optly || {};
 window.optly.mrkt = window.optly.mrkt || {};
 window.optly.mrkt.modal = {};
 var History = window.History || {},
-  Modernizr = window.Modernizr || {},
+  //Modernizr = window.Modernizr || {},
   $modalElms = $('[data-optly-modal]'),
   $elms = {},
   baseUrl = document.URL,
@@ -10,9 +10,9 @@ var History = window.History || {},
   lastPop,
   testEl = $('#vh-test'),
   vhSupported,
-  isSafari = /Safari/.test(navigator.userAgent) && /Apple Computer/.test(navigator.vendor),
-  isIosSafari = /(iPhone|iPod|iPad).*AppleWebKit(?!.*Safari)/i.test(navigator.userAgent) || /(iPhone|iPod|iPad).*AppleWebKit/i.test(navigator.userAgent),
-  isIosChrome = !!navigator.userAgent.match('CriOS'),
+  //isSafari = /Safari/.test(navigator.userAgent) && /Apple Computer/.test(navigator.vendor),
+  //isIosSafari = /(iPhone|iPod|iPad).*AppleWebKit(?!.*Safari)/i.test(navigator.userAgent) || /(iPhone|iPod|iPad).*AppleWebKit/i.test(navigator.userAgent),
+  //isIosChrome = !!navigator.userAgent.match('CriOS'),
   //isHistorySupported = Modernizr.history && !!window.sessionStorage && ( !(isIosSafari || isSafari) ) || isIosChrome,
   isHistorySupported = false,
   historyIcrementor = 0,
@@ -69,7 +69,7 @@ window.optly.mrkt.modal.openModalHandler = function(modalType) {
     //window.location.hash = modalType;
   //}
   window.optly.mrkt.modal.open(modalType);
-}
+};
 
 function closeModalHandler(e) {
   //e.preventDefault();
