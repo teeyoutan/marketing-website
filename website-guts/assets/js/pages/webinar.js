@@ -1,6 +1,8 @@
 var eventDisplayHTML, templateContext, dateArray, i;
 
-window.optly.mrkt.webinar = {};
+window.optly = window.optly || {};
+window.optly.mrkt = window.optly.mrkt || {};
+window.optly.mrkt.webinar = window.optly.mrkt.webinar || {};
 
 window.optly.mrkt.webinar.getThursdays = function() {
 
