@@ -5,9 +5,69 @@ body_class:
 - sample-size-page
 page_script: sample-size-calculator.js
 ---
+
+{{#with sample_size_calculator.calculator_content}}
 <div class="callout">
+
+  {{#each conversion}}
   <div class="row">
-    <div class="columns one-third">{{sample_size_calculator.calculator_data.baseline}}</div>
-    <div class="columns two-thirds"></div>
+    <div class="columns one-third">
+      <label for="" class="calc-demo-title"></label>
+      {{demo}}
+    </div>
+    <div class="columns two-thirds">
+      <p class="calc-content">{{description}}</p>
+    </div>
   </div>
+  {{/each}}
+
+  {{#each statistics}}
+  <div class="row">
+    <div class="columns one-third">
+      <label for="" class="calc-demo-title"></label>
+      {{demo}}
+    </div>
+    <div class="columns two-thirds">
+      <p class="calc-content">{{description}}</p>
+    </div>
+  </div>
+  {{/each}}
+
+  {{#with tailed}}
+  <div class="row">
+    <div class="columns one-third">
+      {{#each demo}}
+      <label for="">{{this}}</label>
+      {{/each}}
+    </div>
+    <div class="columns two-thirds">
+      <p class="calc-content">{{description}}</p>
+    </div>
+  </div>
+  {{/with}}
+
+  <h3>{{bottom_title}}</h3>
+
 </div>
+{{/with}}
+
+{{#with sample_size_calculator.faq_content}}
+<div class="calc-faq-wrapper">
+  <h3>{{title}}</h3>
+
+  {{#each sections}}
+  <div class="calc-faq-subtitle">{{sub_title}}</div>
+  <p>{{description}}</p>
+  {{#if link}}
+  <a href="{{link.path}}" target="_blank">{{link.title}}</a>
+  {{/if}}
+  {{/each}}
+</div>
+{{/with}}
+
+{{#with sample_size_calculator.cta}}
+<div class="callout">
+  <h4>{{title}}</h4>
+  <a href="{{button.path}}" target="_blank" class="primary-button">{{button.text}}</a>
+</div>
+{{/with}}
