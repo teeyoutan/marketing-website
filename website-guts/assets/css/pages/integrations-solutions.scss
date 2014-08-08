@@ -158,12 +158,12 @@ body.integrations-solutions {
 
     .partners-misc,
     .partners-contact,
-    .partners-languages {
-      color: #a9a9a9;
-    }
-
+    .partners-languages,
     .partners-tags {
       color: #a9a9a9;
+      a {
+        color: #a9a9a9;
+      }
     }
   }
 
@@ -172,6 +172,8 @@ body.integrations-solutions {
   }
 
   .level {
+    margin: 10px 0;
+
     .level-heading {
       color: #a9a9a9;
       font-size: 12px;
@@ -180,8 +182,8 @@ body.integrations-solutions {
     }
 
     .star-cont {
-      height: 30px;
-      margin: 10px 0;
+      height: 20px;
+      margin: 5px 0;
     }
   }
 }

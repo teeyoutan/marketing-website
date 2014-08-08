@@ -1,0 +1,32 @@
+.tooltip-hover {
+  background: #a9a9a9;
+  border-radius: 100%;
+  color: #fff;
+  display: inline-block;
+  position: relative;
+  height: 15px;
+  width: 15px;
+  text-align: center;
+  &:hover {
+    cursor: help;
+    &:after {
+      background: #222;
+      box-sizing: border-box;
+      box-shadow: 0 0 5px rgba(0,0,0,0.3);
+      color: #fff;
+      content: attr(data-content);
+      font-size: 12px;
+      height: 25px;
+      left: -25px;
+      line-height: 25px;
+      padding: 0 10px;
+      position: absolute;
+      border-radius: $pill-radius;
+      text-shadow: 0 0 5px #000;
+      text-align: center;
+      top: -30px;
+      white-space: nowrap;
+      z-index: 10;
+    }
+  }
+}

@@ -42,7 +42,6 @@ window.optly.mrkt.filter = {
   },
 
   updateIsotope: function() {
-    var $output = $('#output');
     var $activeItems = $filterElems.filter('.active');
     var values = [];
 
@@ -51,9 +50,12 @@ window.optly.mrkt.filter = {
       values.push( '.' + value );
     });
 
-    var filterValue = values.join(', ');
-    $output.text( filterValue );
+    var filterValue = values.join('');
     $isoContainer.isotope({ filter: filterValue });
+
+    // enable classname debugging
+    // var $output = $('#output');
+    // $output.text( filterValue );
 
   },
 

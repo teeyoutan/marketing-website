@@ -21,6 +21,7 @@
 @import 'pages/live-demo-webinar';
 @import 'pages/faq';
 @import 'pages/getting-started';
+@import 'pages/integrations-solutions';
 @import 'pages/opt-out';
 
 /* layouts */
@@ -32,4 +33,8 @@
 
 /* components */
 @import 'components/modals';
+@import 'components/tooltip';
+@import 'components/pills';
+@import 'components/dropdown-filter';
+@import 'components/stars';
 @import 'components/utility-nav';

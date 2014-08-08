@@ -13,10 +13,8 @@ body_class:
     </div>
     <div class="columns six">
       <div class="pill clearfix big">
-        {{!-- todo(ccorda): need to get count of collections --}}
-        <a class="active" href="{{linkPath}}/partners/integrations">Integrations ({{length integrations}})</a>
-        <a href="{{linkPath}}/partners/solutions">Solutions Partners ({{length solutions}})</a>
-
+        <a class="active" href="{{linkPath}}/partners/integrations">Integrations ({{#integrations}}{{length pages}}{{/integrations}})</a>
+        <a href="{{linkPath}}/partners/solutions">Solutions Partners ({{#solutions}}{{length pages}}{{/solutions}})</a>
       </div>
     </div>
   </div>
