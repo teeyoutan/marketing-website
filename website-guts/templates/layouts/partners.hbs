@@ -16,14 +16,11 @@ sub_head: World-class service providers. Empowered customers. Lasting results.
   <div id="page-header-gradient"></div>
   <div id="page-content">
     <div class="container ugc">
-
-      {{! todo(ccorda): make this all dynamic }}
       <div class="columns twelve">
         <div class="row single-partner-container">
           <div class="columns four">
             <div class="partners-back">
-            {{!-- todo(ccorda): this conditional isn't working, solutions and integrations are being output as objects --}}
-              {{#if solutions }}
+              {{#if page.data.solutions }}
                 <a href="{{linkPath}}/partners/solutions">&lt; See all Solutions Partners</a>
               {{else}}
                 <a href="{{linkPath}}/partners/integrations">&lt; See all Integrations Partners</a>
