@@ -45,8 +45,7 @@ sub_head: World-class service providers. Empowered customers. Lasting results.
             {{#if languages}}
               <div class="partners-languages">
                 <strong>LANGUAGES</strong> <br />
-                {{#each languages}}{{.}}, {{/each}}
-                {{!-- todo(ccorda): need something like this for trailing comma {{^last}}, {{/last}} --}}
+                {{#eachNoTrailing languages ", "}}{{.}}, {{/eachNoTrailing}}
               </div>
             {{/if}}
           </div>
@@ -65,9 +64,8 @@ sub_head: World-class service providers. Empowered customers. Lasting results.
             {{!-- todo: this is outputting all tags, not just the ones on a post --}}
             {{#if tags}}
             <div class="partners-tags">
-              {{#each tags}}<span>{{tag}}, </span>{{/each}}
+              {{#eachNoTrailing tags ", </span>"}}<span>{{tag}}, </span>{{/eachNoTrailing}}
             </div>
-            {{!-- todo(ccorda): trim trailing comma --}}
             {{/if}}
 
             {{#if kb_article}}
