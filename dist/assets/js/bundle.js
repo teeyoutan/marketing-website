@@ -8707,6 +8707,84 @@ function program1(depth0,data) {
   return buffer;
   });
 
+this["optly"]["mrkt"]["templates"]["experimentsNav"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression, self=this;
+
+function program1(depth0,data) {
+  
+  var buffer = "", stack1, helper;
+  buffer += "\n        <span class=\"experiment-container hide-in-mobile\">\n          <li>\n            <a class=\"edit\" \n              ";
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.can_edit), {hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n              ";
+  stack1 = helpers.unless.call(depth0, (depth0 && depth0.has_started), {hash:{},inverse:self.noop,fn:self.program(4, program4, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n              >\n              <span class=\"experiment-description\">";
+  if (helper = helpers.description) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.description); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</span>\n            </a>\n            \n            <a class=\"experiment-results\" \n              ";
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.can_edit), {hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n              ";
+  stack1 = helpers.unless.call(depth0, (depth0 && depth0.has_started), {hash:{},inverse:self.noop,fn:self.program(6, program6, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n              >\n              ";
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.has_started), {hash:{},inverse:self.noop,fn:self.program(8, program8, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n            </a>\n          </li>\n        </span>\n      ";
+  return buffer;
+  }
+function program2(depth0,data) {
+  
+  var buffer = "", stack1, helper;
+  buffer += "href=\"https://www.optimizely.com/edit?experiment_id=";
+  if (helper = helpers.id) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.id); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\"";
+  return buffer;
+  }
+
+function program4(depth0,data) {
+  
+  
+  return "style=\"width: auto;\"";
+  }
+
+function program6(depth0,data) {
+  
+  
+  return "style=\"display: none;\"";
+  }
+
+function program8(depth0,data) {
+  
+  
+  return "\n              Results\n              ";
+  }
+
+  buffer += "<li class=\"first\">\n  <a href=\"href=https://www.optimizely.com/dashboard?project_id=";
+  if (helper = helpers.account_id) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.account_id); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\">Dashboard</a>\n</li>\n<li id=\"experiment-nav-item\" class=\"hide-in-mobile\" data-show-user-state=\"logged-in\">\n    <a href=\"\" class=\"dropdown-arrow\" data-dropdown=\"experiments\">Experiments</a>\n    <ul class=\"dropdown-menu-top\" data-show-dropdown=\"experiments\">\n      <div class=\"message\"></div>\n      ";
+  stack1 = helpers.each.call(depth0, (depth0 && depth0.experiments), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n      <li class=\"view-all-experiments hide-in-mobile\" data-show=\"dashboard-link\">\n        <a id=\"view-all-experiments-link\" href=\"https://www.optimizely.com/dashboard?project_id=";
+  if (helper = helpers.account_id) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.account_id); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\">\n          <span>View All Experiments</span>\n        </a>\n      </li>\n      <li class=\"show-create-experiment hide-in-mobile\" data-modal-click=\"create-exp\">\n        <span>+ </span><a >Create New Experiment</a>\n      </li>\n    </ul>\n</li>\n<li>\n  <a href=\"https://help.optimizely.com/hc/en-us\">Support</a>\n</li>\n<li id=\"my-account-menu\">\n      <a class=\"customer-email dropdown-arrow\" data-dropdown=\"account\">\n        <span id=\"email-wrapper\">";
+  if (helper = helpers.email) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.email); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</span>\n      </a>\n    <ul id=\"account-dropdown\" class=\"dropdown-menu-top\" data-show-dropdown=\"account\">\n        <li class=\"hide-in-mobile\">\n          <a href=\"https://www.optimizely.com/account\">Account Setting</a>\n        </li>\n        <li>\n          <a data-logout >Log Out</a>\n        </li>\n    </ul>\n</li>";
+  return buffer;
+  });
+
 this["optly"]["mrkt"]["templates"]["jobList"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
@@ -8816,7 +8894,7 @@ function program1(depth0,data) {
   return buffer;
   });
 /* oForm - Author: Kyle Rush - MIT license - https://github.com/kylerush/oform */ 
-$.fn.extend({oForm:function(options){var defaultOptions,settings,formSelector;formSelector=$(this),defaultOptions={},defaultOptions.validation={},defaultOptions.validation.validators={},defaultOptions.emailIsValid=function(email){if("string"==typeof email){var emailRegEx=/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;return emailRegEx.test(email)}return!1},defaultOptions.phoneIsValid=function(phone){if("string"==typeof phone){var phoneOnlyDigits=phone.replace(/\D/g,"");return phoneOnlyDigits.length>=10?!0:!1}return!1},defaultOptions.checkboxIsValid=function(checkbox){return $(checkbox).prop("checked")?!0:!1},defaultOptions.stringHasValue=function(value){return"string"==typeof value&&value?!0:!1},defaultOptions.alertValidationError=function(element,isValid){"function"!=typeof settings.reportValidationError||isValid||settings.reportValidationError(element)},defaultOptions.adjustClasses=function(element,isValid){var relatedClass="."+element.attr("name")+"-related";return isValid?(element.removeClass("error-show"),$(relatedClass).each(function(index,value){$(value).removeClass("error-show")})):(element.addClass("error-show"),$(relatedClass).each(function(index,value){$(value).addClass("error-show")}),settings.alertValidationError(element,isValid)),"checkbox"===element.attr("type")&&element.focus(),isValid},defaultOptions.validateFields=function(args){var invalidFields=0;return $.each(args.selector.find('input:not([type="hidden"]):not([type="submit"])'),function(index,value){var element,dataValidation,elementValue,type,validate;if(element=$(value),dataValidation=$(element).attr("data-validation"),elementValue=element.val(),validate=function(valid){valid||invalidFields++},dataValidation&&settings.validation[dataValidation])settings.adjustClasses(element,settings.validation[dataValidation](elementValue));else if(element.attr("required"))switch(type=element.attr("type")){case"url":case"text":validate(settings.adjustClasses(element,settings.stringHasValue(elementValue)));break;case"email":validate(settings.adjustClasses(element,settings.emailIsValid(elementValue)));break;case"tel":validate(settings.adjustClasses(element,settings.phoneIsValid(elementValue)));break;case"checkbox":validate(settings.adjustClasses(element,settings.checkboxIsValid(element)))}}),0===invalidFields?($("body").removeClass("error-state"),!0):($("body").addClass("error-state"),!1)},defaultOptions.submitData=function(callback){var requestSettings,response;requestSettings={type:"POST",url:formSelector.attr("action")||settings.url,data:formSelector.serialize()},response=$.ajax(requestSettings),response.always(function(){try{response.responseJSON=$.parseJSON(response.responseText),response.requestInfo=requestSettings}catch(error){}defaultOptions.executeAfterCallbacks(response,callback)})},defaultOptions.executeAfterCallbacks=function(response,callback){"function"==typeof settings.afterLocal?settings.afterLocal(response,settings.afterGlobal?settings.afterGlobal:void 0):"function"==typeof settings.afterGlobal&&settings.afterGlobal(response),"function"==typeof callback&&callback()},defaultOptions.overrideTestFunction=function(){return!1},"object"==typeof jQuery.oFormGlobalOverrides&&(defaultOptions=$.extend(!0,defaultOptions,jQuery.oFormGlobalOverrides)),settings=$.extend(!0,defaultOptions,options),formSelector.submit(function(event){if(event.preventDefault(),"function"==typeof settings.beforeLocal&&settings.beforeLocal({selector:formSelector})===!1)return!1;if("function"==typeof settings.beforeGlobal&&settings.beforeGlobal({selector:formSelector})===!1)return!1;if("function"==typeof settings.validateFields){var validFields=settings.validateFields({selector:formSelector});if(validFields===!1)return void defaultOptions.executeAfterCallbacks(void 0)}settings.submitData(),event.preventDefault()})}});
+$.fn.extend({oForm:function(options){var defaultOptions,settings,formSelector;formSelector=$(this),defaultOptions={},defaultOptions.validation={},defaultOptions.validation.validators={},defaultOptions.emailIsValid=function(email){if("string"==typeof email){var emailRegEx=/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;return emailRegEx.test(email)}return!1},defaultOptions.phoneIsValid=function(phone){if("string"==typeof phone){var phoneOnlyDigits=phone.replace(/\D/g,"");return phoneOnlyDigits.length>=10?!0:!1}return!1},defaultOptions.checkboxIsValid=function(checkbox){return $(checkbox).prop("checked")?!0:!1},defaultOptions.stringHasValue=function(value){return"string"==typeof value&&value?!0:!1},defaultOptions.alertValidationError=function(element,isValid){"function"!=typeof settings.reportValidationError||isValid||settings.reportValidationError(element)},defaultOptions.adjustClasses=function(element,isValid){var relatedClass="."+element.attr("name")+"-related";return isValid?(element.removeClass("error-show"),$(relatedClass).each(function(index,value){$(value).removeClass("error-show")})):(element.addClass("error-show"),$(relatedClass).each(function(index,value){$(value).addClass("error-show")}),settings.alertValidationError(element,isValid)),"checkbox"===element.attr("type")&&element.focus(),isValid},defaultOptions.validateFields=function(args){var invalidFields=0;return $.each(args.selector.find('input:not([type="hidden"]):not([type="submit"])'),function(index,value){var element,dataValidation,elementValue,type,validate;if(element=$(value),dataValidation=$(element).attr("data-validation"),elementValue=element.val(),validate=function(valid){valid||invalidFields++},dataValidation&&settings.validation[dataValidation])settings.adjustClasses(element,settings.validation[dataValidation](elementValue));else if(element.attr("required"))switch(type=element.attr("type")){case"url":case"text":validate(settings.adjustClasses(element,settings.stringHasValue(elementValue)));break;case"email":validate(settings.adjustClasses(element,settings.emailIsValid(elementValue)));break;case"tel":validate(settings.adjustClasses(element,settings.phoneIsValid(elementValue)));break;case"checkbox":validate(settings.adjustClasses(element,settings.checkboxIsValid(element)))}}),0===invalidFields?($("body").removeClass("error-state"),settings.adjustClasses(formSelector.find(".error-message"),!0),!0):($("body").addClass("error-state"),settings.adjustClasses(formSelector.find(".error-message"),!1),!1)},defaultOptions.submitData=function(callback){var requestSettings,response;requestSettings={type:"POST",url:formSelector.attr("action")||settings.url,data:formSelector.serialize()},response=$.ajax(requestSettings),response.always(function(){try{response.responseJSON=$.parseJSON(response.responseText),response.requestInfo=requestSettings}catch(error){}defaultOptions.executeAfterCallbacks(response,callback)})},defaultOptions.executeAfterCallbacks=function(response,callback){"function"==typeof settings.afterLocal?settings.afterLocal(response,settings.afterGlobal?settings.afterGlobal:void 0):"function"==typeof settings.afterGlobal&&settings.afterGlobal(response),"function"==typeof callback&&callback()},defaultOptions.overrideTestFunction=function(){return!1},"object"==typeof jQuery.oFormGlobalOverrides&&(defaultOptions=$.extend(!0,defaultOptions,jQuery.oFormGlobalOverrides)),settings=$.extend(!0,defaultOptions,options),formSelector.submit(function(event){if(event.preventDefault(),"function"==typeof settings.beforeLocal&&settings.beforeLocal({selector:formSelector})===!1)return!1;if("function"==typeof settings.beforeGlobal&&settings.beforeGlobal({selector:formSelector})===!1)return!1;if("function"==typeof settings.validateFields){var validFields=settings.validateFields({selector:formSelector});if(validFields===!1)return void defaultOptions.executeAfterCallbacks(void 0)}settings.submitData(),event.preventDefault()})}});
 (function($){ 
 
   window.optly = window.optly || {}; 
@@ -8951,11 +9029,42 @@ window.optly.mrkt.formDataStringToObject = function getJsonFromUrl(string) {
 
 };
 
+$('#create-exp-form').oForm({
+  beforeSubmit: function() {
+
+
+  }
+});
+var $signinModal = $('[data-optly-modal="signin"]');
+
+function requestSignin(e) {
+  e.preventDefault();
+
+  var deferred = window.optly.mrkt.services.xhr.makeRequest({
+    type: 'POST',
+    url: '/account/signin'
+  });
+  
+
+  deferred.then(function(data) {
+    if (data.success === 'true') {
+      if(sessionStorage !== undefined) {
+        sessionStorage.modalType = '';
+      }
+      window.location = 'https://www.optimizely.com/dashboard';
+    }
+  }, function(err) {  
+    console.log('singin error: ' + err);
+  });
+
+}
+
+$signinModal.delegate('[data-modal-btn="signin"]', 'click', requestSignin);
 window.optly = window.optly || {};
 window.optly.mrkt = window.optly.mrkt || {};
 window.optly.mrkt.modal = {};
 var History = window.History || {},
-  Modernizr = window.Modernizr || {},
+  //Modernizr = window.Modernizr || {},
   $modalElms = $('[data-optly-modal]'),
   $elms = {},
   baseUrl = document.URL,
@@ -8963,9 +9072,9 @@ var History = window.History || {},
   lastPop,
   testEl = $('#vh-test'),
   vhSupported,
-  isSafari = /Safari/.test(navigator.userAgent) && /Apple Computer/.test(navigator.vendor),
-  isIosSafari = /(iPhone|iPod|iPad).*AppleWebKit(?!.*Safari)/i.test(navigator.userAgent) || /(iPhone|iPod|iPad).*AppleWebKit/i.test(navigator.userAgent),
-  isIosChrome = !!navigator.userAgent.match('CriOS'),
+  //isSafari = /Safari/.test(navigator.userAgent) && /Apple Computer/.test(navigator.vendor),
+  //isIosSafari = /(iPhone|iPod|iPad).*AppleWebKit(?!.*Safari)/i.test(navigator.userAgent) || /(iPhone|iPod|iPad).*AppleWebKit/i.test(navigator.userAgent),
+  //isIosChrome = !!navigator.userAgent.match('CriOS'),
   //isHistorySupported = Modernizr.history && !!window.sessionStorage && ( !(isIosSafari || isSafari) ) || isIosChrome,
   isHistorySupported = false,
   historyIcrementor = 0,
@@ -9004,9 +9113,7 @@ window.optly.mrkt.modal.openModalHandler = function(modalType) {
   var title,
     stateData;
 
-  //e.preventDefault();
   // Check for History/SessionStorage support and how many items are on the history stack
-  console.log(isHistorySupported && historyIcrementor === 0);
   if (isHistorySupported && historyIcrementor === 0) {
     stateData = setHistoryId(History.getState().data);
     stateData.modalType = modalType;
@@ -9022,10 +9129,9 @@ window.optly.mrkt.modal.openModalHandler = function(modalType) {
     //window.location.hash = modalType;
   //}
   window.optly.mrkt.modal.open(modalType);
-}
+};
 
 function closeModalHandler(e) {
-  //e.preventDefault();
   var $modalCont = $(this);
   var $clickedElm = $(e.target);
   if ($modalCont.find(e.target).length === 0 || $clickedElm.data('modal-btn') === 'close') {
@@ -9064,9 +9170,36 @@ function storeModalState(modalType, modalOpen) {
   }
 }
 
+// Autoprefix CSS transition end listener
+var transitionend = (function(transition) {
+   var transEndEventNames = {
+       'WebkitTransition' : 'webkitTransitionEnd',// Saf 6, Android Browser
+       'MozTransition'    : 'transitionend',      // only for FF < 15
+       'transition'       : 'transitionend'       // IE10, Opera, Chrome, FF 15+, Saf 7+
+  };
+
+  return transEndEventNames[transition];
+})(window.Modernizr.prefixed('transition'));
+
+function bindTranEnd() {
+  var classList = Array.prototype.slice.call( this.classList );
+
+    // If the animation is over and modal is closed display none
+   if ( classList.indexOf('leave') !== -1 ) {
+     $(this).addClass('hide-modal')
+         .removeClass('anim-leave leave');
+
+     $(this).unbind(transitionend, bindTranEnd);
+   } 
+   // If the animation is over and modal is open
+   else if ( classList.indexOf('anim-enter') !== -1 ) {
+     $(this).removeClass('anim-enter');
+   }
+
+}
+
 window.optly.mrkt.modal.open = function(modalType) {
   var $elm = $elms[modalType];
-  console.log('open modal');
   // if modalState exists then close modal of the currently open modal state
   if(modalState.type !== undefined) {
     window.optly.mrkt.modal.close(modalState.type);
@@ -9080,13 +9213,22 @@ window.optly.mrkt.modal.open = function(modalType) {
     storeModalState(modalType, true);
   }
 
-  $('html, body').addClass('modal-open');
+  $('html, body').addClass('modal-open').delay(0)
+                 .queue(function(next){
+                    $(this).addClass('modal-open');
+                    next();
+                 });
 
-  console.log('TEST');
-
-  // Fade out the modal and attach the close modal handler
-  $elm.toggleClass('visible').bind('click', closeModalHandler);
-
+  // Fade in the modal and attach the close modal handler
+  $elm.removeClass('hide-modal')
+          .addClass('anim-enter')
+          .bind('click', closeModalHandler)
+          .delay(0)
+          .queue(function(next) {
+            $elm.addClass('enter');
+            next();
+          })
+          .bind(transitionend, bindTranEnd);
 };
 
 window.optly.mrkt.modal.close = function(modalType) {
@@ -9102,12 +9244,22 @@ window.optly.mrkt.modal.close = function(modalType) {
 
   $('html, body').removeClass('modal-open');
 
-  window.scrollTo(0,0);
-  $elm.children()[0].scrollTop = 0;
+  // Set timeout smooths out the scroll top and modal opening
+  window.setTimeout(function() {
+    //Scroll top if have scrolled within the div
+    window.scrollTo(0,0);
+    $elm.children()[0].scrollTop = 0;
 
-  // Fade out the modal and remove the close modal handler
-  $elm.toggleClass('visible').unbind('click', closeModalHandler);
-
+    // Fade out the modal and unbind the close modal click handler
+    $elm.removeClass('enter')
+          .addClass('anim-leave')
+          .unbind('click', closeModalHandler)
+          .delay(0)
+          .queue(function(next){
+            $elm.addClass('leave');
+            next();
+          });
+  }, 0);
 };
 
 // Only use if History/Session Storage in Enabled
@@ -9326,7 +9478,100 @@ jQuery.oFormGlobalOverrides = {
   }
 
 };
-})(jQuery);
+
+var $utilityNavElm = $('.utility-nav.signed-in-content');
+var lastDropdown;
+
+function bindDropdownClick($dropdownMenus) {
+  
+  $('#signed-in-utility').delegate('[data-dropdown]', 'click', function(e) {
+    // This is non-evil, we need it here
+    e.preventDefault();
+
+    // Get the type of dropdown anchor that was clicked
+    var clickedData = $(this).data('dropdown');
+
+    // Iterate through cached dropdown containers looking for the clicked type
+    $.each($dropdownMenus, function(index, elm) {
+      var $elm = $(elm);
+      // Logic to close the dropdown if it is open and another is clicked
+      if (clickedData !== lastDropdown && lastDropdown !== undefined) {
+        $('[data-show-dropdown="' + lastDropdown + '"]').removeClass('show-dropdown');
+      }
+
+      // Logic to open the dropdown and cache the last opened dropdown
+      if ( $elm.data('show-dropdown') ===  clickedData ) {
+        // force synchornous behavior so dropdown doesn't cloase as soon as it opens
+        $elm.toggleClass('show-dropdown').delay(0).queue(function(next) {
+          $(document).bind('click', window.optly.mrkt.closeDropdown);
+          next();
+        });
+        lastDropdown = clickedData;
+      }
+    });
+  });
+}
+
+function showUtilityNav($elm, acctData, expData) {
+  var handlebarsData = {
+    account_id: acctData.account_id, 
+    email: acctData.email,
+    experiments: expData.experiments
+  };
+
+  $('body').addClass('signed-in').removeClass('signed-out');
+
+  $('#signed-in-utility').html( window.optly.mrkt.templates.experimentsNav(handlebarsData) );
+  var $dropdownMenus = $('[data-show-dropdown]');
+
+  bindDropdownClick($dropdownMenus);
+  $('[data-logout]').on('click', window.optly.mrkt.signOut);
+}
+
+window.optly.mrkt.closeDropdown = function(e) {
+  console.log('close dropdown');
+  if ( e !== undefined ) {
+    // Check that the target is not inside of the dropdown
+    if ( ( !$(e.target).closest('[data-show-dropdown]').length && !$(e.target).is('[data-dropdown]') ) || $(e.target).closest('[data-modal-click]').length > 0 ) {
+      $('[data-show-dropdown]').removeClass('show-dropdown');
+      $(document).unbind('click', arguments.callee);
+    } 
+
+  }
+  // If we want to manually close the dropdown there will be no event
+  else {
+    $('[data-show-dropdown]').removeClass('show-dropdown');
+    $(document).unbind('click', arguments.callee);
+  }
+
+};
+
+window.optly.mrkt.signOut = function(redirectPath) {
+
+  var deferred = window.optly.mrkt.services.xhr.makeRequest({
+    type: 'GET',
+    url: '/account/signout'
+  });
+
+  // Close the dropdown
+  window.optly.mrkt.closeDropdown();
+
+  deferred.then(function(data){
+    if(data && typeof redirectPath !== 'object') {
+      window.location = redirectPath;
+    } 
+    // If no path is specified then reload location
+    else if (data) {
+      window.location.reload();
+    }
+  }, function(err) {
+    // Report error here
+    console.log('error: ', err);
+  });
+};
+
+// Make call to optly Q
+window.optly_q.push([showUtilityNav, $utilityNavElm, window.optly.mrkt.user.account, window.optly.mrkt.user.experiments]);})(jQuery);
 window.optly = window.optly || {};
 
 window.optly.mrkt = window.optly.mrkt || {};

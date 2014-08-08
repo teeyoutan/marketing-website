@@ -51,7 +51,6 @@ window.optly.mrkt.modal.openModalHandler = function(modalType) {
   var title,
     stateData;
 
-  //e.preventDefault();
   // Check for History/SessionStorage support and how many items are on the history stack
   if (isHistorySupported && historyIcrementor === 0) {
     stateData = setHistoryId(History.getState().data);
@@ -71,7 +70,6 @@ window.optly.mrkt.modal.openModalHandler = function(modalType) {
 };
 
 function closeModalHandler(e) {
-  //e.preventDefault();
   var $modalCont = $(this);
   var $clickedElm = $(e.target);
   if ($modalCont.find(e.target).length === 0 || $clickedElm.data('modal-btn') === 'close') {
@@ -110,6 +108,34 @@ function storeModalState(modalType, modalOpen) {
   }
 }
 
+// Autoprefix CSS transition end listener
+var transitionend = (function(transition) {
+   var transEndEventNames = {
+       'WebkitTransition' : 'webkitTransitionEnd',// Saf 6, Android Browser
+       'MozTransition'    : 'transitionend',      // only for FF < 15
+       'transition'       : 'transitionend'       // IE10, Opera, Chrome, FF 15+, Saf 7+
+  };
+
+  return transEndEventNames[transition];
+})(window.Modernizr.prefixed('transition'));
+
+function bindTranEnd() {
+  var classList = Array.prototype.slice.call( this.classList );
+
+    // If the animation is over and modal is closed display none
+   if ( classList.indexOf('leave') !== -1 ) {
+     $(this).addClass('hide-modal')
+         .removeClass('anim-leave leave');
+
+     $(this).unbind(transitionend, bindTranEnd);
+   } 
+   // If the animation is over and modal is open
+   else if ( classList.indexOf('anim-enter') !== -1 ) {
+     $(this).removeClass('anim-enter');
+   }
+
+}
+
 window.optly.mrkt.modal.open = function(modalType) {
   var $elm = $elms[modalType];
   // if modalState exists then close modal of the currently open modal state
@@ -125,11 +151,22 @@ window.optly.mrkt.modal.open = function(modalType) {
     storeModalState(modalType, true);
   }
 
-  $('html, body').addClass('modal-open');
+  $('html, body').addClass('modal-open').delay(0)
+                 .queue(function(next){
+                    $(this).addClass('modal-open');
+                    next();
+                 });
 
-  // Fade out the modal and attach the close modal handler
-  $elm.toggleClass('visible').bind('click', closeModalHandler);
-
+  // Fade in the modal and attach the close modal handler
+  $elm.removeClass('hide-modal')
+          .addClass('anim-enter')
+          .bind('click', closeModalHandler)
+          .delay(0)
+          .queue(function(next) {
+            $elm.addClass('enter');
+            next();
+          })
+          .bind(transitionend, bindTranEnd);
 };
 
 window.optly.mrkt.modal.close = function(modalType) {
@@ -145,12 +182,22 @@ window.optly.mrkt.modal.close = function(modalType) {
 
   $('html, body').removeClass('modal-open');
 
-  window.scrollTo(0,0);
-  $elm.children()[0].scrollTop = 0;
+  // Set timeout smooths out the scroll top and modal opening
+  window.setTimeout(function() {
+    //Scroll top if have scrolled within the div
+    window.scrollTo(0,0);
+    $elm.children()[0].scrollTop = 0;
 
-  // Fade out the modal and remove the close modal handler
-  $elm.toggleClass('visible').unbind('click', closeModalHandler);
-
+    // Fade out the modal and unbind the close modal click handler
+    $elm.removeClass('enter')
+          .addClass('anim-leave')
+          .unbind('click', closeModalHandler)
+          .delay(0)
+          .queue(function(next){
+            $elm.addClass('leave');
+            next();
+          });
+  }, 0);
 };
 
 // Only use if History/Session Storage in Enabled

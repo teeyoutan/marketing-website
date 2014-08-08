@@ -108,7 +108,7 @@ module.exports = function(grunt) {
           '<%= config.guts %>/helpers/**/*.js',
           '!<%= config.guts %>/templates/client/**/*.hbs'
         ],
-        tasks: ['config:dev', 'assemble']
+        tasks: ['config:dev', 'inline', 'assemble']
       },
       sass: {
         files: '<%= config.guts %>/assets/css/**/*.scss',
@@ -117,6 +117,10 @@ module.exports = function(grunt) {
       img: {
         files: ['<%= config.guts %>/assets/img/*.{png,jpg,svg}'],
         tasks: ['copy:img']
+      },
+      inline: {
+        files: ['<%= config.guts %>/assets/js/services/user_state.js'],
+        tasks: ['config:dev', 'jshint', 'inline', 'assemble' ,'concat', 'clean:postBuild']
       },
       js: {
         files: ['<%= config.guts %>/assets/js/**/*.js', '<%= config.temp %>/assets/js/**/*.js'],
@@ -167,6 +171,13 @@ module.exports = function(grunt) {
                 res.writeHead(400, {'Content-Type': 'application/json'});
                 res.end( grunt.file.read('website-guts/endpoint-mocks/accountExists.json') );
 
+              } 
+              else if(req.url === '/account/signin') {
+
+                res.cookie('optimizely_signed_in', '1', {httpOnly: false});
+                res.writeHead(200, {'Content-Type': 'application/json'});
+                res.end('{"success": "true"}');
+
               } else {
 
                 return next();
@@ -178,7 +189,19 @@ module.exports = function(grunt) {
               res.writeHead(200, {'Content-Type': 'application/json'});
               res.end( grunt.file.read('website-guts/endpoint-mocks/accountInfo.json') );
 
-            } else {
+            } else if(req.url === '/experiment/load_recent?max_experiments=5') {
+
+              res.writeHead(200, {'Content-Type': 'application/json'});
+              res.end( grunt.file.read('website-guts/endpoint-mocks/lastFiveExperiments.json') );
+
+            } else if(req.url === '/account/signout') {
+
+                res.cookie('optimizely_signed_in', '', {maxAge: 0, expires: new Date(Date.now() - 500000000), httpOnly: false});
+                res.cookie('optimizely_signed_in', '', {maxAge: 0, expires: new Date(Date.now() - 500000000), httpOnly: false});
+                res.writeHead(200, {'Content-Type': 'application/json'});
+                res.end('{"success": "true"}');
+
+            } else{
 
               return next();
 
@@ -317,7 +340,7 @@ module.exports = function(grunt) {
       jquery: {
         files: [
           {
-            '<%= config.dist %>/assets/js/libraries/jquery-1.6.4.min.js': ['<%= config.guts %>/assets/js/libraries/jquery-1.6.4.min.js']
+            '<%= config.dist %>/assets/js/libraries/jquery-2.1.1.min.js': ['<%= config.guts %>/assets/js/libraries/jquery-2.1.1.min.js']
           }
         ]
       },
@@ -531,6 +554,16 @@ module.exports = function(grunt) {
         ]
       }
     },
+    inline: {
+      dist: {
+          options:{
+              uglify: true,
+              exts: 'hbs'
+          },
+          src: ['<%= config.guts %>/templates/layouts/wrapper.hbs'],
+          dest: ['<%= config.guts %>/templates/layouts/wrapper_compiled.hbs']
+      }
+    },
     handlebars: {
       compile: {
         options: {
@@ -569,6 +602,7 @@ module.exports = function(grunt) {
     'jshint:clientDev',
     'jshint:server',
     'clean:preBuild',
+    'inline',
     'assemble',
     'handlebars',
     'concat',
