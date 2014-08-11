@@ -2091,7 +2091,133 @@ body.opt-out-page #opt-out-generator {
 
 body.sample-size-page .callout {
   border: 1px solid #eee;
-  box-shadow: none; }
+  box-shadow: none;
+  padding: 40px 70px; }
+  body.sample-size-page .callout .row {
+    margin-bottom: 10px; }
+  body.sample-size-page .callout.calc-wrapper {
+    color: #6b6b6b;
+    font-weight: 400; }
+    body.sample-size-page .callout.calc-wrapper .one-third {
+      margin-bottom: 32px; }
+  body.sample-size-page .callout label {
+    font-size: 0.8em;
+    font-weight: 400;
+    margin-bottom: 6px; }
+  body.sample-size-page .callout .calc-content {
+    margin: 0;
+    padding-top: 25px;
+    font-weight: 400;
+    line-height: 1.5em;
+    font-size: 1em; }
+    body.sample-size-page .callout .calc-content.last {
+      padding: 0; }
+  body.sample-size-page .callout label, body.sample-size-page .callout button {
+    display: block; }
+  body.sample-size-page .callout input {
+    -moz-transition: border linear 0.2s, background linear 0.2s;
+    -webkit-transition: border linear, background linear;
+    -webkit-transition-delay: 0.2s, 0.2s;
+    -webkit-transition: border linear 0.2s, background linear 0.2s;
+            transition: border linear 0.2s, background linear 0.2s;
+    border: 1px solid #c9c9c9;
+    color: #242424;
+    padding: 4px;
+    font-size: 36px;
+    min-height: 38px;
+    width: 100px;
+    border-bottom-left-radius: 3px;
+    border-top-left-radius: 3px;
+    display: inline-block;
+    margin: 0; }
+  body.sample-size-page .callout .input-wrapper {
+    display: table;
+    text-align: left; }
+    body.sample-size-page .callout .input-wrapper span {
+      display: table-cell;
+      font-size: 24px;
+      position: relative;
+      left: -1px;
+      border-bottom-right-radius: 3px;
+      border-top-right-radius: 3px;
+      border: 1px solid #c9c9c9;
+      background-color: #eee;
+      color: #888;
+      padding: 0 0.3em;
+      text-align: center;
+      vertical-align: middle; }
+  body.sample-size-page .callout .calculator-variables {
+    font-size: 1.5em; }
+  body.sample-size-page .callout .button-link {
+    background-color: transparent;
+    border: none;
+    color: #4d89e2;
+    margin: 0;
+    outline: none;
+    padding: 0; }
+  body.sample-size-page .callout .button-link:hover {
+    text-decoration: underline; }
+  body.sample-size-page .callout .calc-sample-cont {
+    border-top: 1px solid #eee;
+    text-align: center; }
+    body.sample-size-page .callout .calc-sample-cont h3 {
+      font-weight: bold;
+      font-size: 1.2em;
+      margin: 10px 0;
+      text-align: center;
+      text-transform: uppercase; }
+    body.sample-size-page .callout .calc-sample-cont #sample {
+      color: #3385d6;
+      font-size: 3.5em;
+      font-weight: 500;
+      margin: 0; }
+  body.sample-size-page .callout .tails label {
+    display: inline-block; }
+  body.sample-size-page .callout .tails input {
+    width: auto;
+    text-align: start; }
+body.sample-size-page .calc-faq-wrapper {
+  margin-top: 60px;
+  padding: 0 100px; }
+  body.sample-size-page .calc-faq-wrapper h3 {
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #242424; }
+  body.sample-size-page .calc-faq-wrapper .calc-faq-cont {
+    margin-top: 20px; }
+    body.sample-size-page .calc-faq-wrapper .calc-faq-cont p {
+      margin: 10px 0 30px 0;
+      line-height: 1.5; }
+    body.sample-size-page .calc-faq-wrapper .calc-faq-cont a:hover {
+      text-decoration: underline; }
+  body.sample-size-page .calc-faq-wrapper .calc-faq-subtitle {
+    color: #006eb6; }
+  body.sample-size-page .calc-faq-wrapper .callout {
+    text-align: center;
+    margin: 50px 0;
+    padding: 0;
+    border: none; }
+    body.sample-size-page .calc-faq-wrapper .callout h4 {
+      font-size: 1.1em;
+      margin-right: 12px; }
+    body.sample-size-page .calc-faq-wrapper .callout h4, body.sample-size-page .calc-faq-wrapper .callout a {
+      display: inline-block; }
+  body.sample-size-page .calc-faq-wrapper .callout:before, body.sample-size-page .calc-faq-wrapper .callout:after {
+    content: " ";
+    background-size: 100%, 100%;
+    background: url("/dist/assets/img/sepshadow.png") no-repeat center top;
+    display: block;
+    height: 30px;
+    width: 100%; }
+  body.sample-size-page .calc-faq-wrapper .callout:after {
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
+    -webkit-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+        transform: rotate(180deg);
+    margin-top: 30px; }
+  body.sample-size-page .calc-faq-wrapper .callout:before {
+    margin-bottom: 30px; }
 
 @media only screen and (min-width: 768px) { }
 

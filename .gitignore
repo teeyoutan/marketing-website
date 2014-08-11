@@ -23,3 +23,5 @@ node_modules/*
 temp/*
 configs/s3Config.json
 *.map
+
+.nvmrc

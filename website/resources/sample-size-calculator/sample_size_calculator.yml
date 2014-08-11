@@ -10,9 +10,11 @@ calculator_content:
   -
     demo: "Statistical Power"
     description: "80% is an accepted standard for statistical power."
+    button_text: "edit"
   -
     demo: "Statistical Significance"
     description: "95% is an accepted standard for statistical significance."
+    button_text: "edit"
   tailed:
     demo: 
       - "1-tailed"
