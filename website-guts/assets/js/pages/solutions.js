@@ -30,10 +30,13 @@ window.optly.mrkt.filter = {
     $('.partner-grid-elm').each( function() {
       heights.push( $(this).outerHeight() );
     });
+
     heights = heights.sort().reverse();
     $('.partner-grid-elm').each( function() {
       $(this).height( heights[0] );
     });
+
+    $('.integrations-container').css('min-height', heights[0]);
 
     $isoContainer = $('.partner-grid').isotope({
       itemSelector: '.partner-grid-elm',
@@ -56,6 +59,12 @@ window.optly.mrkt.filter = {
     // enable classname debugging
     // var $output = $('#output');
     // $output.text( filterValue );
+
+    if ( !$container.data('isotope').$filteredAtoms.length ) {
+      $('.integrations-message').addClass('visible');
+    } else {
+      $('.integrations-message').removeClass('visible');
+    }
 
   },
 
