@@ -72,10 +72,12 @@ script_dependencies:
 
   <div class="row">
     <div class="integrations-container container">
+      <div class="integrations-message">
+        <p>No results found</p>
+      </div>
       <div class="row partner-grid">
         {{#solutions}}
           {{#each pages}}
-          {{log this}}
             <div class="partner-grid-elm {{#if data.stars}}{{data.stars}}-star{{/if}} {{data.region}} {{data.industry}}" data-priority="{{data.priority}}">
               <div class="title-container">
                 <h4 class="partner-title"><a href="{{../../linkPath}}/{{this.dest}}">{{data.title}}</a></h4>
