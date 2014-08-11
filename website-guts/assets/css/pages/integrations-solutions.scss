@@ -3,6 +3,12 @@ body.integrations-solutions {
   .integrations-container {
     padding: 0;
     // todo(ccorda): is there a collapse class?
+    .integrations-message {
+      display: none;
+      &.visible {
+        display: block;
+      }
+    }
   }
 
   .page-selector {

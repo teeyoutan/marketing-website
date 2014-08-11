@@ -9,10 +9,15 @@ window.optly.mrkt.filter = {
 
     var self = this;
 
-    $dropdownElems.bind('click', function() {
+    $dropdownElems.bind('click', function(e) {
+      e.stopPropagation();
       var $this = $(this);
       $dropdownElems.not( $this ).removeClass( 'active' );
       $this.toggleClass( 'active' );
+
+      $(window).not( $dropdownElems ).on('click', function() {
+        $dropdownElems.removeClass( 'active' );
+      });
     });
 
     $filterElems.bind('click', function(e) {
@@ -60,7 +65,7 @@ window.optly.mrkt.filter = {
     // var $output = $('#output');
     // $output.text( filterValue );
 
-    if ( !$container.data('isotope').$filteredAtoms.length ) {
+    if ( !$isoContainer.data('isotope').filteredItems.length ) {
       $('.integrations-message').addClass('visible');
     } else {
       $('.integrations-message').removeClass('visible');
