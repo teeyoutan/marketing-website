@@ -57,7 +57,7 @@ module.exports = function(grunt) {
             environment: 'staging',
             environmentData: 'website-guts/data/environments/staging/environmentVariables.json',
             assetsDir: '/<%= gitinfo.local.branch.current.name %>/assets',
-            link_path: '',
+            link_path: '<%= gitinfo.local.branch.current.name %>',
             sassImagePath: '/<%= gitinfo.local.branch.current.name %>/assets/img',
             compress_js: true,
             drop_console: false,
