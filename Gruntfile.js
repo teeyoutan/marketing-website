@@ -33,7 +33,7 @@ module.exports = function(grunt) {
           variables: {
             environment: 'production',
             environmentData: 'website-guts/data/environments/production/environmentVariables.json',
-            assetsDir: '/dist/assets',
+            assetsDir: 'dist/assets',
             link_path: '',
             sassImagePath: '/dist/assets/img',
             compress_js: true,
@@ -564,7 +564,7 @@ module.exports = function(grunt) {
       }
     },
     filerev: {
-      js: {
+      assets: {
         src: '<%= config.dist %>/assets/**/*.{js,css}'
       }
     },
@@ -572,7 +572,7 @@ module.exports = function(grunt) {
       html: {
         options: {
           formatPath: function(path){
-            return path.replace(/$\/dist\/assets/, 'https://cdn.optimizelyassets.com');
+            return path.replace(/^dist\/assets/, 'https://cdn.optimizelyassets.com');
           }
         },
         files: [
@@ -630,7 +630,6 @@ module.exports = function(grunt) {
     'clean:preBuild',
     'assemble',
     'concat',
-    'imagemin:prod',
     'copy:cssFontFile',
     'copy:jquery',
     'uglify',
