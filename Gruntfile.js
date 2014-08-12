@@ -379,7 +379,6 @@ module.exports = function(grunt) {
         noempty: true,
         nonbsp: true,
         undef: true,
-        unused: true,
         quotmark: 'single',
         '-W087': (function() {
           if(grunt.config.get("environment") == "dev") {
@@ -392,6 +391,7 @@ module.exports = function(grunt) {
       clientProd: {
         options: {
           browser: true,
+          unused: true,
           globals: {
             jQuery: false,
             moment: false,
