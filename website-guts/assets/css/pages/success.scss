@@ -1,0 +1,90 @@
+.success {
+
+  .rowheight {
+    min-height:292px;
+  }
+  .rowheight-shorter {
+    min-height:210px;
+  }
+
+  .navbar.navbar-default {
+    margin-bottom: 0px;
+  }
+
+  .jumbotron-customer {
+    background: #1863ae;
+  }
+
+  .sliderbg-color {
+    background-color: #192122;
+    min-height: 292px;
+  }
+
+  .sliderbg {
+    background-image: image-url('success/banner3.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    min-height: 292px;
+  }
+
+  .slider-text {
+    font-size: 39px;
+    line-height: 60px;
+    color: rgb(255, 255, 255);
+    position: relative;
+    top: 55px;
+    font-weight: 100;
+  }
+
+  .slider-text1 {
+    font-size: 25px;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    font-weight: 100;
+    padding-top: 45px;
+  }
+
+  .success-row {
+    background: rgb(238,238,238);
+    background: linear-gradient(to right,  #ffffff 0%,#eeeeee 100%);
+    box-shadow:0 0 2px rgba(178,178,178,0.7);
+    &:first-of-type {
+      margin-top: -50px;
+    }
+  }
+
+  .box-padding {
+    padding: 24px;
+  }
+
+  .success-image {
+    text-align: center;
+  }
+
+  .text-blue {
+    color: $blue;
+  }
+
+  .success-content {
+    background-color: rgb(255,255,255);
+    border-left: 1px solid #eeeeee;
+    border-radius: 0;
+    h1 {
+      margin-top: 0;
+      font-size: 23px;
+      line-height: 24px;
+      font-weight: 100;
+      font-family: inherit;
+    }
+  }
+
+  .banner_text {
+    color:#1863ae;
+    font-size:18px;
+    font-weight:lighter;
+  }
+  .banner_text1 {
+    font-size:15px;
+    font-weight:lighter;
+  }
+}
