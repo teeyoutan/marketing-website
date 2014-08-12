@@ -1226,6 +1226,24 @@ body {
 .clearfix:after, form .form-label:after, .sheet > div:after, body.events-page .event-cont:after, body.press-page .press-feed-item:after, .modal-dialog-container.webinar-modal .webinar-info-cont:after, .modal-dialog-container .modal-footer:after, .utility-nav .experiment-container li:after {
   clear: both; }
 
+.optly-anim.optly-hide {
+  display: none !important; }
+.optly-anim.anim-enter {
+  -webkit-transition: opacity 0.5s linear !important;
+          transition: opacity 0.5s linear !important;
+  opacity: 0; }
+.optly-anim.enter {
+  opacity: 1; }
+.optly-anim.anim-leave {
+  -webkit-transition: opacity 0.5s linear !important;
+          transition: opacity 0.5s linear !important;
+  opacity: 1; }
+.optly-anim.leave {
+  opacity: 0; }
+
+.animate-hide {
+  display: none; }
+
 #vh-test {
   position: fixed;
   bottom: 0;
@@ -2148,6 +2166,13 @@ body.sample-size-page .callout {
       vertical-align: middle; }
   body.sample-size-page .callout .calculator-variables {
     font-size: 1.5em; }
+  body.sample-size-page .callout .stat-wrapper {
+    position: relative;
+    min-height: 22px; }
+    body.sample-size-page .callout .stat-wrapper button, body.sample-size-page .callout .stat-wrapper input {
+      position: absolute;
+      top: 0;
+      left: 0; }
   body.sample-size-page .callout .button-link {
     background-color: transparent;
     border: none;

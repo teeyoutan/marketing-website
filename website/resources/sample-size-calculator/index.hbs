@@ -14,7 +14,13 @@ page_script: sample-size-calculator.js
     <div class="columns one-third calc-percents">
       <label for="" class="calc-demo-title">{{demo}}</label>
       <div class="input-wrapper">
-        <input type="text">
+        {{#if @first}}
+        <input type="number" min="0" value="3" data-calc-model="conversion">
+        {{else}}
+          {{#if @last}}
+          <input type="number" min="0" value="20" data-calc-model="effect">
+          {{/if}}
+        {{/if}}
         <span>%</span>
       </div>
     </div>
@@ -28,8 +34,20 @@ page_script: sample-size-calculator.js
   <div class="row">
     <div class="columns one-third">
       <label for="" class="calc-demo-title">{{demo}}</label>
-      <div class="calculator-variables">80%</div>
-      <button class="button-link">{{button_text}}</button>
+      {{#if @first}}
+      <div class="calculator-variables"><span data-slider-label="power">80</span>%</div>
+      <div class="stat-wrapper">
+        <input id="power" class="optly-anim optly-hide" type="range" min="60" max="95" step="5" class="fade" data-calc-model="power" data-slider="power" />
+        <button class="button-link optly-anim" data-slider="power" >{{button_text}}</button>
+      </div>
+      {{/if}}
+      {{#if @last}}
+      <div class="calculator-variables"><span data-slider-label="significance">95</span>%</div>
+      <div class="stat-wrapper">
+        <input id="significance" class="optly-anim optly-hide" type="range" min="80" max="99" step="1" class="fade" data-calc-model="significance" data-slider="significance" />
+        <button class="button-link optly-anim" data-slider="significance" >{{button_text}}</button>
+      </div>
+      {{/if}}
     </div>
     <div class="columns two-thirds">
       <p class="calc-content">{{description}}</p>
@@ -42,7 +60,13 @@ page_script: sample-size-calculator.js
     <div class="columns one-third">
       {{#each demo}}
       <div class="tails">
-        <input type="radio">
+        {{#if @first}}
+        <input type="radio" name="tails" checked value="1" data-calc-model="tails">
+        {{else}}
+          {{#if @last}}
+          <input type="radio" name="tails" value="2" data-calc-model="tails">
+          {{/if}}
+        {{/if}}
         <label for="">
           {{this}}
         </label>
@@ -57,7 +81,7 @@ page_script: sample-size-calculator.js
   
   <div class="calc-sample-cont">
     <h3>{{bottom_title}}</h3>
-    <div id="sample">10,000</div>
+    <div id="sample">10,316</div>
   </div>
   
 

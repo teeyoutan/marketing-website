@@ -596,7 +596,7 @@ module.exports = function(grunt) {
     'replace',
     'autoprefixer',
     'copy',
-    //'clean:postBuild',
+    'clean:postBuild',
     'connect:livereload',
     'watch'
   ]);

@@ -70,6 +70,16 @@ body.sample-size-page {
     .calculator-variables {
       font-size: 1.5em;
     }
+    .stat-wrapper {
+      position: relative;
+      min-height: 22px;
+      button,
+      input {
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+    }
     .button-link {
       background-color: transparent;
       border: none;

@@ -1,5 +1,6 @@
 window.optly = window.optly || {};
 window.optly.mrkt = window.optly.mrkt || {};
+window.optly.mrkt.anim = window.optly.mrkt.anim || {};
 window.optly.mrkt.modal = {};
 var History = window.History || {},
   //Modernizr = window.Modernizr || {},
@@ -109,7 +110,7 @@ function storeModalState(modalType, modalOpen) {
 }
 
 // Autoprefix CSS transition end listener
-var transitionend = (function(transition) {
+window.optly.mrkt.anim.transitionend = (function(transition) {
    var transEndEventNames = {
        'WebkitTransition' : 'webkitTransitionEnd',// Saf 6, Android Browser
        'MozTransition'    : 'transitionend',      // only for FF < 15
@@ -119,15 +120,15 @@ var transitionend = (function(transition) {
   return transEndEventNames[transition];
 })(window.Modernizr.prefixed('transition'));
 
-function bindTranEnd() {
+window.optly.mrkt.anim.bindTranEnd = function() {
   var classList = Array.prototype.slice.call( this.classList );
 
     // If the animation is over and modal is closed display none
    if ( classList.indexOf('leave') !== -1 ) {
-     $(this).addClass('hide-modal')
+     $(this).addClass('optly-hide')
          .removeClass('anim-leave leave');
 
-     $(this).unbind(transitionend, bindTranEnd);
+     $(this).unbind(window.optly.mrkt.anim.transitionend, window.optly.mrkt.anim.bindTranEnd);
    } 
    // If the animation is over and modal is open
    else if ( classList.indexOf('anim-enter') !== -1 ) {
@@ -158,7 +159,7 @@ window.optly.mrkt.modal.open = function(modalType) {
                  });
 
   // Fade in the modal and attach the close modal handler
-  $elm.removeClass('hide-modal')
+  $elm.removeClass('optly-hide')
           .addClass('anim-enter')
           .bind('click', closeModalHandler)
           .delay(0)
@@ -166,7 +167,7 @@ window.optly.mrkt.modal.open = function(modalType) {
             $elm.addClass('enter');
             next();
           })
-          .bind(transitionend, bindTranEnd);
+          .bind(window.optly.mrkt.anim.transitionend, window.optly.mrkt.anim.bindTranEnd);
 };
 
 window.optly.mrkt.modal.close = function(modalType) {
