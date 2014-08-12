@@ -31,7 +31,7 @@ function bindDropdownClick($dropdownMenus) {
 
 function showUtilityNav($elm, acctData, expData) {
   var handlebarsData = {
-    account_id: acctData.account_id, 
+    account_id: acctData.account_id,
     email: acctData.email,
     experiments: expData.experiments
   };
@@ -75,11 +75,17 @@ window.optly.mrkt.signOut = function(redirectPath) {
   deferred.then(function(data){
     if(data && typeof redirectPath !== 'object') {
       window.location = redirectPath;
-    } 
+    }
     // If no path is specified then reload location
     else if (data) {
       window.location.reload();
     }
+  }, function(err) {
+    // Report error here
+    window.analytics.track(window.location.pathname, {
+      category: 'api error',
+      label: 'error on logout request: ' + err
+    });
   });
 };
 

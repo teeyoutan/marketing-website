@@ -125,7 +125,6 @@ module.exports = function(grunt) {
       js: {
         files: ['<%= config.guts %>/assets/js/**/*.js', '<%= config.temp %>/assets/js/**/*.js'],
         tasks: ['config:dev', 'jshint:clientDev', 'jshint:server', 'handlebars', 'concat', 'clean:postBuild']
-        //tasks: ['config:dev', 'handlebars', 'concat', 'clean:postBuild']
       },
       clientHandlebarsTemplates: {
         files: ['<%= config.guts %>/templates/client/**/*.hbs'],
@@ -172,7 +171,7 @@ module.exports = function(grunt) {
                 res.writeHead(400, {'Content-Type': 'application/json'});
                 res.end( grunt.file.read('website-guts/endpoint-mocks/accountExists.json') );
 
-              } 
+              }
               else if(req.url === '/account/signin') {
 
                 res.cookie('optimizely_signed_in', '1', {httpOnly: false});
@@ -380,7 +379,6 @@ module.exports = function(grunt) {
         noempty: true,
         nonbsp: true,
         undef: true,
-        unused: true,
         quotmark: 'single',
         '-W087': (function() {
           if(grunt.config.get("environment") == "dev") {
@@ -393,6 +391,7 @@ module.exports = function(grunt) {
       clientProd: {
         options: {
           browser: true,
+          unused: true,
           globals: {
             jQuery: false,
             moment: false,
