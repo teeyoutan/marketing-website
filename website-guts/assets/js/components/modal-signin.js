@@ -16,8 +16,6 @@ function requestSignin(e) {
       }
       window.location = 'https://www.optimizely.com/dashboard';
     }
-  }, function(err) {  
-    console.log('singin error: ' + err);
   });
 
 }

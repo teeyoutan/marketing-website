@@ -124,7 +124,8 @@ module.exports = function(grunt) {
       },
       js: {
         files: ['<%= config.guts %>/assets/js/**/*.js', '<%= config.temp %>/assets/js/**/*.js'],
-        tasks: ['config:dev', 'jshint', 'handlebars', 'concat', 'clean:postBuild']
+        tasks: ['config:dev', 'jshint:clientDev', 'jshint:server', 'handlebars', 'concat', 'clean:postBuild']
+        //tasks: ['config:dev', 'handlebars', 'concat', 'clean:postBuild']
       },
       clientHandlebarsTemplates: {
         files: ['<%= config.guts %>/templates/client/**/*.hbs'],
@@ -448,7 +449,12 @@ module.exports = function(grunt) {
           footer: '<%= grunt.config.get("concat_footer") %>'
         },
         files: {
-            '<%= config.temp %>/assets/js/global.js': ['<%= config.guts %>/assets/js/global.js', '<%= config.guts %>/assets/js/components/*.js']
+            '<%= config.temp %>/assets/js/global.js': [
+              '<%= config.guts %>/assets/js/global.js', 
+              '<%= config.guts %>/assets/js/components/*.js',
+              '<%= config.guts %>/assets/js/services/*.js',
+              '!<%= config.guts %>/assets/js/services/user_state.js'
+              ]
         }
       },
       concatBundle: {

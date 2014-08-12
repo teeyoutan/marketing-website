@@ -9053,8 +9053,6 @@ function requestSignin(e) {
       }
       window.location = 'https://www.optimizely.com/dashboard';
     }
-  }, function(err) {  
-    console.log('singin error: ' + err);
   });
 
 }
@@ -9171,34 +9169,6 @@ function storeModalState(modalType, modalOpen) {
   }
 }
 
-// Autoprefix CSS transition end listener
-window.optly.mrkt.anim.transitionend = (function(transition) {
-   var transEndEventNames = {
-       'WebkitTransition' : 'webkitTransitionEnd',// Saf 6, Android Browser
-       'MozTransition'    : 'transitionend',      // only for FF < 15
-       'transition'       : 'transitionend'       // IE10, Opera, Chrome, FF 15+, Saf 7+
-  };
-
-  return transEndEventNames[transition];
-})(window.Modernizr.prefixed('transition'));
-
-window.optly.mrkt.anim.bindTranEnd = function() {
-  var classList = Array.prototype.slice.call( this.classList );
-
-    // If the animation is over and modal is closed display none
-   if ( classList.indexOf('leave') !== -1 ) {
-     $(this).addClass('optly-hide')
-         .removeClass('anim-leave leave');
-
-     $(this).unbind(window.optly.mrkt.anim.transitionend, window.optly.mrkt.anim.bindTranEnd);
-   } 
-   // If the animation is over and modal is open
-   else if ( classList.indexOf('anim-enter') !== -1 ) {
-     $(this).removeClass('anim-enter');
-   }
-
-}
-
 window.optly.mrkt.modal.open = function(modalType) {
   var $elm = $elms[modalType];
   // if modalState exists then close modal of the currently open modal state
@@ -9221,15 +9191,10 @@ window.optly.mrkt.modal.open = function(modalType) {
                  });
 
   // Fade in the modal and attach the close modal handler
-  $elm.removeClass('optly-hide')
-          .addClass('anim-enter')
-          .bind('click', closeModalHandler)
-          .delay(0)
-          .queue(function(next) {
-            $elm.addClass('enter');
-            next();
-          })
-          .bind(window.optly.mrkt.anim.transitionend, window.optly.mrkt.anim.bindTranEnd);
+  $elm.bind('click', closeModalHandler);
+
+  window.optly.mrkt.anim.enter( $elm );
+
 };
 
 window.optly.mrkt.modal.close = function(modalType) {
@@ -9252,14 +9217,10 @@ window.optly.mrkt.modal.close = function(modalType) {
     $elm.children()[0].scrollTop = 0;
 
     // Fade out the modal and unbind the close modal click handler
-    $elm.removeClass('enter')
-          .addClass('anim-leave')
-          .unbind('click', closeModalHandler)
-          .delay(0)
-          .queue(function(next){
-            $elm.addClass('leave');
-            next();
-          });
+    $elm.unbind('click', closeModalHandler);
+
+    window.optly.mrkt.anim.leave( $elm );
+
   }, 0);
 };
 
@@ -9485,10 +9446,8 @@ var lastDropdown;
 
 function bindDropdownClick($dropdownMenus) {
   
-  $('#signed-in-utility').delegate('[data-dropdown]', 'click', function(e) {
-    // This is non-evil, we need it here
+  $('[data-dropdown]').on('click', function(e) {
     e.preventDefault();
-
     // Get the type of dropdown anchor that was clicked
     var clickedData = $(this).data('dropdown');
 
@@ -9530,19 +9489,18 @@ function showUtilityNav($elm, acctData, expData) {
 }
 
 window.optly.mrkt.closeDropdown = function(e) {
-  console.log('close dropdown');
   if ( e !== undefined ) {
     // Check that the target is not inside of the dropdown
     if ( ( !$(e.target).closest('[data-show-dropdown]').length && !$(e.target).is('[data-dropdown]') ) || $(e.target).closest('[data-modal-click]').length > 0 ) {
       $('[data-show-dropdown]').removeClass('show-dropdown');
-      $(document).unbind('click', arguments.callee);
+      $(document).unbind('click', window.optly.mrkt.closeDropdown);
     } 
 
   }
   // If we want to manually close the dropdown there will be no event
   else {
     $('[data-show-dropdown]').removeClass('show-dropdown');
-    $(document).unbind('click', arguments.callee);
+    $(document).unbind('click', window.optly.mrkt.closeDropdown);
   }
 
 };
@@ -9565,14 +9523,71 @@ window.optly.mrkt.signOut = function(redirectPath) {
     else if (data) {
       window.location.reload();
     }
-  }, function(err) {
-    // Report error here
-    console.log('error: ', err);
   });
 };
 
 // Make call to optly Q
-window.optly_q.push([showUtilityNav, $utilityNavElm, window.optly.mrkt.user.account, window.optly.mrkt.user.experiments]);})(jQuery);
+window.optly_q.push([showUtilityNav, $utilityNavElm, window.optly.mrkt.user.account, window.optly.mrkt.user.experiments]);
+window.optly = window.optly || {};
+window.optly.mrkt = window.optly.mrkt || {};
+window.optly.mrkt.anim= window.optly.mrkt.anim || {};
+
+// Autoprefix CSS transition end listener
+window.optly.mrkt.anim.transitionend = (function(transition) {
+   var transEndEventNames = {
+       'WebkitTransition' : 'webkitTransitionEnd',// Saf 6, Android Browser
+       'MozTransition'    : 'transitionend',      // only for FF < 15
+       'transition'       : 'transitionend'       // IE10, Opera, Chrome, FF 15+, Saf 7+
+  };
+
+  return transEndEventNames[transition];
+})(window.Modernizr.prefixed('transition'));
+
+window.optly.mrkt.anim.bindTranEnd = function($elm) {
+  
+  $elm.bind(this.transitionend, function() {
+   var classList = Array.prototype.slice.call( $elm[0].classList );
+
+    // If the animation is over and modal is closed display none
+   if ( classList.indexOf('leave') !== -1 ) {
+     $elm.addClass('optly-hide')
+         .removeClass('anim-leave leave');
+
+     $elm.unbind(this.transitionend, this.bindTranEnd);
+   } 
+   // If the animation is over and modal is open
+   else if ( classList.indexOf('anim-enter') !== -1 ) {
+     $elm.removeClass('anim-enter');
+
+     $elm.unbind(this.transitionend, this.bindTranEnd);
+   }
+  }.bind(this));
+
+};
+
+window.optly.mrkt.anim.enter = function($elm) {
+  this.bindTranEnd( $elm );
+
+  $elm.removeClass('optly-hide')
+    .addClass('anim-enter')
+    .delay(50)
+    .queue(function(next) {
+      $elm.addClass('enter');
+      next();
+    });
+};
+
+window.optly.mrkt.anim.leave = function ($elm) {
+  this.bindTranEnd( $elm );
+
+  $elm.removeClass('enter')
+    .addClass('anim-leave')
+    .delay(50)
+    .queue(function(next){
+      $elm.addClass('leave');
+      next();
+    });
+};})(jQuery);
 window.optly = window.optly || {};
 
 window.optly.mrkt = window.optly.mrkt || {};

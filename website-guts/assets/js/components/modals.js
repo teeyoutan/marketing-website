@@ -109,34 +109,6 @@ function storeModalState(modalType, modalOpen) {
   }
 }
 
-// Autoprefix CSS transition end listener
-window.optly.mrkt.anim.transitionend = (function(transition) {
-   var transEndEventNames = {
-       'WebkitTransition' : 'webkitTransitionEnd',// Saf 6, Android Browser
-       'MozTransition'    : 'transitionend',      // only for FF < 15
-       'transition'       : 'transitionend'       // IE10, Opera, Chrome, FF 15+, Saf 7+
-  };
-
-  return transEndEventNames[transition];
-})(window.Modernizr.prefixed('transition'));
-
-window.optly.mrkt.anim.bindTranEnd = function() {
-  var classList = Array.prototype.slice.call( this.classList );
-
-    // If the animation is over and modal is closed display none
-   if ( classList.indexOf('leave') !== -1 ) {
-     $(this).addClass('optly-hide')
-         .removeClass('anim-leave leave');
-
-     $(this).unbind(window.optly.mrkt.anim.transitionend, window.optly.mrkt.anim.bindTranEnd);
-   } 
-   // If the animation is over and modal is open
-   else if ( classList.indexOf('anim-enter') !== -1 ) {
-     $(this).removeClass('anim-enter');
-   }
-
-}
-
 window.optly.mrkt.modal.open = function(modalType) {
   var $elm = $elms[modalType];
   // if modalState exists then close modal of the currently open modal state
@@ -159,15 +131,10 @@ window.optly.mrkt.modal.open = function(modalType) {
                  });
 
   // Fade in the modal and attach the close modal handler
-  $elm.removeClass('optly-hide')
-          .addClass('anim-enter')
-          .bind('click', closeModalHandler)
-          .delay(0)
-          .queue(function(next) {
-            $elm.addClass('enter');
-            next();
-          })
-          .bind(window.optly.mrkt.anim.transitionend, window.optly.mrkt.anim.bindTranEnd);
+  $elm.bind('click', closeModalHandler);
+
+  window.optly.mrkt.anim.enter( $elm );
+
 };
 
 window.optly.mrkt.modal.close = function(modalType) {
@@ -190,14 +157,10 @@ window.optly.mrkt.modal.close = function(modalType) {
     $elm.children()[0].scrollTop = 0;
 
     // Fade out the modal and unbind the close modal click handler
-    $elm.removeClass('enter')
-          .addClass('anim-leave')
-          .unbind('click', closeModalHandler)
-          .delay(0)
-          .queue(function(next){
-            $elm.addClass('leave');
-            next();
-          });
+    $elm.unbind('click', closeModalHandler);
+
+    window.optly.mrkt.anim.leave( $elm );
+
   }, 0);
 };
 

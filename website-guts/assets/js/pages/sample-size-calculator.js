@@ -13,47 +13,12 @@ var boundModels = {
 };
 
 function formatCommas(number) {
-  return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
-
-function processModels(models) {
-  var self = arguments.callee,
-    delta;
-  for(var type in models) {
-    if (type === 'conversion' || type === 'effect') {
-
-      //restrict between 0 and 100%
-      if ( models[type] < 0 ) {
-        $('input[data-calc-model="' + type + '"').val( self.modelCache[type] * 100);
-        return self.modelCache.lastSample;
-      } 
-      //restrict empty spaces and non-numbers
-      else if( !models[type] ) {
-        $('input[data-calc-model="' + type + '"').val('');
-        return self.modelCache.lastSample = '---';
-      }
-      self.modelCache[type] = models[type] / 100;
-    } else {
-      // update the slider values
-      if ( type === 'power' || type === 'significance' ) {
-        $('span[data-slider-label="' + type + '"').text( models[type].toString() );
-      }
-      // update the model cache
-      self.modelCache[type] = models[type];
-    }
-  }
-
-  self.modelCache.delta = self.modelCache.effect * self.modelCache.conversion;
-
-  return self.modelCache.lastSample = formatCommas( calculateSample(self.modelCache) );
-} 
-
-processModels.modelCache = {};
-
 
 function calculateSample(processedModels) {
   if (!window.quantiles) {
-    return "---";
+    return '---';
   }
 
   var t_alpha = window.quantiles[processedModels.significance][processedModels.tails - 1],
@@ -66,42 +31,55 @@ function calculateSample(processedModels) {
     sample = sample / Math.pow(processedModels.delta, 2);
 
     if (isNaN(sample) || !isFinite(sample) || sample < 0) {
-      return "---";
+      return '---';
     }
 
     return Math.round(sample);
 }
 
-function fadeIn($elm) {
-  $elm.bind(window.optly.mrkt.anim.transitionend, window.optly.mrkt.anim.bindTranEnd);
+function processModels(models) {
+  var self = arguments.callee;
 
-  $elm.removeClass('optly-hide')
-    .addClass('anim-enter')
-    .delay(10)
-    .queue(function(next) {
-      $elm.addClass('enter');
-      next();
-    })
-}
+  for(var type in models) {
+    if (type === 'conversion' || type === 'effect') {
 
-function fadeOut($elm) {
-  $elm.bind(window.optly.mrkt.anim.transitionend, window.optly.mrkt.anim.bindTranEnd);
+      //restrict between 0 and 100%
+      if ( models[type] < 0 ) {
+        $('input[data-calc-model="' + type + '"]').val( self.modelCache[type] * 100);
+        return self.modelCache.lastSample;
+      } 
+      //restrict empty spaces and non-numbers
+      else if( !models[type] ) {
+        $('input[data-calc-model="' + type + '"]').val('');
+        self.modelCache.lastSample = '---';
+        return self.modelCache.lastSample;
+      }
+      self.modelCache[type] = models[type] / 100;
+    } else {
+      // update the slider values
+      if ( type === 'power' || type === 'significance' ) {
+        $('span[data-slider-label="' + type + '"]').text( models[type].toString() );
+      }
+      // update the model cache
+      self.modelCache[type] = models[type];
+    }
+  }
 
-  $elm.removeClass('enter')
-    .addClass('anim-leave')
-    .delay(0)
-    .queue(function(next){
-      $elm.addClass('leave');
-      next();
-    });
-}
+  self.modelCache.delta = self.modelCache.effect * self.modelCache.conversion;
+
+  self.modelCache.lastSample = formatCommas( calculateSample(self.modelCache) );
+
+  return self.modelCache.lastSample;
+} 
+
+processModels.modelCache = {};
 
 // Initialize
 $(function(){
   var sample = $('#sample');
 
   // set the sample text and the model cache
-  sample.text( processModels(boundModels) )
+  sample.text( processModels(boundModels) );
 
   $('input[data-calc-model]').on('change input', function() {
     var changedModel = {};
@@ -115,7 +93,11 @@ $(function(){
   $('button[data-slider]').one('click', function(e) {
     e.preventDefault();
 
-    fadeOut( $(this) );
-    fadeIn( $('input[data-slider="' + $(this).data('slider') + '"]') );
-  })
+    window.optly.mrkt.anim.leave( $(this) );
+    window.optly.mrkt.anim.enter( $('input[data-slider="' + $(this).data('slider') + '"]') );
+  });
 });
+
+
+
+

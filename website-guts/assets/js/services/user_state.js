@@ -199,8 +199,6 @@ window.optly.mrkt.services.xhr = {
     if ( !!this.readCookie('optimizely_signed_in') ) {
       deferreds = this.makeRequest(requestParams, callback);
       return deferreds;
-    } else {
-      console.log('no account cookie present!!');
     }
   }
   

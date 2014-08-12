@@ -25,7 +25,7 @@ page_script: sample-size-calculator.js
       </div>
     </div>
     <div class="columns two-thirds">
-      <p class="calc-content">{{description}}</p>
+      <p class="calc-content">{{description}}&nbsp;<a class="question-link" target="_blank" href="{{link}}">[?]</a></p>
     </div>
   </div>
   {{/each}}
@@ -50,7 +50,7 @@ page_script: sample-size-calculator.js
       {{/if}}
     </div>
     <div class="columns two-thirds">
-      <p class="calc-content">{{description}}</p>
+      <p class="calc-content">{{description}}&nbsp;<a class="question-link" target="_blank" href="{{link}}">[?]</a></p>
     </div>
   </div>
   {{/each}}
@@ -60,6 +60,7 @@ page_script: sample-size-calculator.js
     <div class="columns one-third">
       {{#each demo}}
       <div class="tails">
+        <label for="">
         {{#if @first}}
         <input type="radio" name="tails" checked value="1" data-calc-model="tails">
         {{else}}
@@ -67,20 +68,19 @@ page_script: sample-size-calculator.js
           <input type="radio" name="tails" value="2" data-calc-model="tails">
           {{/if}}
         {{/if}}
-        <label for="">
-          {{this}}
+          <span>{{this}}</span>
         </label>
       </div>
       {{/each}}
     </div>
     <div class="columns two-thirds">
-      <p class="calc-content last">{{description}}</p>
+      <p class="calc-content last">{{description}}&nbsp;<a class="question-link" target="_blank" href="{{link}}">[?]</a></p>
     </div>
   </div>
   {{/with}}
   
   <div class="calc-sample-cont">
-    <h3>{{bottom_title}}</h3>
+    <div class="sample-label">{{bottom_title}}</div>
     <div id="sample">10,316</div>
   </div>
   
@@ -103,11 +103,11 @@ page_script: sample-size-calculator.js
     {{/each}}
   </div> 
   {{/with}}
-
-  {{#with sample_size_calculator.cta}}
-  <div class="callout">
-    <h4>{{title}}</h4>
-    <a href="{{button.path}}" target="_blank" class="primary-button">{{button.text}}</a>
-  </div>
-  {{/with}}
 </div>
+
+{{#with sample_size_calculator.cta}}
+<div class="calc-cta">
+  <h4>{{title}}</h4>
+  <a href="{{button.path}}" target="_blank" class="primary-button">{{button.text}}</a>
+</div>
+{{/with}}
