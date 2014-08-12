@@ -565,16 +565,26 @@ module.exports = function(grunt) {
     },
     filerev: {
       js: {
-        src: '<%= config.dist %>/assets/js/**/*.js'
+        src: '<%= config.dist %>/assets/**/*.{js,css}'
       }
     },
-    userevved: {
+    userevvd: {
       html: {
-        files: {
-          '<%= config.dist %>/**/*.html'
-        }
+        options: {
+          formatPath: function(path){
+            return path.replace(/$\/dist\/assets/, 'https://cdn.optimizelyassets.com');
+          }
+        },
+        files: [
+          {
+            expand: true,
+            cwd: '<%= config.dist %>/',
+            src: '**/*.html',
+            dest: '<%= config.dist %>'
+          }
+        ]
       }
-    }
+    },
     gitinfo: {}
   });
 
@@ -627,6 +637,8 @@ module.exports = function(grunt) {
     'sass:prod',
     'replace',
     'autoprefixer',
+    'filerev',
+    'userevvd',
     'clean:postBuild'
   ]);
 
