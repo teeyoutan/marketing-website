@@ -171,7 +171,7 @@ module.exports = function(grunt) {
                 res.writeHead(400, {'Content-Type': 'application/json'});
                 res.end( grunt.file.read('website-guts/endpoint-mocks/accountExists.json') );
 
-              } 
+              }
               else if(req.url === '/account/signin') {
 
                 res.cookie('optimizely_signed_in', '1', {httpOnly: false});
@@ -563,6 +563,18 @@ module.exports = function(grunt) {
         }
       }
     },
+    filerev: {
+      js: {
+        src: '<%= config.dist %>/assets/js/**/*.js'
+      }
+    },
+    userevved: {
+      html: {
+        files: {
+          '<%= config.dist %>/**/*.html'
+        }
+      }
+    }
     gitinfo: {}
   });
 
