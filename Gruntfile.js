@@ -363,7 +363,7 @@ module.exports = function(grunt) {
           upload: [
             {
               src: '<%= config.dist %>/**/*',
-              dest: '<%= gitinfo.local.branch.current.name %>',
+              dest: '<%= grunt.option("branch") || gitinfo.local.branch.current.name %>',
               rel: '<%= config.dist %>'
             }
           ]
