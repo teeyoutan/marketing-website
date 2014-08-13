@@ -33,7 +33,7 @@ module.exports = function(grunt) {
           variables: {
             environment: 'production',
             environmentData: 'website-guts/data/environments/production/environmentVariables.json',
-            assetsDir: '/dist/assets',
+            assetsDir: 'dist/assets',
             link_path: '',
             sassImagePath: '/dist/assets/img',
             compress_js: true,
@@ -57,7 +57,7 @@ module.exports = function(grunt) {
             environment: 'staging',
             environmentData: 'website-guts/data/environments/staging/environmentVariables.json',
             assetsDir: '/<%= gitinfo.local.branch.current.name %>/assets',
-            link_path: '',
+            link_path: '<%= gitinfo.local.branch.current.name %>',
             sassImagePath: '/<%= gitinfo.local.branch.current.name %>/assets/img',
             compress_js: true,
             drop_console: false,
@@ -568,6 +568,28 @@ module.exports = function(grunt) {
         }
       }
     },
+    filerev: {
+      assets: {
+        src: '<%= config.dist %>/assets/**/*.{js,css}'
+      }
+    },
+    userevvd: {
+      html: {
+        options: {
+          formatPath: function(path){
+            return path.replace(/^dist\/assets/, 'https://cdn.optimizelyassets.com');
+          }
+        },
+        files: [
+          {
+            expand: true,
+            cwd: '<%= config.dist %>/',
+            src: '**/*.html',
+            dest: '<%= config.dist %>'
+          }
+        ]
+      }
+    },
     gitinfo: {}
   });
 
@@ -613,13 +635,14 @@ module.exports = function(grunt) {
     'clean:preBuild',
     'assemble',
     'concat',
-    'imagemin:prod',
     'copy:cssFontFile',
     'copy:jquery',
     'uglify',
     'sass:prod',
     'replace',
     'autoprefixer',
+    'filerev',
+    'userevvd',
     'clean:postBuild'
   ]);
 
