@@ -16,6 +16,7 @@ npm-debug.log
 node_modules
 dist
 website-guts/templates/partials/*_compiled.hbs
+website-guts/templates/layouts/*_compiled.hbs
 
 *.sublime-*
 bower_components/*
