@@ -1,7 +1,5 @@
-window.optly = window.optly || {};
-window.optly.mrkt = window.optly.mrkt || {};
-window.optly.mrkt.anim = window.optly.mrkt.anim || {};
-window.optly.mrkt.modal = {};
+window.optly.mrkt.modal = window.optly.mrkt.modal || {};
+
 var History = window.History || {},
   //Modernizr = window.Modernizr || {},
   $modalElms = $('[data-optly-modal]'),

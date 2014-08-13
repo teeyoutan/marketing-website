@@ -30,7 +30,7 @@ function calculateSample(processedModels) {
     
     sample = sample / Math.pow(processedModels.delta, 2);
 
-    if (isNaN(sample) || !isFinite(sample) || sample < 0) {
+    if (!$.isNumeric(sample) || !isFinite(sample) || sample < 0) {
       return '---';
     }
 

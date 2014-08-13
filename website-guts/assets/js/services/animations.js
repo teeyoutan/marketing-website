@@ -1,5 +1,3 @@
-window.optly = window.optly || {};
-window.optly.mrkt = window.optly.mrkt || {};
 window.optly.mrkt.anim= window.optly.mrkt.anim || {};
 
 // Autoprefix CSS transition end listener
