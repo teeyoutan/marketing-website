@@ -1,3 +1,6 @@
+$animprop: opacity 1 0;
+$transition: opacity 0.3s linear;
+
 body.sample-size-page {
   .callout {
     border: 1px solid #eee;
@@ -85,6 +88,7 @@ body.sample-size-page {
         top: 0;
         left: 25%;
         width: 50%;
+        @include optly--animate($animprop, $transition, true, false);
       }
     }
     .button-link {
@@ -97,6 +101,7 @@ body.sample-size-page {
       padding: 0;
       text-transform: capitalize;
       margin: 0 auto;
+      @include optly--animate($animprop, $transition, false, true);
     }
     .button-link:hover {
       text-decoration: underline;

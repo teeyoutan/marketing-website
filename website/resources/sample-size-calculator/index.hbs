@@ -37,15 +37,15 @@ page_script: sample-size-calculator.js
       {{#if @first}}
       <div class="calculator-variables"><span data-slider-label="power">80</span>%</div>
       <div class="stat-wrapper">
-        <input id="power" class="optly-anim optly-hide" type="range" min="60" max="95" step="5" class="fade" data-calc-model="power" data-slider="power" />
-        <button class="button-link optly-anim" data-slider="power" >{{button_text}}</button>
+        <input id="power" class="optly-hide" type="range" min="60" max="95" step="5" class="fade" data-calc-model="power" data-slider="power" />
+        <button class="button-link" data-slider="power" >{{button_text}}</button>
       </div>
       {{/if}}
       {{#if @last}}
       <div class="calculator-variables"><span data-slider-label="significance">95</span>%</div>
       <div class="stat-wrapper">
-        <input id="significance" class="optly-anim optly-hide" type="range" min="80" max="99" step="1" class="fade" data-calc-model="significance" data-slider="significance" />
-        <button class="button-link optly-anim" data-slider="significance" >{{button_text}}</button>
+        <input id="significance" class="optly-hide" type="range" min="80" max="99" step="1" class="fade" data-calc-model="significance" data-slider="significance" />
+        <button class="button-link" data-slider="significance" >{{button_text}}</button>
       </div>
       {{/if}}
     </div>
