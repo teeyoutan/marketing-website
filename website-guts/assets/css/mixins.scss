@@ -33,3 +33,82 @@
   z-index: $start;
   @include z-index-list($children, $start, $increment)
 }
+
+//Properties are the css property, show value, hide value -- ex. opacity 1 0
+@mixin optly--animate($properties, $transition, $enter: true, $leave: true) {
+
+  &.optly-hide {
+    display: none!important;
+  }
+  
+  @if ($enter == true) {
+    &.anim-enter {
+      @if (type-of(nth($properties, 1)) == list) {
+        @each $val in $properties {
+          $property: nth($val, 1);
+          $hide-value: nth($val, 3);
+          
+          #{$property}: $hide-value;
+        }
+      } @else {
+        $property: nth($properties, 1);
+        $hide-value: nth($properties, 3);
+  
+        #{$property}: $hide-value;
+      }
+      transition: $transition;
+    }
+    
+    &.enter {
+      @if (type-of(nth($properties, 1)) == list) {
+        @each $val in $properties {
+          $property: nth($val, 1);
+          $show-value: nth($val, 2);
+  
+          #{$property}: $show-value;
+        }
+      } @else {
+        $property: nth($properties, 1);
+        $show-value: nth($properties, 2);
+  
+        #{$property}: $show-value;
+      }
+    }
+  }
+  
+  @if ($leave == true) {
+  
+    &.anim-leave {
+      @if (type-of(nth($properties, 1)) == list) {
+        @each $val in $properties {
+          $property: nth($val, 1);
+          $show-value: nth($val, 2);
+  
+          #{$property}: $show-value;
+        }
+      } @else {
+        $property: nth($properties, 1);
+        $show-value: nth($properties, 2);
+  
+        #{$property}: $show-value;
+      }
+      transition: $transition;
+    }
+  
+    &.leave {
+      @if (type-of(nth($properties, 1)) == list) {
+        @each $val in $properties {
+          $property: nth($val, 1);
+          $hide-value: nth($val, 3);
+          
+          #{$property}: $hide-value;
+        }
+      } @else {
+        $property: nth($properties, 1);
+        $hide-value: nth($properties, 3);
+  
+        #{$property}: $hide-value;
+      }
+    }
+  }
+}
