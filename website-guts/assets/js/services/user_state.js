@@ -56,13 +56,13 @@ window.optly.mrkt.services.xhr = {
       if(typeof type !== 'object') {
         if (typeof resp[ property ] !== type) {
           errorMessage = 'resp.' + property + ' is not a ' + type + ': ' + typeof(resp[ property ]);
-          
+
           this.logSegmentError(url, 'api error', errorMessage);
         }
       }
       // if property is nested
       else {
-        
+
         this.validateNestedTypes( resp[ property ], properties[ property ], property, type, url );
 
       }
@@ -81,7 +81,7 @@ window.optly.mrkt.services.xhr = {
           propertyType = typeof innerProperties[ innerProp ];
           if (propertyType !== innerType) {
             errorMessage = 'resp.' + parentProperty + '.' + innerProp + ' is not a ' + innerType + ': ' + propertyType;
-            
+
             this.logSegmentError(url, 'api error', errorMessage);
           }
         }.bind(this));
@@ -94,7 +94,7 @@ window.optly.mrkt.services.xhr = {
         propertyType = typeof data[ innerProp ];
         if (propertyType !== innerType) {
           errorMessage = 'resp.' + parentProperty + '.' + innerProp + ' is not a ' + innerType + ': ' + propertyType;
-          
+
           this.logSegmentError(url, 'api error', errorMessage);
         }
       }.bind(this));
@@ -122,7 +122,7 @@ window.optly.mrkt.services.xhr = {
 
           // validate each property type
           this.validateTypes(parsedRes, properties, url);
-       
+
         }
         // if the http request fails the jqXHR object will not be promise
         else {
@@ -191,7 +191,7 @@ window.optly.mrkt.services.xhr = {
         match = document.cookie.match(regex);
 
     return match && window.unescape(match[1]);
-  }, 
+  },
 
   getLoginStatus: function(requestParams, callback) {
     var deferreds;
@@ -199,11 +199,9 @@ window.optly.mrkt.services.xhr = {
     if ( !!this.readCookie('optimizely_signed_in') ) {
       deferreds = this.makeRequest(requestParams, callback);
       return deferreds;
-    } else {
-      console.log('no account cookie present!!');
     }
   }
-  
+
 };
 
 (function() {
@@ -249,7 +247,7 @@ window.optly.mrkt.services.xhr = {
       this.push = function(fnQ) {
         for (var i = 0; i < fnQ.length; i += 1) {
           this.parseQ(fnQ, i);
-        } 
+        }
       };
 
       this.userData = {
@@ -262,9 +260,9 @@ window.optly.mrkt.services.xhr = {
   acctParams = {
     type: 'GET',
     url: '/account/info',
-    properties: { 
+    properties: {
       email: 'string',
-      account_id: 'number' 
+      account_id: 'number'
     }
   };
 
@@ -283,4 +281,3 @@ window.optly.mrkt.services.xhr = {
 
   return window.optly.mrkt.services.xhr.getLoginStatus([acctParams, expParams], optly_QFactory);
 }());
-
