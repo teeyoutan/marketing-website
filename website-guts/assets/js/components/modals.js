@@ -189,48 +189,17 @@ function handlePopstate(e) {
   lastPop = e.timeStamp;
 }
 
-function setMobileProperties() {
-  if (!vhSupported) {
-    if (window.innerWidth <= 768) {
-      $.each($elms, function(key, $elm) {
-        $( $elm.children()[0] ).css({
-          height: window.innerHeight + 'px'
-        });
-      });
-    }
-    else {
-      $.each($elms, function(key, $elm) {
-        $( $elm.children()[0] ).css({
-          height: 'auto'
-        });
-      });
-    }
-  }
-}
-
 //INITIALIZATION
+$(function() {
+  if (isHistorySupported) {
+    // Check if modal state exists from previous page view
+    initiateModal();
+    // Bind to popstate
+    window.addEventListener('popstate', handlePopstate);
+  }
 
-if (isHistorySupported) {
-  // Check if modal state exists from previous page view
-  initiateModal();
-  // Bind to popstate
-  window.addEventListener('popstate', handlePopstate);
-}
-
-// Bind modal open to nav click events
-$('body').delegate('[data-modal-click]', 'click', function(){
-  window.optly.mrkt.modal.openModalHandler($(this).data('modal-click'));
+  // Bind modal open to nav click events
+  $('body').delegate('[data-modal-click]', 'click', function(){
+    window.optly.mrkt.modal.openModalHandler($(this).data('modal-click'));
+  });
 });
-
-// Test for vh CSS property to make modal full height at mobile screen size
-testEl.css({
-  height: '100vh'
-});
-
-vhSupported = testEl.height() === window.innerHeight;
-
-testEl.css({
-  height: '0px'
-});
-// Set the modal height
-$(window).bind('load resize', setMobileProperties);
