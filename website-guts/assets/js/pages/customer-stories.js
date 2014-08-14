@@ -6,17 +6,15 @@ $.fn.equalHeight = function(){
   $.each(this, function(i, element){
     var $element = $(element);
     var element_height;
-    var button = this.getElementsByTagName('a')[0];
+
     // Should we include the elements padding in it's height?
     var includePadding = ($element.css('box-sizing') === 'border-box') || ($element.css('-moz-box-sizing') === 'border-box');
     if (includePadding) {
-      element_height = $element.innerHeight() + button.offsetHeight;
+      element_height = $element.innerHeight();
     } else {
-      element_height = $element.height() + button.offsetHeight;
+      element_height = $element.height();
     }
     heights.push(element_height);
-    button.style.left = (this.offsetWidth/2) - (button.offsetWidth/2) + 'px';
-    button.style.opacity = 1;
   });
   this.height(Math.max.apply(window, heights));
   return this;
@@ -71,4 +69,9 @@ $.fn.responsiveEqualHeightGrid = function() {
   return this;
 };
 
-$('.customer-grid-elm').responsiveEqualHeightGrid();
+$(function() {
+  if(!window.Modernizr.flexbox) {
+    $('.customer-grid-elm').responsiveEqualHeightGrid();
+  }
+});
+
