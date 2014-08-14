@@ -111,7 +111,7 @@ module.exports = function(grunt) {
           '<%= config.guts %>/helpers/**/*.js',
           '!<%= config.guts %>/templates/client/**/*.hbs'
         ],
-        tasks: ['config:dev', 'inline', 'assemble']
+        tasks: ['config:dev', 'newer:inline', 'newer:assemble']
       },
       sass: {
         files: '<%= config.guts %>/assets/css/**/*.scss',
@@ -235,34 +235,10 @@ module.exports = function(grunt) {
         partials: ['<%= config.guts %>/templates/partials/*.hbs'],
         helpers: ['<%= config.helpers %>/**/*.js']
       },
-      modals: {
-        options: {
-          ext: '.hbs'
-        },
-        files: [
-          {
-            src: 'templates/components/modals/**/*.hbs',
-            dest: '<%= config.guts %>/templates/partials/',
-            cwd: '<%= config.guts %>/',
-            expand: true,
-            filter: 'isFile',
-            flatten: true,
-            rename: function(dest, src) {
-              var split = src.split('.');
-              return dest + split[0] + '_compiled';
-            }
-          }
-        ]
-      },
       pages: {
-        files: [
-          {
-            src: ['**/*.hbs'],
-            dest: '<%= config.dist %>/',
-            cwd: '<%= config.content %>/',
-            expand: true
-          }
-        ]
+        files: {
+          '<%= config.dist %>/': ['<%= config.content %>/**/*.hbs']
+        }
       }
     },
     sass: {
@@ -554,8 +530,9 @@ module.exports = function(grunt) {
               uglify: true,
               exts: 'hbs'
           },
-          src: ['<%= config.guts %>/templates/layouts/wrapper.hbs'],
-          dest: ['<%= config.guts %>/templates/layouts/wrapper_compiled.hbs']
+          files: {
+            '<%= config.guts %>/templates/layouts/wrapper_compiled.hbs': ['<%= config.guts %>/templates/layouts/wrapper.hbs']
+          }
       }
     },
     handlebars: {
@@ -617,9 +594,9 @@ module.exports = function(grunt) {
     'config:dev',
     'jshint:clientDev',
     'jshint:server',
-    'clean:preBuild',
-    'inline',
-    'assemble',
+    //'clean:preBuild',
+    'newer:inline',
+    'newer:assemble',
     'handlebars',
     'concat',
     'sass:dev',
@@ -651,6 +628,11 @@ module.exports = function(grunt) {
 
   grunt.registerTask('default', [
     'build'
+  ]);
+
+  grunt.registerTask('newer-dev', [
+    'config:dev',
+    'newer:assemble'
   ]);
 
 };
