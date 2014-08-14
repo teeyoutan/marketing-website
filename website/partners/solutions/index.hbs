@@ -85,7 +85,7 @@ script_dependencies:
                 <div class="partner-location">{{data.city}}{{#if data.city}}{{#if data.state}}, {{/if}}{{/if}}{{data.state}}</div>
               </div> <!-- .title-container -->
               <div class="partner-inner-content">
-                <a href="{{linkPath}}/{{this.dest}}" class="partner-logos" style="background-image: url({{../../assetsDir}}/img/{{data.logo}});"></a>
+                <a href="{{linkPath}}/{{this.dest}}" class="partner-logos" style="background-image: url('{{data.logo}}');"></a>
                 <div class="level">
                   <div class="level-heading">Certification Level: <span class="tooltip-hover" data-content="lorem ipsum dolor">?</span></div>
                   <div class="star-cont {{#if data.stars}}star-cont--{{data.stars}}{{/if}}"></div>
