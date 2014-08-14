@@ -45,22 +45,22 @@ employee_testimonials:
 -
     name: "Bradley"
     title: "Sales"
-    image: "../assets/img/jobs/bradley.jpg"
+    image: "https://optimizely-marketer-assets.s3.amazonaws.com/jobs/images/bradley.jpg"
     quote: "I love Optimizely because I get to work with brilliant people changing the Internet. I feel challenged and supported here."
 -
     name: "Amelia"
     title: "Marketing"
-    image: "../assets/img/jobs/amelia.jpg"
+    image: "https://optimizely-marketer-assets.s3.amazonaws.com/jobs/images/amelia.jpg"
     quote: "I get to work with people who are not only talented and accomplished, they’re also wonderful human beings. I like that we care about that."
 -
     name: "Sophie"
     title: "Sales"
-    image: "../assets/img/jobs/sophie.jpg"
+    image: "https://optimizely-marketer-assets.s3.amazonaws.com/jobs/images/sophie.jpg"
     quote: "We are given the opportunity to take ownership of projects, making us all architects of the fast growing company."
 -
     name: "Brett"
     title: "Success"
-    image: "../assets/img/jobs/brett.jpg"
+    image: "https://optimizely-marketer-assets.s3.amazonaws.com/jobs/images/brett.jpg"
     quote: "I really love working for a company that allows and encourages me to learn and grow. Plus, the free food isn’t too bad either."
 
 job_openings_header: "All Job Openings"
