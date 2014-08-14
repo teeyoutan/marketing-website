@@ -64,7 +64,7 @@ body.customer-stories-page {
       display: inline-block;
     }
     .customer-inner-content {
-      padding: 20px;
+      padding: 20px 20px 60px;
       img {
         display: block;
         max-height: 40px;
@@ -77,26 +77,26 @@ body.customer-stories-page {
       background-position: center center;
       margin: 0 auto;
     }
+    .button-container {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 20px 0;
+    }
     .button {
       padding: 6px 12px;
       font-size: 12px;
-      position: absolute;
-      bottom: 15px;
-      opacity: 0;
     }
   }
 }
 
-@media only screen and (min-width: $desktop-min-width) {
-
-	body.customer-stories-page {
-
-	}
-
-}
-
 @media only screen and (min-width: $tablet-min-width) {
   body.customer-stories-page {
+    .row {
+      // Make equal height columns, JS fallback
+      display: flex;
+    }
     .top-content {
       h2 {
         margin: 0;

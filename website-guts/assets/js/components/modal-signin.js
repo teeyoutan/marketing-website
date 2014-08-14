@@ -7,7 +7,7 @@ function requestSignin(e) {
     type: 'POST',
     url: '/account/signin'
   });
-  
+
 
   deferred.then(function(data) {
     if (data.success === 'true') {
@@ -16,8 +16,6 @@ function requestSignin(e) {
       }
       window.location = 'https://www.optimizely.com/dashboard';
     }
-  }, function(err) {  
-    console.log('singin error: ' + err);
   });
 
 }

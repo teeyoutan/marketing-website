@@ -3,10 +3,8 @@ var lastDropdown;
 
 function bindDropdownClick($dropdownMenus) {
   
-  $('#signed-in-utility').delegate('[data-dropdown]', 'click', function(e) {
-    // This is non-evil, we need it here
+  $('[data-dropdown]').on('click', function(e) {
     e.preventDefault();
-
     // Get the type of dropdown anchor that was clicked
     var clickedData = $(this).data('dropdown');
 
@@ -33,7 +31,7 @@ function bindDropdownClick($dropdownMenus) {
 
 function showUtilityNav($elm, acctData, expData) {
   var handlebarsData = {
-    account_id: acctData.account_id, 
+    account_id: acctData.account_id,
     email: acctData.email,
     experiments: expData.experiments
   };
@@ -48,19 +46,18 @@ function showUtilityNav($elm, acctData, expData) {
 }
 
 window.optly.mrkt.closeDropdown = function(e) {
-  console.log('close dropdown');
   if ( e !== undefined ) {
     // Check that the target is not inside of the dropdown
     if ( ( !$(e.target).closest('[data-show-dropdown]').length && !$(e.target).is('[data-dropdown]') ) || $(e.target).closest('[data-modal-click]').length > 0 ) {
       $('[data-show-dropdown]').removeClass('show-dropdown');
-      $(document).unbind('click', arguments.callee);
+      $(document).unbind('click', window.optly.mrkt.closeDropdown);
     } 
 
   }
   // If we want to manually close the dropdown there will be no event
   else {
     $('[data-show-dropdown]').removeClass('show-dropdown');
-    $(document).unbind('click', arguments.callee);
+    $(document).unbind('click', window.optly.mrkt.closeDropdown);
   }
 
 };
@@ -78,14 +75,17 @@ window.optly.mrkt.signOut = function(redirectPath) {
   deferred.then(function(data){
     if(data && typeof redirectPath !== 'object') {
       window.location = redirectPath;
-    } 
+    }
     // If no path is specified then reload location
     else if (data) {
       window.location.reload();
     }
   }, function(err) {
     // Report error here
-    console.log('error: ', err);
+    window.analytics.track(window.location.pathname, {
+      category: 'api error',
+      label: 'error on logout request: ' + err
+    });
   });
 };
 
