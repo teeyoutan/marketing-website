@@ -28,12 +28,15 @@ module.exports = function(grunt) {
   // Project configuration.
   grunt.initConfig({
     config: {
+      options: {
+        logOutput: false
+      },
       production: {
         options: {
           variables: {
             environment: 'production',
             environmentData: 'website-guts/data/environments/production/environmentVariables.json',
-            assetsDir: '/dist/assets',
+            assetsDir: 'dist/assets',
             link_path: '',
             sassImagePath: '/dist/assets/img',
             compress_js: true,
@@ -56,8 +59,8 @@ module.exports = function(grunt) {
             aws: grunt.file.readJSON('configs/s3Config.json'),
             environment: 'staging',
             environmentData: 'website-guts/data/environments/staging/environmentVariables.json',
-            assetsDir: '/<%= gitinfo.local.branch.current.name %>/assets',
-            link_path: '<%= gitinfo.local.branch.current.name %>',
+            assetsDir: '/<%= grunt.option("branch") || gitinfo.local.branch.current.name %>/assets',
+            link_path: '<%= grunt.option("branch") || gitinfo.local.branch.current.name %>',
             sassImagePath: '/<%= gitinfo.local.branch.current.name %>/assets/img',
             compress_js: true,
             drop_console: false,
@@ -377,7 +380,7 @@ module.exports = function(grunt) {
           upload: [
             {
               src: '<%= config.dist %>/**/*',
-              dest: '<%= gitinfo.local.branch.current.name %>',
+              dest: '<%= grunt.option("branch") || gitinfo.local.branch.current.name %>',
               rel: '<%= config.dist %>'
             }
           ]
@@ -462,7 +465,12 @@ module.exports = function(grunt) {
           footer: '<%= grunt.config.get("concat_footer") %>'
         },
         files: {
-            '<%= config.temp %>/assets/js/global.js': ['<%= config.guts %>/assets/js/global.js', '<%= config.guts %>/assets/js/components/*.js']
+            '<%= config.temp %>/assets/js/global.js': [
+              '<%= config.guts %>/assets/js/global.js',
+              '<%= config.guts %>/assets/js/components/*.js',
+              '<%= config.guts %>/assets/js/services/*.js',
+              '!<%= config.guts %>/assets/js/services/user_state.js'
+              ]
         }
       },
       concatBundle: {
@@ -577,6 +585,28 @@ module.exports = function(grunt) {
         }
       }
     },
+    filerev: {
+      assets: {
+        src: '<%= config.dist %>/assets/**/*.{js,css}'
+      }
+    },
+    userevvd: {
+      html: {
+        options: {
+          formatPath: function(path){
+            return path.replace(/^dist\/assets/, 'https://cdn.optimizelyassets.com');
+          }
+        },
+        files: [
+          {
+            expand: true,
+            cwd: '<%= config.dist %>/',
+            src: '**/*.html',
+            dest: '<%= config.dist %>'
+          }
+        ]
+      }
+    },
     gitinfo: {}
   });
 
@@ -622,13 +652,14 @@ module.exports = function(grunt) {
     'clean:preBuild',
     'assemble',
     'concat',
-    'imagemin:prod',
     'copy:cssFontFile',
     'copy:jquery',
     'uglify',
     'sass:prod',
     'replace',
     'autoprefixer',
+    'filerev',
+    'userevvd',
     'clean:postBuild'
   ]);
 

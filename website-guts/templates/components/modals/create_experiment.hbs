@@ -10,22 +10,10 @@ primary_button_text: Create Experiment
 negative_button_text: Cancel
 ---
               <label>
-                  <span>Email address</span>
-                  <input type="text" name="email" />
+                  <span>Experiment Name (optional)</span>
+                  <input type="text" name="name" />
               </label>
               <label>
-                  <span>Password</span>
-                  <input type="password" name="password" />
+                  <span>Experiment URL</span>
+                  <input type="text" name="url" maxlength="500" required="true" />
               </label>
-              <div class="terms">
-                  <label class="spaced">
-                      <input type="checkbox" name="persist" checked="checked" />
-                      <p>Keep me signed in</p>
-                  </label>
-              </div>
-              <div class="options">
-                  <p>
-                      <a class="show-forgot-password">Forgot your password?</a><br />
-                      No account? <a class="show-create-account" data-modal-click="signup">Register here</a>
-                  </p>
-              </div>

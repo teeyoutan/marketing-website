@@ -8,6 +8,10 @@ layout_modals:
 <html class="no-js">
     <head>
         <meta charset="utf-8">
+        {{#if environmentVariables.production}}
+        <!-- Chartbeat -->
+        <script type="text/javascript">var _sf_startpt=(new Date()).getTime()</script>
+        {{/if}}
         <script src="{{assetsDir}}/js/libraries/jquery-2.1.1.min.js"></script>
         <script>
             window.optly_q = [];
@@ -16,7 +20,7 @@ layout_modals:
         <script src="../../assets/js/services/user_state.js?__inline=true"></script>
         <script src="//cdn.optimizely.com/js/{{environmentVariables.optimizelyProjectID}}.js"></script>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        {{~#if environmentVariables.staging~}}<meta name="robots" content="noindex">{{/if}}
+        {{#if environmentVariables.staging}}<meta name="robots" content="noindex">{{/if}}
         <title>Optimizely:{{#if page.seo_title}} {{page.seo_title}}{{else}} A/B testing software you'll actually use{{/if}}</title>
         {{!-- Standard meta tags --}}
         <meta name="description" content="{{#if page.description}}{{page.description}}{{else}}Improve conversions through A/B Testing, Split Testing and Multivariate Testing with Optimizely!{{/if}}">
@@ -25,9 +29,7 @@ layout_modals:
         {{!-- Open Graph meta tags --}}
         <meta property="og:title" content="Optimizely:{{#if page.og_title}}{{page.og_title}}{{else}} A/B testing software you'll actually use{{/if}}">
         <meta property="og:description" content="Optimizely:{{#if page.og_description}}{{page.og_description}}{{else}} Improve conversions through A/B Testing, Split Testing and Multivariate Testing with Optimizely!{{/if}}">
-
         <!-- Place favicon.ico and apple-touch-icon(s) in the root directory -->
-
         <link rel="stylesheet" href="{{assetsDir}}/css/fonts.css">
         <link rel="stylesheet" href="{{assetsDir}}/css/styles.css">
         <script src="{{assetsDir}}/js/libraries/modernizr.2.8.3.min.js"></script>
@@ -207,7 +209,6 @@ layout_modals:
         {{~#if page.modals~}}
         {{~includeModals page.modals~}}
         {{~/if}}
-        <div id="vh-test"></div>
         <script>
           var optly = optly || {};
           optly.mrkt = optly.mrkt || {};
@@ -224,6 +225,9 @@ layout_modals:
         {{~/if}}
         {{#if page.page_script}}
         <script src="{{assetsDir}}/js/pages/{{page.page_script}}" defer></script>
+        {{/if}}
+        {{#if environmentVariables.production}}
+        <script id="bizible-settings" type="text/javascript" src="//cdn.bizible.com/_biz-a.js" async data-attach-secure-forms="true"></script>
         {{/if}}
     </body>
 </html>

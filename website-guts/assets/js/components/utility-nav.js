@@ -2,11 +2,9 @@ var $utilityNavElm = $('.utility-nav.signed-in-content');
 var lastDropdown;
 
 function bindDropdownClick($dropdownMenus) {
-
-  $('#signed-in-utility').delegate('[data-dropdown]', 'click', function(e) {
-    // This is non-evil, we need it here
+  
+  $('[data-dropdown]').on('click', function(e) {
     e.preventDefault();
-
     // Get the type of dropdown anchor that was clicked
     var clickedData = $(this).data('dropdown');
 
@@ -52,14 +50,14 @@ window.optly.mrkt.closeDropdown = function(e) {
     // Check that the target is not inside of the dropdown
     if ( ( !$(e.target).closest('[data-show-dropdown]').length && !$(e.target).is('[data-dropdown]') ) || $(e.target).closest('[data-modal-click]').length > 0 ) {
       $('[data-show-dropdown]').removeClass('show-dropdown');
-      $(document).unbind('click', arguments.callee);
-    }
+      $(document).unbind('click', window.optly.mrkt.closeDropdown);
+    } 
 
   }
   // If we want to manually close the dropdown there will be no event
   else {
     $('[data-show-dropdown]').removeClass('show-dropdown');
-    $(document).unbind('click', arguments.callee);
+    $(document).unbind('click', window.optly.mrkt.closeDropdown);
   }
 
 };

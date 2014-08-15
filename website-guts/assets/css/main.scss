@@ -21,6 +21,14 @@ html {
     height: 100%
 }
 
+/*
+ * In order to support 100% height fixed position elements
+ */
+body {
+  min-width: 100%;
+  min-height: 100%;
+}
+
 img {max-width: 100%;}
 
 /*
