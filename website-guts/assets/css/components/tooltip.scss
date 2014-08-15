@@ -1,0 +1,58 @@
+$property: opacity 1 0;
+$transition: opacity 0.5s linear;
+
+.tooltip-contianer {
+  position: relative;
+}
+
+#tooltip {
+    text-align: center;
+    color: #fff;
+    background: rgba(0,0,0,0.7);
+    position: fixed;
+    top: 100%;
+    opacity: 0;
+    z-index: 100;
+    padding: 15px;
+    border-radius: 5px;
+    @include optly--animate($property, $transition);
+  &:after {
+        width: 0;
+        height: 0;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-top: 5px solid rgba(0,0,0,0.7);
+        content: '';
+        position: absolute;
+        left: 50%;
+        bottom: -5px;
+        margin-left: -10px;
+  }
+  &.top-tip {
+    &:after {
+      border-top-color: transparent;
+      border-bottom: 10px solid rgba(0,0,0,0.7);
+      top: -20px;
+      bottom: auto;
+    }
+  }
+  &.left-tip {
+    &:after {
+      left: 10px;
+      margin: 0;
+    }
+  }
+  &.right-tip {
+    &.after {
+      right: 10px;
+      left: auto;
+      margin: 0;
+    }
+  }
+  &.mobile-tip {
+    max-width: 70%;
+  }
+  &.desktop-tip {
+    max-width: 350px;
+  }
+}
