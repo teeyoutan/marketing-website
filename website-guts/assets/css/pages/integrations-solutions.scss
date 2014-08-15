@@ -24,7 +24,19 @@ body.integrations-solutions {
       .dropdown-cont {
         &.dropdown-cont--region {
           ul {
-            width: 300%;
+            width: auto;
+            li {
+              white-space: nowrap;
+            }
+          }
+        }
+        &.dropdown-cont--columns {
+          ul {
+            column-count: 3;
+            width: 500px;
+            li {
+              margin-bottom: 1px;
+            }
           }
         }
       }

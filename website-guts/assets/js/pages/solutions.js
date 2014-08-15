@@ -23,6 +23,7 @@ window.optly.mrkt.filter = {
     $filterElems.bind('click', function(e) {
       e.stopPropagation();
       var $this = $(this);
+      $filterElems.removeClass( 'active' );
       $this.toggleClass( 'active' );
       self.updateIsotope();
     });
