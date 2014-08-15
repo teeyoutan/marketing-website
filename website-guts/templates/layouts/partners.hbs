@@ -53,8 +53,12 @@ sub_head: World-class service providers. Empowered customers. Lasting results.
             <h4>{{title}}</h4>
 
             <div class="level">
-              <div class="level-heading">Certification Level: <span class="tooltip-hover" data-content="lorem ipsum dolor">?</span></div>
-              <div class="star-cont {{#if stars}}star-cont--{{stars}}{{/if}} star-left"></div>
+              {{#if page.data.solutions }}
+                {{#if stars}}
+                  <div class="level-heading">Certification Level: <span class="tooltip-hover" data-content="lorem ipsum dolor">?</span></div>
+                  <div class="star-cont {{#if stars}}star-cont--{{stars}}{{/if}} star-left"></div>
+                {{/if}}
+              {{/if}}
             </div>
 
             {{#markdown}}
