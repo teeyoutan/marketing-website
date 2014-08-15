@@ -111,7 +111,7 @@ module.exports = function(grunt) {
           '<%= config.guts %>/helpers/**/*.js',
           '!<%= config.guts %>/templates/client/**/*.hbs'
         ],
-        tasks: ['config:dev', 'newer:inline', 'newer:assemble']
+        tasks: ['config:dev', 'inline', 'newer:assemble']
       },
       sass: {
         files: '<%= config.guts %>/assets/css/**/*.scss',
@@ -235,10 +235,34 @@ module.exports = function(grunt) {
         partials: ['<%= config.guts %>/templates/partials/*.hbs'],
         helpers: ['<%= config.helpers %>/**/*.js']
       },
+      modals: {
+        options: {
+          ext: '.hbs'
+        },
+        files: [
+          {
+            src: 'templates/components/modals/**/*.hbs',
+            dest: '<%= config.guts %>/templates/partials/',
+            cwd: '<%= config.guts %>/',
+            expand: true,
+            filter: 'isFile',
+            flatten: true,
+            rename: function(dest, src) {
+              var split = src.split('.');
+              return dest + split[0] + '_compiled';
+            }
+          }
+        ]
+      },
       pages: {
-        files: {
-          '<%= config.dist %>/': ['<%= config.content %>/**/*.hbs']
-        }
+        files: [
+          {
+            src: ['**/*.hbs'],
+            dest: '<%= config.dist %>/',
+            cwd: '<%= config.content %>/',
+            expand: true
+          }
+        ]
       }
     },
     sass: {
@@ -595,7 +619,7 @@ module.exports = function(grunt) {
     'jshint:clientDev',
     'jshint:server',
     //'clean:preBuild',
-    'newer:inline',
+    'inline',
     'newer:assemble',
     'handlebars',
     'concat',
