@@ -13,8 +13,8 @@ body_class:
     </div>
     <div class="columns six">
       <div class="pill clearfix big">
-        <a class="active" href="{{linkPath}}/partners/integrations">{{{partners.integrations.pill_title}}} ({{#integrations}}{{length pages}}{{/integrations}})</a>
-        <a href="{{linkPath}}/partners/solutions">{{{partners.solutions.pill_title}}} ({{#solutions}}{{length pages}}{{/solutions}})</a>
+        <a class="active" href="">{{{partners.integrations.pill_title}}} ({{#integrations}}{{length pages}}{{/integrations}})</a>
+        <a href="../solutions">{{{partners.solutions.pill_title}}} ({{#solutions}}{{length pages}}{{/solutions}})</a>
       </div>
     </div>
   </div>
@@ -38,14 +38,14 @@ body_class:
           {{#each pages}}
             <div class="partner-grid-elm" data-priority="{{data.priority}}">
               <div class="title-container">
-                <h4 class="partner-title"><a href="{{linkPath}}/{{this.dest}}">{{data.title}}</a></h4>
+                <h4 class="partner-title"><a href="{{this.pagename}}">{{data.title}}</a></h4>
               </div> <!-- .title-container -->
               <div class="partner-inner-content">
-                <a href="{{linkPath}}/{{this.dest}}" class="partner-logos" style="background-image: url('{{data.logo}}');"></a>
+                <a href="{{this.pagename}}" class="partner-logos" style="background-image: url('{{data.logo}}');"></a>
                 <p>{{ data.summary }}</p>
               </div>
               <div class="button-container">
-                <a href="{{linkPath}}/{{ this.dest }}" class="button">Learn More &gt;</a>
+                <a href="{{ this.pagename }}" class="button">Learn More &gt;</a>
               </div>
             </div> <!-- .partner-grid-elm -->
           {{/each}}
