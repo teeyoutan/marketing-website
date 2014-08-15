@@ -46,8 +46,7 @@
     "grunt-contrib-handlebars": "0.8.0",
     "grunt-gitinfo": "0.1.6",
     "grunt-filerev": "0.2.1",
-    "grunt-userevvd": "0.1.2",
-    "grunt-newer": "^0.7.0"
+    "grunt-userevvd": "0.1.2"
   },
   "licenses": [
     {
