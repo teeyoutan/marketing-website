@@ -1,5 +1,6 @@
 /**
- * Proxy for the native js `encodeURIComponent`.
+ * Create a list of classes from a comma separated string
+ * "Foo Bar, Bar Baz, Baz Quz" => "foobar barbaz bazquz"
  *
  * @param {string} str
  */
