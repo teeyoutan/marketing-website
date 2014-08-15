@@ -14,7 +14,7 @@ module.exports.register = function (Handlebars) {
       }
       return classList;
     } else {
-      return
+      return;
     }
   });
 };

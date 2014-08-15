@@ -73,6 +73,9 @@ script_dependencies:
             <li class="filter-item" data-filter="fullservice">Full Service</li>
             <li class="filter-item" data-filter="testdevelopment">Test Development</li>
             <li class="filter-item" data-filter="strategicconsulting">Strategic Consulting</li>
+            {{#each tags}}
+            <li class="filter-item" data-filter="{{createClassList tag}}">{{tag}}</li>
+            {{/each}}
           </ul>
         </div>
       </div>
@@ -87,7 +90,7 @@ script_dependencies:
       <div class="row partner-grid">
         {{#solutions}}
           {{#each pages}}
-            <div class="partner-grid-elm {{#if data.stars}}{{data.stars}}-star{{/if}} {{createClassList data.region}} {{createClassList data.industry}}" data-priority="{{data.priority}}">
+            <div class="partner-grid-elm {{#if data.stars}}{{data.stars}}-star{{/if}} {{createClassList data.region}} {{#each data.tags}}{{createClassList this}}{{/each}}" data-priority="{{data.priority}}">
               <div class="title-container">
                 <h4 class="partner-title"><a href="{{linkPath}}/{{this.dest}}">{{data.title}}</a></h4>
                 <div class="partner-location">{{data.city}}{{#if data.city}}{{#if data.state}}, {{/if}}{{/if}}{{data.state}}</div>
