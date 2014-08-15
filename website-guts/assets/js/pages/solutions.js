@@ -9,22 +9,28 @@ window.optly.mrkt.filter = {
 
     var self = this;
 
-    $dropdownElems.bind('click', function(e) {
+    $dropdownElems.hover(function(e) {
       e.stopPropagation();
       var $this = $(this);
       $dropdownElems.not( $this ).removeClass( 'active' );
       $this.toggleClass( 'active' );
 
-      $(window).not( $dropdownElems ).on('click', function() {
-        $dropdownElems.removeClass( 'active' );
-      });
+      // $(window).not( $dropdownElems ).on('click', function() {
+      //   $dropdownElems.removeClass( 'active' );
+      // });
     });
 
     $filterElems.bind('click', function(e) {
       e.stopPropagation();
       var $this = $(this);
-      $filterElems.removeClass( 'active' );
+      $this.parent().find('li').not( $this ).removeClass( 'active' );
       $this.toggleClass( 'active' );
+      self.updateIsotope();
+    });
+
+    $('.filter--reset').on('click', function(e) {
+      e.preventDefault();
+      $filterElems.removeClass( 'active' );
       self.updateIsotope();
     });
 
@@ -55,14 +61,14 @@ window.optly.mrkt.filter = {
     var values = [];
 
     $activeItems.each( function() {
-      var value = $(this).data( 'filter' );
+      var value = $(this).data( 'filter' ).trim();
       values.push( '.' + value );
     });
 
     var filterValue = values.join('');
     $isoContainer.isotope({ filter: filterValue });
 
-    // enable classname debugging
+    // create a div#output to enable classname debugging
     // var $output = $('#output');
     // $output.text( filterValue );
 

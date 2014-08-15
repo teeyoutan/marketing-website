@@ -19,7 +19,7 @@ body.integrations-solutions {
 
   .filter {
     .pill {
-      width: 400px;
+      width: 450px;
       // todo(ccorda): move this to pill.scss as a general responsive solution
       .dropdown-cont {
         &.dropdown-cont--region {
@@ -72,10 +72,6 @@ body.integrations-solutions {
       font-size: 20px;
     }
   }
-  // todo(ccorda): just for debugging, remove before pushing
-  #output {
-    display: none;
-  }
 
   .partner-grid {
     display: flex;
@@ -98,6 +94,13 @@ body.integrations-solutions {
     margin: 20px 5px;
     width: 32%;
 
+    .tooltip-hover {
+      height: 15px;
+      width: 15px;
+      &:hover {
+        cursor: help;
+      }
+    }
     // todo(ccorda): probably a better way of handling this
     @media (max-width: 600px) {
       width: 100%;

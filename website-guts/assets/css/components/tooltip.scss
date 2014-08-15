@@ -4,11 +4,8 @@
   color: #fff;
   display: inline-block;
   position: relative;
-  height: 15px;
-  width: 15px;
   text-align: center;
   &:hover {
-    cursor: help;
     &:after {
       background: #222;
       box-sizing: border-box;
