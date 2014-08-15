@@ -40,13 +40,14 @@ script_dependencies:
     <div class="columns filter">
       <div class="pill clearfix">
         <div class="heading">Filter By:</div>
-        <div class="dropdown-cont">Region &#9662;
+        {{!-- todo(imjared): need to figure out where regions are --}}
+        {{!-- <div class="dropdown-cont">Region &#9662;
           <ul>
             <li class="filter-item" data-filter="northeast">Northeast</li>
             <li class="filter-item" data-filter="southeast">Southeast</li>
             <li class="filter-item" data-filter="northwest">Northwest</li>
           </ul>
-        </div>
+        </div> --}}
         <div class="dropdown-cont">Star Rating &#9662;
           <ul>
             <li class="filter-item" data-filter="1-star">
@@ -62,9 +63,9 @@ script_dependencies:
         </div>
         <div class="dropdown-cont">Industry &#9662;
           <ul>
-            <li class="filter-item" data-filter="technology">Technology</li>
-            <li class="filter-item" data-filter="metalurgy">Metalurgy</li>
-            <li class="filter-item" data-filter="alchemy">Alchemy</li>
+            <li class="filter-item" data-filter="fullservice">Full Service</li>
+            <li class="filter-item" data-filter="testdevelopment">Test Development</li>
+            <li class="filter-item" data-filter="strategicconsulting">Strategic Consulting</li>
           </ul>
         </div>
       </div>
@@ -79,7 +80,7 @@ script_dependencies:
       <div class="row partner-grid">
         {{#solutions}}
           {{#each pages}}
-            <div class="partner-grid-elm {{#if data.stars}}{{data.stars}}-star{{/if}} {{data.region}} {{data.industry}}" data-priority="{{data.priority}}">
+            <div class="partner-grid-elm {{#if data.stars}}{{data.stars}}-star{{/if}} {{data.region}} {{createClassList data.industry}}" data-priority="{{data.priority}}">
               <div class="title-container">
                 <h4 class="partner-title"><a href="{{linkPath}}/{{this.dest}}">{{data.title}}</a></h4>
                 <div class="partner-location">{{data.city}}{{#if data.city}}{{#if data.state}}, {{/if}}{{/if}}{{data.state}}</div>
