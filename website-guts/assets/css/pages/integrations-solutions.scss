@@ -20,6 +20,20 @@ body.integrations-solutions {
   .filter {
     .pill {
       width: 400px;
+      // todo(ccorda): move this to pill.scss as a general responsive solution
+      @media (max-width: 420px) {
+        width: 100%;
+        .heading {
+          width: 100%;
+          border-right: 1px solid #d5d5d5;
+          border-radius: 0;
+        }
+        .dropdown-cont {
+          width: 100%;
+          border-radius: 0;
+          border: 1px solid #d5d5d5;
+        }
+      }
     }
     .star-cont {
       background-position: 0;
@@ -31,6 +45,7 @@ body.integrations-solutions {
     color: rgb(129, 129, 129);
     font-size: 14px;
     padding-top: 40px;
+    padding-bottom: 40px;
     text-align: center;
 
     a.big {
@@ -93,6 +108,7 @@ body.integrations-solutions {
 
       h4 {
         text-align: center;
+        font-size: 1.5em;
       }
     }
 
@@ -114,14 +130,17 @@ body.integrations-solutions {
 
     .partner-inner-content {
       padding: 20px;
+      flex-grow: 2;
     }
 
     .partner-logos {
       background-repeat: no-repeat;
       background-size: contain;
-      background-position: center center;
+      background-position: center bottom;
       margin: 0 auto;
-      min-height: 40px;
+      height: 80px;
+      width: 100%;
+      max-width: 250px;
       display: block;
     }
 
@@ -150,8 +169,11 @@ body.integrations-solutions {
     .partners-logo {
       background-repeat: no-repeat;
       background-size: contain;
-      background-position: center left;
-      min-height: 40px;
+      background-position: center bottom;
+      margin: 0 auto;
+      height: 80px;
+      width: 100%;
+      max-width: 250px;
       display: block;
     }
 
@@ -190,6 +212,9 @@ body.integrations-solutions {
     .star-cont {
       height: 20px;
       margin: 5px 0;
+      @media (max-width: 960px) {
+        background-position: center center;
+      }
     }
   }
 }
