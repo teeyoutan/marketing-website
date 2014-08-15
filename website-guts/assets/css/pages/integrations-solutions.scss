@@ -21,6 +21,13 @@ body.integrations-solutions {
     .pill {
       width: 400px;
       // todo(ccorda): move this to pill.scss as a general responsive solution
+      .dropdown-cont {
+        &.dropdown-cont--region {
+          ul {
+            width: 300%;
+          }
+        }
+      }
       @media (max-width: 420px) {
         width: 100%;
         .heading {

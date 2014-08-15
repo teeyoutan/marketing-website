@@ -6,11 +6,15 @@
  */
 module.exports.register = function (Handlebars) {
   Handlebars.registerHelper('createClassList', function( str ) {
-    var items = str.toLowerCase().split(',');
-    var classList = '';
-    for (var i = 0; i < items.length; i++) {
-      classList += items[i].replace(/ /g,'') + ' ';
+    if ( str ) {
+      var items = str.toLowerCase().split(',');
+      var classList = '';
+      for (var i = 0; i < items.length; i++) {
+        classList += items[i].replace('/', '').replace(/ /g,'') + ' ';
+      }
+      return classList;
+    } else {
+      return
     }
-    return classList;
   });
 };
