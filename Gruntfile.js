@@ -25,6 +25,21 @@ module.exports = function(grunt) {
     handlebars: 'grunt-contrib-handlebars'
   });
 
+  //get configs
+  var fs,
+      creds;
+  fs = require('fs');
+  (function(){
+    try{
+        creds = fs.readFileSync('./configs/s3Config.json', {encoding: 'utf-8'});
+    } catch(err){
+
+    }
+    if(creds){
+      creds = JSON.parse(creds);
+    }
+  })();
+
   // Project configuration.
   grunt.initConfig({
     config: {
@@ -44,6 +59,7 @@ module.exports = function(grunt) {
             concat_banner: '(function($){ \n\n' +
                            '  window.optly = window.optly || {}; \n\n' +
                            '  window.optly.mrkt = window.optly.mrkt || {}; \n\n' +
+                           '  window.linkPath = "" \n\n' +
                            '  try { \n\n',
             concat_footer: '  } catch(error){ \n\n' +
                            '  //report errors to GA \n\n' +
@@ -56,7 +72,7 @@ module.exports = function(grunt) {
       staging: {
         options: {
           variables: {
-            aws: grunt.file.readJSON('configs/s3Config.json'),
+            aws: creds,
             environment: 'staging',
             environmentData: 'website-guts/data/environments/staging/environmentVariables.json',
             assetsDir: '/<%= grunt.option("branch") || gitinfo.local.branch.current.name %>/assets',
@@ -67,6 +83,7 @@ module.exports = function(grunt) {
             concat_banner: '(function($){ \n\n' +
                            '  window.optly = window.optly || {}; \n\n' +
                            '  window.optly.mrkt = window.optly.mrkt || {}; \n\n' +
+                           '  window.linkPath = "<%= gitinfo.local.branch.current.name %>" \n\n' + 
                            '  try { \n\n',
             concat_footer: '  } catch(error){ \n\n' +
                            '  //report errors to GA \n\n' +
@@ -89,10 +106,11 @@ module.exports = function(grunt) {
             drop_console: false,
             concat_banner: '(function($){ \n\n' +
                            '  window.optly = window.optly || {}; \n\n' +
-                           '  window.optly.mrkt = window.optly.mrkt || {}; \n\n',
+                           '  window.optly.mrkt = window.optly.mrkt || {}; \n\n' + 
+                           '  window.linkPath = "/dist" \n\n',
             concat_footer: '})(jQuery);'
           }
-        }
+        } 
       },
       content: 'website',
       guts: 'website-guts',
