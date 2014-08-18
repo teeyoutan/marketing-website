@@ -1,0 +1,137 @@
+---
+  level:
+    -
+      title: "Bronze"
+      monthly_price: "$14"
+      save_text: "(25% off $19/mo, paid every 2 years)"
+      monthly_visitors: 2000
+      cost_additional_visitors: "$9/thousand additional visitors"
+      number_experiments: "Unlimited experiments"
+      features:
+        item:
+          value: Essential features*
+        item:
+          value: Targeting
+          tooltip: Target variations to visitors based on traffic source, language, cookie, browser, and more.
+        item:
+          value: Personalization
+          tooltip: Use targeting to deliver personalized experiences to the right audience.
+      account_management:
+        item:
+          value: "1 project per platform"
+        item:
+          value: "1 user account"
+        item:
+          value: "Online support"
+          tooltip: "Massive library of online support resources at help.optimizely.com. Create online support tickets for issues specific to your account."
+      support: Online support
+    -
+      title: "Silver"
+      monthly_price: "$59"
+      save_text: "(25% off $19/mo, paid every 2 years)"
+      monthly_visitors: 20000
+      cost_additional_visitors: "$7/thousand additional visitors"
+      number_experiments: "Unlimited experiments"
+      features:
+        item:
+          value: Essential features*
+        item:
+          value: Targeting
+          tooltip: Target variations to visitors based on traffic source, language, cookie, browser, and more.
+        item:
+          value: Personalization
+          tooltip: Use targeting to deliver personalized experiences to the right audience.
+        item:
+          value: Cross-browser testing
+      account_management:
+        item:
+          value: "2 projects per platform"
+        item:
+          value: "Unlimited user accounts"
+        item:
+          value: "Email support"
+          tooltip: "Email our Customer Support team directly with billing or product-related questions."
+        item:
+          value: "2 business day response"
+      support: Online support
+    -
+      title: "Gold"
+      monthly_price: "$299"
+      save_text: "(25% off $399/mo, paid every 2 years)"
+      monthly_visitors: 200000
+      cost_additional_visitors: "$5/thousand additional visitors"
+      number_experiments: "Unlimited experiments"
+      features:
+        item:
+          value: Essential features*
+        item:
+          value: Targeting
+          tooltip: Target variations to visitors based on traffic source, language, cookie, browser, and more.
+        item:
+          value: Personalization
+          tooltip: Use targeting to deliver personalized experiences to the right audience.
+        item:
+          value: Cross-browser testing
+        item:
+          value: Multi-page funnel testing
+        item:
+          value: Multivariate testing
+        item:
+          value: Visitor segmentation
+      account_management:
+        item:
+          value: "5 projects per platform"
+        item:
+          value: "Unlimited user accounts"
+        item:
+          value: "Phone support"
+          tooltip: "Call our Customer Success team directly with billing or product-related questions."
+        item:
+          value: "Basic developer support"
+          tooltip: "Get help reviewing and troubleshooting html, css and javascript code changes."
+        item:
+          value: "1 business day response"
+      support: Phone support
+
+    -
+      title: "Platinum"
+      monthly_visitors: 200000
+      cost_additional_visitors: "As many monthly visitors as you need"
+      number_experiments: "Unlimited experiments"
+      features:
+        item:
+          value: Essential features*
+        item:
+          value: Advanced Targeting
+          tooltip: "Target variations to visitors based on advanced criteria like geography and IP address."
+        item:
+          value: Advanced Personalization
+          tooltip: "Use advanced targeting to deliver even more personalized experiences to the right audience."
+        item:
+          value: Cross-browser testing
+        item:
+          value: Multi-page funnel testing
+        item:
+          value: Multivariate testing
+        item:
+          value: Custom visitor segmentation
+        item:
+          value: Geotargeting
+        item:
+          value: IP address targeting
+        item:
+          value: Experiment change history
+      account_management:
+        item:
+          value: "Unlimited projects"
+          tooltip: "Projects allow you to organize experiments and users into groups for different pages or domains."
+        item:
+          value: "Unlimited user accounts"
+        item:
+          value: Role-based permissions
+        item:
+          value: Advanced developer support
+          tooltip: "Get help reviewing and troubleshooting html, css and javascript code changes, API implementations, and integrations."
+        item:
+          value: "Permission change history"
+      support: CEO's direct phone number, Dedicated account manager, Onboarding program, Optimization consultant
