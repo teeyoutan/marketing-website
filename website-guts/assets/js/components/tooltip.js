@@ -36,33 +36,6 @@ window.optly.mrkt.tooltip.positionTip = function() {
     next();
   }.bind(this));
 
-  // $q.queue('positionTip', function(next) {
-  //   //bottom
-  //   // this.$tooltipElm.css({
-  //   //   top: (this.$targetElm.offset().top - $('body').scrollTop() - this.$tooltipElm.outerHeight() - 10 ) + 'px',
-  //   //   left: (this.$targetElm.offset().left - this.$tooltipElm.outerWidth() / 2 + 5) + 'px'
-  //   // });
-
-  //   // //top
-  //   // this.$tooltipElm.css({
-  //   //   top: (this.$targetElm.offset().top - $('body').scrollTop() + this.$tooltipElm.outerHeight() / 2 + 10 ) + 'px',
-  //   //   left: (this.$targetElm.offset().left - this.$tooltipElm.outerWidth() / 2 + 5) + 'px'
-  //   // });
-
-  //   // //right
-  //   // this.$tooltipElm.css({
-  //   //   top: this.$targetElm.offset().top - $('body').scrollTop() - this.$tooltipElm.outerHeight() / 2 + 'px',
-  //   //   left: (this.$targetElm.offset().left - this.$tooltipElm.outerWidth() - 5) + 'px'
-  //   // });
-
-  //   //left
-  //   this.$tooltipElm.css({
-  //     top: this.$targetElm.offset().top - $('body').scrollTop() - this.$tooltipElm.outerHeight() / 2 + 'px',
-  //     left: (this.$targetElm.offset().left + this.$targetElm.outerWidth() + 10 ) + 'px'
-  //   });
-  //   next();
-  // }.bind(this));
-
   $q.queue('positionTip', function(next) {
     this.configTooltip();
     next();
@@ -113,12 +86,14 @@ window.optly.mrkt.tooltip.initTipQ = function() {
 };
 
 window.optly.mrkt.tooltip.configTooltip = function() {
-  var posTop, posLeft, currentTip;
+  var posTop, posLeft, tipHorizontalOffset, tipVerticalOffset, currentTip;
 
-  posLeft = this.$targetElm.offset().left + ( this.$targetElm.outerWidth() / 2 ) + ( this.$tooltipElm.outerWidth() / 2 );
-  posTop  = this.$targetElm.offset().top - this.$tooltipElm.outerHeight() - 20;
+  tipHorizontalOffset = ( this.$targetElm.outerWidth() / 2 ) + ( this.$tooltipElm.outerWidth() / 2 );
+  tipVerticalOffset = this.$tooltipElm.outerHeight() + this.$targetElm.outerHeight();
+  posLeft = this.$targetElm.offset().left;
+  posTop  = this.$targetElm.offset().top - $('body').scrollTop();
 
-  if( posLeft < 0 ) {
+  if( posLeft + tipHorizontalOffset >= window.innerWidth ) {
     currentTip = 'left-tip';
     this.$tooltipElm.css({
       top: this.$targetElm.offset().top - $('body').scrollTop() - this.$tooltipElm.outerHeight() / 2 + this.$targetElm.outerHeight() / 2 + 'px',
@@ -126,7 +101,7 @@ window.optly.mrkt.tooltip.configTooltip = function() {
     });
   }
     
-  if( posLeft + this.$tooltipElm.outerWidth() > $( window ).width() ){
+  if( posLeft - tipHorizontalOffset <= 0 ){
     currentTip = 'right-tip';
     this.$tooltipElm.css({
       top: this.$targetElm.offset().top - $('body').scrollTop() - this.$tooltipElm.outerHeight() / 2 + this.$targetElm.outerHeight() / 2 + 'px',
@@ -134,7 +109,7 @@ window.optly.mrkt.tooltip.configTooltip = function() {
     });
   }
     
-  if( posTop < 0 ) {
+  if( posTop + tipVerticalOffset <= window.innerHeight ) {
     currentTip = 'top-tip';
     this.$tooltipElm.css({
       top: (this.$targetElm.offset().top - $('body').scrollTop() + this.$targetElm.outerHeight() + 10 ) + 'px',
