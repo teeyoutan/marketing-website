@@ -1,0 +1,47 @@
+.pill {
+  border-radius: 5px;
+  display: table;
+  font-size: 12px;
+
+  > * {
+    border: 1px solid rgb(213, 213, 213);
+    border-right: 0;
+    background-color: #FFFFFF;
+    display: block;
+    float: left;
+    padding: 5px 15px;
+    text-align: center;
+
+    &:first-child {
+      border-radius: $pill-radius 0 0 $pill-radius;
+    }
+
+    &:last-child {
+      border-right: 1px solid rgb(213, 213, 213);
+      border-radius: 0 $pill-radius $pill-radius 0;
+    }
+
+    &.active {
+      background-color: #448ccb;
+      color: #fff;
+      text-shadow: 0 1px #0072bc;
+
+      a {
+        color: #FFFFFF;
+      }
+    }
+
+    &.heading {
+      color: $light-text-color;
+      text-transform: uppercase;
+    }
+  }
+
+  &.big {
+    margin-left: auto;
+
+    span {
+      padding: 10px 20px;
+    }
+  }
+}
