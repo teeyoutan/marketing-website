@@ -1,0 +1,31 @@
+---
+layout: wrapper_compiled.hbs
+layout_script: false
+layout_body_class: false
+page_navigation:
+-
+    text: Plans and Pricing
+    url: /pricing
+-
+    text: Benefits
+    url: /benefits
+---
+<div id="main">
+    <div id="page-header">
+        <div class="container">
+            <div class="clearfix page-subheader-cont">
+                <h1>{{page.visible_title}}</h1>
+                <ul class="sub-header-nav">
+                    {{#each page_navigation}}
+                    <li><a href="{{#isUrl url}}{{../../linkPath}}{{/isUrl}}{{url}}">{{text}}</a></li>
+                    {{/each}}
+                    <li>Optimizely for:</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div id="page-header-gradient"></div>
+    <div id="page-content" class="container">
+        {{> body }}
+    </div>
+</div>
