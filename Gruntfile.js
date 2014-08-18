@@ -109,7 +109,14 @@ module.exports = function(grunt) {
           '<%= config.guts %>/templates/**/*.hbs',
           '<%= config.content %>/**/*.hbs',
           '<%= config.guts %>/helpers/**/*.js',
-          '!<%= config.guts %>/templates/client/**/*.hbs'
+          '!<%= config.guts %>/templates/client/**/*.hbs',
+          '!<%= config.content %>/partners/**/*.hbs'
+        ],
+        tasks: ['config:dev', 'inline', 'assemble:modals', 'assemble:pages']
+      },
+      assemblePartners: {
+        files: [
+          '<%= config.content %>/partners/**/*.hbs'
         ],
         tasks: ['config:dev', 'inline', 'assemble']
       },
@@ -271,9 +278,19 @@ module.exports = function(grunt) {
       pages: {
         files: [
           {
-            src: ['**/*.hbs'],
+            src: ['**/*.hbs', '!partners/**/*.hbs'],
             dest: '<%= config.dist %>/',
             cwd: '<%= config.content %>/',
+            expand: true
+          }
+        ]
+      },
+      partners: {
+        files: [
+          {
+            src: ['**/*.hbs'],
+            dest: '<%= config.dist %>/partners/',
+            cwd: '<%= config.content %>partners/',
             expand: true
           }
         ]
