@@ -21,6 +21,14 @@ html {
     height: 100%
 }
 
+/*
+ * In order to support 100% height fixed position elements
+ */
+body {
+  min-width: 100%;
+  min-height: 100%;
+}
+
 img {max-width: 100%;}
 
 /*
@@ -245,6 +253,9 @@ ul {
     #page-content {background: $page-content-color;}
     #page-header-gradient {background-color: #f4f4f4;}
     .ugc {
+        ul {
+          margin-left: 20px;
+        }
         p, li {
             font-size: .9em;
         }

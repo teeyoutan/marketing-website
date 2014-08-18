@@ -1,6 +1,5 @@
-window.optly = window.optly || {};
-window.optly.mrkt = window.optly.mrkt || {};
-window.optly.mrkt.modal = {};
+window.optly.mrkt.modal = window.optly.mrkt.modal || {};
+
 var History = window.History || {},
   //Modernizr = window.Modernizr || {},
   $modalElms = $('[data-optly-modal]'),
@@ -8,8 +7,6 @@ var History = window.History || {},
   baseUrl = document.URL,
   initialTime = Date.now(),
   lastPop,
-  testEl = $('#vh-test'),
-  vhSupported,
   //isSafari = /Safari/.test(navigator.userAgent) && /Apple Computer/.test(navigator.vendor),
   //isIosSafari = /(iPhone|iPod|iPad).*AppleWebKit(?!.*Safari)/i.test(navigator.userAgent) || /(iPhone|iPod|iPad).*AppleWebKit/i.test(navigator.userAgent),
   //isIosChrome = !!navigator.userAgent.match('CriOS'),
@@ -108,34 +105,6 @@ function storeModalState(modalType, modalOpen) {
   }
 }
 
-// Autoprefix CSS transition end listener
-var transitionend = (function(transition) {
-   var transEndEventNames = {
-       'WebkitTransition' : 'webkitTransitionEnd',// Saf 6, Android Browser
-       'MozTransition'    : 'transitionend',      // only for FF < 15
-       'transition'       : 'transitionend'       // IE10, Opera, Chrome, FF 15+, Saf 7+
-  };
-
-  return transEndEventNames[transition];
-})(window.Modernizr.prefixed('transition'));
-
-function bindTranEnd() {
-  var classList = Array.prototype.slice.call( this.classList );
-
-    // If the animation is over and modal is closed display none
-   if ( classList.indexOf('leave') !== -1 ) {
-     $(this).addClass('hide-modal')
-         .removeClass('anim-leave leave');
-
-     $(this).unbind(transitionend, bindTranEnd);
-   } 
-   // If the animation is over and modal is open
-   else if ( classList.indexOf('anim-enter') !== -1 ) {
-     $(this).removeClass('anim-enter');
-   }
-
-}
-
 window.optly.mrkt.modal.open = function(modalType) {
   var $elm = $elms[modalType];
   // if modalState exists then close modal of the currently open modal state
@@ -158,15 +127,10 @@ window.optly.mrkt.modal.open = function(modalType) {
                  });
 
   // Fade in the modal and attach the close modal handler
-  $elm.removeClass('hide-modal')
-          .addClass('anim-enter')
-          .bind('click', closeModalHandler)
-          .delay(0)
-          .queue(function(next) {
-            $elm.addClass('enter');
-            next();
-          })
-          .bind(transitionend, bindTranEnd);
+  $elm.bind('click', closeModalHandler);
+
+  window.optly.mrkt.anim.enter( $elm );
+
 };
 
 window.optly.mrkt.modal.close = function(modalType) {
@@ -189,14 +153,10 @@ window.optly.mrkt.modal.close = function(modalType) {
     $elm.children()[0].scrollTop = 0;
 
     // Fade out the modal and unbind the close modal click handler
-    $elm.removeClass('enter')
-          .addClass('anim-leave')
-          .unbind('click', closeModalHandler)
-          .delay(0)
-          .queue(function(next){
-            $elm.addClass('leave');
-            next();
-          });
+    $elm.unbind('click', closeModalHandler);
+
+    window.optly.mrkt.anim.leave( $elm );
+
   }, 0);
 };
 
@@ -227,48 +187,17 @@ function handlePopstate(e) {
   lastPop = e.timeStamp;
 }
 
-function setMobileProperties() {
-  if (!vhSupported) {
-    if (window.innerWidth <= 768) {
-      $.each($elms, function(key, $elm) {
-        $( $elm.children()[0] ).css({
-          height: window.innerHeight + 'px'
-        });
-      });
-    }
-    else {
-      $.each($elms, function(key, $elm) {
-        $( $elm.children()[0] ).css({
-          height: 'auto'
-        });
-      });
-    }
-  }
-}
-
 //INITIALIZATION
+$(function() {
+  if (isHistorySupported) {
+    // Check if modal state exists from previous page view
+    initiateModal();
+    // Bind to popstate
+    window.addEventListener('popstate', handlePopstate);
+  }
 
-if (isHistorySupported) {
-  // Check if modal state exists from previous page view
-  initiateModal();
-  // Bind to popstate
-  window.addEventListener('popstate', handlePopstate);
-}
-
-// Bind modal open to nav click events
-$('body').delegate('[data-modal-click]', 'click', function(){
-  window.optly.mrkt.modal.openModalHandler($(this).data('modal-click'));
+  // Bind modal open to nav click events
+  $('body').delegate('[data-modal-click]', 'click', function(){
+    window.optly.mrkt.modal.openModalHandler($(this).data('modal-click'));
+  });
 });
-
-// Test for vh CSS property to make modal full height at mobile screen size
-testEl.css({
-  height: '100vh'
-});
-
-vhSupported = testEl.height() === window.innerHeight;
-
-testEl.css({
-  height: '0px'
-});
-// Set the modal height
-$(window).bind('load resize', setMobileProperties);

@@ -8,17 +8,21 @@ layout_modals:
 <html class="no-js">
     <head>
         <meta charset="utf-8">
+        {{#if environmentVariables.production}}
+        <!-- Chartbeat -->
+        <script type="text/javascript">var _sf_startpt=(new Date()).getTime()</script>
+        {{/if}}
         <script src="{{assetsDir}}/js/libraries/jquery-2.1.1.min.js"></script>
         <script>
             window.optly_q = [];
             window.analytics=window.analytics||[];
         </script>
         <script>
-window.optly=window.optly||{},window.optly.mrkt=window.optly.mrkt||{},window.optly.mrkt.services=window.optly.mrkt.services||{},window.optly.mrkt.user=window.optly.mrkt.user||{},window.optly.mrkt.services.xhr={makeRequest:function(t,e){var r,i=[];if(Array.isArray(t)){for(var s=0;s<t.length;s+=1)"object"==typeof t[s]&&(r=$.ajax({type:t[s].type,url:t[s].url}),void 0!==t[s].properties&&this.handleErrors(r,t[s].url,t[s].properties),i.push(r));return void 0!==e&&this.resolveDeffereds(i,e),i}return r=$.ajax({type:t.type,url:t.url}),void 0!==t.properties&&this.handleErrors(r,t.url,t.properties),r},logSegmentError:function(t,e,r){window.analytics.track(t,{category:e,label:r})},validateTypes:function(t,e,r){var i;$.each(e,function(s,o){"object"!=typeof o?typeof t[s]!==o&&(i="resp."+s+" is not a "+o+": "+typeof t[s],this.logSegmentError(r,"api error",i)):this.validateNestedTypes(t[s],e[s],s,o,r)}.bind(this))},validateNestedTypes:function(t,e,r,i,s){var o,n;Array.isArray(t)?$.each(t,function(t,i){$.each(e,function(t,e){n=typeof i[t],n!==e&&(o="resp."+r+"."+t+" is not a "+e+": "+n,this.logSegmentError(s,"api error",o))}.bind(this))}.bind(this)):$.each(i,function(e,i){n=typeof t[e],n!==i&&(o="resp."+r+"."+e+" is not a "+i+": "+n,this.logSegmentError(s,"api error",o))}.bind(this))},handleErrors:function(t,e,r){var i,s;t.always(function(t,o,n){if(this.isPromise(n)&&200===n.status){try{i=$.parseJSON(n.responseText)}catch(a){return this.logSegmentError(e,"api error","response contains invalid json "+a),void 0}this.validateTypes(i,r,e)}else{if(this.isPromise(t)&&200===t.status)try{i=$.parseJSON(t.responseText)}catch(a){s=a+", Response Text: "+t.responseText+", Status Text: "+t.statusText+", Status: "+t.status}void 0===s&&(s="Response Text: "+t.responseText+", Status Text: "+t.statusText+", Status: "+t.status),this.logSegmentError(e,"api error",s)}}.bind(this))},isPromise:function(t){if("function"!=typeof t.then)return!1;var e=String($.Deferred().then),r=String(t.then);return e===r},resolveDeffereds:function(t,e){var r,i=[];return $.when.apply($,t).done(function(){var t=Array.prototype.slice.call(arguments);$.each(t,function(s,o){var n=o[0];this.isPromise(n)||"success"!==o[1]||i.push(n),s===t.length-1&&(r=window.optly_q,window.optly.mrkt.user={account:i[0],experiments:i[1]},window.optly_q=new e(i[0],i[1]),window.optly_q.push(r))}.bind(this))}.bind(this)),!0},readCookie:function(t){t=t.replace(/([.*+?^=!:${}()|[\]\/\\])/g,"\\$1");var e=new RegExp("(?:^|;)\\s?"+t+"=(.*?)(?:;|$)","i"),r=document.cookie.match(e);return r&&window.unescape(r[1])},getLoginStatus:function(t,e){var r;return this.readCookie("optimizely_signed_in")?r=this.makeRequest(t,e):(console.log("no account cookie present!!"),void 0)}},function(){"use strict";var t,e,r=function(t,e){this.acctData=t,this.expData=e,this.transformQuedArgs=function(t){$.each(t,function(e,r){void 0!==this[r]&&(t[e]=this[r])}.bind(this))},this.parseQ=function(t,e){var r;if("function"==typeof t[e])r=t.slice(1),this.transformQuedArgs(r),t[e].apply(t[e],r);else for(var i=0;i<t[e].length;i+=1)"function"==typeof t[e][i]&&(r=t[e].slice(1),this.transformQuedArgs(r),t[e][i].apply(t[e][i],r))},this.push=function(t){for(var e=0;e<t.length;e+=1)this.parseQ(t,e)},this.userData={account:this.acctData,experiments:this.expData}};return t={type:"GET",url:"/account/info",properties:{email:"string",account_id:"number"}},e={type:"GET",url:"/experiment/load_recent?max_experiments=5",properties:{experiments:{id:"number",description:"string",has_started:"boolean",can_edit:"boolean"}}},window.optly.mrkt.services.xhr.getLoginStatus([t,e],r)}();
+window.optly=window.optly||{},window.optly.mrkt=window.optly.mrkt||{},window.optly.mrkt.services=window.optly.mrkt.services||{},window.optly.mrkt.user=window.optly.mrkt.user||{},window.optly.mrkt.services.xhr={makeRequest:function(t,e){var r,i=[];if(Array.isArray(t)){for(var s=0;s<t.length;s+=1)"object"==typeof t[s]&&(r=$.ajax({type:t[s].type,url:t[s].url}),void 0!==t[s].properties&&this.handleErrors(r,t[s].url,t[s].properties),i.push(r));return void 0!==e&&this.resolveDeffereds(i,e),i}return r=$.ajax({type:t.type,url:t.url}),void 0!==t.properties&&this.handleErrors(r,t.url,t.properties),r},logSegmentError:function(t,e,r){window.analytics.track(t,{category:e,label:r})},validateTypes:function(t,e,r){var i;$.each(e,function(s,n){"object"!=typeof n?typeof t[s]!==n&&(i="resp."+s+" is not a "+n+": "+typeof t[s],this.logSegmentError(r,"api error",i)):this.validateNestedTypes(t[s],e[s],s,n,r)}.bind(this))},validateNestedTypes:function(t,e,r,i,s){var n,o;Array.isArray(t)?$.each(t,function(t,i){$.each(e,function(t,e){o=typeof i[t],o!==e&&(n="resp."+r+"."+t+" is not a "+e+": "+o,this.logSegmentError(s,"api error",n))}.bind(this))}.bind(this)):$.each(i,function(e,i){o=typeof t[e],o!==i&&(n="resp."+r+"."+e+" is not a "+i+": "+o,this.logSegmentError(s,"api error",n))}.bind(this))},handleErrors:function(t,e,r){var i,s;t.always(function(t,n,o){if(this.isPromise(o)&&200===o.status){try{i=$.parseJSON(o.responseText)}catch(a){return this.logSegmentError(e,"api error","response contains invalid json "+a),void 0}this.validateTypes(i,r,e)}else{if(this.isPromise(t)&&200===t.status)try{i=$.parseJSON(t.responseText)}catch(a){s=a+", Response Text: "+t.responseText+", Status Text: "+t.statusText+", Status: "+t.status}void 0===s&&(s="Response Text: "+t.responseText+", Status Text: "+t.statusText+", Status: "+t.status),this.logSegmentError(e,"api error",s)}}.bind(this))},isPromise:function(t){if("function"!=typeof t.then)return!1;var e=String($.Deferred().then),r=String(t.then);return e===r},resolveDeffereds:function(t,e){var r,i=[];return $.when.apply($,t).done(function(){var t=Array.prototype.slice.call(arguments);$.each(t,function(s,n){var o=n[0];this.isPromise(o)||"success"!==n[1]||i.push(o),s===t.length-1&&(r=window.optly_q,window.optly.mrkt.user={account:i[0],experiments:i[1]},window.optly_q=new e(i[0],i[1]),window.optly_q.push(r))}.bind(this))}.bind(this)),!0},readCookie:function(t){t=t.replace(/([.*+?^=!:${}()|[\]\/\\])/g,"\\$1");var e=new RegExp("(?:^|;)\\s?"+t+"=(.*?)(?:;|$)","i"),r=document.cookie.match(e);return r&&window.unescape(r[1])},getLoginStatus:function(t,e){var r;return this.readCookie("optimizely_signed_in")?r=this.makeRequest(t,e):void 0}},function(){"use strict";var t,e,r=function(t,e){this.acctData=t,this.expData=e,this.transformQuedArgs=function(t){$.each(t,function(e,r){void 0!==this[r]&&(t[e]=this[r])}.bind(this))},this.parseQ=function(t,e){var r;if("function"==typeof t[e])r=t.slice(1),this.transformQuedArgs(r),t[e].apply(t[e],r);else for(var i=0;i<t[e].length;i+=1)"function"==typeof t[e][i]&&(r=t[e].slice(1),this.transformQuedArgs(r),t[e][i].apply(t[e][i],r))},this.push=function(t){for(var e=0;e<t.length;e+=1)this.parseQ(t,e)},this.userData={account:this.acctData,experiments:this.expData}};return t={type:"GET",url:"/account/info",properties:{email:"string",account_id:"number"}},e={type:"GET",url:"/experiment/load_recent?max_experiments=5",properties:{experiments:{id:"number",description:"string",has_started:"boolean",can_edit:"boolean"}}},window.optly.mrkt.services.xhr.getLoginStatus([t,e],r)}();
 </script>
         <script src="//cdn.optimizely.com/js/{{environmentVariables.optimizelyProjectID}}.js"></script>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        {{~#if environmentVariables.staging~}}<meta name="robots" content="noindex">{{/if}}
+        {{#if environmentVariables.staging}}<meta name="robots" content="noindex">{{/if}}
         <title>Optimizely:{{#if page.seo_title}} {{page.seo_title}}{{else}} A/B testing software you'll actually use{{/if}}</title>
         {{!-- Standard meta tags --}}
         <meta name="description" content="{{#if page.description}}{{page.description}}{{else}}Improve conversions through A/B Testing, Split Testing and Multivariate Testing with Optimizely!{{/if}}">
@@ -27,9 +31,7 @@ window.optly=window.optly||{},window.optly.mrkt=window.optly.mrkt||{},window.opt
         {{!-- Open Graph meta tags --}}
         <meta property="og:title" content="Optimizely:{{#if page.og_title}}{{page.og_title}}{{else}} A/B testing software you'll actually use{{/if}}">
         <meta property="og:description" content="Optimizely:{{#if page.og_description}}{{page.og_description}}{{else}} Improve conversions through A/B Testing, Split Testing and Multivariate Testing with Optimizely!{{/if}}">
-
         <!-- Place favicon.ico and apple-touch-icon(s) in the root directory -->
-
         <link rel="stylesheet" href="{{assetsDir}}/css/fonts.css">
         <link rel="stylesheet" href="{{assetsDir}}/css/styles.css">
         <script src="{{assetsDir}}/js/libraries/modernizr.2.8.3.min.js"></script>
@@ -68,7 +70,7 @@ window.optly=window.optly||{},window.optly.mrkt=window.optly.mrkt||{},window.opt
                     {{/unless}}
                     <div id="main-nav-cont" class="main-nav">
                         <div class="container">
-                            <p class="logo-cont"><a class="logo" href="/">Optimizely</a></p>
+                            <p class="logo-cont"><a class="logo" href="{{linkPath}}/">Optimizely</a></p>
                             {{#unless page.compact_header}}
                             <nav>
                                 <ul id="main-nav" class="nav">
@@ -115,9 +117,9 @@ window.optly=window.optly||{},window.optly.mrkt=window.optly.mrkt||{},window.opt
                 {{> body }}
                 <footer>
                     <div class="container">
-                        <p><a class="logo" href="/">Optimizely</a></p>
-                        <div id="footer-nav-cont" class="clearfix">
-                            <div class="left">
+                        <p><a class="logo" href="{{linkPath}}/">Optimizely</a></p>
+                        <div id="footer-nav-cont" class="row">
+                            <div class="columns left-nav">
                                 <p>&copy 2014, Optimizely. All rights reserved</p>
                                 <ul id="legalese" class="clearfix">
                                     <li class="terms"><a href="{{linkPath}}/terms">Terms of Service</a> &nbsp;<span class="separater">|</span></li>
@@ -130,73 +132,76 @@ window.optly=window.optly||{},window.optly.mrkt=window.optly.mrkt||{},window.opt
                                     <li><a href="https://plus.google.com/+optimizely/posts" class="google-plus">Google+</a></li>
                                 </ul>
                             </div><!--/.left-->
-                            <div class="right">
-                                <ul id="footer-nav" class="clearfix">
-                                    <li id="footer-nav-features" class="footer-nav-column">
-                                        <h4>Product features &amp; benefits</h4>
-                                        <ul>
-                                            <li><a href="{{linkPath}}/pricing">Plans and pricing</a></li>
-                                            <li><a href="{{linkPath}}/benefits">Benefits</a></li>
-                                            <li><a href="{{linkPath}}/mobile">iOS beta</a></li>
-                                            <li><a href="{{linkPath}}/partners">Optimizely for Angencies</a></li>
-                                            <li><a href="http://developers.optimizely.com">Optimizely for Developers</a></li>
-                                            <li><a href="{{linkPath}}/ecommerce">Optimizely for e-commerce</a></li>
-                                            <li><a href="{{linkPath}}/enterprises">Optimizely for enterprises</a></li>
-                                            <li><a href="{{linkPath}}/publishers">Optimizely for publishers</a></li>
-                                            <li><a href="{{linkPath}}/small-business">Optimizely for small business</a></li>
-                                        </ul>
-                                    </li>
-                                    <li id="footer-nav-customers" class="footer-nav-column">
-                                        <h4>Customers</h4>
-                                        <ul>
-                                            <li><a href="{{linkPath}}/customers">Customer list</a></li>
-                                            <li><a href="{{linkPath}}/customers/customer-stories">Customer stories</a></li>
-                                        </ul>
-                                    </li>
-                                    <li id="footer-nav-resources" class="footer-nav-column">
-                                        <h4>Resources</h4>
-                                        <ul>
-                                            <li><a href="{{linkPath}}/ab-testing">What is a/b testing?</a></li>
-                                            <li><a href="{{linkPath}}/split-testing">What is split testing?</a></li>
-                                            <li><a href="{{linkPath}}/gettingstarted">Getting started</a></li>
-                                            <li><a href="{{linkPath}}/live-demo-webinar">Live demo signup</a></li>
-                                            <li><a href="{{linkPath}}/faq">FAQ</a></li>
-                                            <li><a href="http://help.optimizely.com">Knowledge base</a></li>
-                                            <li><a href="http://developers.optimizely.com">API documentation</a></li>
-                                            <li><a href="http://blog.optimizely.com">Blog</a></li>
-                                        </ul>
-                                    </li>
-                                    <li id="footer-nav-about" class="footer-nav-column">
-                                        <h4>About</h4>
-                                        <ul>
-                                            <li><a href="{{linkPath}}/about">About</a></li>
-                                            <li><a href="{{linkPath}}/jobs">Jobs</a></li>
-                                            <li><a href="{{linkPath}}/press">Press</a></li>
-                                            <li><a href="{{linkPath}}/events">Events</a></li>
-                                            <li><a href="{{linkPath}}/contact">Contact</a></li>
-                                        </ul>
-                                    </li>
-                                    <li id="footer-nav-other" class="footer-nav-column">
-                                        <h4>Other</h4>
-                                        <ul>
-                                            <li><a href="http://success.optimizely.com">Customer sucess</a></li>
-                                            <li><a href="{{linkPath}}/demo">Request a demo</a></li>
-                                            <li><a href="{{linkPath}}/opt_out">Opt out</a></li>
-                                        </ul>
-                                    </li>
-                                </ul><!--/#footer-nav-->
-                                <ul id="intl-domains">
-                                    <li class="first"><a href="https://www.optimizely.dk/" title="Danish">Dansk</a></li>
-                                    <li><a href="https://www.optimizely.de/" title="German">Deutsch</a></li>
-                                    <li><a href="https://www.optimizely.com/" title="English">English</a></li>
-                                    <li><a href="https://www.optimizely.es/" title="Spanish">Español</a></li>
-                                    <li><a href="https://www.optimizely.fr/" title="French">Français</a></li>
-                                    <li><a href="https://www.optimizely.it/" title="Italian">Italiano</a></li>
-                                    <li><a href="https://www.optimizely.jp/" title="Japanese">日本語</a></li>
-                                    <li><a href="https://www.optimizely.nl/" title="Dutch">Nederlands</a></li>
-                                    <li><a href="https://www.optimizely.pt/" title="Portuguese">Português</a></li>
-                                    <li class="last"><a href="https://www.optimizely.se/" title="Swedish">Svenska</a></li>
-                                </ul><!--/#intl-domain-->
+                            <div class="columns right-nav">
+                                    <ul id="footer-nav" class="row">
+                                        <li id="footer-nav-features" class="columns three">
+                                            <h4>Product features &amp; benefits</h4>
+                                            <ul>
+                                                <li><a href="{{linkPath}}/pricing">Plans and pricing</a></li>
+                                                <li><a href="{{linkPath}}/benefits">Benefits</a></li>
+                                                <li><a href="{{linkPath}}/mobile">iOS beta</a></li>
+                                                <li><a href="{{linkPath}}/partners">Optimizely for Angencies</a></li>
+                                                <li><a href="http://developers.optimizely.com">Optimizely for Developers</a></li>
+                                                <li><a href="{{linkPath}}/ecommerce">Optimizely for E-commerce</a></li>
+                                                <li><a href="{{linkPath}}/enterprises">Optimizely for Enterprises</a></li>
+                                                <li><a href="{{linkPath}}/publishers">Optimizely for Eublishers</a></li>
+                                                <li><a href="{{linkPath}}/small-business">Optimizely for Small Business</a></li>
+                                            </ul>
+                                        </li>
+                                        <li id="footer-nav-customers" class="columns two">
+                                            <h4>Customers</h4>
+                                            <ul>
+                                                <li><a href="{{linkPath}}/customers">Customer List</a></li>
+                                                <li><a href="{{linkPath}}/customers/customer-stories">Customer Stories</a></li>
+                                            </ul>
+                                        </li>
+                                        <li id="footer-nav-resources" class="columns three">
+                                            <h4>Resources</h4>
+                                            <ul>
+                                                <li><a href="{{linkPath}}/ab-testing">What is a/b testing?</a></li>
+                                                <li><a href="{{linkPath}}/split-testing">What is split testing?</a></li>
+                                                <li><a href="{{linkPath}}/gettingstarted">Getting started</a></li>
+                                                <li><a href="{{linkPath}}/resources/live-demo-webinar">Live demo signup</a></li>
+                                                <li><a href="{{linkPath}}/faq">FAQ</a></li>
+                                                <li><a href="http://help.optimizely.com">Knowledge Base</a></li>
+                                                <li><a href="http://developers.optimizely.com">API Documentation</a></li>
+                                                <li><a href="{{linkPath}}/resources/sample-size-calculator">Sample Size Calculator</a></li>
+                                                <li><a href="http://blog.optimizely.com">Blog</a></li>
+                                            </ul>
+                                        </li>
+                                        <li id="footer-nav-about" class="columns two">
+                                            <h4>About</h4>
+                                            <ul>
+                                                <li><a href="{{linkPath}}/about">About</a></li>
+                                                <li><a href="{{linkPath}}/jobs">Jobs</a></li>
+                                                <li><a href="{{linkPath}}/press">Press</a></li>
+                                                <li><a href="{{linkPath}}/events">Events</a></li>
+                                                <li><a href="{{linkPath}}/contact">Contact</a></li>
+                                            </ul>
+                                        </li>
+                                        <li id="footer-nav-other" class="columns two">
+                                            <h4>Other</h4>
+                                            <ul>
+                                                <li><a href="http://success.optimizely.com">Customer sucess</a></li>
+                                                <li><a href="{{linkPath}}/demo">Request a demo</a></li>
+                                                <li><a href="{{linkPath}}/opt_out">Opt out</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul><!--/#footer-nav-->
+                                <div class="row intl-domains">
+                                    <ul id="intl-domains">
+                                        <li class="first"><a href="https://www.optimizely.dk/" title="Danish">Dansk</a></li>
+                                        <li><a href="https://www.optimizely.de/" title="German">Deutsch</a></li>
+                                        <li><a href="https://www.optimizely.com/" title="English">English</a></li>
+                                        <li><a href="https://www.optimizely.es/" title="Spanish">Español</a></li>
+                                        <li><a href="https://www.optimizely.fr/" title="French">Français</a></li>
+                                        <li><a href="https://www.optimizely.it/" title="Italian">Italiano</a></li>
+                                        <li><a href="https://www.optimizely.jp/" title="Japanese">日本語</a></li>
+                                        <li><a href="https://www.optimizely.nl/" title="Dutch">Nederlands</a></li>
+                                        <li><a href="https://www.optimizely.pt/" title="Portuguese">Português</a></li>
+                                        <li class="last"><a href="https://www.optimizely.se/" title="Swedish">Svenska</a></li>
+                                    </ul><!--/#intl-domain-->
+                                </div>
                             </div><!--/.right-->
                         </div><!--/#footer-nav-cont-->
                     </div><!--/.container-->
@@ -209,7 +214,6 @@ window.optly=window.optly||{},window.optly.mrkt=window.optly.mrkt||{},window.opt
         {{~#if page.modals~}}
         {{~includeModals page.modals~}}
         {{~/if}}
-        <div id="vh-test"></div>
         <script>
           var optly = optly || {};
           optly.mrkt = optly.mrkt || {};
@@ -226,6 +230,9 @@ window.optly=window.optly||{},window.optly.mrkt=window.optly.mrkt||{},window.opt
         {{~/if}}
         {{#if page.page_script}}
         <script src="{{assetsDir}}/js/pages/{{page.page_script}}" defer></script>
+        {{/if}}
+        {{#if environmentVariables.production}}
+        <script id="bizible-settings" type="text/javascript" src="//cdn.bizible.com/_biz-a.js" async data-attach-secure-forms="true"></script>
         {{/if}}
     </body>
 </html>

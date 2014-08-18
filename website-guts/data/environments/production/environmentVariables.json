@@ -1,6 +1,7 @@
 {
   "environment": "production",
   "staging": false,
+  "production": true,
   "segmentProjectID": "rma57yd2wa",
   "optimizelyProjectID": "5935064"
 }

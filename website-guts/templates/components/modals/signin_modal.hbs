@@ -9,11 +9,11 @@ negative_button_text: Cancel
 ---
               <label>
                   <span>Email address</span>
-                  <input type="text" name="email" />
+                  <input type="text" name="email" required />
               </label>
               <label>
                   <span>Password</span>
-                  <input type="password" name="password" />
+                  <input type="password" name="password" data-validation="password" />
               </label>
               <div class="terms">
                   <label class="spaced">
@@ -22,8 +22,6 @@ negative_button_text: Cancel
                   </label>
               </div>
               <div class="options">
-                  <p>
-                      <a class="show-forgot-password">Forgot your password?</a><br />
-                      No account? <a class="show-create-account" data-modal-click="signup">Register here</a>
-                  </p>
+                  <p><a class="show-forgot-password">Forgot your password?</a><p>
+                  <p>No account? <a class="show-create-account" data-modal-click="signup">Register here</a></p>
               </div>

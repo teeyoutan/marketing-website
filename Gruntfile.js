@@ -25,15 +25,33 @@ module.exports = function(grunt) {
     handlebars: 'grunt-contrib-handlebars'
   });
 
+  //get configs
+  var fs,
+      creds;
+  fs = require('fs');
+  (function(){
+    try{
+        creds = fs.readFileSync('./configs/s3Config.json', {encoding: 'utf-8'});
+    } catch(err){
+
+    }
+    if(creds){
+      creds = JSON.parse(creds);
+    }
+  })();
+
   // Project configuration.
   grunt.initConfig({
     config: {
+      options: {
+        logOutput: false
+      },
       production: {
         options: {
           variables: {
             environment: 'production',
             environmentData: 'website-guts/data/environments/production/environmentVariables.json',
-            assetsDir: '/dist/assets',
+            assetsDir: 'dist/assets',
             link_path: '',
             sassImagePath: '/dist/assets/img',
             compress_js: true,
@@ -41,6 +59,7 @@ module.exports = function(grunt) {
             concat_banner: '(function($){ \n\n' +
                            '  window.optly = window.optly || {}; \n\n' +
                            '  window.optly.mrkt = window.optly.mrkt || {}; \n\n' +
+                           '  window.linkPath = "" \n\n' +
                            '  try { \n\n',
             concat_footer: '  } catch(error){ \n\n' +
                            '  //report errors to GA \n\n' +
@@ -53,17 +72,18 @@ module.exports = function(grunt) {
       staging: {
         options: {
           variables: {
-            aws: grunt.file.readJSON('configs/s3Config.json'),
+            aws: creds,
             environment: 'staging',
             environmentData: 'website-guts/data/environments/staging/environmentVariables.json',
-            assetsDir: '/<%= gitinfo.local.branch.current.name %>/assets',
-            link_path: '',
+            assetsDir: '/<%= grunt.option("branch") || gitinfo.local.branch.current.name %>/assets',
+            link_path: '<%= grunt.option("branch") || gitinfo.local.branch.current.name %>',
             sassImagePath: '/<%= gitinfo.local.branch.current.name %>/assets/img',
             compress_js: true,
             drop_console: false,
             concat_banner: '(function($){ \n\n' +
                            '  window.optly = window.optly || {}; \n\n' +
                            '  window.optly.mrkt = window.optly.mrkt || {}; \n\n' +
+                           '  window.linkPath = "<%= gitinfo.local.branch.current.name %>" \n\n' + 
                            '  try { \n\n',
             concat_footer: '  } catch(error){ \n\n' +
                            '  //report errors to GA \n\n' +
@@ -86,10 +106,11 @@ module.exports = function(grunt) {
             drop_console: false,
             concat_banner: '(function($){ \n\n' +
                            '  window.optly = window.optly || {}; \n\n' +
-                           '  window.optly.mrkt = window.optly.mrkt || {}; \n\n',
+                           '  window.optly.mrkt = window.optly.mrkt || {}; \n\n' + 
+                           '  window.linkPath = "/dist" \n\n',
             concat_footer: '})(jQuery);'
           }
-        }
+        } 
       },
       content: 'website',
       guts: 'website-guts',
@@ -124,7 +145,7 @@ module.exports = function(grunt) {
       },
       js: {
         files: ['<%= config.guts %>/assets/js/**/*.js', '<%= config.temp %>/assets/js/**/*.js'],
-        tasks: ['config:dev', 'jshint', 'handlebars', 'concat', 'clean:postBuild']
+        tasks: ['config:dev', 'jshint:clientDev', 'jshint:server', 'handlebars', 'concat', 'clean:postBuild']
       },
       clientHandlebarsTemplates: {
         files: ['<%= config.guts %>/templates/client/**/*.hbs'],
@@ -171,7 +192,7 @@ module.exports = function(grunt) {
                 res.writeHead(400, {'Content-Type': 'application/json'});
                 res.end( grunt.file.read('website-guts/endpoint-mocks/accountExists.json') );
 
-              } 
+              }
               else if(req.url === '/account/signin') {
 
                 res.cookie('optimizely_signed_in', '1', {httpOnly: false});
@@ -363,7 +384,7 @@ module.exports = function(grunt) {
           upload: [
             {
               src: '<%= config.dist %>/**/*',
-              dest: '<%= gitinfo.local.branch.current.name %>',
+              dest: '<%= grunt.option("branch") || gitinfo.local.branch.current.name %>',
               rel: '<%= config.dist %>'
             }
           ]
@@ -379,7 +400,6 @@ module.exports = function(grunt) {
         noempty: true,
         nonbsp: true,
         undef: true,
-        unused: true,
         quotmark: 'single',
         '-W087': (function() {
           if(grunt.config.get("environment") == "dev") {
@@ -392,6 +412,7 @@ module.exports = function(grunt) {
       clientProd: {
         options: {
           browser: true,
+          unused: true,
           globals: {
             jQuery: false,
             moment: false,
@@ -448,7 +469,12 @@ module.exports = function(grunt) {
           footer: '<%= grunt.config.get("concat_footer") %>'
         },
         files: {
-            '<%= config.temp %>/assets/js/global.js': ['<%= config.guts %>/assets/js/global.js', '<%= config.guts %>/assets/js/components/*.js']
+            '<%= config.temp %>/assets/js/global.js': [
+              '<%= config.guts %>/assets/js/global.js',
+              '<%= config.guts %>/assets/js/components/*.js',
+              '<%= config.guts %>/assets/js/services/*.js',
+              '!<%= config.guts %>/assets/js/services/user_state.js'
+              ]
         }
       },
       concatBundle: {
@@ -563,6 +589,28 @@ module.exports = function(grunt) {
         }
       }
     },
+    filerev: {
+      assets: {
+        src: '<%= config.dist %>/assets/**/*.{js,css}'
+      }
+    },
+    userevvd: {
+      html: {
+        options: {
+          formatPath: function(path){
+            return path.replace(/^dist\/assets/, 'https://cdn.optimizelyassets.com');
+          }
+        },
+        files: [
+          {
+            expand: true,
+            cwd: '<%= config.dist %>/',
+            src: '**/*.html',
+            dest: '<%= config.dist %>'
+          }
+        ]
+      }
+    },
     gitinfo: {}
   });
 
@@ -608,13 +656,14 @@ module.exports = function(grunt) {
     'clean:preBuild',
     'assemble',
     'concat',
-    'imagemin:prod',
     'copy:cssFontFile',
     'copy:jquery',
     'uglify',
     'sass:prod',
     'replace',
     'autoprefixer',
+    'filerev',
+    'userevvd',
     'clean:postBuild'
   ]);
 
