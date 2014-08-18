@@ -1,4 +1,5 @@
 $(function() {
+  var _gaq = window._gaq || [];
   var INBOUND_LEAD_FORM_TYPE = 'Mobile Launch Notification Request';
     $('body').addClass('loaded');
   // $('#video').magnificPopup({
@@ -29,7 +30,7 @@ $(function() {
     _gaq.push(['_trackEvent', 'Mobile landing page', 'text change']);
   });
   var buttonCont = $('#visual-change-button');
-  $('#visual-change-color').on('click', '.color-btn', function() {
+  $('#visual-change-color').on('click', '.color-btn', function(e) {
     var color = $(e.target).attr('id').replace('visual-change-', '');
     buttonCont.removeAttr('class').addClass(color);
     _gaq.push(['_trackEvent', 'Mobile landing page', 'color change', color]);
