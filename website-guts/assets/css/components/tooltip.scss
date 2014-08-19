@@ -1,3 +1,7 @@
+// creates a snazzy tooltip for use on your favorite questionable element
+// example: <span class="tooltip-hover" data-content="tooltip content here">?</span>
+// screenshot: https://cloud.githubusercontent.com/assets/525011/3952583/c459c2c0-26e3-11e4-8dea-38fe3e6133e3.png
+
 .tooltip-hover {
   background: #a9a9a9;
   border-radius: 100%;
@@ -24,6 +28,17 @@
       top: -30px;
       white-space: nowrap;
       z-index: 10;
+    }
+    &:before {
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+      content: '';
+      position: absolute;
+      background-color: #222;
+      height: 15px;
+      width: 15px;
+      top: -15px;
+      left: 0;
+      transform: rotate(-45deg);
     }
   }
 }
