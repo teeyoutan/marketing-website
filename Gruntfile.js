@@ -76,14 +76,14 @@ module.exports = function(grunt) {
             environment: 'staging',
             environmentData: 'website-guts/data/environments/staging/environmentVariables.json',
             assetsDir: '/<%= grunt.option("branch") || gitinfo.local.branch.current.name %>/assets',
-            link_path: '<%= grunt.option("branch") || gitinfo.local.branch.current.name %>',
+            link_path: '/<%= grunt.option("branch") || gitinfo.local.branch.current.name %>',
             sassImagePath: '/<%= gitinfo.local.branch.current.name %>/assets/img',
             compress_js: true,
             drop_console: false,
             concat_banner: '(function($){ \n\n' +
                            '  window.optly = window.optly || {}; \n\n' +
                            '  window.optly.mrkt = window.optly.mrkt || {}; \n\n' +
-                           '  window.linkPath = "<%= gitinfo.local.branch.current.name %>" \n\n' + 
+                           '  window.linkPath = "<%= gitinfo.local.branch.current.name %>" \n\n' +
                            '  try { \n\n',
             concat_footer: '  } catch(error){ \n\n' +
                            '  //report errors to GA \n\n' +
@@ -106,11 +106,11 @@ module.exports = function(grunt) {
             drop_console: false,
             concat_banner: '(function($){ \n\n' +
                            '  window.optly = window.optly || {}; \n\n' +
-                           '  window.optly.mrkt = window.optly.mrkt || {}; \n\n' + 
+                           '  window.optly.mrkt = window.optly.mrkt || {}; \n\n' +
                            '  window.linkPath = "/dist" \n\n',
             concat_footer: '})(jQuery);'
           }
-        } 
+        }
       },
       content: 'website',
       guts: 'website-guts',
