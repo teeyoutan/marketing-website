@@ -6,28 +6,58 @@ body_class:
 - pricing
 ---
 
-<div class="row">
-    <div class="columns twelve pill-cont">
-        <p>Your current plan is <span>gold</span></p>
-        <div class="pill">
-            <a href="#" class="active">Month-to-Month</a>
-            <a href="#">One Year (10% off)</a>
-            <a href="#">Two Years (25% off)</a>
-        </div>
+{{!-- <div class="row">
+  <div class="columns twelve pill-cont">
+    <p>Your current plan is <span>gold</span></p>
+    <div class="pill">
+      <a href="#" class="active">Month-to-Month</a>
+      <a href="#">One Year (10% off)</a>
+      <a href="#">Two Years (25% off)</a>
     </div>
+  </div>
 </div>
-
 <div class="row">
-    <div class="columns three">
-        <span class="th-heading">Bronze</span>
-        <img src="/static/img/sepshadow_180.png" class="after">
-        <p class="price">
-            30 day free trial, then
-            <span><sup>$</sup>14</span>
-            per month after trial period
-        </p>
-        <p class="discount">(25% off $19/mo, paid every 2 years)</p>
-        <span class="your-plan">This is your plan.</span>
-        <a class="primary-button a-center plan-button" data-plan-name="bronze" style="visibility: visible;">Downgrade</a>
+  {{#each pricing.level}}
+  <div class="columns three pricing">
+    <div class="box">
+      <h2>{{ title }}</h2>
+      <h3 class="pricing--trial-text">
+        30 day free trial then
+        <span><sup>$</sup>{{monthly_price}}</span>
+        per month after trial period
+      </h3>
+      <h4>{{ save_text }}</h4>
     </div>
+    <div class="box">
+  </div>
+  {{/each}}
+</div>
+<div class="row header">
+  <div class="columns">
+    <h2>Platforms</h2>
+  </div>
+</div>
+<div class="row">
+  {{#each pricing.level}}
+  <div class="columns three platforms">
+    <div class="box">
+      <p>Web and Mobile Web</p>
+    </div>
+    <div class="box">
+      <p>iOS (Beta)</p>
+    </div>
+  </div>
+  {{/each}}
+</div>
+<div class="row header">
+  <div class="columns">
+    <h2>Features<sup>1</sup></h2>
+  </div>
+</div> --}}
+<div class="row">
+  {{#each pricing.levels}}
+  <div class="columns three platforms">
+    {{log this}}
+  </div>
+  {{/each}}
 </div>
