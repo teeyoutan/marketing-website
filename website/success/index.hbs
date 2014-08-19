@@ -19,13 +19,14 @@ layout_body_class:
 </div>
 {{/each}}
 
+{{#if success.team}}
 <div class="success-row divided">
   <div class="success-image">
     <img src="{{assetsDir}}/img/success/{{success.team.photo}}">
   </div>
   <div class="success-content">
-    {{!-- <h1 class="text-blue header-text">{{}}</h1> --}}
-    <h2>{{success.team.headline}}</h2>
+    {{#if success.team.headline}}<h2>{{success.team.headline}}</h2>{{/if}}
     {{{success.team.description}}}
   </div>
 </div>
+{{/if}}
