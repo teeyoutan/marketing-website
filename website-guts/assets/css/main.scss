@@ -175,6 +175,10 @@ ul {
         &.active {
           display: none;
         }
+        &.current {
+          color: $darkBlue;
+          font-weight: bold;
+        }
       }
       > li {
         display: inline-block;
@@ -253,6 +257,9 @@ ul {
     #page-content {background: $page-content-color;}
     #page-header-gradient {background-color: #f4f4f4;}
     .ugc {
+        ul {
+          margin-left: 20px;
+        }
         p, li {
             font-size: .9em;
         }

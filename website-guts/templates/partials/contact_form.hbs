@@ -1,4 +1,4 @@
-<div class="box clearfix">
+<div id="contact-form" class="box clearfix">
     <h4 class="a-center">{{#if page.form_heading}}{{page.form_heading}}{{else}}Questions? Contact us.{{/if}}</h4>
     <form id="contact-form" class="standard" autocomplete="off" novalidate="novalidate">
       <ul class="list-unstyled">
@@ -18,7 +18,7 @@
           <label for="website">Website</label>
           <input id="website" name="website" type="text">
         </li>
-        <li class="half left">
+        <li class="form-neighbors first">
           <label> 
             Monthly Visitors
             <a href="#" class="help-button" tabindex="-1" title=""></a>
@@ -33,7 +33,7 @@
             <option value="50MM + Monthly Visitors">50MM+</option>
           </select>
         </li>
-        <li class="half right">
+        <li class="form-neighbors last">
           <label for="phone">Phone</label>
           <input id="phone" name="phone" type="text">
         </li>
