@@ -1,5 +1,5 @@
 ---
-  level:
+  levels:
     -
       title: "Bronze"
       monthly_price: "$14"
@@ -8,14 +8,12 @@
       cost_additional_visitors: "$9/thousand additional visitors"
       number_experiments: "Unlimited experiments"
       features:
-        item:
-          value: Essential features*
-        item:
-          value: Targeting
-          tooltip: Target variations to visitors based on traffic source, language, cookie, browser, and more.
-        item:
-          value: Personalization
-          tooltip: Use targeting to deliver personalized experiences to the right audience.
+        - Essential features*
+          tooltip: sample
+        - Targeting
+        # tooltip: Target variations to visitors based on traffic source, language, cookie, browser, and more.
+        - Personalization
+          # tooltip: Use targeting to deliver personalized experiences to the right audience.
       account_management:
         item:
           value: "1 project per platform"
@@ -24,6 +22,10 @@
         item:
           value: "Online support"
           tooltip: "Massive library of online support resources at help.optimizely.com. Create online support tickets for issues specific to your account."
+        item:
+          value: ""
+        item:
+          value: ""
       support: Online support
     -
       title: "Silver"
@@ -33,16 +35,28 @@
       cost_additional_visitors: "$7/thousand additional visitors"
       number_experiments: "Unlimited experiments"
       features:
-        item:
+        feature:
           value: Essential features*
-        item:
+        feature:
           value: Targeting
           tooltip: Target variations to visitors based on traffic source, language, cookie, browser, and more.
-        item:
+        feature:
           value: Personalization
           tooltip: Use targeting to deliver personalized experiences to the right audience.
-        item:
+        feature:
           value: Cross-browser testing
+        feature:
+          value: ""
+        feature:
+          value: ""
+        feature:
+          value: ""
+        feature:
+          value: ""
+        feature:
+          value: ""
+        feature:
+          value: ""
       account_management:
         item:
           value: "2 projects per platform"
@@ -53,6 +67,8 @@
           tooltip: "Email our Customer Support team directly with billing or product-related questions."
         item:
           value: "2 business day response"
+        item:
+          value: ""
       support: Online support
     -
       title: "Gold"
@@ -62,22 +78,28 @@
       cost_additional_visitors: "$5/thousand additional visitors"
       number_experiments: "Unlimited experiments"
       features:
-        item:
+        feature:
           value: Essential features*
-        item:
+        feature:
           value: Targeting
           tooltip: Target variations to visitors based on traffic source, language, cookie, browser, and more.
-        item:
+        feature:
           value: Personalization
           tooltip: Use targeting to deliver personalized experiences to the right audience.
-        item:
+        feature:
           value: Cross-browser testing
-        item:
+        feature:
           value: Multi-page funnel testing
-        item:
+        feature:
           value: Multivariate testing
-        item:
+        feature:
           value: Visitor segmentation
+        feature:
+          value:
+        feature:
+          value:
+        feature:
+          value:
       account_management:
         item:
           value: "5 projects per platform"
@@ -99,27 +121,27 @@
       cost_additional_visitors: "As many monthly visitors as you need"
       number_experiments: "Unlimited experiments"
       features:
-        item:
+        feature:
           value: Essential features*
-        item:
+        feature:
           value: Advanced Targeting
           tooltip: "Target variations to visitors based on advanced criteria like geography and IP address."
-        item:
+        feature:
           value: Advanced Personalization
           tooltip: "Use advanced targeting to deliver even more personalized experiences to the right audience."
-        item:
+        feature:
           value: Cross-browser testing
-        item:
+        feature:
           value: Multi-page funnel testing
-        item:
+        feature:
           value: Multivariate testing
-        item:
+        feature:
           value: Custom visitor segmentation
-        item:
+        feature:
           value: Geotargeting
-        item:
+        feature:
           value: IP address targeting
-        item:
+        feature:
           value: Experiment change history
       account_management:
         item:
