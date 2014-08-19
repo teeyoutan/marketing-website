@@ -6,7 +6,7 @@ body_class:
 - pricing
 ---
 
-{{!-- <div class="row">
+<div class="row">
   <div class="columns twelve pill-cont">
     <p>Your current plan is <span>gold</span></p>
     <div class="pill">
@@ -16,30 +16,44 @@ body_class:
     </div>
   </div>
 </div>
-<div class="row">
-  {{#each pricing.level}}
-  <div class="columns three pricing">
+
+<div class="pricing-col-wrapper main-info">
+{{#each pricing.levels}}
+  <div class="pricing-col">
     <div class="box">
       <h2>{{ title }}</h2>
+      {{#notEqual title 'Platinum' }}
       <h3 class="pricing--trial-text">
         30 day free trial then
         <span><sup>$</sup>{{monthly_price}}</span>
         per month after trial period
       </h3>
       <h4>{{ save_text }}</h4>
+      <div class="button-cont">
+        <a class="button" href="#">Get Started</a>
+      </div>
+      {{/notEqual}}
     </div>
     <div class="box">
+      <p>{{addCommas monthly_visitors}} monthly visitors</p>
+      <p>{{ cost_additional_visitors }}</p>
+    </div>
+    <div class="box">
+      <p>{{number_experiments}}</p>
+    </div>
   </div>
-  {{/each}}
+{{/each}}
 </div>
+
 <div class="row header">
   <div class="columns">
     <h2>Platforms</h2>
   </div>
 </div>
-<div class="row">
-  {{#each pricing.level}}
-  <div class="columns three platforms">
+
+<div class="pricing-col-wrapper">
+{{#each pricing.levels}}
+  <div class="pricing-col">
     <div class="box">
       <p>Web and Mobile Web</p>
     </div>
@@ -47,17 +61,68 @@ body_class:
       <p>iOS (Beta)</p>
     </div>
   </div>
-  {{/each}}
+{{/each}}
 </div>
+
 <div class="row header">
   <div class="columns">
     <h2>Features<sup>1</sup></h2>
   </div>
-</div> --}}
-<div class="row">
-  {{#each pricing.levels}}
-  <div class="columns three platforms">
-    {{log this}}
+</div>
+
+<div class="pricing-col-wrapper">
+{{#each pricing.levels}}
+  <div class="pricing-col">
+    {{#features}}
+    <div class="box">
+      <p>{{this.feature.value}}
+        {{#if this.feature.tooltip}}
+        <span class="tooltip-hover" data-content="{{ this.feature.tooltip }}">?</span>
+        {{/if}}
+      </p>
+    </div>
+    {{/features}}
   </div>
-  {{/each}}
+{{/each}}
+</div>
+
+ <div class="row header">
+   <div class="columns">
+     <h2>Account Management</h2>
+   </div>
+ </div>
+
+<div class="pricing-col-wrapper">
+{{#each pricing.levels}}
+  <div class="pricing-col">
+    {{#account_management}}
+    <div class="box">
+      <p>{{this.item.value}}
+        {{#if this.item.tooltip}}
+        <span class="tooltip-hover" data-content="{{ this.item.tooltip }}">?</span>
+        {{/if}}
+      </p>
+    </div>
+    {{/account_management}}
+  </div>
+{{/each}}
+</div>
+
+
+<div class="row header">
+  <div class="columns">
+    <h2>Support & Customer Service <sup>2</sup></h2>
+  </div>
+</div>
+
+<div class="pricing-col-wrapper">
+{{#each pricing.levels}}
+  <div class="pricing-col">
+   {{#support}}
+   <div class="box">
+     <p>{{this}}</p>
+   </div>
+   {{/support}}
+  </div>
+{{/each}}
 </div>
