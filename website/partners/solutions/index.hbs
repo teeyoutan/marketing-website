@@ -57,22 +57,19 @@ script_dependencies:
         </div>
         <div class="dropdown-cont">Star Rating &#9662;
           <ul>
-            <li class="filter-item" data-filter="1-star">
-              <span class="star-cont star-cont--1"></span>
+            <li class="filter-item" data-filter="3-star">
+              <span class="star-cont star-cont--3"></span>
             </li>
             <li class="filter-item" data-filter="2-star">
               <span class="star-cont star-cont--2"></span>
             </li>
-            <li class="filter-item" data-filter="3-star">
-              <span class="star-cont star-cont--3"></span>
+            <li class="filter-item" data-filter="1-star">
+              <span class="star-cont star-cont--1"></span>
             </li>
           </ul>
         </div>
         <div class="dropdown-cont dropdown-cont--columns">Industry &#9662;
           <ul>
-            <li class="filter-item" data-filter="fullservice">Full Service</li>
-            <li class="filter-item" data-filter="testdevelopment">Test Development</li>
-            <li class="filter-item" data-filter="strategicconsulting">Strategic Consulting</li>
             {{#each tags}}
             <li class="filter-item" data-filter="{{createClassList tag}}">{{tag}}</li>
             {{/each}}
@@ -94,7 +91,10 @@ script_dependencies:
             <div class="partner-grid-elm {{#if data.stars}}{{data.stars}}-star{{/if}} {{createClassList data.region}} {{#each data.tags}}{{createClassList this}}{{/each}}" data-priority="{{data.priority}}">
               <div class="title-container">
                 <h4 class="partner-title"><a href="{{linkPath}}/{{this.dest}}">{{data.title}}</a></h4>
-                <div class="partner-location">{{data.city}}{{#if data.city}}{{#if data.state}}, {{/if}}{{/if}}{{data.state}}</div>
+                {{#each data.locations}}
+                  <div class="partner-location" data-region="{{createClassList this.item.region}}">{{this.item.city}}{{#if this.item.city}}{{#if this.item.state}}, {{/if}}{{/if}}{{this.item.state}}</div>
+                {{/each}}
+                {{!-- todo(ccorda) need to check if country = usa, show state if so, should country otherwise.  Probably need handlebar-helpers is/isnt --}}
               </div> <!-- .title-container -->
               <div class="partner-inner-content">
                 <a href="{{linkPath}}/{{this.dest}}" class="partner-logos" style="background-image: url('{{data.logo}}');"></a>
