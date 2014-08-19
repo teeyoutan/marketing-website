@@ -1,0 +1,41 @@
+services:
+-
+ title: "Support"
+ icon: "Support.png"
+ headline: "High quality answers in no time."
+ description: "<p>High quality answers to technical issues or questions about how to use certain features. We have a standard 1 day response SLA for enterprise organizations, with premium support plans available for faster responses.</p>"
+-
+ title: "Education"
+ icon: "Education.png"
+ headline: "A massive library of optimization strategy and product resources at your fingertips."
+ description: "<p>Whether you’re just getting started with learning the basics or expanding to advanced areas, we’ve built a massive library of <a href='learn.optimizely.com'>learning resources</a> to guide your testing strategy and product learning needs.</p>"
+-
+ title: "Enablement"
+ icon: "Enablement.png"
+ headline: "Technical and testing strategy experts to help make you successful."
+ description:
+  "<p><strong>Launch Sessions</strong> are led by a dedicated Optimizely expert to guide advanced setup, product training, and launching experiments.</p>
+  <p><strong>Ongoing Coaching</strong> Sessions provide continued access to technical and testing strategy experts to ensure you get maximum value out of your experiments.</p>"
+-
+ title: "Solutions Partners"
+ headline: "Network of partner agencies to provide strategy and execution."
+ icon: "Solutions-Partners.png"
+ description: "<p>Solutions Partners provide a range of short and long term fee based services which can help achieve insights and business results quicker. Learn more about our <a href='www.optimizely.com/partners'>Solutions Partners.</a></p>"
+-
+ title: "Certification"
+ headline: "Showcase your optimization expertise."
+ icon: "Certification.jpg"
+ description:
+  "<p>Be recognized for your experience and knowledge of the Optimizely platform and conversion rate optimization. Increase your credibility and further your career goals. Learn more about the <a href='http://certification.optimizely.com/''>Optimizely Certification Program.</a></p>"
+-
+ title: "Optiverse"
+ headline: "A space for experimenters to unite, explore & optimize."
+ icon: "optiverse_logo.png"
+ description: "<p>Leverage Optiverse to build a network of optimization peers, get product support, and explore new optimization techniques and testing ideas. Explore the <a href='http://community.optimizely.com/'>Optiverse.</a></p>"
+
+team:
+ headline: "Our team of experts will help you achieve your optimization goals."
+ photo: "Team.jpg"
+ description:
+  "<p>We live, work and play in Denver, San Francisco and Amsterdam.</p>
+  <p>Our professional experiences span amazing organizations including Accenture, Apple, Bear Stearns, Causes.com, Charles Schwab, Hilton Hotels, KPMG, NASA Jet Propulsion Laboratory, Nordstroms, Salesforce.com, Space Frontier Foundation, Vail Resorts, US Embassy, U.S. House of Representatives, World Food Programme and building startups.</p>"
