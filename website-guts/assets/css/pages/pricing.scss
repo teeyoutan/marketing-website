@@ -6,4 +6,49 @@
     margin: 0 auto;
     width: 50%;
   }
+
+  .pricing-col-wrapper {
+    display: flex;
+    &.main-info {
+      .pricing-col {
+        .box {
+          flex: none;
+        }
+      }
+    }
+  }
+  .pricing-col {
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    .box {
+      flex: 1;
+      padding: 15px;
+      > * {
+        // reset all margins
+        margin: 0;
+        text-align: center;
+      }
+      h4 {
+        font-size: 11px;
+      }
+      p {
+        margin: 0;
+      }
+      a {
+        display: inline-block;
+      }
+    }
+  }
+  .pricing--trial-text {
+    color: $blue;
+    font-size: 12px;
+    span {
+      display: block;
+      font-size: 44px;
+      sup {
+        font-size: 20px;
+      }
+    }
+  }
 }
