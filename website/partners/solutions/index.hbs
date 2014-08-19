@@ -88,18 +88,18 @@ script_dependencies:
       <div class="row partner-grid">
         {{#solutions}}
           {{#each pages}}
-            <div class="partner-grid-elm {{#if data.stars}}{{data.stars}}-star{{/if}} {{createClassList data.region}} {{#each data.tags}}{{createClassList this}}{{/each}}" data-priority="{{data.priority}}">
+            <div class="partner-grid-elm {{#if data.stars}}{{data.stars}}-star{{/if}} {{#each data.locations}}{{createClassList this.location.region}}{{/each}} {{#each data.tags}}{{createClassList this}}{{/each}}" data-priority="{{data.priority}}">
               <div class="title-container">
                 <h4 class="partner-title"><a href="{{linkPath}}/{{this.dest}}">{{data.title}}</a></h4>
                 {{#each data.locations}}
-                  <div class="partner-location" data-region="{{createClassList this.item.region}}">{{this.item.city}}{{#if this.item.city}}{{#if this.item.state}}, {{/if}}{{/if}}{{this.item.state}}</div>
+                  <div class="partner-location {{#if @first}}active{{/if}}" data-region="{{createClassList this.location.region}}">{{this.location.city}}{{#if this.location.city}}{{#if this.location.state}}, {{/if}}{{/if}}{{this.location.state}}</div>
                 {{/each}}
                 {{!-- todo(ccorda) need to check if country = usa, show state if so, should country otherwise.  Probably need handlebar-helpers is/isnt --}}
               </div> <!-- .title-container -->
               <div class="partner-inner-content">
                 <a href="{{linkPath}}/{{this.dest}}" class="partner-logos" style="background-image: url('{{data.logo}}');"></a>
                 <div class="level">
-                  <div class="level-heading">Certification Level: <span class="tooltip-hover" data-content="lorem ipsum dolor">?</span></div>
+                  <div class="level-heading">Partner Level: <span class="tooltip-hover tooltip-hover--sup" data-content="lorem ipsum dolor">?</span></div>
                   <div class="star-cont {{#if data.stars}}star-cont--{{data.stars}}{{/if}}"></div>
                 </div>
               </div>

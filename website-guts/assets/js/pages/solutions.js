@@ -26,6 +26,17 @@ window.optly.mrkt.filter = {
       $this.parent().find('li').not( $this ).removeClass( 'active' );
       $this.toggleClass( 'active' );
       self.updateIsotope();
+      // update regions to show local address
+      if ($this.closest('.dropdown-cont').hasClass('dropdown-cont--region')) {
+        var region = $(this).data('filter');
+        $('.partner-location').each( function() {
+          if ($(this).data('region') === region){
+            $(this).addClass('active');
+          } else {
+            $(this).removeClass('active');
+          }
+        });
+      }
     });
 
     $('.filter--reset').on('click', function(e) {

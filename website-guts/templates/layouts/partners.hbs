@@ -34,12 +34,17 @@ sub_head: World-class service providers. Empowered customers. Lasting results.
             </div>
 
             <div class="partners-contact">
-              {{#if phone}}{{phone}} <br />{{/if}}
-              {{#if email}}<a href="mailto:{{email}}">{{email}}</a> <br />{{/if}}
-              <br />
-              {{#if address1}}{{address1}} <br />{{/if}}
-              {{#if address2}}{{address2}} <br />{{/if}}
-              {{#if city}}{{city}}, {{/if}}{{#if state}}{{state}} {{/if}}{{zip}}<br />
+              {{#each page.data.locations}}
+                <div class="partners-location">
+                  {{#if this.location.phone}}{{this.location.phone}} <br />{{/if}}
+                  {{#if this.location.email}}<a href="mailto:{{this.location.email}}">{{this.location.email}}</a> <br />{{/if}}
+                  <br />
+                  {{#if this.location.address1}}{{this.location.address1}} <br />{{/if}}
+                  {{#if this.location.address2}}{{this.location.address2}} <br />{{/if}}
+                  {{#if this.location.city}}{{this.location.city}}, {{/if}}{{#if this.location.state}}{{this.location.tate}} {{/if}}{{this.location.zip}}<br />
+                  {{#if this.location.country}}{{this.location.country}} <br />{{/if}}
+                </div>
+              {{/each}}
             </div>
 
             {{#if languages}}
@@ -55,7 +60,7 @@ sub_head: World-class service providers. Empowered customers. Lasting results.
             <div class="level">
               {{#if page.data.solutions }}
                 {{#if stars}}
-                  <div class="level-heading">Certification Level: <span class="tooltip-hover" data-content="lorem ipsum dolor">?</span></div>
+                  <div class="level-heading">Partner Level: <span class="tooltip-hover" data-content="lorem ipsum dolor">?</span></div>
                   <div class="star-cont {{#if stars}}star-cont--{{stars}}{{/if}} star-left"></div>
                 {{/if}}
               {{/if}}

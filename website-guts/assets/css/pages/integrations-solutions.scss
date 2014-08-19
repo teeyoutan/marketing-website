@@ -97,6 +97,7 @@ body.integrations-solutions {
     .tooltip-hover {
       height: 15px;
       width: 15px;
+      top: -5px;
       &:hover {
         cursor: help;
       }
@@ -148,6 +149,10 @@ body.integrations-solutions {
       color: #a9a9a9;
       text-transform: uppercase;
       font-weight: 400;
+      display: none;
+      &.active {
+        display: block;
+      }
     }
 
     .partner-inner-content {
@@ -191,19 +196,30 @@ body.integrations-solutions {
     .partners-logo {
       background-repeat: no-repeat;
       background-size: contain;
-      background-position: center bottom;
+      background-position: left bottom;
       margin: 0 auto;
       height: 80px;
       width: 100%;
       max-width: 250px;
       display: block;
+
+      @media (max-width: 960px) {
+        background-position: center bottom;
+      }
     }
+
 
     .partners-back,
     .partners-logo,
     .partners-contact,
     .partners-tags {
       margin-bottom: 1em;
+    }
+
+    .partners-location {
+      margin-top: 1em;
+      border-top: 1px solid rgb(213, 213, 213);;
+      padding-top: 1em;
     }
 
     .partners-misc,
@@ -231,8 +247,17 @@ body.integrations-solutions {
       text-transform: uppercase;
     }
 
+    .tooltip-hover {
+      height: 15px;
+      width: 15px;
+      top: -5px;
+      &:hover {
+        cursor: help;
+      }
+    }
+
     .star-cont {
-      height: 20px;
+      height: 16px;
       margin: 5px 0;
       @media (max-width: 960px) {
         background-position: center center;
