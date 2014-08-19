@@ -1,41 +1,47 @@
 services:
 -
  title: "Support"
- icon: "Support.png"
+ icon: "https://d1qmdf3vop2l07.cloudfront.net/optimizely-marketer-assets.cloudvent.net/raw/support-icon.png"
  headline: "High quality answers in no time."
- description: "<p>High quality answers to technical issues or questions about how to use certain features. We have a standard 1 day response SLA for enterprise organizations, with premium support plans available for faster responses.</p>"
+ description: |
+  High quality answers to technical issues or questions about how to use certain features. We have a standard 1 day response SLA for enterprise organizations, with premium support plans available for faster responses.
 -
  title: "Education"
- icon: "Education.png"
+ icon: "https://d1qmdf3vop2l07.cloudfront.net/optimizely-marketer-assets.cloudvent.net/raw/education-icon.png"
  headline: "A massive library of optimization strategy and product resources at your fingertips."
- description: "<p>Whether you’re just getting started with learning the basics or expanding to advanced areas, we’ve built a massive library of <a href='learn.optimizely.com'>learning resources</a> to guide your testing strategy and product learning needs.</p>"
+ description: |
+  Whether you’re just getting started with learning the basics or expanding to advanced areas, we’ve built a massive library of [learning resources](http://learn.optimizely.com) to guide your testing strategy and product learning needs.
 -
  title: "Enablement"
- icon: "Enablement.png"
+ icon: "https://d1qmdf3vop2l07.cloudfront.net/optimizely-marketer-assets.cloudvent.net/raw/enablement-icon.png"
  headline: "Technical and testing strategy experts to help make you successful."
- description:
-  "<p><strong>Launch Sessions</strong> are led by a dedicated Optimizely expert to guide advanced setup, product training, and launching experiments.</p>
-  <p><strong>Ongoing Coaching</strong> Sessions provide continued access to technical and testing strategy experts to ensure you get maximum value out of your experiments.</p>"
+ description: |
+  **Launch Sessions** are led by a dedicated Optimizely expert to guide advanced setup, product training, and launching experiments.
+
+  **Ongoing Coaching** Sessions provide continued access to technical and testing strategy experts to ensure you get maximum value out of your experiments.
 -
  title: "Solutions Partners"
  headline: "Network of partner agencies to provide strategy and execution."
- icon: "Solutions-Partners.png"
- description: "<p>Solutions Partners provide a range of short and long term fee based services which can help achieve insights and business results quicker. Learn more about our <a href='www.optimizely.com/partners'>Solutions Partners.</a></p>"
+ icon: "https://d1qmdf3vop2l07.cloudfront.net/optimizely-marketer-assets.cloudvent.net/raw/solutions-partners-icon.png"
+ description: |
+  Solutions Partners provide a range of short and long term fee based services which can help achieve insights and business results quicker. Learn more about our [Solutions Partners](http://www.optimizely.com/partners).
 -
  title: "Certification"
  headline: "Showcase your optimization expertise."
- icon: "Certification.jpg"
- description:
-  "<p>Be recognized for your experience and knowledge of the Optimizely platform and conversion rate optimization. Increase your credibility and further your career goals. Learn more about the <a href='http://certification.optimizely.com/''>Optimizely Certification Program.</a></p>"
+ icon: "https://d1qmdf3vop2l07.cloudfront.net/optimizely-marketer-assets.cloudvent.net/raw/certification-icon.jpg"
+ description: |
+  Be recognized for your experience and knowledge of the Optimizely platform and conversion rate optimization. Increase your credibility and further your career goals. Learn more about the [Optimizely Certification Program](http://certification.optimizely.com/).
 -
  title: "Optiverse"
  headline: "A space for experimenters to unite, explore & optimize."
- icon: "optiverse_logo.png"
- description: "<p>Leverage Optiverse to build a network of optimization peers, get product support, and explore new optimization techniques and testing ideas. Explore the <a href='http://community.optimizely.com/'>Optiverse.</a></p>"
+ icon: "https://d1qmdf3vop2l07.cloudfront.net/optimizely-marketer-assets.cloudvent.net/raw/optiverse-logo.png"
+ description: |
+  Leverage Optiverse to build a network of optimization peers, get product support, and explore new optimization techniques and testing ideas. Explore the [Optiverse](http://community.optimizely.com/).
 
 team:
  headline: "Our team of experts will help you achieve your optimization goals."
  photo: "Team.jpg"
- description:
-  "<p>We live, work and play in Denver, San Francisco and Amsterdam.</p>
-  <p>Our professional experiences span amazing organizations including Accenture, Apple, Bear Stearns, Causes.com, Charles Schwab, Hilton Hotels, KPMG, NASA Jet Propulsion Laboratory, Nordstroms, Salesforce.com, Space Frontier Foundation, Vail Resorts, US Embassy, U.S. House of Representatives, World Food Programme and building startups.</p>"
+ description: |
+  We live, work and play in Denver, San Francisco and Amsterdam.
+
+  Our professional experiences span amazing organizations including Accenture, Apple, Bear Stearns, Causes.com, Charles Schwab, Hilton Hotels, KPMG, NASA Jet Propulsion Laboratory, Nordstroms, Salesforce.com, Space Frontier Foundation, Vail Resorts, US Embassy, U.S. House of Representatives, World Food Programme and building startups.

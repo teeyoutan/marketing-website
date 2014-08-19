@@ -9,12 +9,12 @@ layout_body_class:
 {{#each success.services}}
 <div class="success-row">
   <div class="success-image">
-    <img src="{{../assetsDir}}/img/success/{{icon}}">
+    <img src="{{icon}}">
   </div>
   <div class="success-content">
     <h1 class="text-blue header-text">{{title}}</h1>
     <h2>{{headline}}</h2>
-    {{{description}}}
+    {{#markdown}}{{{description}}}{{/markdown}}
   </div>
 </div>
 {{/each}}
@@ -26,7 +26,7 @@ layout_body_class:
   </div>
   <div class="success-content">
     {{#if success.team.headline}}<h2>{{success.team.headline}}</h2>{{/if}}
-    {{{success.team.description}}}
+    {{#markdown}}{{{success.team.description}}}{{/markdown}}
   </div>
 </div>
 {{/if}}
