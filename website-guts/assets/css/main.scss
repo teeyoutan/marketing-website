@@ -175,6 +175,10 @@ ul {
         &.active {
           display: none;
         }
+        &.current {
+          color: $darkBlue;
+          font-weight: bold;
+        }
       }
       > li {
         display: inline-block;
