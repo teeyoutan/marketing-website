@@ -1,0 +1,32 @@
+---
+layout: page_success.hbs
+seo_title: Customer Success
+visible_title: Customer Success
+layout_body_class:
+- success
+---
+
+{{#each success.services}}
+<div class="success-row">
+  <div class="success-image">
+    <img src="{{../assetsDir}}/img/success/{{icon}}">
+  </div>
+  <div class="success-content">
+    <h1 class="text-blue header-text">{{title}}</h1>
+    <h2>{{headline}}</h2>
+    {{{description}}}
+  </div>
+</div>
+{{/each}}
+
+{{#if success.team}}
+<div class="success-row divided">
+  <div class="success-image">
+    <img src="{{assetsDir}}/img/success/{{success.team.photo}}">
+  </div>
+  <div class="success-content">
+    {{#if success.team.headline}}<h2>{{success.team.headline}}</h2>{{/if}}
+    {{{success.team.description}}}
+  </div>
+</div>
+{{/if}}
