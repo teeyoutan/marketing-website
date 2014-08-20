@@ -21,36 +21,39 @@ sub_head: World-class service providers. Empowered customers. Lasting results.
           <div class="columns four">
             <div class="partners-back">
               {{#if page.data.solutions }}
-                <a href="{{linkPath}}/partners/solutions">&lt; See all Solutions Partners</a>
+                <a href="{{linkPath}}/partners/solutions">&lt; {{{partners.solutions.see_all}}}</a>
               {{else}}
-                <a href="{{linkPath}}/partners/integrations">&lt; See all Integrations Partners</a>
+                <a href="{{linkPath}}/partners/integrations">&lt; {{{partners.integrations.see_all}}}</a>
               {{/if}}
             </div>
 
             <div class="partners-logo" style="background-image: url('{{logo}}');"></div>
 
             <div class="partners-link">
-              <a href="{{website_link}}">{{website_display}}</a>
+              <p><a href="{{website_link}}">{{website_display}}</a></p>
             </div>
 
             <div class="partners-contact">
               {{#each page.data.locations}}
                 <div class="partners-location">
-                  {{#if this.location.phone}}{{this.location.phone}} <br />{{/if}}
-                  {{#if this.location.email}}<a href="mailto:{{this.location.email}}">{{this.location.email}}</a> <br />{{/if}}
-                  <br />
-                  {{#if this.location.address1}}{{this.location.address1}} <br />{{/if}}
-                  {{#if this.location.address2}}{{this.location.address2}} <br />{{/if}}
-                  {{#if this.location.city}}{{this.location.city}}, {{/if}}{{#if this.location.state}}{{this.location.tate}} {{/if}}{{this.location.zip}}<br />
-                  {{#if this.location.country}}{{this.location.country}} <br />{{/if}}
+                  <p>
+                    {{#if this.location.phone}}{{this.location.phone}} <br />{{/if}}
+                    {{#if this.location.email}}<a href="mailto:{{this.location.email}}">{{this.location.email}}</a> <br />{{/if}}
+                    <br />
+                    {{#if this.location.address1}}{{this.location.address1}} <br />{{/if}}
+                    {{#if this.location.address2}}{{this.location.address2}} <br />{{/if}}
+                    {{#if this.location.city}}{{this.location.city}}, {{/if}}{{stateCountry this.location.state this.location.country }} {{this.location.zip}}<br />
+                  </p>
                 </div>
               {{/each}}
             </div>
 
             {{#if languages}}
               <div class="partners-languages">
-                <strong>LANGUAGES</strong> <br />
-                {{#eachNoTrailing languages ", "}}{{.}}, {{/eachNoTrailing}}
+                <p>
+                  <strong>{{{partners.languages}}}</strong> <br />
+                  {{#eachNoTrailing languages ", "}}{{.}}, {{/eachNoTrailing}}
+                </p>
               </div>
             {{/if}}
           </div>
@@ -60,7 +63,7 @@ sub_head: World-class service providers. Empowered customers. Lasting results.
             <div class="level">
               {{#if page.data.solutions }}
                 {{#if stars}}
-                  <div class="level-heading">Partner Level: <span class="tooltip-hover" data-content="lorem ipsum dolor">?</span></div>
+                  <div class="level-heading">{{{partners.solutions.filter.stars}}}: <span class="tooltip-hover" data-content="lorem ipsum dolor">?</span></div>
                   <div class="star-cont {{#if stars}}star-cont--{{stars}}{{/if}} star-left"></div>
                 {{/if}}
               {{/if}}
@@ -72,13 +75,13 @@ sub_head: World-class service providers. Empowered customers. Lasting results.
 
             {{#if page.tags}}
             <div class="partners-tags">
-              {{#eachNoTrailing page.tags ", </span>"}}<span>{{this}}, </span>{{/eachNoTrailing}}
+              <p>{{#eachNoTrailing page.tags ", </span>"}}<span>{{this}}, </span>{{/eachNoTrailing}}</p>
             </div>
             {{/if}}
 
             {{#if kb_article}}
             <a class="button" href="{{kb_article}}">
-              Read Knowlege Base Article
+              {{{partners.solutions.kb_article}}}
             </a>
             {{/if}}
           </div>

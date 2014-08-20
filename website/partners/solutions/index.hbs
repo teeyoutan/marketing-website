@@ -37,25 +37,17 @@ script_dependencies:
   </div>
 
   <div class="row">
-    <div class="columns filter">
+    <div class="columns twelve filter">
       <div class="pill clearfix">
-        <div class="heading">Filter By:</div>
-        <div class="dropdown-cont dropdown-cont--region">Region &#9662;
+        <div class="heading">{{{partners.solutions.filter.title}}}:</div>
+        <div class="dropdown-cont dropdown-cont--region">{{{partners.solutions.filter.region}}} &#9662;
           <ul>
-            <li class="filter-item" data-filter="{{ createClassList 'Asia Pacific'}}">Asia Pacific</li>
-            <li class="filter-item" data-filter="{{ createClassList 'EMEA - France'}}">EMEA - France</li>
-            <li class="filter-item" data-filter="{{ createClassList 'EMEA - Germany'}}">EMEA - Germany</li>
-            <li class="filter-item" data-filter="{{ createClassList 'EMEA - UK'}}">EMEA - UK</li>
-            <li class="filter-item" data-filter="{{ createClassList 'EMEA - Netherlands'}}">EMEA - Netherlands</li>
-            <li class="filter-item" data-filter="{{ createClassList 'EMEA - Other'}}">EMEA - Other</li>
-            <li class="filter-item" data-filter="{{ createClassList 'North America - US East'}}">North America - US East</li>
-            <li class="filter-item" data-filter="{{ createClassList 'North America - US Central'}}">North America - US Central</li>
-            <li class="filter-item" data-filter="{{ createClassList 'North America - US West'}}">North America - US West</li>
-            <li class="filter-item" data-filter="{{ createClassList 'North America - Other'}}">North America - Other</li>
-            <li class="filter-item" data-filter="{{ createClassList 'South America / Central America'}}">South America / Central America</li>
+            {{#each partners.solutions.filter.regions}}
+              <li class="filter-item" data-filter="{{ createClassList this }}">{{this}}</li>
+            {{/each}}
           </ul>
         </div>
-        <div class="dropdown-cont">Star Rating &#9662;
+        <div class="dropdown-cont">{{{partners.solutions.filter.stars}}} &#9662;
           <ul>
             <li class="filter-item" data-filter="3-star">
               <span class="star-cont star-cont--3"></span>
@@ -68,7 +60,7 @@ script_dependencies:
             </li>
           </ul>
         </div>
-        <div class="dropdown-cont dropdown-cont--columns">Industry &#9662;
+        <div class="dropdown-cont dropdown-cont--columns">{{{partners.solutions.filter.vertical}}} &#9662;
           <ul>
             {{#each tags}}
             <li class="filter-item" data-filter="{{createClassList tag}}">{{tag}}</li>
@@ -83,7 +75,7 @@ script_dependencies:
   <div class="row">
     <div class="integrations-container container">
       <div class="integrations-message">
-        <p>No results found</p>
+        <p>{{{partners.solutions.filter.no_results}}}</p>
       </div>
       <div class="row partner-grid">
         {{#solutions}}
@@ -92,20 +84,19 @@ script_dependencies:
               <div class="title-container">
                 <h4 class="partner-title"><a href="{{linkPath}}/{{this.dest}}">{{data.title}}</a></h4>
                 {{#each data.locations}}
-                  <div class="partner-location {{#if @first}}active{{/if}}" data-region="{{createClassList this.location.region}}">{{this.location.city}}{{#if this.location.city}}{{#if this.location.state}}, {{/if}}{{/if}}{{this.location.state}}</div>
+                  <div class="partner-location {{#if @first}}active{{/if}}" data-region="{{createClassList this.location.region}}">{{this.location.city}}, {{stateCountry this.location.state this.location.country }}</div>
                 {{/each}}
                 {{!-- todo(ccorda) need to check if country = usa, show state if so, should country otherwise.  Probably need handlebar-helpers is/isnt --}}
               </div> <!-- .title-container -->
               <div class="partner-inner-content">
                 <a href="{{linkPath}}/{{this.dest}}" class="partner-logos" style="background-image: url('{{data.logo}}');"></a>
                 <div class="level">
-                  <div class="level-heading">Partner Level: <span class="tooltip-hover tooltip-hover--sup" data-content="lorem ipsum dolor">?</span></div>
+                  <div class="level-heading">{{{../../partners.solutions.filter.stars}}}: <span class="tooltip-hover tooltip-hover--sup" data-content="lorem ipsum dolor">?</span></div>
                   <div class="star-cont {{#if data.stars}}star-cont--{{data.stars}}{{/if}}"></div>
                 </div>
               </div>
               <div class="button-container">
-                <a href="{{linkPath}}/{{this.dest}}" class="button">Learn More &gt;</a>
-                <!-- {{ this.dest }}-->
+                <a href="{{linkPath}}/{{this.dest}}" class="button">{{{../../partners.more}}} &gt;</a>
               </div>
             </div>
           {{/each}}

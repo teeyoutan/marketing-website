@@ -1,5 +1,7 @@
 var $dropdownElems = $('.dropdown-cont');
 var $filterElems = $('.filter-item');
+var $locationElems = $('.partner-location');
+var $locationElemsFirst = $('.partner-location:first-of-type');
 var $isoContainer;
 
 // FUNCTIONS
@@ -42,6 +44,8 @@ window.optly.mrkt.filter = {
     $('.filter--reset').on('click', function(e) {
       e.preventDefault();
       $filterElems.removeClass( 'active' );
+      $locationElems.removeClass( 'active' );
+      $locationElemsFirst.addClass( 'active' );
       self.updateIsotope();
     });
 
