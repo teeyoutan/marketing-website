@@ -1,5 +1,5 @@
 ---
-layout: page.hbs
+layout: seo.hbs
 seo_title: What is A/B Testing?
 visible_title: What is A/B Testing?
 body_class:
@@ -30,13 +30,4 @@ body: |
 
   What assumptions are you making about your site right now? Load your site into the [Optimizely editor](/), click “Test it Out” and see how simple it is to set up an AB test or [multivariate test](/resources/multivariate-test-vs-ab-test) with Optimizely. Your improved site is the only outcome.
 ---
-<div class="row">
-  <div class="columns ten offset-one">
-    {{#omarkdown path=linkPath}}{{page.body}}{{/omarkdown}}
-  </div>
-</div>
-<div class="row">
-  <div class="attention a-center">
-    <h5>Start using Optimizely to test your website today!  <a href="/pricing" class="primary-button">View Plans &amp; Pricing</a></h5>
-  </div>
-</div>
+{{{page.body}}}

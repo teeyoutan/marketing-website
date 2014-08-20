@@ -199,14 +199,29 @@ ul {
     }
     .ugc {
         color: #242424;
+        li {
+          text-align: left;
+        }
+        p, ul, ol {
+          margin: 1em 0 1em 0;
+        }
         p, li {
             font-size: 1.1em;
         }
         p {
             line-height: 1.7;
+            text-align: left;
+            img {
+              display: block;
+              margin: 1em auto 1em auto;
+            }
         }
         li {margin-bottom: 7px;}
-        h2, h3, h4, h5, p, li {
+        h2, h3, h4, h5 {
+          font-weight: 400;
+          font-family: $gotham-small-type;
+        }
+        p, li {
             font-weight: 100;
         }
         h2, h3, h4, h5 {
@@ -266,6 +281,11 @@ ul {
         h2, h3, h3, h4, h5 {
             text-align: left;
         }
+        p {
+          img {
+            float: right;
+          }
+        }
     }
 }
 
@@ -280,6 +300,7 @@ ul {
           list-style-type: none;
           display: inline-block;
           margin-left: .8em;
+          text-align: left;
       }
       a {
           text-decoration: none;
