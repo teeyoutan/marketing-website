@@ -7,8 +7,6 @@ var History = window.History || {},
   baseUrl = document.URL,
   initialTime = Date.now(),
   lastPop,
-  testEl = $('#vh-test'),
-  vhSupported,
   //isSafari = /Safari/.test(navigator.userAgent) && /Apple Computer/.test(navigator.vendor),
   //isIosSafari = /(iPhone|iPod|iPad).*AppleWebKit(?!.*Safari)/i.test(navigator.userAgent) || /(iPhone|iPod|iPad).*AppleWebKit/i.test(navigator.userAgent),
   //isIosChrome = !!navigator.userAgent.match('CriOS'),
@@ -108,7 +106,8 @@ function storeModalState(modalType, modalOpen) {
 }
 
 window.optly.mrkt.modal.open = function(modalType) {
-  var $elm = $elms[modalType];
+  var $elm = $elms[modalType],
+    animInitiated;
   // if modalState exists then close modal of the currently open modal state
   if(modalState.type !== undefined) {
     window.optly.mrkt.modal.close(modalState.type);
@@ -128,15 +127,18 @@ window.optly.mrkt.modal.open = function(modalType) {
                     next();
                  });
 
-  // Fade in the modal and attach the close modal handler
-  $elm.bind('click', closeModalHandler);
+  animInitiated = window.optly.mrkt.anim.enter( $elm );
 
-  window.optly.mrkt.anim.enter( $elm );
-
+  if (animInitiated) {
+    // Fade in the modal and attach the close modal handler
+    $elm.bind('click', closeModalHandler);
+  }
+  
 };
 
 window.optly.mrkt.modal.close = function(modalType) {
-  var $elm = $elms[modalType];
+  var $elm = $elms[modalType],
+    animInitiated;
 
   // update the global modal state
   modalState.type = undefined;
@@ -154,10 +156,11 @@ window.optly.mrkt.modal.close = function(modalType) {
     window.scrollTo(0,0);
     $elm.children()[0].scrollTop = 0;
 
-    // Fade out the modal and unbind the close modal click handler
-    $elm.unbind('click', closeModalHandler);
+    animInitiated = window.optly.mrkt.anim.leave( $elm );
 
-    window.optly.mrkt.anim.leave( $elm );
+    if (animInitiated) {
+      $elm.unbind('click', closeModalHandler);
+    }
 
   }, 0);
 };

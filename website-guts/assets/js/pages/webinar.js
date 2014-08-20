@@ -70,6 +70,7 @@ for(i = 0; i < dateArray.length; i++){
   container.day = date.format('D');
   container.dateLong = date.format('M-D-YYYY');
   container.calDate = date.format('YYYYMMDD');
+  container.linkPath = window.linkPath;
   templateContext.thursdays.push(container);
 }
 

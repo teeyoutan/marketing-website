@@ -22,37 +22,122 @@ window.optly.mrkt.anim.bindTranEnd = function($elm) {
          .removeClass('anim-leave leave');
 
      $elm.unbind(this.transitionend, this.bindTranEnd);
+
+     // allow for new click events to trigger animation
+     this.elmCache[ $elm.data('anim-cache') ].transitionRunning = false;
    } 
    // If the animation is over and modal is open
    else if ( classList.indexOf('anim-enter') !== -1 ) {
      $elm.removeClass('anim-enter');
 
      $elm.unbind(this.transitionend, this.bindTranEnd);
+
+     // allow for new click events to trigger animation
+     this.elmCache[ $elm.data('anim-cache') ].transitionRunning = false;
    }
   }.bind(this));
 
 };
 
-window.optly.mrkt.anim.enter = function($elm) {
-  this.bindTranEnd( $elm );
+window.optly.mrkt.anim.enterQ = function($enterElm) {
+  var $q = $({});
 
-  $elm.removeClass('optly-hide')
-    .addClass('anim-enter')
-    .delay(50)
-    .queue(function(next) {
-      $elm.addClass('enter');
-      next();
-    });
+  $q.queue('enter', function(next){
+    $enterElm.removeClass('optly-hide');
+    next();
+  });
+  
+  $q.queue('enter', function(next){
+    $enterElm.addClass('anim-enter');
+    next();
+  });
+  
+  $q.queue('enter', function(next){
+    window.setTimeout(function(){
+      $enterElm.addClass('enter');
+    }, 10);
+    next();
+  });
+
+  for( var i = 0; i < $q.queue('enter').length; i +=1 ) {
+    $q.dequeue('enter');
+  }
+
+};
+
+window.optly.mrkt.anim.leaveQ = function($leaveElm) {
+  var $q = $({});
+
+  $q.queue('leave', function(next){
+    $leaveElm.removeClass('enter');
+    next();
+  });
+  
+  $q.queue('leave', function(next){
+    $leaveElm.addClass('anim-leave');
+    next();
+  });
+  
+  $q.queue('leave', function(next){
+    window.setTimeout(function(){
+      $leaveElm.addClass('leave');
+    }, 10);
+    next();
+  });
+
+  for( var i = 0; i < $q.queue('leave').length; i +=1 ) {
+    $q.dequeue('leave');
+  }
+};
+
+window.optly.mrkt.anim.cacheTrans = function($elm) {
+  var currentElmKey;
+  this.elmCache = this.elmCache || {};
+  this.cacheKey = this.cacheKey || 0;
+
+  if( !$elm.data('anim-cache') ) {
+    currentElmKey = this.cacheKey += 1;
+    $elm.data('anim-cache', this.cacheKey);
+    
+    this.elmCache[ this.cacheKey ] = {
+      elm: $elm
+    };
+
+  } else {
+    currentElmKey = $elm.data('anim-cache');
+  }
+
+  return currentElmKey;
+};
+
+window.optly.mrkt.anim.enter = function($elm) {
+  var currentElmKey = this.cacheTrans($elm);
+
+  if( !this.elmCache[ currentElmKey ].transitionRunning ) {
+    this.elmCache[ currentElmKey ].transitionRunning = true;
+
+    this.bindTranEnd( $elm );
+
+    this.enterQ( $elm );
+
+    return true;
+  }
+  
+  return false;  
 };
 
 window.optly.mrkt.anim.leave = function ($elm) {
-  this.bindTranEnd( $elm );
+  var currentElmKey = this.cacheTrans($elm);
 
-  $elm.removeClass('enter')
-    .addClass('anim-leave')
-    .delay(50)
-    .queue(function(next){
-      $elm.addClass('leave');
-      next();
-    });
+  if( !this.elmCache[ currentElmKey ].transitionRunning ) {
+    this.elmCache[ currentElmKey ].transitionRunning = true;
+
+    this.bindTranEnd( $elm );
+
+    this.leaveQ($elm);
+
+    return true;
+  }
+
+  return false;
 };
