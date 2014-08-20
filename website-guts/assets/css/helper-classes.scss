@@ -364,7 +364,11 @@ body .small-note, body p.small-note {
 	display: none;
 }
 
-input[type="text"], input[type="url"], input[type="email"], input[type="tel"] {
+input[type="text"], 
+input[type="url"], 
+input[type="email"], 
+input[type="tel"],
+input[type="password"]  {
 	&.error-show {
 		background-color: #fef3f3;
 		border-color: #f3b6b3;
@@ -380,4 +384,8 @@ input[type="text"], input[type="url"], input[type="email"], input[type="tel"] {
 
 .processing-hide, .error-hide {opacity: 0;}
 
-body.processing-state .processing-show, body.error-state .error-show {opacity: 1;}
+body.processing-state .processing-show, 
+body.error-state .error-show {
+	opacity: 1;
+	color: #911d16!important;
+}

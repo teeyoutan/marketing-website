@@ -1,7 +1,7 @@
 var $signinModal = $('[data-optly-modal="signin"]');
 
 $signinModal.oForm({
-  url: '/account/signin',
+  url: '/account/create',
   validation: {
     password: function(data) {
       if(data.length > 0) {
@@ -28,6 +28,7 @@ $signinModal.oForm({
   },
   afterLocal: function(jqXHR, globalCallback) {
     jqXHR.then(function(data) {
+      //reload to dashboard if user details are confirmed
       console.log('response data: ', data);
     });
   }
