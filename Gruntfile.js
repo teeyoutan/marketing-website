@@ -192,11 +192,12 @@ module.exports = function(grunt) {
                 res.writeHead(400, {'Content-Type': 'application/json'});
                 res.end( grunt.file.read('website-guts/endpoint-mocks/accountExists.json') );
 
-              }
-              else if(req.url === '/account/signin') {
+              } else if(req.url === '/account/signin') {
 
                 res.cookie('optimizely_signed_in', '1', {httpOnly: false});
                 res.writeHead(200, {'Content-Type': 'application/json'});
+                //console.log('request', req);
+                //console.log('request data', req.body);
                 res.end('{"success": "true"}');
 
               } else {
@@ -420,7 +421,11 @@ module.exports = function(grunt) {
           }
         },
         files: {
-          src: ['<%= config.guts %>/assets/js/**/*.js', '!<%= config.guts %>/assets/js/libraries/**/*.js']
+          src: [
+            '<%= config.guts %>/assets/js/**/*.js',
+            '!<%= config.guts %>/assets/js/utils/*.js',
+            '!<%= config.guts %>/assets/js/libraries/**/*.js'
+          ]
         }
       },
       clientDev: {
@@ -435,7 +440,11 @@ module.exports = function(grunt) {
           }
         },
         files: {
-          src: ['<%= config.guts %>/assets/js/**/*.js', '!<%= config.guts %>/assets/js/libraries/**/*.js']
+          src: [
+            '<%= config.guts %>/assets/js/**/*.js',
+            '!<%= config.guts %>/assets/js/utils/*.js',
+            '!<%= config.guts %>/assets/js/libraries/**/*.js'
+          ]
         }
       },
       server: {
@@ -473,7 +482,8 @@ module.exports = function(grunt) {
               '<%= config.guts %>/assets/js/global.js',
               '<%= config.guts %>/assets/js/components/*.js',
               '<%= config.guts %>/assets/js/services/*.js',
-              '!<%= config.guts %>/assets/js/services/user_state.js'
+              '!<%= config.guts %>/assets/js/services/user_state.js',
+              '<%= config.guts %>/assets/js/utils/*.js'
               ]
         }
       },

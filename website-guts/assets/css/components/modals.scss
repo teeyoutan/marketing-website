@@ -35,6 +35,10 @@ body {
     overflow: hidden;
     overflow-y: scroll;
   }
+  p.error-message {
+    position: absolute;
+    bottom: 0;
+  }
   .modal-header, .modal-footer {
     background: #f8f8f8;
     padding: 20px 40px;
@@ -66,10 +70,11 @@ body {
     }
     h5 {
       margin: 0;
-      font-size: 0.9em;
+      font-size: 1em;
       font-weight: 100;
       color: #6b6b6b;
       text-align: left;
+      clear: both;
     }
     input {
       width: 100%;
@@ -79,10 +84,15 @@ body {
       display: block;
       color: #6b6b6b;
       font-size: 0.9em;
+      @extend .clearfix;
+      text-align: justify;
       span {
         margin: 6px 0 3px 0;
         display: inline-block;
         line-height: 1.4;
+      }
+      span:nth-child(2) {
+        float: right;
       }
     }
     a {
@@ -92,6 +102,7 @@ body {
     .terms {
       margin: 15px 0;
       font-weight: 400;
+      @extend .clearfix;
       input {
         margin-right: 3px;
         width: auto;
@@ -99,9 +110,16 @@ body {
       }
       input,
       p { display: inline; }
+      span {
+        float: right;
+      }
     }
     .options {
       text-align: center;
+      margin: 60px 0 20px 0;
+      p{
+        margin: 0;
+      }
       a { text-decoration: none; }
     }
   }

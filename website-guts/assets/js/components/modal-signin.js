@@ -1,23 +1,34 @@
 var $signinModal = $('[data-optly-modal="signin"]');
 
-function requestSignin(e) {
-  e.preventDefault();
-
-  var deferred = window.optly.mrkt.services.xhr.makeRequest({
-    type: 'POST',
-    url: '/account/signin'
-  });
-
-
-  deferred.then(function(data) {
-    if (data.success === 'true') {
-      if(sessionStorage !== undefined) {
-        sessionStorage.modalType = '';
+$signinModal.oForm({
+  url: '/account/signin',
+  validation: {
+    password: function(data) {
+      if(data.length > 0) {
+        return true;
       }
-      window.location = 'https://www.optimizely.com/dashboard';
+      return false;
     }
-  });
+  },
+  beforeSubmit: function() {
+    var termsIsChecked = $signinModal.find('input:checkbox').is(':checked');
+    var shaPwd = window.optly.mrkt.utils.sha1Hash( $signinModal.find('input:password').val() );
+    var userData = {
+      email: $signinModal.find('input[name="email"]').val(),
+      password: shaPwd
+    };
+    if(termsIsChecked) {
+      userData.persist = 'on';
+    }
 
-}
-
-$signinModal.delegate('[data-modal-btn="signin"]', 'click', requestSignin);
+    userData = window.optly.mrkt.utils.Base64.encode( JSON.stringify(userData) );
+    console.log(userData);
+   
+    return userData;
+  },
+  afterLocal: function(jqXHR, globalCallback) {
+    jqXHR.then(function(data) {
+      console.log('response data: ', data);
+    });
+  }
+});
