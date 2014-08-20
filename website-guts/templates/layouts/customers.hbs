@@ -18,7 +18,9 @@ layout_body_class: false
   <div id="page-header-gradient"></div>
   <div id="page-content">
     {{#unless page.no_container}}<div class="container">{{/unless}}
+    {{#local-data}}
       {{> body }}
+    {{/local-data}}
     {{#unless page.no_container}}</div><!--/.container-->{{/unless}}
   </div><!--/#content-->
 </div><!--/#main-->
