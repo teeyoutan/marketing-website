@@ -62,9 +62,14 @@ page_script: mobile.js
         </div>
         <div id="visual-changes-icons" class="feature-container">
           {{#each section_1.subsections}}
-          <div id="visual-changes" class="feature" style="background-image: url({{icon}})">
-            <h3>{{header}}</h3>
-            <p>{{body}}</p>
+          <div id="visual-changes" class="row tablet-columns feature">
+            <div class="bg-container">
+              <div class="feature-bg" style="background-image: url({{icon}})"></div>
+            </div>
+            <div class="content-container">
+              <h3>{{header}}</h3>
+              <p>{{body}}</p>
+            </div>
           </div>
           {{/each}}
         </div>
@@ -84,9 +89,10 @@ page_script: mobile.js
           <span class="right-label">b</span>
           <span class="slider"></span>
         </div>
-        <div class="feature-container clearfix">
+        <div class="feature-container row">
           {{#each section_2.subsections}}
-          <div id="live-variables" class="feature" style="background-image: url({{icon}})">
+          <div id="live-variables" class="feature columns one-third">
+            <div style="background-image: url({{icon}})" class="feature-bg"></div>
             <h3>{{{header}}}</h3>
             <p>{{body}}</p>
           </div>
@@ -108,10 +114,11 @@ page_script: mobile.js
           </div>
           <a href="#" id="deploy-btn">Deploy winning variation</a>
         </div>
-        <div class="feature-container">
+        <div class="feature-container row">
           {{#each section_2.subsections}}
-          <div class="feature" id="world-class" style="background-image: url({{icon}})">
-            <h3>{{header}}</h3>
+          <div class="feature columns one-third" id="world-class">
+            <div style="background-image: url({{icon}})" class="feature-bg"></div>
+            <h3>{{{header}}}</h3>
             <p>{{body}}</p>
           </div>
           {{/each}}
