@@ -125,16 +125,18 @@ module.exports = function(grunt) {
           '<%= config.content %>/**/*.{hbs,yml}',
           '!<%= config.content %>/partners/**/*.{hbs,yml}',
           '<%= config.guts %>/templates/**/*.hbs',
-          '!<%= config.guts %>/templates/layouts/wrapper_compiled.hbs',
+          '!<%= config.guts %>/templates/**/*_compiled.hbs',
           '!<%= config.guts %>/templates/client/**/*.hbs',
-          '!<%= config.guts %>/templates/partials/*_compiled.hbs',
           '<%= config.guts %>/helpers/**/*.js'
         ],
         tasks: ['config:dev', 'inline', 'assemble:pages', 'assemble:modals']
       },
       assemblePartners: {
         files: [
-          '<%= config.content %>/partners/**/*.{hbs,yml}'
+          '<%= config.content %>/partners/**/*.{hbs,yml}',
+          '<%= config.guts %>/templates/**/*.hbs',
+          '!<%= config.guts %>/templates/**/*_compiled.hbs',
+          '!<%= config.guts %>/templates/client/**/*.hbs'
         ],
         tasks: ['config:dev', 'inline', 'assemble:partners']
       },
