@@ -202,6 +202,9 @@ ul {
         p, li {
             font-size: 1.1em;
         }
+        li {
+          list-style: none;
+        }
         p {
             line-height: 1.7;
         }
@@ -262,6 +265,9 @@ ul {
         }
         p, li {
             font-size: .9em;
+        }
+        li {
+          list-style: disc;
         }
         h2, h3, h3, h4, h5 {
             text-align: left;

@@ -1,19 +1,30 @@
 window.optly.mrkt.tooltip = window.optly.mrkt.tooltip || {};
 
 window.optly.mrkt.tooltip.showTipEvent = function(e) {
-  // determine the type of tooltip and bind the target and tooltip elements to the object scope
-  this.$targetElm = $(e.target);
-  var targetData = this.$targetElm.data('tooltip-trigger');
-  this.$tooltipElm = this.$targetElm.find('[data-tooltip="' + targetData + '"]');
+  if (!this.tipOpen) {
+    this.tipOpen = true;
 
-  //initiate the animation queue
-  this.tooltipQ = this.initTipQ();
+    if(!window.optly.mrkt.isMobile()) {
+      $('body').css({
+        cursor: 'pointer'
+      });
+    }
 
-  //set tooltip text
-  this.$tooltipElm.text( this.$targetElm.attr('title') );
+    // determine the type of tooltip and bind the target and tooltip elements to the object scope
+    this.$targetElm = $(e.target);
+    var targetData = this.$targetElm.data('tooltip-trigger');
+    this.$tooltipElm = this.$targetElm.find('[data-tooltip="' + targetData + '"]');
 
-  for(var i = 0; i < this.tooltipQ.queue('showTip').length; i += 1) {
-    this.tooltipQ.dequeue('showTip');
+    //initiate the animation queue
+    this.tooltipQ = this.initTipQ();
+
+    //set tooltip text
+    this.$tooltipElm.text( this.$targetElm.attr('title') );
+
+    for(var i = 0; i < this.tooltipQ.queue('showTip').length; i += 1) {
+      this.tooltipQ.dequeue('showTip');
+    }
+
   }
 
 };
@@ -27,20 +38,27 @@ window.optly.mrkt.tooltip.init = function($targets) {
       .attr('class', 'optly-hide')
       .appendTo($targetElm);
   });
-  this.$targets.on('click mouseover', window.optly.mrkt.tooltip.showTipEvent.bind(this));
+
+  this.$targets.on('mouseover click', this.showTipEvent.bind(this));
 };
 
 window.optly.mrkt.tooltip.positionTip = function() {
   var $q = $({});
 
-  $q.queue('positionTip', function(next) {
-    if( $( window ).width() <= 768 ) {
-      this.$tooltipElm.width( window.innerWidth * 0.4 );
-    } else {
-      this.$tooltipElm.addClass('desktop-tip').removeClass('mobile-tip');
-    }
-    next();
-  }.bind(this));
+  if ( window.Modernizr.viewportunits ) {
+    $q.queue('positionTip', function(next) {
+      if( $( window ).width() <= 768 ) {
+        this.$tooltipElm.css({
+          width: window.innerWidth * 0.4 + 'px'
+        });
+      } else {
+        this.$tooltipElm.css({
+          width: ''
+        });
+      }
+      next();
+    }.bind(this));
+  }
 
   $q.queue('positionTip', function(next) {
     this.configTooltip();
@@ -54,13 +72,20 @@ window.optly.mrkt.tooltip.positionTip = function() {
 };
 
 window.optly.mrkt.tooltip.clickOffClose = function(e) {
+  e.stopImmediatePropagation();
   //uncomment below if want not close the tooltip when clicking on trigger when tip open
-  if (!this.$tooltipElm.is(e.target) && this.$tooltipElm.has(e.target).length === 0 && e.target !== this.$targetElm[0]) {
-  //if ( !this.$tooltipElm.is(e.target) && this.$tooltipElm.has(e.target).length === 0 ) {
+  //if (!this.$tooltipElm.is(e.target) && this.$tooltipElm.has(e.target).length === 0 && e.target !== this.$targetElm[0]) {
+  if ( !this.$tooltipElm.is(e.target) && this.$tooltipElm.has(e.target).length === 0 ) {
+    this.tipOpen = false;
+
+    if(!window.optly.mrkt.isMobile()) {
+      $('body').css({
+        cursor: 'default'
+      });
+    }
+
     window.optly.mrkt.anim.leave(this.$tooltipElm);
     $(document).off('click');
-    $(window).off('resize scroll');
-    this.$targets.on('click mouseover', window.optly.mrkt.tooltip.showTipEvent.bind(this));
   }
 };
 
@@ -78,7 +103,7 @@ window.optly.mrkt.tooltip.initTipQ = function() {
   }.bind(this));
 
   $q.queue('showTip', function(next) {
-    this.$targets.off('click mouseover');
+    this.positionTip();
     next();
   }.bind(this));
 
@@ -88,7 +113,9 @@ window.optly.mrkt.tooltip.initTipQ = function() {
   }.bind(this));
 
   $q.queue('showTip', function(next) {
-    $(document).on('click', this.clickOffClose.bind(this));
+    window.setTimeout(function(){
+      $(document).on('click', this.clickOffClose.bind(this));
+    }.bind(this), 100);
     next();
   }.bind(this));
 
@@ -124,17 +151,15 @@ window.optly.mrkt.tooltip.configTooltip = function() {
 
   if( targetPosLeft + this.$targetElm.outerWidth() / 2 + tipHorizontalOffset >= window.innerWidth ) {
     currentTip = 'right-tip';
-    posTop = targetPosTop - this.$tooltipElm.outerHeight() / 2 + this.$targetElm.outerHeight() / 2;
-    posLeft =  (this.$targetElm.offset().left - this.$tooltipElm.outerWidth() - 5);
+    posTop = this.$targetElm.outerHeight() / 2 - this.$tooltipElm.outerHeight() / 2;
+    posLeft =  -(this.$tooltipElm.outerWidth() + 10);
   } else if( targetPosLeft + this.$targetElm.outerWidth() / 2 - tipHorizontalOffset <= 0 ){
     currentTip = 'left-tip';
-    posTop = targetPosTop - this.$tooltipElm.outerHeight() / 2 + this.$targetElm.outerHeight() / 2;
-    posLeft = this.$targetElm.offset().left + this.$targetElm.outerWidth() + 10;
+    posTop = this.$targetElm.outerHeight() / 2 - this.$tooltipElm.outerHeight() / 2;
+    posLeft = this.$targetElm.outerWidth() + 10;
   } else if(currentTip === undefined) {
     posTop = -(this.$tooltipElm.outerHeight() + 10);
-    posLeft = this.$targetElm.outerWidth() / 2 - this.$tooltipElm.outerWidth() / 2 + 5;
-    //posTop = targetPosTop - this.$tooltipElm.outerHeight() - 10;
-    //posLeft = this.$targetElm.offset().left + this.$targetElm.outerWidth() / 2 - this.$tooltipElm.outerWidth() / 2 + 5;
+    posLeft = this.$targetElm.outerWidth() / 2 - this.$tooltipElm.outerWidth() / 2;
   }
 
   this.$tooltipElm.css({
