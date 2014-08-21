@@ -141,3 +141,13 @@ window.Modernizr.addTest('viewportunits', function() {
     
     return bool;
 });
+
+$(function(){
+
+	$('#inner-wrapper').fitVids({
+
+		customSelector: 'iframe[src^="//fast.wistia.net"]'
+
+	});
+
+});
