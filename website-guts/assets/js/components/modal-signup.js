@@ -4,8 +4,7 @@ var $signupModal = $('[data-optly-modal="signup"]'),
   $hiddenInput   = $signupModal.find('input[name="hidden"]'),
   passed         = false;
 
-$signupModal.oForm({
-  url: '/account/create',
+$('#signup-form').oForm({
   validation: {
     password1: function(data) {
       if(data.length >= 8 && passed) {

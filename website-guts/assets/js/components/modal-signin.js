@@ -1,10 +1,9 @@
 var $signinModal = $('[data-optly-modal="signin"]');
 
-$signinModal.oForm({
-  url: '/account/create',
+$('#signin-form').oForm({
   validation: {
     password: function(data) {
-      if(data.length > 0) {
+      if(data.length >= 8) {
         return true;
       }
       return false;
