@@ -125,3 +125,13 @@ window.optly.mrkt.formDataStringToObject = function getJsonFromUrl(string) {
   return result;
 
 };
+
+$(function(){
+
+	$('#inner-wrapper').fitVids({
+
+		customSelector: 'iframe[src^="//fast.wistia.net"]'
+
+	});
+
+});
