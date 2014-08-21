@@ -520,7 +520,8 @@ module.exports = function(grunt) {
             '<%= config.temp %>/assets/js/handlebarsTemplates.js',
             '<%= config.bowerDir %>/oform/dist/oForm.min.js',
             '<%= config.temp %>/assets/js/global.js',
-            '<%= config.guts %>/assets/js/components/oForm-globals.js'
+            '<%= config.guts %>/assets/js/components/oForm-globals.js',
+            '<%= config.bowerDir %>/fitvids/jquery.fitvids.js'
           ]
         }
       }
