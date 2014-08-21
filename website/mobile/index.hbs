@@ -6,66 +6,9 @@ sub_head: World-class service providers. Empowered customers. Lasting results.
 body_class:
 - ios
 page_script: mobile.js
-
-sign_up:
- button_text: "Sign up &raquo;"
- existing_customer: |
-  "Already a customer? [Get started](http://developers.optimizely.com/ios/)"
-hero:
- header: "Fast and scalable A/B testing for iOS apps."
- sub_header: "Submit once. Iterate daily."
-section_1:
- header: "Faster than you can Optimization"
- body: "Make visual changes to your app on the fly using Optimizely's code-free visual editor. Push changes to the app without waiting for App Store review."
- subsections:
- -
-  header: "Visual changes"
-  body: "Make visual changes to your app in real time. No code required."
-  icon: "https://d1qmdf3vop2l07.cloudfront.net/optimizely-marketer-assets.cloudvent.net/raw/mobile/paintbrush.svg"
- -
-  header: "Starts in seconds"
-  body: "One-time installation lets you get set up in seconds."
-  icon: "https://d1qmdf3vop2l07.cloudfront.net/optimizely-marketer-assets.cloudvent.net/raw/mobile/timer.svg"
- -
-  header: "Instant rollout"
-  body: "Roll out visual changes immediately without waiting for App Store review."
-  icon: "https://d1qmdf3vop2l07.cloudfront.net/optimizely-marketer-assets.cloudvent.net/raw/mobile/instant-rollout.svg"
-section_2:
- header: "Flexible and powerful developer tools"
- body: "Stop compromising between speed and power. Optimizely’s simple developer tools make it easy to optimize even the most custom features."
- subsections:
- -
-  header: "Live variables"
-  body: "Make on-the-fly changes to variables integrated into your app."
-  icon: "https://d1qmdf3vop2l07.cloudfront.net/optimizely-marketer-assets.cloudvent.net/raw/mobile/live-variables.svg"
- -
-  header: "Web &amp; Mobile"
-  body: "Optimize and deliver personalized experiences across your website and mobile app using the same platform."
-  icon: "https://d1qmdf3vop2l07.cloudfront.net/optimizely-marketer-assets.cloudvent.net/raw/mobile/web-mobile.svg"
- -
-  header: "Code blocks"
-  body: "Test entirely custom features and designs and then gradually roll them out to users."
-  icon: "https://d1qmdf3vop2l07.cloudfront.net/optimizely-marketer-assets.cloudvent.net/raw/mobile/code-blocks.svg"
-section_3:
- header: "The most trusted and scalable optimization platform in the world."
- body: "Optimizely for iOS is built in the world's #1 optimization platform, trust by more than 6,000 customers globally."
- subsections:
- -
-  header: "World-class analytics platform"
-  body: "Select goals seamlessly with a tap of your finger. Then, determine winners and roll them out with a single click."
-  icon: "https://d1qmdf3vop2l07.cloudfront.net/optimizely-marketer-assets.cloudvent.net/raw/mobile/world-class.svg"
- -
-  header: "Incredible Responsive"
-  body: "Rest easily knowing your experiments are being delivered quickly and reliably via Optimizely's one-of-a-kind CDN architecture."
-  icon: "https://d1qmdf3vop2l07.cloudfront.net/optimizely-marketer-assets.cloudvent.net/raw/mobile/responsive.svg"
- -
-  header: "Enterprise scale at startup speed"
-  body: "Optimizely is already trusted by more than 6,000 of the world's top companies, including CNN, Yelp, Starbucks, and many more."
-  icon: "https://d1qmdf3vop2l07.cloudfront.net/optimizely-marketer-assets.cloudvent.net/raw/mobile/enterprise.svg"
-footer:
- header: "Sign up for Optimizely iOS beta"
 ---
 
+{{#with mobile_data}}
 <div id="top">
   <div class="container">
     <header class="clearfix ios-logo-cont">
@@ -73,22 +16,22 @@ footer:
     </header>
   </div>
   <section id="hero">
-    <h1>{{page.hero.header}}</h1>
-    <h2>{{page.hero.sub_header}}</h2>
+    <h1>{{hero.header}}</h1>
+    <h2>{{hero.sub_header}}</h2>
     {{!-- <a href="https://www.youtube.com/watch?v=EhuGaDJXqFI" id="video">Watch video</a> --}}
-    <a href="/signin?signup=true&signup_platform=ios&continue_to=/dashboard?show_code=true&utm_campaign=iosplatform" class="sign-up-btn">{{{page.sign_up.button_text}}}</a>
-    {{#omarkdown}}{{{page.sign_up.existing_customer}}}{{/omarkdown}}
+    <a href="/signin?signup=true&signup_platform=ios&continue_to=/dashboard?show_code=true&utm_campaign=iosplatform" class="sign-up-btn">{{{sign_up.button_text}}}</a>
+    {{#omarkdown}}{{{sign_up.existing_customer}}}{{/omarkdown}}
     <div id="down"></div>
   </section>
 </div>
 <div role="main">
   <main>
-    {{#if page.section_1}}
+    {{#if section_1}}
     <section id="visual-changes-features" class="gray-section light">
       <div class="container">
         <div class="section-container">
-          <h2>{{page.section_1.header}}</h2>
-          <p>{{page.section_1.body}}</p>
+          <h2>{{section_1.header}}</h2>
+          <p>{{section_1.body}}</p>
         </div>
         <div id="visual-changes-demo">
           <span id="visual-change-photo" class="a"></span>
@@ -118,7 +61,7 @@ footer:
           </div>
         </div>
         <div id="visual-changes-icons" class="feature-container">
-          {{#each page.section_1.subsections}}
+          {{#each section_1.subsections}}
           <div id="visual-changes" class="feature" style="background-image: url({{icon}})">
             <h3>{{header}}</h3>
             <p>{{body}}</p>
@@ -128,12 +71,12 @@ footer:
     </div>
     </section>
     {{/if}}
-    {{#if page.section_2}}
+    {{#if section_2}}
     <section id="flexible-powerful" class="blue-section">
       <div class="container a">
         <div class="section-container">
-          <h2>{{page.section_2.header}}</h2>
-          <p>{{page.section_2.body}}</p>
+          <h2>{{section_2.header}}</h2>
+          <p>{{section_2.body}}</p>
         </div>
         <div id="flexible-powerful-image"></div>
         <div class="visual-slider-cont a" id="flexible-powerful-slider">
@@ -142,7 +85,7 @@ footer:
           <span class="slider"></span>
         </div>
         <div class="feature-container clearfix">
-          {{#each page.section_2.subsections}}
+          {{#each section_2.subsections}}
           <div id="live-variables" class="feature" style="background-image: url({{icon}})">
             <h3>{{{header}}}</h3>
             <p>{{body}}</p>
@@ -152,12 +95,12 @@ footer:
       </div>
     </section>
     {{/if}}
-    {{#if page.section_3}}
+    {{#if section_3}}
     <section id="trusted" class="light">
       <div class="container">
         <div class="section-container">
-          <h2>{{page.section_3.header}}</h2>
-          <p>{{page.section_3.body}}</p>
+          <h2>{{section_3.header}}</h2>
+          <p>{{section_3.body}}</p>
         </div>
         <div id="deploy-cont">
           <div id="deploy-graphic-cont">
@@ -166,7 +109,7 @@ footer:
           <a href="#" id="deploy-btn">Deploy winning variation</a>
         </div>
         <div class="feature-container">
-          {{#each page.section_2.subsections}}
+          {{#each section_2.subsections}}
           <div class="feature" id="world-class" style="background-image: url({{icon}})">
             <h3>{{header}}</h3>
             <p>{{body}}</p>
@@ -176,11 +119,11 @@ footer:
       </div>
     </section>
     {{/if}}
-    {{#if page.footer}}
+    {{#if footer}}
     <section id="signup-bottom">
-      <h2>{{page.footer.header}}</h2>
-      <a href="/signin?signup=true&signup_platform=ios&continue_to=/dashboard?show_code=true&utm_campaign=iosplatform" class="sign-up-btn">{{{page.sign_up.button_text}}}</a>
-      {{#omarkdown}}{{page.sign_up.existing_customer}}{{/omarkdown}}
+      <h2>{{footer.header}}</h2>
+      <a href="/signin?signup=true&signup_platform=ios&continue_to=/dashboard?show_code=true&utm_campaign=iosplatform" class="sign-up-btn">{{{sign_up.button_text}}}</a>
+      {{#omarkdown}}{{sign_up.existing_customer}}{{/omarkdown}}
     </section>
     {{/if}}
   </main>
@@ -188,3 +131,4 @@ footer:
 <div id="preload-airbnb-img" class="preload"></div>
 <div id="preload-hipmunk-img" class="preload"></div>
 <div id="preload-deploy-img" class="preload"></div>
+{{/with}}

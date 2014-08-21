@@ -123,7 +123,7 @@
     height: 30px;
     width: 30px;
     margin: 2.5em auto 0 auto;
-    background: image-url('/mobile/img/down-btn.svg') center center no-repeat;
+    background: image-url('/mobile/down-btn.svg') center center no-repeat;
     background-size: 30px 30px;
   }
   section {
@@ -318,7 +318,7 @@
       background: image-url('mobile/hipmunk-b.jpg') no-repeat -9999px -9999px;
     }
     #preload-deploy-img {
-      background: image-url('mobile/deployed.jpg') no-repeat -9999px -9999px;
+      background: image-url('mobile/deployed.png') no-repeat -9999px -9999px;
     }
     header .logo {
       margin: 0;
@@ -655,29 +655,29 @@
       }
     }
   }
-  html.csstransforms.csstransitions.opacity body.ios {
-    #intro-signup {
-      opacity: 0;
-      transform: translate(0, 50px);
-      transition: opacity 0.6s, transform 0.6s;
-    }
-    #flexible-powerful .container {
-      opacity: 0;
-      transform: translate(-100px);
-      transition: opacity 0.7s, transform 0.7s;
-    }
-    #trusted .container {
-      opacity: 0;
-      transform: translate(100px);
-      transition: opacity 0.7s, transform 0.7s;
-    }
-    #flexible-powerful.visible .container, #trusted.visible .container {
-      opacity: 1;
-      transform: translate(0);
-    }
-    &.loaded #intro-signup {
-      opacity: 1;
-      transform: translate(0, 0);
-    }
-  }
+  // html.csstransforms.csstransitions.opacity body.ios {
+  //   #intro-signup {
+  //     //opacity: 0;
+  //     transform: translate(0, 50px);
+  //     transition: opacity 0.6s, transform 0.6s;
+  //   }
+  //   #flexible-powerful .container {
+  //     //opacity: 0;
+  //     transform: translate(-100px);
+  //     transition: opacity 0.7s, transform 0.7s;
+  //   }
+  //   #trusted .container {
+  //     //opacity: 0;
+  //     transform: translate(100px);
+  //     transition: opacity 0.7s, transform 0.7s;
+  //   }
+  //   #flexible-powerful.visible .container, #trusted.visible .container {
+  //     opacity: 1;
+  //     transform: translate(0);
+  //   }
+  //   &.loaded #intro-signup {
+  //     opacity: 1;
+  //     transform: translate(0, 0);
+  //   }
+  //}
 }
