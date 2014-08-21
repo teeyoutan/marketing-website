@@ -5,7 +5,7 @@
  *
  * Copyright (c) 2014 Hariadi Hinta
  * Licensed under the MIT license.
- */
+ */ 
 
 'use strict';
 
@@ -122,14 +122,23 @@ module.exports = function(grunt) {
     watch: {
       assemble: {
         files: [
-          '<%= config.content %>/{,*/}*.{md,hbs,yml,json}',
-          '<%= config.content %>/**/*.yml',
+          '<%= config.content %>/**/*.{hbs,yml}',
+          '!<%= config.content %>/partners/**/*.{hbs,yml}',
           '<%= config.guts %>/templates/**/*.hbs',
-          '<%= config.content %>/**/*.hbs',
-          '<%= config.guts %>/helpers/**/*.js',
+          '!<%= config.guts %>/templates/**/*_compiled.hbs',
+          '!<%= config.guts %>/templates/client/**/*.hbs',
+          '<%= config.guts %>/helpers/**/*.js'
+        ],
+        tasks: ['config:dev', 'inline', 'assemble:pages', 'assemble:modals']
+      },
+      assemblePartners: {
+        files: [
+          '<%= config.content %>/partners/**/*.{hbs,yml}',
+          '<%= config.guts %>/templates/**/*.hbs',
+          '!<%= config.guts %>/templates/**/*_compiled.hbs',
           '!<%= config.guts %>/templates/client/**/*.hbs'
         ],
-        tasks: ['config:dev', 'inline', 'assemble']
+        tasks: ['config:dev', 'inline', 'assemble:partners']
       },
       sass: {
         files: '<%= config.guts %>/assets/css/**/*.scss',
@@ -156,9 +165,7 @@ module.exports = function(grunt) {
           livereload: '<%= connect.options.livereload %>'
         },
         files: [
-          '<%= config.dist %>/**/*.html',
-          '<%= config.dist %>/assets/css/**/*.css',
-          '<%= config.dist %>/assets/js/**/*.js'
+          '<%= config.dist %>/**/*.{html,css,js,png,jpg,svg}'
         ]
       }
     },
@@ -252,18 +259,30 @@ module.exports = function(grunt) {
         data: ['<%= config.content %>/**/*.json', '<%= config.content %>/**/*.yml', '<%= grunt.config.get("environmentData") %>'],
         partials: ['<%= config.guts %>/templates/partials/*.hbs'],
         helpers: ['<%= config.helpers %>/**/*.js'],
-        collections: [
+      },
+      partners: {
+        options: {
+          collections: [
+            {
+              name: 'integrations',
+              inflection: 'integration',
+              sortby: 'priority',
+              sortorder: 'descending'
+            },
+            {
+              name: 'solutions',
+              inflection: 'solution',
+              sortby: 'priority',
+              sortorder: 'descending'
+            }
+          ]
+        },
+        files: [
           {
-            name: 'integrations',
-            inflection: 'integration',
-            sortby: 'priority',
-            sortorder: 'descending'
-          },
-          {
-            name: 'solutions',
-            inflection: 'solution',
-            sortby: 'priority',
-            sortorder: 'descending'
+            src: ['**/*.hbs'],
+            dest: '<%= config.dist %>/partners/',
+            cwd: '<%= config.content %>/partners/',
+            expand: true
           }
         ]
       },
@@ -289,7 +308,7 @@ module.exports = function(grunt) {
       pages: {
         files: [
           {
-            src: ['**/*.hbs'],
+            src: ['**/*.hbs', '!partners/**/*.hbs'],
             dest: '<%= config.dist %>/',
             cwd: '<%= config.content %>/',
             expand: true
@@ -501,7 +520,8 @@ module.exports = function(grunt) {
             '<%= config.temp %>/assets/js/handlebarsTemplates.js',
             '<%= config.bowerDir %>/oform/dist/oForm.min.js',
             '<%= config.temp %>/assets/js/global.js',
-            '<%= config.guts %>/assets/js/components/oForm-globals.js'
+            '<%= config.guts %>/assets/js/components/oForm-globals.js',
+            '<%= config.bowerDir %>/fitvids/jquery.fitvids.js'
           ]
         }
       }
