@@ -1,17 +1,18 @@
 $property: opacity 1 0;
-$transition: opacity 0.5s linear;
+$transition: opacity 0.3s linear;
 
-.tooltip-contianer {
+[data-tooltip-trigger] {
   cursor: pointer;
   position: relative;
 }
 
-#tooltip {
+[data-tooltip] {
     text-align: center;
     color: #fff;
     background: rgba(0,0,0,0.7);
-    position: fixed;
-    top: 100%;
+    position: absolute;
+    //top: 100%;
+    width: 300px;
     opacity: 0;
     z-index: 100;
     padding: 15px;
@@ -70,7 +71,7 @@ $transition: opacity 0.5s linear;
     }
   }
   &.mobile-tip {
-    max-width: 70%;
+    //enter mobile styles here
   }
   &.desktop-tip {
     max-width: 350px;
