@@ -46,7 +46,8 @@
     "grunt-contrib-handlebars": "0.8.0",
     "grunt-gitinfo": "0.1.6",
     "grunt-filerev": "0.2.1",
-    "grunt-userevvd": "0.1.2"
+    "grunt-userevvd": "0.1.2",
+    "optimizely-marked": "0.0.4"
   },
   "licenses": [
     {
