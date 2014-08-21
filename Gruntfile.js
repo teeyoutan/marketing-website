@@ -5,7 +5,7 @@
  *
  * Copyright (c) 2014 Hariadi Hinta
  * Licensed under the MIT license.
- */
+ */ 
 
 'use strict';
 
