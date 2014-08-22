@@ -1,0 +1,95 @@
+---
+layout: wrapper.hbs
+layout_script: false
+layout_body_class:
+- integrations-solutions
+sub_head: World-class service providers. Empowered customers. Lasting results.
+---
+<div id="main">
+  <div id="page-header">
+    <div class="container">
+      {{#if page.data.solutions }}
+        <h1>{{partners.solutions.page_heading}}</h1>
+      {{else}}
+        <h1>{{partners.integrations.page_heading}}</h1>
+      {{/if}}
+      {{#if sub_head}}<p>{{sub_head}}</p>{{/if}}
+    </div><!--/.container-->
+  </div><!--/#page-header-->
+  <div id="page-header-gradient"></div>
+  <div id="page-content">
+    <div class="container ugc">
+      <div class="columns twelve">
+        <div class="row single-partner-container">
+          <div class="columns four">
+            <div class="partners-back">
+              {{#if page.data.solutions }}
+                <a href="{{linkPath}}/partners/solutions">&lt; {{{partners.solutions.see_all}}}</a>
+              {{else}}
+                <a href="{{linkPath}}/partners/integrations">&lt; {{{partners.integrations.see_all}}}</a>
+              {{/if}}
+            </div>
+
+            <div class="partners-logo" style="background-image: url('{{logo}}');"></div>
+
+            <div class="partners-link">
+              <p><a href="{{website_link}}">{{website_display}}</a></p>
+            </div>
+
+            <div class="partners-contact">
+              {{#each page.data.locations}}
+                <div class="partners-location">
+                  <p>
+                    {{#if this.location.phone}}{{this.location.phone}} <br />{{/if}}
+                    {{#if this.location.email}}<a href="mailto:{{this.location.email}}">{{this.location.email}}</a> <br />{{/if}}
+                    <br />
+                    {{#if this.location.address1}}{{this.location.address1}} <br />{{/if}}
+                    {{#if this.location.address2}}{{this.location.address2}} <br />{{/if}}
+                    {{#if this.location.city}}{{this.location.city}}, {{/if}}{{stateCountry this.location.state this.location.country }} {{this.location.zip}}<br />
+                  </p>
+                </div>
+              {{/each}}
+            </div>
+
+            {{#if languages}}
+              <div class="partners-languages">
+                <p>
+                  <strong>{{{partners.languages}}}</strong> <br />
+                  {{#eachNoTrailing languages ", "}}{{.}}, {{/eachNoTrailing}}
+                </p>
+              </div>
+            {{/if}}
+          </div>
+          <div class="columns eight">
+            <h4>{{title}}</h4>
+
+            <div class="level">
+              {{#if page.data.solutions }}
+                {{#if stars}}
+                  <div class="level-heading">{{{partners.solutions.filter.stars}}}: <span class="tooltip-hover" data-content="lorem ipsum dolor">?</span></div>
+                  <div class="star-cont {{#if stars}}star-cont--{{stars}}{{/if}} star-left"></div>
+                {{/if}}
+              {{/if}}
+            </div>
+
+            {{#omarkdown path=linkPath}}
+              {{> body}}
+            {{/omarkdown}}
+
+            {{#if page.tags}}
+            <div class="partners-tags">
+              <p>{{#eachNoTrailing page.tags ", </span>"}}<span>{{this}}, </span>{{/eachNoTrailing}}</p>
+            </div>
+            {{/if}}
+
+            {{#if kb_article}}
+            <a class="button" href="{{kb_article}}">
+              {{{partners.solutions.kb_article}}}
+            </a>
+            {{/if}}
+          </div>
+        </div>
+      </div>
+    </div><!--/.container-->
+  </div><!--/#content-->
+</div><!--/#main-->

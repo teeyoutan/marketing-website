@@ -26,8 +26,8 @@
     "fastclick": "1.0.2",
     "jquery-cookie": "1.4.1",
     "history.js": "1.8.0",
-    "oform": "0.0.16",
-    "fitvids": "1.1.0",
-    "jquery-waypoints": "~2.0.5"
+    "jquery-waypoints": "~2.0.5",
+    "oform": "0.0.18",
+    "fitvids": "1.1.0"
   }
 }
