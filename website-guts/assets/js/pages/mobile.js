@@ -7,6 +7,14 @@ function animShowSlide($parent, last) {
   } 
 }
 
+function logSegment(sEvent, category, label, value) {
+  var data = {};
+  if(category) {data.category = category;}
+  if(label) {data.label = label;}
+  if(value) {data.value = value;}
+  window.analytics.track(sEvent, data);
+}
+
 $(function() {
   var _gaq                 = window._gaq || [],
     $textDisplay           = $('#visual-change-button'),
@@ -22,6 +30,9 @@ $(function() {
 
   //this is potentially antiquated, assuming it has to do with animations
   $('body').addClass('loaded');
+
+  //add url parameter to the sign up button
+  $('.sign-up-btn').attr('href', fullUrl);
 
   //video is currently commented out but leaving this tracking 
   // $('#video').on('click', function() {
@@ -41,41 +52,56 @@ $(function() {
     });
   }
 
-  //track text input for the iphone button interaction
-  $textInput.keyup(function() {
-    $textDisplay.text($textInput.val());
-    _gaq.push(['_trackEvent', 'Mobile landing page', 'text change']);
-  });
+  //track text input for the iphone button interaction on update text in the display
+  (function() {
+    var keyupLog = 0;
+    $textInput.keyup(function() {
+      var inputVal = $textInput.val();
+      $textDisplay.text(inputVal);
+      if (keyupLog < 10) {
+        logSegment('input keyup', 'Mobile landing page', 'text change', inputVal);
+        keyupLog += 1;
+      }
+    }); 
+  })();
   
   //track color change for iphon button interaction
   $('#visual-change-color').on('click', '.color-btn', function(e) {
     var color = $(e.target).attr('id').replace('visual-change-', '');
-    $buttonCont.removeAttr('class').addClass(color);
-    _gaq.push(['_trackEvent', 'Mobile landing page', 'color change', color]);
     e.preventDefault();
+    $buttonCont.removeAttr('class').addClass(color);
+    logSegment('button click', 'Mobile landing page', 'color change', color);
   });
 
   //track slider interaction
   $('.visual-slider-cont').on('click', function() {
-    var slider = $(this).attr('id');
+    var slider = $(this).attr('id'), 
+      segmentLabel;
+
     if ($(this).hasClass('a')) {
       $(this).removeClass('a').addClass('b');
+
       if (slider === 'visual-change-slider') {
         $visualChangePhoto.removeClass('a').addClass('b');
-        _gaq.push(['_trackEvent', 'Mobile landing page', 'slider click', 'visual change', 'b']);
+        segmentLabel = 'visual change';
       } else {
         $flexiblePowerfulPhone.removeClass('a').addClass('b');
-        _gaq.push(['_trackEvent', 'Mobile landing page', 'slider click', 'flexible powerful', 'b']);
+        segmentLabel = 'flexible powerful';
       }
+
+      logSegment('slider click', 'Mobile landing page', segmentLabel, 'b');
     } else {
       $(this).removeClass('b').addClass('a');
+
       if (slider === 'visual-change-slider') {
         $visualChangePhoto.removeClass('b').addClass('a');
-        _gaq.push(['_trackEvent', 'Mobile landing page', 'slider click', 'visual change', 'a']);
+        segmentLabel = 'visual change';
       } else {
         $flexiblePowerfulPhone.removeClass('b').addClass('a');
-        _gaq.push(['_trackEvent', 'Mobile landing page', 'slider click', 'flexible powerful', 'a']);
+        segmentLabel = 'flexible powerful';
       }
+
+      logSegment('slider click', 'Mobile landing page', segmentLabel, 'a');
     }
   });
   
@@ -84,19 +110,8 @@ $(function() {
     e.preventDefault();
     if (!$deployCont.hasClass('deployed')) {
       $deployCont.addClass('deployed');
-      _gaq.push(['_trackEvent', 'Mobile landing page', 'deploy click']);
+      logSegment('deploy click', 'Mobile landing page');
     }
   });
-
-  //analytics.track
-  //
-  // analytics.track('slider click', {
-  //   category: 'Mobile landing page',
-  //   label: 'visual change',
-  //   value: 'b'
-  // });
-
-  //add url parameter to the sign up button
-  $('.sign-up-btn').attr('href', fullUrl);
 
 });
