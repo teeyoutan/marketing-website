@@ -4,6 +4,7 @@ $transition: opacity 0.1s linear;
 [data-tooltip] {
   cursor: pointer;
   position: relative;
+  margin: 0 5px;
 }
 
 [data-tooltip-dialog] {
