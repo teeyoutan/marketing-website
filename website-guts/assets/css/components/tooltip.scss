@@ -1,12 +1,12 @@
 $property: opacity 1 0;
 $transition: opacity 0.1s linear;
 
-[data-tooltip-trigger] {
+[data-tooltip] {
   cursor: pointer;
   position: relative;
 }
 
-[data-tooltip] {
+[data-tooltip-dialog] {
     text-align: center;
     color: #fff;
     background: rgba(0,0,0,0.7);
@@ -72,7 +72,7 @@ $transition: opacity 0.1s linear;
 }
 
 @media only screen and (min-width: $tablet-min-width) {
-  [data-tooltip] {
+  [data-tooltip-dialog] {
     width: 250px;
   }
 }

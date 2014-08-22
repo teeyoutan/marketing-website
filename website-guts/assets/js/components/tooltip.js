@@ -12,8 +12,7 @@ window.optly.mrkt.tooltip.showTipEvent = function(e) {
 
     // determine the type of tooltip and bind the target and tooltip elements to the object scope
     this.$targetElm = $(e.target);
-    var targetData = this.$targetElm.data('tooltip-trigger');
-    this.$tooltipElm = this.$targetElm.find('[data-tooltip="' + targetData + '"]');
+    this.$tooltipElm = this.$targetElm.find('[data-tooltip-dialog]');
 
     //initiate the animation queue
     this.tooltipQ = this.initTipQ();
@@ -34,7 +33,7 @@ window.optly.mrkt.tooltip.init = function($targets) {
   this.$targets.each(function(i, elm) {
     var $targetElm = $(elm);
 
-    $('<div data-tooltip="'+ $targetElm.data('tooltip-trigger') +'"></div>')
+    $('<div data-tooltip-dialog></div>')
       .attr('class', 'optly-hide')
       .appendTo($targetElm);
   });
@@ -178,7 +177,7 @@ window.optly.mrkt.tooltip.configTooltip = function() {
 };
 
 $(function() {
-  var $targetElms = $('[data-tooltip-trigger]');
+  var $targetElms = $('[data-tooltip]');
   
   window.optly.mrkt.tooltip.init($targetElms);
 });
