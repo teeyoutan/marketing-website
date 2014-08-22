@@ -30,7 +30,7 @@ page_script: mobile.js
     <section id="visual-changes-features" class="gray-section light">
       <div class="container">
         <div class="section-container">
-          <h2>{{section_1.header}}</h2>
+          <h2>{{section_1.header}}<br><b><q>{{section_1.header_emphasis}}</b></q></h2>
           <p>{{section_1.body}}</p>
         </div>
         <div id="visual-changes-demo">
@@ -80,7 +80,7 @@ page_script: mobile.js
     <section id="flexible-powerful" class="blue-section">
       <div class="container a">
         <div class="section-container">
-          <h2>{{section_2.header}}</h2>
+          <h2>{{{section_2.header}}}</h2>
           <p>{{section_2.body}}</p>
         </div>
         <div id="flexible-powerful-image"></div>
@@ -115,7 +115,7 @@ page_script: mobile.js
           <a href="#" id="deploy-btn">Deploy winning variation</a>
         </div>
         <div class="feature-container row">
-          {{#each section_2.subsections}}
+          {{#each section_3.subsections}}
           <div class="feature columns one-third" id="world-class">
             <div style="background-image: url({{icon}})" class="feature-bg"></div>
             <h3>{{{header}}}</h3>
@@ -128,7 +128,7 @@ page_script: mobile.js
     {{/if}}
     {{#if footer}}
     <section id="signup-bottom">
-      <h2>{{footer.header}}</h2>
+      <h2>{{{footer.header}}}</h2>
       <a href="/signin?signup=true&signup_platform=ios&continue_to=/dashboard?show_code=true&utm_campaign=iosplatform" class="sign-up-btn">{{{sign_up.button_text}}}</a>
       {{#omarkdown}}{{sign_up.existing_customer}}{{/omarkdown}}
     </section>

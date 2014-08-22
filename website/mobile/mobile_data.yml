@@ -1,12 +1,12 @@
 sign_up:
  button_text: "Sign up &raquo;"
- existing_customer: |
-  "Already a customer? [Get started](http://developers.optimizely.com/ios/)"
+ existing_customer: "Already a customer? [Get started](http://developers.optimizely.com/ios/)"
 hero:
  header: "Fast and scalable A/B testing for iOS apps."
  sub_header: "Submit once. Iterate daily."
 section_1:
- header: "Faster than you can Optimization"
+ header: "Faster than you can say"
+ header_emphasis: Optimization
  body: "Make visual changes to your app on the fly using Optimizely's code-free visual editor. Push changes to the app without waiting for App Store review."
  subsections:
  -
@@ -22,7 +22,7 @@ section_1:
   body: "Roll out visual changes immediately without waiting for App Store review."
   icon: "https://d1qmdf3vop2l07.cloudfront.net/optimizely-marketer-assets.cloudvent.net/raw/mobile/instant-rollout.svg"
 section_2:
- header: "Flexible and powerful developer tools"
+ header: "<strong>Flexible</strong> and <strong>powerful</strong> developer tools."
  body: "Stop compromising between speed and power. Optimizely’s simple developer tools make it easy to optimize even the most custom features."
  subsections:
  -
@@ -54,4 +54,4 @@ section_3:
   body: "Optimizely is already trusted by more than 6,000 of the world's top companies, including CNN, Yelp, Starbucks, and many more."
   icon: "https://d1qmdf3vop2l07.cloudfront.net/optimizely-marketer-assets.cloudvent.net/raw/mobile/enterprise.svg"
 footer:
- header: "Sign up for Optimizely iOS beta"
+ header: "Sign up for<br>Optimizely iOS beta"
