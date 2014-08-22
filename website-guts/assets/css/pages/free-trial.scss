@@ -20,6 +20,8 @@ body.ppc-page {
     background: url('https://d1qmdf3vop2l07.cloudfront.net/optimizely-marketer-assets.cloudvent.net/raw/ppc/noise.png');
   }
 
+  .social-numbers {margin: 0 auto;}
+
   .social-number {
     font-family: $condensed-sans-serif;
     font-size: 2.1em;
@@ -27,14 +29,19 @@ body.ppc-page {
     font-weight: 400;
     color: #036;
   }
+
   .description {
-    font-size: 1.1em;
-    font-variant: small-caps;
+    font-family: $body-font-family;
+    font-size: .8em;
+    text-transform: uppercase;
+    font-weight: 500;
     color: #036;
   }
+
   #social-proof-cont {
     padding-top: 20px;
   }
+
   .social-numbers {
     background-image: url('https://d1qmdf3vop2l07.cloudfront.net/optimizely-marketer-assets.cloudvent.net/raw/ppc/free-trial-sprite-adjusted-2.png');
     background-repeat: no-repeat;
@@ -45,54 +52,108 @@ body.ppc-page {
       padding: 0;
     }
   }
+
   .visitors-tested-cont {
     background-position: 0 13px;
   }
+
   .experiments-run-cont {
     background-position: -735px 13px;
   }
 
   @media only screen and (min-width: $tablet-min-width) {
+    #social-proof-cont {
+      width: 475px;
+      margin: 0 auto 50px auto;
+      @extend .clearfix;
+      .visitors-tested-cont {
+        float: left;
+      }
+
+      .experiments-run-cont {
+        float: right;
+      }
+    }
+
+    #about-optimizely, #how-it-works {
+      ul {
+        width: 340px;
+        margin: 0 auto;
+      }
+      
+      li {
+        list-style-type: disc;
+        margin: 0;
+        padding: 0;
+      }
+    }
+
+    #about-optimizely {
+      margin-bottom: 50px;
+    }
 
     #ppc-form {
+      width: 400px;
+      margin: 0 auto;
       h4 {margin-top: 0;}
       #submit {width: 200px;}
     }
 
-    #about-optimizely, #how-it-works {
-      background-image: url('https://d1qmdf3vop2l07.cloudfront.net/optimizely-marketer-assets.cloudvent.net/raw/ppc/free-trial-sprite-adjusted-2.png');
-      background-repeat: no-repeat;
-      padding-left: 145px;
-    }
-
-    #about-optimizely {
-      background-position: -1573px 0;
-    }
-
-    #how-it-works {
-      background-position: -2848px 0;
-    }
     .customer-quote {
       text-align: center;
     }
+
     .pull-quote {
       color: #6b6b6b;
       display: block;
       margin-bottom: 0.5em;
       text-shadow: 1px 1px #fff;
     }
+
     .customer-logos p {text-align: center;}
+  }
+
+  @media only screen and (min-width: $desktop-min-width) {
+    .hero-left-cont {
+      padding-top: 50px;
+    }
+
     #social-proof-cont {
-      @extend .clearfix;
-      .visitors-tested-cont {
-        float: left;
+      width: 100%;
+    }
+
+    .ppc-form-cont {
+      width: 400px;
+      float: right;
+    }
+
+    #ppc-form {
+      width: auto;
+    }
+
+    #about-optimizely, #how-it-works {
+      li {
+        font-size: .9em;
       }
-      .experiments-run-cont {
-        float: right;
+
+      background-image: url('https://d1qmdf3vop2l07.cloudfront.net/optimizely-marketer-assets.cloudvent.net/raw/ppc/free-trial-sprite-adjusted-2.png');
+      background-repeat: no-repeat;
+      p {
+        margin: 0;
+        line-height: 1em;
       }
     }
 
+    #about-optimizely {
+      padding-left: 130px;
+      background-position: -1572px 0;
+    }
 
-
+    #how-it-works {
+      padding-left: 145px;
+      width: 400px;
+      margin: 0 auto;
+      background-position: -2830px 0;
+    }
   }
 }
