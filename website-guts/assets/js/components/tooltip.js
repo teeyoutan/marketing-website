@@ -33,9 +33,15 @@ window.optly.mrkt.tooltip.init = function($targets) {
   this.$targets.each(function(i, elm) {
     var $targetElm = $(elm);
 
-    $('<div data-tooltip-dialog></div>')
-      .attr('class', 'optly-hide')
-      .appendTo($targetElm);
+    if ( $targetElm.data('tooltip') ) {
+      $('<div data-tooltip-dialog="' + $targetElm.data('tooltip') + '"></div>')
+        .attr('class', 'optly-hide ' + $targetElm.data('tooltip'))
+        .appendTo($targetElm);
+    } else {
+      $('<div data-tooltip-dialog></div>')
+        .attr('class', 'optly-hide')
+        .appendTo($targetElm);
+    }
   });
 
   this.$targets.on('mouseover click', this.showTipEvent.bind(this));
