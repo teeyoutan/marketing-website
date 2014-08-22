@@ -51,11 +51,11 @@ sub_head: World-class service providers. Empowered customers. Lasting results.
               {{/each}}
             </div>
 
-            {{#if languages}}
+            {{#if page.data.languages}}
               <div class="partners-languages">
                 <p>
                   <strong>{{{partners.languages}}}</strong> <br />
-                  {{#eachNoTrailing languages ", "}}{{.}}, {{/eachNoTrailing}}
+                  {{#eachNoTrailing page.data.languages ", "}}{{.}}, {{/eachNoTrailing}}
                 </p>
               </div>
             {{/if}}
