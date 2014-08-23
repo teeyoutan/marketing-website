@@ -13,7 +13,7 @@ body_class:
 		<article id="press-mentions">
 			<h3>{{press.left_column_header}}</h3>
 			{{#each press_mentions.items}}
-			<div class="press-feed-item" {{#compare @index '>=' 20}}style="display: none;"{{/compare}}>
+			<div class="press-feed-item{{#compare @index '>=' 20}} optly-hide{{/compare}}">
 				<img src="{{logo_url}}">
 				<time datetime="{{formatDate story_date "%Y-%m-%d"}}">{{formatDate story_date "%b. %Y"}}</time>
 				<h4 class="press-article-headline"><a href="{{link_to_story}}" target="_blank">{{story_title}}</a></h4>
