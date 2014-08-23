@@ -141,3 +141,36 @@ jQuery.oFormGlobalOverrides = {
   }
 
 };
+
+window.optly.mrkt.oForm.validatePassword = function(pword){
+
+  console.log('VALIDATE PASSWORD RUNNING');
+
+  var checkComplexPassword = function (password) {
+    var CHAR_LOWERS = /[a-z]/,
+      CHAR_UPPERS   = /[A-Z]/,
+      CHAR_NUMBERS  = /[0-9]/,
+      CHAR_SPECIAL  = /[?=.*!@#$%^&*]/,
+      CHAR_TYPES    = [CHAR_LOWERS,CHAR_UPPERS,CHAR_NUMBERS,CHAR_SPECIAL],
+      counter       = 4;
+
+    for (var i=0; i<CHAR_TYPES.length; i++){
+      if(!CHAR_TYPES[i].test(password)){
+        counter--;
+      }
+    }
+
+    if (counter <= 1 || password.length < 8){
+      return false;
+    } else {
+      return true;
+    }
+  };
+
+  console.log('pword: ', pword);
+
+  console.log('returns', checkComplexPassword(pword));
+
+  return checkComplexPassword(pword);
+
+};

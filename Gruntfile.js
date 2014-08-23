@@ -5,7 +5,7 @@
  *
  * Copyright (c) 2014 Hariadi Hinta
  * Licensed under the MIT license.
- */ 
+ */
 
 'use strict';
 
@@ -199,12 +199,17 @@ module.exports = function(grunt) {
                 res.writeHead(400, {'Content-Type': 'application/json'});
                 res.end( grunt.file.read('website-guts/endpoint-mocks/accountExists.json') );
 
-              }
-              else if(req.url === '/account/signin') {
+              } else if(req.url === '/account/signin') {
 
                 res.cookie('optimizely_signed_in', '1', {httpOnly: false});
                 res.writeHead(200, {'Content-Type': 'application/json'});
                 res.end('{"success": "true"}');
+
+              } else if(req.url === '/account/create'){
+
+                res.cookie('optimizely_signed_in', '1', {httpOnly: false});
+                res.writeHead(200, {'Content-Type': 'application/json'});
+                res.end( grunt.file.read('website-guts/endpoint-mocks/createAccountSuccess.json') );
 
               } else {
 
