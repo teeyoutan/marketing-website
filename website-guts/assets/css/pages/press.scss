@@ -3,6 +3,13 @@ body.press-page {
 	#press-intro {
 		margin-bottom: 30px;
 	}
+	.show-more,
+	.hide-more {
+		width: 100%;
+	}
+	.hide-more {
+		display: none;
+	}
 	h3 {
 		@extend .heading-underline;
 	}
