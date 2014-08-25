@@ -11,7 +11,6 @@
     float: left;
     padding: 5px 15px;
     text-align: center;
-
     &:first-child {
       border-radius: $pill-radius 0 0 $pill-radius;
     }
@@ -20,7 +19,14 @@
       border-right: 1px solid rgb(213, 213, 213);
       border-radius: 0 $pill-radius $pill-radius 0;
     }
-
+    @media only screen and (max-width: $tablet-min-width) {
+      display: block;
+      float: none;
+      width: 100%;
+      border-radius: $pill-radius !important;
+      border: 1px solid rgb(213, 213, 213);
+      margin: 0.25em auto;
+    }
     &.active {
       background-color: #448ccb;
       color: #fff;
