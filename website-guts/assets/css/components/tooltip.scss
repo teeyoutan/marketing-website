@@ -5,6 +5,8 @@ $transition: opacity 0.1s linear;
   cursor: pointer;
   position: relative;
   margin: 0 5px;
+  display: inline-block;
+  border-bottom: 1px dotted #888;
 }
 
 [data-tooltip-dialog] {
