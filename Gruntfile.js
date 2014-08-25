@@ -521,8 +521,7 @@ module.exports = function(grunt) {
             '<%= config.bowerDir %>/oform/dist/oForm.min.js',
             '<%= config.temp %>/assets/js/global.js',
             '<%= config.guts %>/assets/js/components/oForm-globals.js',
-            '<%= config.bowerDir %>/fitvids/jquery.fitvids.js',
-            '<%= config.bowerDir %>/jquery-waypoints/waypoints.min.js'
+            '<%= config.bowerDir %>/fitvids/jquery.fitvids.js'
           ]
         }
       }

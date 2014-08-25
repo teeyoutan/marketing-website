@@ -84,9 +84,6 @@
     p a {
       color: #fff;
     }
-    a {
-      text-decoration: underline;
-    }
   }
   .sign-up-btn {
     background: #90b71c;
@@ -173,10 +170,6 @@
     padding-top: 2em;
   }
   .feature {
-    //background-size: 39px 38px;
-    //margin-bottom: 2.5em;
-    //background-position: center top;
-    //background-repeat: no-repeat;
     text-align: center;
     h3, p {
       margin: 0;
@@ -216,7 +209,7 @@
     }
   }
   #visual-changes-features {
-    background: #ffffff;
+    background: #fff;
     background: linear-gradient(to bottom, white 0%, whitesmoke 100%);
     box-sizing: border-box;
     #visual-changes-demo {
@@ -243,7 +236,7 @@
       font-family: $body-font-family;
     }
     .email-signup {
-      border: 1px solid #cccccc;
+      border: 1px solid #ccc;
       border-right: 0;
     }
     p {

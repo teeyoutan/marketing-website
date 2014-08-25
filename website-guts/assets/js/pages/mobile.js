@@ -8,16 +8,23 @@ function animShowSlide($parent, last) {
 }
 
 function logSegment(sEvent, category, label, value) {
-  var data = {};
-  if(category) {data.category = category;}
-  if(label) {data.label = label;}
-  if(value) {data.value = value;}
+  var data = {
+    category: category,
+    label: label,
+    value: value
+  };
+
+  for(var type in data) {
+    if(data[type] === undefined) {
+      delete data[type];
+    }
+  }
+
   window.analytics.track(sEvent, data);
 }
 
 $(function() {
-  var _gaq                 = window._gaq || [],
-    $textDisplay           = $('#visual-change-button'),
+  var $textDisplay         = $('#visual-change-button'),
     $textInput             = $('#visual-change-input'),
     animParents            = [$('#flexible-powerful'), $('#trusted')],
     $buttonCont            = $('#visual-change-button'),
@@ -33,11 +40,6 @@ $(function() {
 
   //add url parameter to the sign up button
   $('.sign-up-btn').attr('href', fullUrl);
-
-  //video is currently commented out but leaving this tracking 
-  // $('#video').on('click', function() {
-  //   _gaq.push(['_trackEvent', 'Mobile landing page', 'Video click']);
-  // });
 
   //create the parallax panel entry animation
   if ( !window.optly.mrkt.isMobile() ) {
