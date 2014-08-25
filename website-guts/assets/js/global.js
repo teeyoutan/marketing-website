@@ -126,6 +126,22 @@ window.optly.mrkt.formDataStringToObject = function getJsonFromUrl(string) {
 
 };
 
+//Test for viewport unit support
+window.Modernizr.addTest('viewportunits', function() { 
+    var bool;
+    
+    window.Modernizr.testStyles('#modernizr { width: 50vw; }', function(elem, rule) {   
+        var width = parseInt(window.innerWidth/2,10),
+            compStyle = parseInt((window.getComputedStyle ?
+                      getComputedStyle(elem, null) :
+                      elem.currentStyle).width,10);
+        
+        bool= (compStyle === width);
+    });
+    
+    return bool;
+});
+
 $(function(){
 
 	$('#inner-wrapper').fitVids({
