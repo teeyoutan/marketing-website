@@ -27,7 +27,9 @@ body_class:
 			<div id="press-kit">
 				<h3 class="heading-underline">{{press.press_kit.header}}</h3>
 				{{#each press.press_kit.items}}
-				<p>{{{.}}}</p>
+				<p>
+					<a href="{{this.link}}" title="{{this.title}}">{{this.text}}</a>
+				</p>
 				{{/each}}
 			</div><!--/#press-kit-->
 			{{/if}}
@@ -64,7 +66,7 @@ body_class:
 			{{#if press.blog}}
 			<div id="optimizely-blog">
 				<h3>{{press.blog.header}}</h3>
-				<p>{{{press.blog.body}}}</p>
+				<p><a href="{{press.blog.link}}">{{press.blog.btn_text}}</a>&nbsp;{{press.blog.text}}</p>
 			</div>
 			{{/if}}
 		</aside><!--/#press-info-->
@@ -74,7 +76,7 @@ body_class:
 		<p>{{press.follow_the_latest.header}}</p>
 		<ul>
 			{{#each press.follow_the_latest.items}}
-			<li>{{{.}}}</li>
+			<li><a href="{{this.link}}" title="{{this.title}}">{{this.text}}</a></li>
 			{{/each}}
 		</ul>
 	</div>

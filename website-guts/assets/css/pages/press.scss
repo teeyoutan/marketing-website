@@ -99,13 +99,14 @@ body.press-page {
 			text-transform: uppercase;
 		}
 		#follow-latest {
+			margin-top: 60px;
 			text-align: center;
 			li {
 				display: inline-block;
 				border-right: 1px solid #242424;
-				padding: 0 4px;
+				padding: 0 10px 0 4px;
 			}
-			li.last {
+			li:last-child {
 				border-right: 0;
 			}
 		}
