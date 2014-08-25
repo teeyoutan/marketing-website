@@ -144,8 +144,6 @@ jQuery.oFormGlobalOverrides = {
 
 window.optly.mrkt.oForm.validatePassword = function(pword){
 
-  console.log('VALIDATE PASSWORD RUNNING');
-
   var checkComplexPassword = function (password) {
     var CHAR_LOWERS = /[a-z]/,
       CHAR_UPPERS   = /[A-Z]/,
@@ -166,10 +164,6 @@ window.optly.mrkt.oForm.validatePassword = function(pword){
       return true;
     }
   };
-
-  console.log('pword: ', pword);
-
-  console.log('returns', checkComplexPassword(pword));
 
   return checkComplexPassword(pword);
 

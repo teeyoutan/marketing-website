@@ -39,21 +39,23 @@ $('#touch-homepage-create-account-form').oForm({
     }
 
   },
-  afterLocal: function(jqXHR, cb){
+  afterLocal: function(rs, cb){
 
     //window.alert('heyo!');
-    console.log('afterLocal running');
+    //console.log('afterLocal running');
 
-    if(typeof jqXHR === 'object'){
+    if(typeof rs === 'object'){
 
-      console.log('jqXHR', jqXHR);
+      console.log('rs: ', + rs);
 
-      var responseData = jqXHR.responeJSON;
+      var r = rs.responeJSON;
 
-      window.analytics.identify(responseData.email, {
-        name: responseData.first_name + ' ' + responseData.last_name,
-        email: responseData.email,
-        plan: responseData.subscription_plan
+      console.log('r: ', r);
+
+      window.analytics.identify(r.email, {
+        name: r.first_name + ' ' + r.last_name,
+        email: r.email,
+        plan: r.subscription_plan
       });
 
       window.analytics.track('/account/create/success', {
@@ -75,7 +77,7 @@ $('#touch-homepage-create-account-form').oForm({
       //run callback
       if(typeof cb === 'function'){
 
-        cb(jqXHR);
+        cb(rs);
 
       }
 

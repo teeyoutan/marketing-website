@@ -18,7 +18,7 @@ layout_body_class: false
 <div id="touch-cta">
   <h2>Create a free account</h2>
   <p>You're seconds away from running A/B tests!</p>
-  <form id="touch-homepage-create-account-form" novalidate>
+  <form id="touch-homepage-create-account-form" method="POST" action="/account/create" novalidate>
     {{> create-account-form-contents}}
     <input type="submit" value="Create account &raquo;" class="primary-button submit-btn">
   </form>
