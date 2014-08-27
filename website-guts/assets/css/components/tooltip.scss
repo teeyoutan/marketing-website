@@ -1,0 +1,81 @@
+$property: opacity 1 0;
+$transition: opacity 0.1s linear;
+
+[data-tooltip] {
+  cursor: pointer;
+  position: relative;
+  margin: 0 5px;
+  display: inline-block;
+  border-bottom: 1px dotted #888;
+}
+
+[data-tooltip-dialog] {
+    text-align: center;
+    color: #fff;
+    background: rgba(0,0,0,0.7);
+    position: absolute;
+    width: 40vh;
+    opacity: 0;
+    z-index: 100;
+    padding: 15px;
+    border-radius: 5px;
+    @include optly--animate($property, $transition);
+  &:after {
+    width: 0;
+    height: 0;
+    content: '';
+    position: absolute;
+    border-bottom: none;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid rgba(0,0,0,0.7);
+    left: 50%;
+    bottom: -5px;
+    margin: 0 0 0 -5px;
+  }
+  &.top-tip {
+    &:after {
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-bottom: 5px solid rgba(0,0,0,0.7);
+      border-top: none;
+      top: -5px;
+      left: 50%;
+      margin: 0 0 0 -5px;
+      bottom: auto;
+      right: auto;
+    }
+  }
+  &.left-tip {
+    &:after {
+      border-left: none;
+      border-right: 5px solid rgba(0,0,0,0.7);
+      border-bottom: 5px solid transparent;
+      border-top: 5px solid transparent;
+      top: 50%;
+      margin: -5px 0 0 0;
+      left: -5px;
+      right: auto;
+      bottom: auto;
+    }
+  }
+  &.right-tip {
+    &:after {
+      border-left: 5px solid rgba(0,0,0,0.7);
+      border-right: none;
+      border-bottom: 5px solid transparent;
+      border-top: 5px solid transparent;
+      top: 50%;
+      margin: -5px 0 0 0;
+      right: -5px;
+      left: auto;
+      bottom: auto;
+    }
+  }
+}
+
+@media only screen and (min-width: $tablet-min-width) {
+  [data-tooltip-dialog] {
+    width: 250px;
+  }
+}

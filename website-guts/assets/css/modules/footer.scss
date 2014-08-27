@@ -2,6 +2,15 @@ footer {
     #footer-nav {
       display: none;
     }
+    #footer-nav-cont {
+        margin-top: 25px;
+        .left-nav {
+            width: 100%;
+        }
+        .right-nav {
+            width: 100%;
+        }
+    }
     text-align: center;
     padding: 30px 0;
     background: #006eb6;
@@ -14,6 +23,7 @@ footer {
         margin: 0;
     }
     li {
+        text-align: center;
         list-style-type: none;
         margin-bottom: 20px;
     }
@@ -75,6 +85,24 @@ footer {
           margin: 0;
           display: block;
         }
+        #footer-nav-cont {
+            margin-top: 25px;
+            .left-nav {
+                width: 25%;
+            }
+            .right-nav {
+                width: 75%;
+                margin: 0;
+                padding-left: 40px;
+            }
+            .left-nav,
+            .right-nav {
+                float: left;
+            }
+            li {
+                margin-bottom: 8px;
+            }
+        }
     }
     #legalese {
         li {
@@ -87,20 +115,6 @@ footer {
         }
         li.security {
             padding-right: 0;
-        }
-    }
-    #footer-nav-cont {
-        margin-top: 25px;
-        .left-nav {
-            width: 25%;
-        }
-        .right-nav {
-            width: 75%;
-            margin: 0;
-            padding-left: 40px;
-        }
-        li {
-            margin-bottom: 8px;
         }
     }
     .footer-nav-column {

@@ -16,7 +16,7 @@
 }
 
 .button {
-	background: linear-gradient(top, #147ec7 0%,#126fb0 100%);
+	background: linear-gradient(to bottom, #147ec7 0%,#126fb0 100%);
 	color: #fff!important;
 	border: 1px solid #22599a;
 	border-radius: 1px;
@@ -378,6 +378,12 @@ input[type="password"]  {
 .small-caps {
 	font-variant: small-caps;
 	text-transform: lowercase;
+}
+
+.pull-quote {
+	font-size: 1.81em;
+	font-weight: 300;
+	line-height: 1.2;
 }
 
 //classes for processing and error states on forms

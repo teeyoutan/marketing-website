@@ -93,7 +93,7 @@ textarea {
 
 ul {
   margin: 5px 0;
-  padding: 0;
+  padding: 0 0 0 1em;
 }
 
 /* ==========================================================================
@@ -132,6 +132,9 @@ ul {
         font-family: $body-font-family;
         text-align: center;
         position: relative;
+    }
+    li {
+      text-align: left;
     }
 
     .logo {
@@ -176,7 +179,7 @@ ul {
           display: none;
         }
         &.current {
-          color: $darkBlue;
+          color: $dark-blue;
           font-weight: bold;
         }
       }
@@ -207,6 +210,9 @@ ul {
         }
         p, li {
             font-size: 1.1em;
+        }
+        li {
+          list-style: none;
         }
         p {
             line-height: 1.7;
@@ -277,6 +283,10 @@ ul {
         }
         p, li {
             font-size: .9em;
+        }
+        li {
+          list-style: disc;
+          text-align: left;
         }
         h2, h3, h3, h4, h5 {
             text-align: left;
