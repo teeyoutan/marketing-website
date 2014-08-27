@@ -78,7 +78,7 @@ window.optly.mrkt.signOut = function(redirectPath) {
     }
     // If no path is specified then reload location
     else if (data) {
-      window.location.reload();
+      window.location = window.location.origin + window.linkPath;
     }
   }, function(err) {
     // Report error here

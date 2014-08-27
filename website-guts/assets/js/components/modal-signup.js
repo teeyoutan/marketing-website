@@ -2,48 +2,67 @@ var $signupModal = $('[data-optly-modal="signup"]'),
   $password1     = $signupModal.find('input[data-validation="password1"]'),
   $password2     = $signupModal.find('input[data-validation="password2"]'),
   $hiddenInput   = $signupModal.find('input[name="hidden"]'),
-  passed         = false;
+  passed         = false,
+  emailRegEx     = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-$('#signup-form').oForm({
-  validation: {
-    password1: function(data) {
-      if(data.length >= 8 && passed) {
-        return true;
+function signupOform() {
+  $('#signup-form').oForm({
+    validation: {
+      password1: function(data) {
+        if(data.length >= 8 && passed) {
+          return true;
+        }
+        return false;
+      },
+      password2: function(data) {
+        if(data.length >= 8 && $password1.val() === $password2.val() && passed) {
+          return true;
+        }
+        return false;
       }
-      return false;
     },
-    password2: function(data) {
-      if(data.length >= 8 && $password1.val() === $password2.val() && passed) {
-        return true;
-      }
-      return false;
-    }
-  },
-  beforeSubmit: function() {
-    var userData = {
-      name: $signupModal.find('input[name="name"]').val(),
-      email: $signupModal.find('input[name="email"]').val(),
-      password1: window.optly.mrkt.utils.sha1Hash( $password1.val() ),
-      password2: window.optly.mrkt.utils.sha1Hash( $password2.val() ),
-      phone_number: $signupModal.find('input[name="phone_number"]').val(),
-      'terms-of-service': $signupModal.find('input[name="terms-of-service"]').val(),
-      hidden: $hiddenInput.val()
-    };
+    beforeSubmit: function() {
+      var userData = {
+        name: $signupModal.find('input[name="name"]').val(),
+        email: $signupModal.find('input[name="email"]').val(),
+        password1: window.optly.mrkt.utils.sha1Hash( $password1.val() ),
+        password2: window.optly.mrkt.utils.sha1Hash( $password2.val() ),
+        phone_number: $signupModal.find('input[name="phone_number"]').val(),
+        'terms-of-service': $signupModal.find('input[name="terms-of-service"]').val(),
+        hidden: $hiddenInput.val()
+      };
 
-    userData = window.optly.mrkt.utils.Base64.encode( JSON.stringify(userData) );
-    console.log(userData);
-    
-    return userData;
-  },
-  afterLocal: function(jqXHR, globalCallback) {
-    jqXHR.then(function(data) {
-      if(data.success === 'true') {
-        //get data here an reload to the dashboard
-        console.log(data);
-      }
-    });
-  }
-});
+      userData = window.optly.mrkt.utils.Base64.encode( JSON.stringify(userData) );
+      console.log(userData);
+      
+      return userData;
+    },
+    afterLocal: function(jqXHR, globalCallback) {
+      jqXHR.then(function(data) {
+        if(data.success === 'true') {
+          //get data here an reload to the dashboard
+          console.log(data);
+        }
+      });
+    }
+  });
+}
+
+function encodeSignupData() {
+  var userData = {
+        name: $signupModal.find('input[name="name"]').val(),
+        email: $signupModal.find('input[name="email"]').val(),
+        password1: window.optly.mrkt.utils.sha1Hash( $password1.val() ),
+        password2: window.optly.mrkt.utils.sha1Hash( $password2.val() ),
+        phone_number: $signupModal.find('input[name="phone_number"]').val(),
+        'terms-of-service': $signupModal.find('input[name="terms-of-service"]').val(),
+        hidden: $hiddenInput.val()
+      };
+
+  userData = window.optly.mrkt.utils.Base64.encode( JSON.stringify(userData) );
+  
+  return userData;
+}
 
 function checkComplexPassword(password) {
   var CHAR_LOWERS = /[a-z]/,
@@ -97,22 +116,70 @@ function passwordConfirm() {
   }
 }
 
+//for testing when oForm isn't ready
+function signupXHR(e) {
+  var deferred;
+  e.preventDefault();
+
+  if($password1.val().length < 8 ) {
+    $('#signup-form').find('.password1-related').removeClass('error-hide').addClass('error-show');
+    $password1.addClass('error-show');
+    addErrors($password1, $('h5.password-req'));
+    return;
+  } else if ( !checkComplexPassword($password1.val()) ) {
+    addErrors($password1, $('h5.password-req'));
+    return;
+  } else if ($password1.val() !== $password2.val()) {
+    addErrors($password2, $('.password2-related'), 'Please enter the same value again');
+    return;
+  } else if ( $('#signup-form').find('[name="name"]').val().length === 0 ) {
+    $('#signup-form').find('.name-related').removeClass('error-hide').addClass('error-show');
+    $('#signup-form').find('[name="name"]').addClass('error-show');
+    return;
+  } else if( !emailRegEx.test( $('#signup-form').find('[name="email"]').val() ) ) {
+    $('#signup-form').find('.email-related').removeClass('error-hide').addClass('error-show');
+    $('#signup-form').find('[name="email"]').addClass('error-show');
+    return;
+  } else if ( !$('#signup-form').find('[name="terms-of-service"]').is(':checked') ) {
+    $('#signup-form').find('.checkbox-related').removeClass('error-hide').addClass('error-show');
+    $('#signup-form').find('[name="terms-of-service"]').addClass('error-show');
+    return;
+  }
+  deferred = $.ajax({
+    type: 'POST',
+    url: '/account/create',
+    data: {data: encodeSignupData()}
+  });
+
+  deferred.then(function(resp) {
+    window.location = 'https://www.optimizely.com/dashboard';
+  }, function(err) {
+    console.log('error: ', err);
+  });
+
+}
+
 $(function() {
   // for bots???
   $hiddenInput.val('touched');
 
   // password1 validations
-  $password1.on('keyup', function() {
-    //if the complex password doesn't pass apply error classes
+  $password1.one('focusout', function() {
     if( !checkComplexPassword($password1.val()) ) {
       addErrors($password1, $('h5.password-req'));
     } 
-    //remove local error classes but do not remove body error class just in case
-    else {
-      $password1.removeClass('error-show');
-      $('h5.password-req').removeClass('error-show');
-      passed = true;
-    }
+    $password1.on('keyup', function() {
+      //if the complex password doesn't pass apply error classes
+      if( !checkComplexPassword($password1.val()) ) {
+        addErrors($password1, $('h5.password-req'));
+      } 
+      //remove local error classes but do not remove body error class just in case
+      else {
+        $password1.removeClass('error-show');
+        $('h5.password-req').removeClass('error-show');
+        passed = true;
+      }
+    });
   });
 
   //password2 confirmation
@@ -120,5 +187,7 @@ $(function() {
     passwordConfirm();
     $password2.on('keyup', passwordConfirm);
   });
+
+  $('#signup-form').on('submit', signupXHR);
 });
 

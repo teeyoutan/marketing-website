@@ -203,16 +203,16 @@ module.exports = function(grunt) {
 
                 res.cookie('optimizely_signed_in', '1', {httpOnly: false});
                 res.writeHead(200, {'Content-Type': 'application/json'});
-                //console.log('request', req);
-                //console.log('request data', req.body);
-                res.end('{"success": "true"}');
+
+                //res.end( '{"success": "true"}' );
+
+                res.end( grunt.file.read('website-guts/endpoint-mocks/createAccount.json') );
 
               } else if(req.url === '/account/signin') {
 
                 res.cookie('optimizely_signed_in', '1', {httpOnly: false});
                 res.writeHead(200, {'Content-Type': 'application/json'});
-                //console.log('request', req);
-                //console.log('request data', req.body);
+
                 res.end('{"success": "true"}');
 
               } else {

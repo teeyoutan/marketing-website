@@ -37,7 +37,9 @@ body {
   }
   p.error-message {
     position: absolute;
-    bottom: 0;
+    left: 50%;
+    bottom: 10px;
+    transform: translateX(-50%);
   }
   .modal-header, .modal-footer {
     background: #f8f8f8;
@@ -62,6 +64,7 @@ body {
     .primary-button { margin-bottom: 25px; }
   }
   .modal-body {
+    position: relative;
     background: transparent;
     width: 100%;
     font-size: 0.8em;
