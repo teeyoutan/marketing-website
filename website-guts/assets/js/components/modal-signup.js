@@ -121,7 +121,15 @@ function signupXHR(e) {
   var deferred;
   e.preventDefault();
 
-  if($password1.val().length < 8 ) {
+  if ( $('#signup-form').find('[name="name"]').val().length === 0 ) {
+    $('#signup-form').find('.name-related').removeClass('error-hide').addClass('error-show');
+    $('#signup-form').find('[name="name"]').addClass('error-show');
+    return;
+  } else if( !emailRegEx.test( $('#signup-form').find('[name="email"]').val() ) ) {
+    $('#signup-form').find('.email-related').removeClass('error-hide').addClass('error-show');
+    $('#signup-form').find('[name="email"]').addClass('error-show');
+    return;
+  } else if($password1.val().length < 8 ) {
     $('#signup-form').find('.password1-related').removeClass('error-hide').addClass('error-show');
     $password1.addClass('error-show');
     addErrors($password1, $('h5.password-req'));
@@ -132,19 +140,12 @@ function signupXHR(e) {
   } else if ($password1.val() !== $password2.val()) {
     addErrors($password2, $('.password2-related'), 'Please enter the same value again');
     return;
-  } else if ( $('#signup-form').find('[name="name"]').val().length === 0 ) {
-    $('#signup-form').find('.name-related').removeClass('error-hide').addClass('error-show');
-    $('#signup-form').find('[name="name"]').addClass('error-show');
-    return;
-  } else if( !emailRegEx.test( $('#signup-form').find('[name="email"]').val() ) ) {
-    $('#signup-form').find('.email-related').removeClass('error-hide').addClass('error-show');
-    $('#signup-form').find('[name="email"]').addClass('error-show');
-    return;
   } else if ( !$('#signup-form').find('[name="terms-of-service"]').is(':checked') ) {
     $('#signup-form').find('.checkbox-related').removeClass('error-hide').addClass('error-show');
     $('#signup-form').find('[name="terms-of-service"]').addClass('error-show');
     return;
   }
+  
   deferred = $.ajax({
     type: 'POST',
     url: '/account/create',

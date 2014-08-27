@@ -76,24 +76,25 @@ $(function() {
   $('#signin-form').on('submit', function(e) {
     var deferred;
     e.preventDefault();
-    if ( !emailRegEx.test( $('#signin-form').find('[name="email"]').val() ) && $('#signin-form').find('[type="password"]').val().length < 8 && !checkComplexPassword( $('#signin-form').find('[type="password"]').val() )) {
+    if ( $('#signin-form').find('[name="email"]').val().length === 0 && $('#signin-form').find('[type="password"]').val().length === 0 ) {
       $('#signin-form').find('.password-related').removeClass('error-hide').addClass('error-show');
       $('#signin-form').find('[type="password"]').addClass('error-show');
       $('#signin-form').find('.email-related').removeClass('error-hide').addClass('error-show');
       $('#signin-form').find('[name="email"]').addClass('error-show');
       $('#signin-form').find('p.error-message').removeClass('error-hide').addClass('error-show');
       return;
-    } else if( $('#signin-form').find('[type="password"]').val().length < 8 || !checkComplexPassword( $('#signin-form').find('[type="password"]').val() ) ) {
-      $('#signin-form').find('.password-related').removeClass('error-hide').addClass('error-show');
-      $('#signin-form').find('[type="password"]').addClass('error-show');
-      $('#signin-form').find('p.error-message').removeClass('error-hide').addClass('error-show');
-      return;
-    } else if ( !emailRegEx.test( $('#signin-form').find('[name="email"]').val() ) ) {
+    } else if( $('#signin-form').find('[name="email"]').val().length === 0 || !emailRegEx.test( $('#signin-form').find('[name="email"]').val() ) ) {
       $('#signin-form').find('.email-related').removeClass('error-hide').addClass('error-show');
       $('#signin-form').find('[name="email"]').addClass('error-show');
       $('#signin-form').find('p.error-message').removeClass('error-hide').addClass('error-show');
       return;
-    }
+    } else if( !checkComplexPassword( $('#signin-form').find('[type="password"]').val() ) ) {
+      $('#signin-form').find('.password-related').removeClass('error-hide').addClass('error-show');
+      $('#signin-form').find('[type="password"]').addClass('error-show');
+      $('#signin-form').find('p.error-message').removeClass('error-hide').addClass('error-show');
+      return;
+    } 
+
     deferred = $.ajax({
         type: 'POST',
         url: '/account/signin',
@@ -101,7 +102,6 @@ $(function() {
       });
 
     deferred.then(function(resp) {
-      debugger;
       window.location = 'https://www.optimizely.com/dashboard';
     }, function(err) {
       console.log('error: ', err);
