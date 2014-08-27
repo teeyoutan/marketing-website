@@ -93,7 +93,7 @@ textarea {
 
 ul {
   margin: 5px 0;
-  padding: 0;
+  padding: 0 0 0 1em;
 }
 
 /* ==========================================================================
@@ -132,6 +132,9 @@ ul {
         font-family: $body-font-family;
         text-align: center;
         position: relative;
+    }
+    li {
+      text-align: left;
     }
 
     .logo {

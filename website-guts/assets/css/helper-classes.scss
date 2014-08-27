@@ -384,6 +384,12 @@ input[type="text"], input[type="url"], input[type="email"], input[type="tel"] {
 	text-transform: lowercase;
 }
 
+.pull-quote {
+	font-size: 1.81em;
+	font-weight: 300;
+	line-height: 1.2;
+}
+
 //classes for processing and error states on forms
 
 .processing-hide, .error-hide {opacity: 0;}
