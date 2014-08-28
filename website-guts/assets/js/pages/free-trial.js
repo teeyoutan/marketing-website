@@ -6,8 +6,7 @@ $('#seo-form').oForm({
 
 });
 
-var interval,
-    settings,
+var settings,
     showIncrementValues,
     addCommas;
 
