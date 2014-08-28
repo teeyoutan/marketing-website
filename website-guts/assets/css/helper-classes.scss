@@ -8,6 +8,16 @@
 	}
 }
 
+.required {
+	&:after {
+		content: " *";
+    color: rgb(255, 0, 0);
+    display: inline;
+		height: auto;
+		width: auto;
+	}
+}
+
 // Tests is vh CSS property is supported
 #vh-test {
 	position: fixed;
