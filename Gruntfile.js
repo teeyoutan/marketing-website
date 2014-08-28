@@ -1,12 +1,3 @@
-/*
- * Generated on 2014-03-26
- * generator-assemble v0.4.11
- * https://github.com/assemble/generator-assemble
- *
- * Copyright (c) 2014 Hariadi Hinta
- * Licensed under the MIT license.
- */
-
 'use strict';
 
 // # Globbing
