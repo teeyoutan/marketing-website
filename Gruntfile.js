@@ -328,7 +328,7 @@ module.exports = function(grunt) {
             expand: true
           }
         ]
-      }
+      },
       pages: {
         files: [
           {
