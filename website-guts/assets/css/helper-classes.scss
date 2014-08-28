@@ -18,6 +18,12 @@
 	}
 }
 
+.show-hide {
+	&.tablet {
+		display: none;
+	}
+}
+
 // Tests is vh CSS property is supported
 #vh-test {
 	position: fixed;
@@ -405,3 +411,16 @@ input[type="text"], input[type="url"], input[type="email"], input[type="tel"] {
 .processing-hide, .error-hide {opacity: 0;}
 
 body.processing-state .processing-show, body.error-state .error-show {opacity: 1;}
+
+@media screen and (min-width: $tablet-min-width) {
+	.show-hide {
+		&.mobile {
+			display: none;
+		}
+		&.tablet {
+			&.inline {
+				display: inline;
+			}
+		}
+	}
+}
