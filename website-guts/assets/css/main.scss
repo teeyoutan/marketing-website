@@ -176,7 +176,10 @@ ul {
         text-align: center;
         font-weight: normal;
         &.active {
-          display: none;
+          display: block;
+          &:hover {
+            text-decoration: none;
+          }
         }
         &.current {
           color: $dark-blue;

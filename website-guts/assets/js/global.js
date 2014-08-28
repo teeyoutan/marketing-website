@@ -40,11 +40,21 @@ window.optly.mrkt.mobileJS = function(){
 
 		});
 
-		$('#main-nav ul').each(function(){
+    $(window).on('load orientationchange', function() {
+      if(window.innerWidth <= 768) {
+        $('#main-nav ul').each(function(){
 
-				$(this).css('max-height', $(this).height() + 'px');
+            $(this).css('max-height', $(this).height() + 'px');
 
-		});
+        });
+      } else {
+        $('#main-nav ul').each(function(){
+
+            $(this).css('max-height', '');
+
+        });
+      }
+    });
 
 		$('body').addClass('mobile-nav-ready');
 
