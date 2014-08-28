@@ -5,7 +5,7 @@
  *
  * Copyright (c) 2014 Hariadi Hinta
  * Licensed under the MIT license.
- */ 
+ */
 
 'use strict';
 
@@ -78,6 +78,30 @@ module.exports = function(grunt) {
             assetsDir: '/<%= grunt.option("branch") || gitinfo.local.branch.current.name %>/assets',
             link_path: '/<%= grunt.option("branch") || gitinfo.local.branch.current.name %>',
             sassImagePath: '/<%= gitinfo.local.branch.current.name %>/assets/img',
+            compress_js: true,
+            drop_console: false,
+            concat_banner: '(function($){ \n\n' +
+                           '  window.optly = window.optly || {}; \n\n' +
+                           '  window.optly.mrkt = window.optly.mrkt || {}; \n\n' +
+                           '  window.linkPath = "<%= gitinfo.local.branch.current.name %>" \n\n' +
+                           '  try { \n\n',
+            concat_footer: '  } catch(error){ \n\n' +
+                           '  //report errors to GA \n\n' +
+                           '  window.console.log("js error: " + error);' +
+                           '  } \n' +
+                           '})(jQuery);'
+          }
+        }
+      },
+      smartlingStaging: {
+        options: {
+          variables: {
+            aws: creds,
+            environment: 'staging',
+            environmentData: 'website-guts/data/environments/staging/environmentVariables.json',
+            assetsDir: '/assets',
+            link_path: '',
+            sassImagePath: '/assets/img',
             compress_js: true,
             drop_console: false,
             concat_banner: '(function($){ \n\n' +
@@ -410,7 +434,7 @@ module.exports = function(grunt) {
       options: {
         key: '<%= grunt.config.get("aws.key") %>',
         secret: '<%= grunt.config.get("aws.secret") %>',
-        bucket: '<%= grunt.config.get("aws.staging_bucket") %>',
+        bucket: '<%= grunt.config.get("aws.smartling_staging_bucket") %>',
         access: 'public-read'
       },
       staging: {
@@ -421,6 +445,15 @@ module.exports = function(grunt) {
               rel: '<%= config.dist %>'
             }
           ]
+      },
+      smartling: {
+        upload: [
+          {
+            src: '<%= config.dist %>/**/*',
+            dest: '',
+            rel: '<%= config.dist %>'
+          }
+        ]
       }
     },
     jshint: {
@@ -662,7 +695,22 @@ module.exports = function(grunt) {
     'copy',
     's3:staging',
     'clean:postBuild'
+  ]);
 
+  grunt.registerTask('smartling-staging-deploy', [
+    'gitinfo',
+    'config:smartlingStaging',
+    'jshint:clientDev',
+    'jshint:server',
+    'clean:preBuild',
+    'assemble',
+    'concat',
+    'uglify',
+    'sass',
+    'autoprefixer',
+    'copy',
+    's3:smartling',
+    'clean:postBuild'
   ]);
 
   grunt.registerTask('server', [
