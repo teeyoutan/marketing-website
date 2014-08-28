@@ -130,7 +130,7 @@ window.optly.mrkt.formDataStringToObject = function getJsonFromUrl(string) {
 window.Modernizr.addTest('viewportunits', function() {
     var bool;
 
-    window.Modernizr.testStyles('#modernizr { width: 50vw; }', function(elem) {   
+    window.Modernizr.testStyles('#modernizr { width: 50vw; }', function(elem) {
         var width = parseInt(window.innerWidth/2,10),
             compStyle = parseInt((window.getComputedStyle ?
                       getComputedStyle(elem, null) :
