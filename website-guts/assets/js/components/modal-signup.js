@@ -33,7 +33,6 @@ function signupOform() {
       };
 
       userData = window.optly.mrkt.utils.Base64.encode( JSON.stringify(userData) );
-      console.log(userData);
       
       return userData;
     },
@@ -44,6 +43,62 @@ function signupOform() {
           console.log(data);
         }
       });
+    }
+  });
+}
+
+function newSignupOform() {
+  window.oForm({
+    selector: $('#signup-form'),
+
+    validation: {
+      password1: function(data) {
+        if(data.length >= 8 && passed) {
+          return true;
+        }
+        return false;
+      },
+      password2: function(data) {
+        if(data.length >= 8 && $password1.val() === $password2.val() && passed) {
+          return true;
+        }
+        return false;
+      }
+    },
+
+    middleware: function(xhr) {
+      var userData = {
+        name: $signupModal.find('input[name="name"]').val(),
+        email: $signupModal.find('input[name="email"]').val(),
+        password1: window.optly.mrkt.utils.sha1Hash( $password1.val() ),
+        password2: window.optly.mrkt.utils.sha1Hash( $password2.val() ),
+        phone_number: $signupModal.find('input[name="phone_number"]').val(),
+        'terms-of-service': $signupModal.find('input[name="terms-of-service"]').val(),
+        hidden: $hiddenInput.val()
+      };
+
+      userData = window.optly.mrkt.utils.Base64.encode( JSON.stringify(userData) );
+     
+      return JSON.stringify({data: userData});
+    },
+
+    success: function(resp) {
+      var data = resp.data;
+      // segement identify
+      window.analytics.identify(data.email, {
+        name: data.first_name + ' ' + data.last_name,
+        email: data.email,
+        plane: data.subscription_plan
+      });
+
+      // segement track
+      window.analytics.track(window.location.pathname, {
+        category: 'signup',
+        label: $('#signup-form').find('[name="email"]').val()
+      });
+
+      //navigate to the dashboard
+      window.location = 'https://www.optimizely.com/dashboard';
     }
   });
 }

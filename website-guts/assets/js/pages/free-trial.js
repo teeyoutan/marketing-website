@@ -6,6 +6,17 @@ $('#seo-form').oForm({
 
 });
 
+// function waiting for new oform
+function newOform() {
+  var freeTrial = window.oForm({
+
+    selector: $('#seo-form'),
+    success: window.optly.mrkt.oForm.ppcFormDefaultResponseHandler,
+    complete: window.optly.mrkt.oForm.ppcFormDefaultResponseHandler
+
+  });
+}
+
 var settings,
     showIncrementValues,
     addCommas;

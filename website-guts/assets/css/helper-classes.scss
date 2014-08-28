@@ -8,6 +8,22 @@
 	}
 }
 
+.required {
+	&:after {
+		content: " *";
+    color: rgb(255, 0, 0);
+    display: inline;
+		height: auto;
+		width: auto;
+	}
+}
+
+.show-hide {
+	&.tablet {
+		display: none;
+	}
+}
+
 .callout {
 	box-shadow: 0px 2px 4px rgba(0,0,0,0.07);
 	background-color: white;
@@ -388,10 +404,25 @@ input[type="password"]  {
 
 //classes for processing and error states on forms
 
-.processing-hide, .error-hide {opacity: 0;}
+.processing-hide, 
+.error-hide {opacity: 0;}
 
 body.processing-state .processing-show, 
 body.error-state .error-show {
 	opacity: 1;
 	color: #911d16!important;
+}
+body.processing-state .processing-show, body.error-state .error-show {opacity: 1;}
+
+@media screen and (min-width: 769px) {
+	.show-hide {
+		&.mobile {
+			display: none;
+		}
+		&.tablet {
+			&.inline {
+				display: inline;
+			}
+		}
+	}
 }

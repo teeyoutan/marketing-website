@@ -76,6 +76,36 @@ for(i = 0; i < dateArray.length; i++){
 
 $(function(){
 
+  // new oForm syntax to be used when ready
+  function newWebinarOform() {
+    var webinarOform = window.oForm({
+      selector: $('#webinar-registration-form'),
+
+      before: function() {
+        var name = $('#name').val().split(' ');
+
+        $('[name="FirstName"]').val( name[0] );
+        $('[name="LastName"]').val( name[1] );
+
+        return true;
+      },
+
+      success: function(resp){
+        if(typeof resp === 'object'){
+          if(typeof resp.responseJSON === 'object'){
+            if(resp.responseJSON.succeeded){
+              //window.optly.mrkt.modal.open('webinar-confirmation');
+              window.optly.mrkt.modal.openModalHandler('webinar-confirmation');
+            } else if(resp.responseJSON.message){
+                $('body').addClass('error-state');
+                $('.error-message').text(resp.responseJSON.message).addClass('error-show').removeClass('error-hide');
+            }
+          }
+        }
+      }
+    });
+  }
+
   eventDisplayHTML = window.optly.mrkt.templates.webinarEventDisplay(templateContext);
 
   $('#events').html(eventDisplayHTML);

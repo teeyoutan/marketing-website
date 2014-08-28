@@ -2,23 +2,30 @@ $property: opacity 1 0;
 $transition: opacity 0.1s linear;
 
 [data-tooltip] {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
+  opacity: 0.7;
+  background: image-url('buttons.png') no-repeat -24px 0;
   cursor: pointer;
-  position: relative;
-  margin: 0 5px;
   display: inline-block;
-  border-bottom: 1px dotted #888;
+  width: 18px;
+  height: 18px;
+  vertical-align: middle;
+  margin: 0 5px;
+  position: relative;
+  text-indent: -9999px;
 }
 
 [data-tooltip-dialog] {
     text-align: center;
     color: #fff;
-    background: rgba(0,0,0,0.7);
+    background: #000;
     position: absolute;
     width: 40vh;
-    opacity: 0;
+    opacity: 1;
     z-index: 100;
     padding: 15px;
     border-radius: 5px;
+    text-indent: 0;
     @include optly--animate($property, $transition);
   &:after {
     width: 0;
@@ -28,7 +35,7 @@ $transition: opacity 0.1s linear;
     border-bottom: none;
     border-left: 5px solid transparent;
     border-right: 5px solid transparent;
-    border-top: 5px solid rgba(0,0,0,0.7);
+    border-top: 5px solid #000;
     left: 50%;
     bottom: -5px;
     margin: 0 0 0 -5px;
@@ -37,7 +44,7 @@ $transition: opacity 0.1s linear;
     &:after {
       border-left: 5px solid transparent;
       border-right: 5px solid transparent;
-      border-bottom: 5px solid rgba(0,0,0,0.7);
+      border-bottom: 5px solid #000;
       border-top: none;
       top: -5px;
       left: 50%;
@@ -49,7 +56,7 @@ $transition: opacity 0.1s linear;
   &.left-tip {
     &:after {
       border-left: none;
-      border-right: 5px solid rgba(0,0,0,0.7);
+      border-right: 5px solid #000;
       border-bottom: 5px solid transparent;
       border-top: 5px solid transparent;
       top: 50%;
@@ -61,7 +68,7 @@ $transition: opacity 0.1s linear;
   }
   &.right-tip {
     &:after {
-      border-left: 5px solid rgba(0,0,0,0.7);
+      border-left: 5px solid #000;
       border-right: none;
       border-bottom: 5px solid transparent;
       border-top: 5px solid transparent;
