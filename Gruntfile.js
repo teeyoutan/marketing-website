@@ -425,7 +425,6 @@ module.exports = function(grunt) {
       options: {
         key: '<%= grunt.config.get("aws.key") %>',
         secret: '<%= grunt.config.get("aws.secret") %>',
-        bucket: '<%= grunt.config.get("aws.smartling_staging_bucket") %>',
         access: 'public-read'
       },
       staging: {
