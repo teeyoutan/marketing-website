@@ -23,7 +23,7 @@ window.optly=window.optly||{},window.optly.mrkt=window.optly.mrkt||{},window.opt
         <script src="//cdn.optimizely.com/js/{{environmentVariables.optimizelyProjectID}}.js"></script>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         {{#if environmentVariables.staging}}<meta name="robots" content="noindex">{{/if}}
-        <title>Optimizely:{{#if page.seo_title}} {{page.seo_title}}{{else}} A/B testing software you'll actually use{{/if}}</title>
+        <title>{{#if page.seo_title}}{{page.seo_title}}{{else}}Optimizely: A/B testing software you'll actually use{{/if}}</title>
         {{!-- Standard meta tags --}}
         <meta name="description" content="{{#if page.description}}{{page.description}}{{else}}Improve conversions through A/B Testing, Split Testing and Multivariate Testing with Optimizely!{{/if}}">
         <meta name="keywords" content="AB test, split test, multivariate testing, conversion rate">
@@ -78,14 +78,14 @@ window.optly=window.optly||{},window.optly.mrkt=window.optly.mrkt||{},window.opt
                                         <p>Product</p>
                                         <ul>
                                             <li class="first"><a href="{{linkPath}}/benefits">Benefits</a></li>
-                                            <li><a href="{{linkPath}}/pricing">Plans and Pricing</a></li>
+                                            <li><a href="#">Plans and Pricing</a></li>
                                             <li><a href="{{linkPath}}/mobile">Mobile</a></li>
                                             <li><a href="{{linkPath}}/customers">Customer List</a></li>
                                             <li><a href="{{linkPath}}/customers/customer-stories">Customer Stories</a></li>
                                             <li class="last"><a href="{{linkPath}}/resources/live-demo-webinar">Live Demo Signup</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="{{linkPath}}/pricing">Pricing</a></li>
+                                    <li><a href="#">Pricing</a></li>
                                     <li>
                                         <p>Optiverse</p>
                                         <ul>
@@ -99,7 +99,7 @@ window.optly=window.optly||{},window.optly.mrkt=window.optly.mrkt||{},window.opt
                                         <ul>
                                             <li><a href="{{linkPath}}/ab-testing">What is A/B Testing?</a></li>
                                             <li><a href="{{linkPath}}/split-testing">What is Split Testing?</a></li>
-                                            <li><a href="{{linkPath}}/resources/multivariate-testing">What is Multivariate Testing?</a></li>
+                                            <li><a href="#">What is Multivariate Testing?</a></li>
                                             <li><a href="{{linkPath}}/gettingstarted">Getting Started</a></li>
                                             <li><a href="{{linkPath}}/faq">FAQ</a></li>
                                             <li><a href="http://developers.optimizely.com">Developer Platform</a></li>
@@ -138,7 +138,7 @@ window.optly=window.optly||{},window.optly.mrkt=window.optly.mrkt||{},window.opt
                                         <li id="footer-nav-features" class="columns three">
                                             <h4>Product Features &amp; Benefits</h4>
                                             <ul>
-                                                <li><a href="{{linkPath}}/pricing">Plans and Pricing</a></li>
+                                                <li><a href="#">Plans and Pricing</a></li>
                                                 <li><a href="{{linkPath}}/benefits">Benefits</a></li>
                                                 <li><a href="{{linkPath}}/mobile" class="SL_hide">iOS Beta</a></li>
                                                 <li><a href="{{linkPath}}/partners" class="SL_hide">Optimizely for Agencies</a></li>
