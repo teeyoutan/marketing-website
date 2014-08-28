@@ -128,8 +128,7 @@ window.optly.mrkt.tooltip.initTipQ = function() {
 };
 
 window.optly.mrkt.tooltip.toggleClass = function(added) {
-  var rgx = /tip/g,
-    matched;
+  var rgx = /tip/g;
   $(this.$tooltipElm.attr('class').split(' ')).each(function(index, cls) {
     if( rgx.test(cls) ) {
       this.$tooltipElm.removeClass(cls);
