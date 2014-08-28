@@ -284,6 +284,25 @@ module.exports = function(grunt) {
         partials: ['<%= config.guts %>/templates/partials/*.hbs'],
         helpers: ['<%= config.helpers %>/**/*.js'],
       },
+      modals: {
+        options: {
+          ext: '.hbs'
+        },
+        files: [
+          {
+            src: 'templates/components/modals/**/*.hbs',
+            dest: '<%= config.guts %>/templates/partials/',
+            cwd: '<%= config.guts %>/',
+            expand: true,
+            filter: 'isFile',
+            flatten: true,
+            rename: function(dest, src) {
+              var split = src.split('.');
+              return dest + split[0] + '_compiled';
+            }
+          }
+        ]
+      },
       partners: {
         options: {
           collections: [
@@ -309,26 +328,7 @@ module.exports = function(grunt) {
             expand: true
           }
         ]
-      },
-      modals: {
-        options: {
-          ext: '.hbs'
-        },
-        files: [
-          {
-            src: 'templates/components/modals/**/*.hbs',
-            dest: '<%= config.guts %>/templates/partials/',
-            cwd: '<%= config.guts %>/',
-            expand: true,
-            filter: 'isFile',
-            flatten: true,
-            rename: function(dest, src) {
-              var split = src.split('.');
-              return dest + split[0] + '_compiled';
-            }
-          }
-        ]
-      },
+      }
       pages: {
         files: [
           {
