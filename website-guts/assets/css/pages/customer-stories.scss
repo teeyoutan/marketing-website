@@ -93,10 +93,6 @@ body.customer-stories-page {
 
 @media only screen and (min-width: $tablet-min-width) {
   body.customer-stories-page {
-    .row {
-      // Make equal height columns, JS fallback
-      display: flex;
-    }
     .top-content {
       h2 {
         margin: 0;
